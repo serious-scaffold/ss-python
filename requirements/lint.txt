@@ -1,0 +1,7 @@
+# Requirements for lint.
+black
+flake8
+isort
+mypy
+pylint
+toml-sort

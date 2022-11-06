@@ -1,0 +1,5 @@
+# Requirements for docs.
+furo
+Sphinx
+sphinx-autobuild
+sphinx-click

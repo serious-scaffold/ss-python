@@ -1,0 +1,63 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.3.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: fix-encoding-pragma
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+      - id: name-tests-test
+      - id: no-commit-to-branch
+        stages: [push]
+      - id: pretty-format-json
+        args: [--autofix]
+      - id: requirements-txt-fixer
+        args:
+          [
+            constraints/default.txt,
+            requirements/docs.txt,
+            requirements/lint.txt,
+            requirements/package.txt,
+            requirements/requirements.txt,
+            requirements/tests.txt,
+          ]
+      - id: sort-simple-yaml
+        files: .pre-commit-config.yaml
+      - id: trailing-whitespace
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        language: system
+        entry: pipenv run python -m black
+        types: [python]
+      - id: mypy
+        name: mypy
+        language: system
+        entry: make mypy
+        types: [python]
+        require_serial: true
+        pass_filenames: false
+      - id: flake8
+        name: flake8
+        language: system
+        entry: pipenv run python -m flake8
+        types: [python]
+      - id: pylint
+        name: pylint
+        language: system
+        entry: pipenv run python -m pylint
+        types: [python]
+        require_serial: true
+      - id: toml-sort
+        name: toml-sort
+        language: system
+        entry: pipenv run toml-sort -a -i
+        types: [toml]

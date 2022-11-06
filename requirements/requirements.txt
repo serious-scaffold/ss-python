@@ -1,0 +1,3 @@
+# Requirements for runtime.
+click
+pydantic

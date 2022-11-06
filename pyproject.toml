@@ -1,0 +1,57 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+
+[project]
+authors = [
+    {name = "Xuan (Sean) Hu", email = "i@huxuan.org"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+description = "A serious python project template for out-of-box and production usage."
+dynamic = [
+    "version",
+    "dependencies",
+    "optional-dependencies",
+]
+keywords = [
+    "out-of-box",
+    "production",
+    "project template",
+    "template",
+]
+license = {file = "LICENSE"}
+name = "serious_scaffold"
+readme = "README.md"
+requires-python = ">=3.7"
+
+[project.scripts]
+serious-scaffold-cli = "serious_scaffold.cli:cli"
+
+[project.urls]
+homepage = "https://github.com/huxuan/serious-scaffold-python/"
+issue = "https://github.com/huxuan/serious-scaffold-python/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements/requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+dev = {file = [
+    "requirements/docs.txt",
+    "requirements/lint.txt",
+    "requirements/package.txt",
+    "requirements/tests.txt",
+]}
+docs = {file = ["requirements/docs.txt"]}
+lint = {file = ["requirements/lint.txt"]}
+package = {file = ["requirements/package.txt"]}
+tests = {file = ["requirements/tests.txt"]}
+
+[tool.setuptools_scm]
