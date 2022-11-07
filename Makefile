@@ -1,8 +1,8 @@
 .PHONY: clean deepclean dev pre-commit lint black mypy flake8 pylint pip-check-reqs toml-sort test build upload docs devdocs
 
-# Use pipenv when not in CI environment and pipenv command exists.
-PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo pipenv run)
-SITE_PACKAGE_FLAG = $(shell [ "${USE_SITE_PACKAGE}" == "true" ] && echo "--site-packages" )
+# Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
+SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
+PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo pipenv ${SITE_PACKAGES_FLAG} run)
 SRCDIR := src
 
 # Remove common intermediate files.
@@ -28,23 +28,27 @@ deepclean: clean
 	-pre-commit uninstall --hook-type pre-push
 	-pipenv --venv >/dev/null 2>&1 && pipenv --rm
 
-# Prepare virtualenv.
+# Determine whether to use virtualenv with site packages according to various situations:
+# - Not in CI mode.
+# - Command pipenv exists.
+# - No existing virtualenv (site-packages flag only work ).
+# - Env "SS_USE_SITE_PACKAGES" is true.
 venv:
-	-[ "${CI}" != "true" ] && ! pipenv --venv >/dev/null 2>&1 && pipenv ${SITE_PACKAGE_FLAG}
+	-[ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && ! pipenv --venv >/dev/null 2>&1 && [ "${SS_SITE_PACKAGES}" == "true" ] && pipenv --site-packages
 
 # Install package in editable mode.
-install: venv
-	${PIPRUN} pip install -e . -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+install:
+	${PIPRUN} pip install --no-build-isolation -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 # Install package in editable mode with specific optional dependencies. Valid options: docs, lint, tests.
 dev-%: venv
-	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install --no-build-isolation -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
 
 # Prepare dev environments:
 # - Install package in editable mode with all optional dependencies.
 # - Install pre-commit hoook when not in CI environment.
 dev: venv
-	${PIPRUN} pip install -e .[dev] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install --no-build-isolation -e .[dev] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
 show-version:
@@ -73,12 +77,7 @@ flake8:
 pylint:
 	${PIPRUN} python -m pylint tests ${SRCDIR}
 
-# [Experimental] Check missing/redundant requirements.
-pip-check-reqs:
-	${PIPRUN} pip-missing-reqs ${SRCDIR}
-	${PIPRUN} pip-extra-reqs ${SRCDIR}
-
-# Sort and format toml files (especially for pyproject.toml).
+# Sort and format toml files.
 toml-sort:
 	${PIPRUN} toml-sort -a -i pyproject.toml
 
@@ -99,5 +98,5 @@ docs:
 	${PIPRUN} python -m sphinx.cmd.build docs public
 
 # Auto build docs.
-devdocs:
+docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs public
