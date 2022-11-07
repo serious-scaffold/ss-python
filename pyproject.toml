@@ -7,7 +7,8 @@ requires = [
 
 [project]
 authors = [
-    {name = "Xuan (Sean) Hu", email = "i@huxuan.org"},
+    {name = "Serious Scaffold"},
+    {name = "huxuan", email = "i@huxuan.org"},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -30,7 +31,7 @@ keywords = [
 license = {file = "LICENSE"}
 name = "serious_scaffold"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.8"
 
 [project.scripts]
 serious-scaffold-cli = "serious_scaffold.cli:cli"

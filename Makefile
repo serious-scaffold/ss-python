@@ -18,7 +18,7 @@ clean:
 		.mypy_cache \
 		.pytest_cache \
 		Pipfile* \
-		build \
+		docs\_build \
 		dist \
 		output \
 		public
@@ -38,17 +38,17 @@ venv:
 
 # Install package in editable mode.
 install:
-	${PIPRUN} pip install --no-build-isolation -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 # Install package in editable mode with specific optional dependencies. Valid options: docs, lint, tests.
 dev-%: venv
-	${PIPRUN} pip install --no-build-isolation -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
 
 # Prepare dev environments:
 # - Install package in editable mode with all optional dependencies.
 # - Install pre-commit hoook when not in CI environment.
 dev: venv
-	${PIPRUN} pip install --no-build-isolation -e .[dev] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[dev] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
 show-version:
@@ -95,8 +95,8 @@ upload:
 
 # Generate docs.
 docs:
-	${PIPRUN} python -m sphinx.cmd.build docs public
+	${PIPRUN} python -m sphinx.cmd.build docs docs/_build
 
 # Auto build docs.
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs public
+	${PIPRUN} python -m sphinx_autobuild docs docs/_build
