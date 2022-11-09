@@ -54,8 +54,25 @@ noqa-require-code = true
 [tool.isort]
 profile = "black"
 
+[tool.pylint.basic]
+good-names = [
+    "i",
+    "j",
+    "k",
+    "ex",
+    "Run",
+    "_",
+]
+
 [tool.pylint.format]
 max-line-length = "88"
+
+[tool.pylint.main]
+jobs = 0
+load-plugins = [
+    "pylint.extensions.no_self_use",
+]
+recursive = true
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
