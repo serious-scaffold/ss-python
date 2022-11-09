@@ -1,0 +1,77 @@
+stages:
+  - lint_tests
+  - build_release
+
+.lint:
+  stage: lint_tests
+  script:
+    - make dev-lint
+    - make lint
+  only:
+    - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  interruptible: true
+
+.tests:
+  stage: lint_tests
+  script:
+    - make dev-tests
+    - make tests
+  only:
+    - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  artifacts:
+    reports:
+      cobertura: coverage.xml
+  interruptible: true
+
+.package:
+  stage: build_release
+  script:
+    - make dev-package
+    - make build
+    - make upload
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+
+.pages:
+  stage: build_release
+  script:
+    - make dev-docs
+    - make docs
+  artifacts:
+    paths:
+      - docs\_build
+  only:
+    refs:
+      - master
+      - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    changes:
+      - docs/**/*
+  except:
+    refs:
+      - schedules
+  interruptible: true
+
+.env:
+  image: python:latest
+
+lint:
+  extends:
+    - .lint
+    - .env
+
+tests:
+  extends:
+    - .tests
+    - .env
+
+package:
+  extends:
+    - .package
+    - .env
+
+pages:
+  extends:
+    - .pages
+    - .env

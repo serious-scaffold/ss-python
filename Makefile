@@ -82,7 +82,7 @@ toml-sort:
 	${PIPRUN} toml-sort -a -i pyproject.toml
 
 # Trigger tests.
-test:
+tests:
 	${PIPRUN} python -m pytest --cov=${SRCDIR} --cov-fail-under=$(or $(TEST_COVERAGE_THRESHOLD),0) .
 
 # Build package.
