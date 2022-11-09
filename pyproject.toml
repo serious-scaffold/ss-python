@@ -40,8 +40,25 @@ serious-scaffold-cli = "serious_scaffold.cli:cli"
 homepage = "https://github.com/huxuan/serious-scaffold-python/"
 issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 
+[tool.flake8]
+extend-exclude = [
+    ".venv",
+]
+extend-ignore = [
+    "E203",
+]
+inline-quotes = "double"
+max-line-length = 88
+noqa-require-code = true
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.format]
+max-line-length = "88"
+
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements/runtime.txt"]}
+dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.dynamic.optional-dependencies]
 dev = {file = [

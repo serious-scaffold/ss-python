@@ -22,10 +22,10 @@ repos:
         args:
           [
             constraints/default.txt,
+            requirements.txt,
             requirements/docs.txt,
             requirements/lint.txt,
             requirements/package.txt,
-            requirements/runtime.txt,
             requirements/tests.txt,
           ]
       - id: sort-simple-yaml
