@@ -41,7 +41,7 @@ homepage = "https://github.com/huxuan/serious-scaffold-python/"
 issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 
 [tool.setuptools.dynamic]
-dependencies = {file = ["requirements/requirements.txt"]}
+dependencies = {file = ["requirements/runtime.txt"]}
 
 [tool.setuptools.dynamic.optional-dependencies]
 dev = {file = [
