@@ -11,4 +11,4 @@ def test_app():
     """Test for cli."""
     result = runner.invoke(app)
     assert result.exit_code == 0
-    assert result.output.strip() == "Hello World."
+    assert result.output == ""
