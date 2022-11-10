@@ -50,6 +50,9 @@ extend-ignore = [
 inline-quotes = "double"
 max-line-length = 88
 noqa-require-code = true
+per-file-ignores = [
+    "tests/*:S101"
+]
 
 [tool.isort]
 profile = "black"
