@@ -1,9 +1,9 @@
 stages:
-  - lint_tests
+  - lint_test
   - build_release
 
 .lint:
-  stage: lint_tests
+  stage: lint_test
   script:
     - make dev-lint
     - make lint
@@ -12,11 +12,11 @@ stages:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   interruptible: true
 
-.tests:
-  stage: lint_tests
+.test:
+  stage: lint_test
   script:
-    - make dev-tests
-    - make tests
+    - make dev-test
+    - make test
   only:
     - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -61,9 +61,9 @@ lint:
     - .lint
     - .env
 
-tests:
+test:
   extends:
-    - .tests
+    - .test
     - .env
 
 package:

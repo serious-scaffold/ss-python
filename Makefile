@@ -40,7 +40,7 @@ venv:
 install:
 	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
-# Install package in editable mode with specific optional dependencies. Valid options: docs, lint, tests.
+# Install package in editable mode with specific optional dependencies. Valid options: docs, lint, test.
 dev-%: venv
 	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
 
@@ -81,8 +81,8 @@ pylint:
 toml-sort:
 	${PIPRUN} toml-sort -a -i pyproject.toml
 
-# Trigger tests.
-tests:
+# Trigger test.
+test:
 	${PIPRUN} python -m pytest --cov=${SRCDIR} --cov-fail-under=$(or $(TEST_COVERAGE_THRESHOLD),0) .
 
 # Build package.

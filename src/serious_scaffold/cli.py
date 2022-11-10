@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 """Command Line Interface."""
-import click
+import typer
 
-CONTEXT_SETTINGS = {
-    "help_option_names": ["-h", "--help"],
-    "show_default": True,
-}
+app = typer.Typer()
 
 
-@click.group(context_settings=CONTEXT_SETTINGS)
-@click.version_option()
-def cli() -> None:
-    """Command Line Interface."""
+@app.command()
+def hello(name: str = "World"):
+    """Hello command."""
+    print(f"Hello {name}.")
 
 
-@cli.command()
-def run() -> None:
-    """Run command."""
+if __name__ == "__main__":
+    app()  # pragma: no cover
