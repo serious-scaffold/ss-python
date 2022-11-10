@@ -6,9 +6,8 @@ app = typer.Typer()
 
 
 @app.command()
-def hello(name: str = "World"):
-    """Hello command."""
-    print(f"Hello {name}.")
+def run():
+    """Run command."""
 
 
 typer_click_object = typer.main.get_command(app)
