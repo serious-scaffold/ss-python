@@ -32,7 +32,7 @@ deepclean: clean
 install:
 	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
-# Install package in editable mode with specific optional dependencies. Valid options: docs, lint, test.
+# Install package in editable mode with specific optional dependencies. Valid options: docs, lint, package, test.
 dev-%:
 	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
