@@ -1,4 +1,4 @@
-.PHONY: clean deepclean dev pre-commit lint black mypy flake8 pylint pip-check-reqs toml-sort test build upload docs devdocs
+.PHONY: clean deepclean install dev version pre-commit lint black mypy flake8 pylint toml-sort test build upload docs docs-autobuild
 
 # Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
 SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
@@ -28,30 +28,21 @@ deepclean: clean
 	-pre-commit uninstall --hook-type pre-push
 	-pipenv --venv >/dev/null 2>&1 && pipenv --rm
 
-# Determine whether to use virtualenv with site packages according to various situations:
-# - Not in CI mode.
-# - Command pipenv exists.
-# - No existing virtualenv (site-packages flag only work ).
-# - Env "SS_USE_SITE_PACKAGES" is true.
-venv:
-	-[ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && ! pipenv --venv >/dev/null 2>&1 && [ "${SS_SITE_PACKAGES}" == "true" ] && pipenv --site-packages
-
 # Install package in editable mode.
 install:
 	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 # Install package in editable mode with specific optional dependencies. Valid options: docs, lint, test.
-dev-%: venv
-	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+dev-%:
+	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
-# Prepare dev environments:
-# - Install package in editable mode with all optional dependencies.
-# - Install pre-commit hoook when not in CI environment.
-dev: venv
-	${PIPRUN} pip install -e .[dev] -c constraints/$(or $(CONSTRAINTS_VERSION),default).txt
+# Install package in editable mode with all optional dependencies and pre-commit hoook when not in CI environment.
+dev:
+	${PIPRUN} pip install -e .[dev] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
-show-version:
+# Show version.
+version:
 	${PIPRUN} python -m setuptools_scm
 
 # Run pre-commit for all files.
@@ -83,7 +74,7 @@ toml-sort:
 
 # Trigger test.
 test:
-	${PIPRUN} python -m pytest --cov=${SRCDIR} --cov-fail-under=$(or $(TEST_COVERAGE_THRESHOLD),0) .
+	${PIPRUN} python -m pytest --cov=${SRCDIR} --cov-fail-under=$(or $(SS_TEST_COVERAGE_THRESHOLD),0) .
 
 # Build package.
 build:
