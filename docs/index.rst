@@ -5,7 +5,7 @@ Welcome to serious-scaffold's documentation!
    :maxdepth: 2
 
    cli/index
-   api/index
+   modules/index
 
 Indices and tables
 ==================
