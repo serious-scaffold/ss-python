@@ -29,7 +29,7 @@
     "**/.venv": true,
     "**/Pipfile*": true,
     "**/__pycache__": true,
-    "**/build": true,
+    "**/_build": true,
     "**/coverage.xml": true,
     "**/htmlcov": true
   },
