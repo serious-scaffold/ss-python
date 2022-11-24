@@ -11,6 +11,12 @@
     },
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "cSpell.words": [
+    "typer"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
   "editor.formatOnSave": true,
   "editor.rulers": [
     88
