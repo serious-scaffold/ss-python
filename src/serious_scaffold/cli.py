@@ -6,7 +6,7 @@ app = typer.Typer()
 
 
 @app.command()
-def run():
+def run() -> None:
     """Run command."""
 
 

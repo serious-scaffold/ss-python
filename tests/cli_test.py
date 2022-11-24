@@ -7,7 +7,7 @@ from serious_scaffold.cli import app
 runner = CliRunner()
 
 
-def test_app():
+def test_app() -> None:
     """Test for cli."""
     result = runner.invoke(app)
     assert result.exit_code == 0
