@@ -7,21 +7,20 @@ SRCDIR := src
 
 # Remove common intermediate files.
 clean:
+	-rm -rf \
+		*.egg-info \
+		.coverage \
+		.mypy_cache \
+		.pytest_cache \
+		.ruff_cache \
+		Pipfile* \
+		coverage.xml \
+		dist \
+		docs\_build
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
 	find . -name '.DS_Store' -print0 | xargs -0 rm -rf
 	find . -name '__pycache__' -print0 | xargs -0 rm -rf
-	-rm -rf \
-		*.egg-info \
-		.coverage \
-		.eggs \
-		.mypy_cache \
-		.pytest_cache \
-		Pipfile* \
-		docs\_build \
-		dist \
-		output \
-		public
 
 # Remove common intermediate files alongside with `pre-commit` hook and virtualenv created by `pipenv`.
 deepclean: clean
@@ -38,7 +37,7 @@ dev-%:
 
 # Install package in editable mode with all optional dependencies and pre-commit hoook when not in CI environment.
 dev:
-	${PIPRUN} pip install -e .[dev] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
 # Show version.
@@ -75,6 +74,10 @@ toml-sort:
 # Trigger test.
 test:
 	${PIPRUN} python -m pytest --cov=${SRCDIR} --cov-fail-under=$(or $(SS_TEST_COVERAGE_THRESHOLD),0) .
+
+# Freeze constraints.
+freeze:
+	@${PIPRUN} pip freeze --exclude-editable
 
 # Build package.
 build:

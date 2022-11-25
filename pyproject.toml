@@ -101,12 +101,6 @@ minversion = "6.0"
 dependencies = {file = ["requirements.txt"]}
 
 [tool.setuptools.dynamic.optional-dependencies]
-dev = {file = [
-    "requirements/docs.txt",
-    "requirements/lint.txt",
-    "requirements/package.txt",
-    "requirements/test.txt",
-]}
 docs = {file = ["requirements/docs.txt"]}
 lint = {file = ["requirements/lint.txt"]}
 package = {file = ["requirements/package.txt"]}
