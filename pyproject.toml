@@ -40,23 +40,6 @@ serious-scaffold-cli = "serious_scaffold.cli:app"
 homepage = "https://github.com/huxuan/serious-scaffold-python/"
 issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 
-[tool.flake8]
-extend-exclude = [
-    ".venv",
-]
-extend-ignore = [
-    "E203",
-]
-inline-quotes = "double"
-max-line-length = 88
-noqa-require-code = true
-per-file-ignores = [
-    "tests/*:S101"
-]
-
-[tool.isort]
-profile = "black"
-
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_unimported = true
@@ -68,26 +51,6 @@ no_implicit_optional = true
 show_error_codes = true
 warn_return_any = true
 warn_unused_ignores = true
-
-[tool.pylint.basic]
-good-names = [
-    "i",
-    "j",
-    "k",
-    "ex",
-    "Run",
-    "_",
-]
-
-[tool.pylint.format]
-max-line-length = "88"
-
-[tool.pylint.main]
-jobs = 0
-load-plugins = [
-    "pylint.extensions.no_self_use",
-]
-recursive = true
 
 [tool.pytest.ini_options]
 addopts = "-l -s -v --color=yes --durations=0 --cov-report xml"

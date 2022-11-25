@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev version pre-commit lint black mypy flake8 pylint toml-sort test build upload docs docs-autobuild
+.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort test freeze build upload docs docs-autobuild
 
 # Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
 SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
@@ -48,24 +48,20 @@ version:
 pre-commit:
 	pre-commit run --all-files
 
-# Lint with all tools: black, mypy, flake8, pylint and toml-sort.
-lint: mypy flake8 pylint toml-sort
+# All linters.
+lint: mypy ruff toml-sort
 
 # Code formatter.
 black:
 	${PIPRUN} python -m black tests ${SRCDIR}
 
-# Static typing checker.
+# Static type checker.
 mypy:
 	${PIPRUN} python -m mypy tests ${SRCDIR}
 
-# Style checker with various of plugins.
-flake8:
-	${PIPRUN} python -m flake8
-
-# Static code analysis.
-pylint:
-	${PIPRUN} python -m pylint tests ${SRCDIR}
+# Python linter.
+ruff:
+	${PIPRUN} python -m ruff ${SRCDIR}
 
 # Sort and format toml files.
 toml-sort:

@@ -45,17 +45,11 @@ repos:
         types: [python]
         require_serial: true
         pass_filenames: false
-      - id: flake8
-        name: flake8
+      - id: ruff
+        name: ruff
         language: system
-        entry: pipenv run python -m flake8
+        entry: pipenv run python -m ruff
         types: [python]
-      - id: pylint
-        name: pylint
-        language: system
-        entry: pipenv run python -m pylint
-        types: [python]
-        require_serial: true
       - id: toml-sort
         name: toml-sort
         language: system

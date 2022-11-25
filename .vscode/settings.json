@@ -29,6 +29,7 @@
     "**/.coverage": true,
     "**/.mypy_cache": true,
     "**/.pytest_cache": true,
+    "**/.ruff_cache": true,
     "**/.venv": true,
     "**/Pipfile*": true,
     "**/__pycache__": true,
@@ -39,11 +40,7 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  "isort.args": [
-    "--profile",
-    "black"
-  ],
-  "python.formatting.provider": "none",
+  "python.formatting.provider": "black",
   "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
   "python.linting.pylintEnabled": true,
