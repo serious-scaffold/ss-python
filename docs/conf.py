@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Configuration file for the Sphinx documentation builder.
 
 For the full list of built-in configuration values, see the documentation:
@@ -10,12 +9,12 @@ from importlib import metadata
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "serious-scaffold"  # pylint: disable=invalid-name
-package = project.replace("-", "_")  # pylint: disable=invalid-name
+project = "serious-scaffold"
+package = project.replace("-", "_")
 author = metadata.metadata(package)["Author"]
-copyright = f"2022, {author}"  # pylint: disable=redefined-builtin
+copyright = f"2022, {author}"  # noqa: A001
 release = metadata.version(package)
-version = ".".join(release.split(".")[:2])  # pylint: disable=invalid-name
+version = ".".join(release.split(".")[:2])
 
 
 # -- General configuration ---------------------------------------------------
@@ -35,5 +34,5 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = "furo"  # pylint: disable=invalid-name
+html_theme = "furo"
 html_static_path = ["_static"]

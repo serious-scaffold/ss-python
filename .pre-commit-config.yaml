@@ -10,7 +10,6 @@ repos:
       - id: check-xml
       - id: check-yaml
       - id: end-of-file-fixer
-      - id: fix-encoding-pragma
       - id: forbid-new-submodules
       - id: mixed-line-ending
       - id: name-tests-test

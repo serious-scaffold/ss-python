@@ -60,6 +60,45 @@ log_date_format = "%Y-%m-%d %H:%M:%S"
 log_format = "%(asctime)s %(levelname)s %(message)s"
 minversion = "6.0"
 
+[tool.ruff]
+extend-ignore = [
+  "D203",
+  "D204",
+  "D213",
+  "D215",
+  "D400",
+  "D404",
+  "D406",
+  "D407",
+  "D408",
+  "D409",
+  "D413",
+]
+extend-select = [
+  "I",
+  "D",
+  "U",
+  "N",
+  "S",
+  "C",
+  "FBT",
+  "B",
+  "A",
+  "I25",
+  "T",
+  "Q",
+  "ANN",
+  "YTT",
+  "BLE",
+  "C90",
+  "RUF",
+  "M",
+]
+fix = true
+per-file-ignores = {"tests/*" = ["S101"]}
+src = ["src"]
+target-version = "py38"
+
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 

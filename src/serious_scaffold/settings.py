@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """Settings."""
 import logging
 from logging import getLevelName
@@ -7,18 +6,18 @@ from typing import Optional
 from pydantic import BaseSettings
 
 
-class Settings(BaseSettings):  # pylint: disable=too-few-public-methods
+class Settings(BaseSettings):
     """Settings."""
 
     logging_level: Optional[str] = getLevelName(logging.INFO)
 
-    class Config:  # pylint: disable=too-few-public-methods
+    class Config:
         """Config for settings."""
 
         env_prefix = "SERIOUS_SCAFFOLD_"
 
 
-class GlobalSettings(BaseSettings):  # pylint: disable=too-few-public-methods
+class GlobalSettings(BaseSettings):
     """Global Settings."""
 
     ci: bool = False
