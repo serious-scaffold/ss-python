@@ -1,5 +1,6 @@
 alabaster==0.7.12
 attrs==22.1.0
+autodoc-pydantic==1.8.0
 Babel==2.11.0
 beautifulsoup4==4.11.1
 black==22.10.0

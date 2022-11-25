@@ -1,4 +1,4 @@
-"""Settings."""
+"""Settings Module."""
 import logging
 from logging import getLevelName
 from typing import Optional
@@ -7,7 +7,7 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
-    """Settings."""
+    """Project specific settings."""
 
     logging_level: Optional[str] = getLevelName(logging.INFO)
 
@@ -18,10 +18,13 @@ class Settings(BaseSettings):
 
 
 class GlobalSettings(BaseSettings):
-    """Global Settings."""
+    """System level settings."""
 
     ci: bool = False
 
 
+#: Instance for project specific settings.
 settings = Settings()
+
+#: Instance for system level settings.
 global_settings = GlobalSettings()

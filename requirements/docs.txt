@@ -1,4 +1,5 @@
 # Requirements for docs.
+autodoc-pydantic
 furo
 Sphinx
 sphinx-autobuild

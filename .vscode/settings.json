@@ -15,6 +15,7 @@
     "autofix",
     "mypy",
     "pipenv",
+    "pydantic",
     "typer"
   ],
   "editor.codeActionsOnSave": {
