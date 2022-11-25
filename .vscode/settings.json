@@ -13,6 +13,8 @@
   },
   "cSpell.words": [
     "autofix",
+    "automodule",
+    "codecov",
     "mypy",
     "pipenv",
     "pydantic",
