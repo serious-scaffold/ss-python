@@ -33,3 +33,4 @@ jobs:
       - run: make test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+        if: matrix.python-version == '3.8'
