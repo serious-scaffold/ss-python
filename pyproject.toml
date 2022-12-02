@@ -28,7 +28,6 @@ keywords = [
     "project template",
     "template",
 ]
-license = {file = "LICENSE"}
 name = "serious_scaffold"
 readme = "README.md"
 requires-python = ">=3.8"
