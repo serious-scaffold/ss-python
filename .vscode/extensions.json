@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "charliermarsh.ruff",
+    "esbenp.prettier-vscode",
+    "ms-python.black-formatter",
+    "ms-python.python",
+    "richie5um2.vscode-sort-json",
+    "shuworks.vscode-table-formatter",
+    "streetsidesoftware.code-spell-checker",
+    "trond-snekvik.simple-rst"
+  ]
+}

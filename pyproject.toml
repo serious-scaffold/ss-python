@@ -1,0 +1,111 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = [
+    "setuptools",
+    "setuptools-scm",
+]
+
+[project]
+authors = [
+    {name = "Serious Scaffold"},
+    {name = "huxuan", email = "i@huxuan.org"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+description = "A serious python project template for out-of-box and production usage."
+dynamic = [
+    "version",
+    "dependencies",
+    "optional-dependencies",
+]
+keywords = [
+    "out-of-box",
+    "production",
+    "project template",
+    "template",
+]
+license = {file = "LICENSE"}
+name = "serious_scaffold"
+readme = "README.md"
+requires-python = ">=3.8"
+
+[project.scripts]
+serious-scaffold-cli = "serious_scaffold.cli:app"
+
+[project.urls]
+homepage = "https://github.com/huxuan/serious-scaffold-python/"
+issue = "https://github.com/huxuan/serious-scaffold-python/issues"
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_untyped_defs = true
+enable_error_code = [
+  "ignore-without-code",
+]
+no_implicit_optional = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+addopts = "-l -s -v --color=yes --durations=0 --cov-report xml"
+log_cli = true
+log_cli_level = "info"
+log_date_format = "%Y-%m-%d %H:%M:%S"
+log_format = "%(asctime)s %(levelname)s %(message)s"
+minversion = "6.0"
+
+[tool.ruff]
+extend-ignore = [
+  "D203",
+  "D204",
+  "D213",
+  "D215",
+  "D400",
+  "D404",
+  "D406",
+  "D407",
+  "D408",
+  "D409",
+  "D413",
+]
+extend-select = [
+  "I",
+  "D",
+  "U",
+  "N",
+  "S",
+  "C",
+  "FBT",
+  "B",
+  "A",
+  "I25",
+  "T",
+  "Q",
+  "ANN",
+  "YTT",
+  "BLE",
+  "C90",
+  "RUF",
+  "M",
+]
+fix = true
+per-file-ignores = {"tests/*" = ["S101"]}
+src = ["src"]
+target-version = "py38"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.dynamic.optional-dependencies]
+docs = {file = ["requirements/docs.txt"]}
+lint = {file = ["requirements/lint.txt"]}
+package = {file = ["requirements/package.txt"]}
+test = {file = ["requirements/test.txt"]}
+
+[tool.setuptools_scm]
