@@ -1,4 +1,5 @@
 name: Read the Docs Pull Request Preview
+
 on:
   pull_request_target:
     types:
