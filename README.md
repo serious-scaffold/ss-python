@@ -15,7 +15,7 @@ A serious Python project template for out-of-box and production usage.
   </a>
 </div>
 
-Many efforts have been made to easier the project setup, but most of them are only language-specified basic components. In reality, we have to deal with much more details, especially for team projects. Many commonly used tools and configurations need to be handled properly. Not to mention that different people tend to have different favors on various aspects. [Serious Scaffold Python](https://github.com/huxuan/serious-scaffold-python) is a kind of abstraction from my Python development experience that aims to terminate the inefficient setup process and endless discussion for Python Projects.
+Many efforts have been made to ease the project setup, but most of them are only language-specified basic components. In practice, we have to deal with much more details, especially for team projects. Many commonly used tools and configurations need to be handled properly. Moreover, different people tend to have different favors in various aspects. If you are tired of the inefficient setup process and endless discussion, [Serious Scaffold Python](https://github.com/huxuan/serious-scaffold-python) is here to terminate those for Python Projects.
 
 If you find this helpful, please consider [sponsorship](https://github.com/huxuan/serious-scaffold-python).
 
