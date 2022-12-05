@@ -11,7 +11,7 @@ A serious Python project template for out-of-box and production usage.
 
 <div align="center">
   <a href="https://github.com/huxuan/serious-scaffold-python">
-    <img src="docs/_static/images/logo.png" height=200 alt="Serious Scaffold Python">
+    <img src="docs/_static/images/logo.png" height=300 alt="Serious Scaffold Python">
   </a>
 </div>
 
