@@ -18,6 +18,7 @@
     "mypy",
     "pipenv",
     "pydantic",
+    "setuptools",
     "typer"
   ],
   "editor.codeActionsOnSave": {
