@@ -41,10 +41,13 @@ version:
 pre-commit:
 	pre-commit run --all-files
 
-lint: mypy ruff toml-sort
-
 black:
 	${PIPRUN} python -m black docs tests src
+
+lint: isort mypy ruff toml-sort
+
+isort:
+	${PIPRUN} python -m isort .
 
 mypy:
 	${PIPRUN} python -m mypy docs tests src

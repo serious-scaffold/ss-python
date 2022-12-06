@@ -37,6 +37,13 @@ repos:
         language: system
         entry: pipenv run python -m black
         types: [python]
+      - id: isort
+        name: isort
+        language: system
+        entry: pipenv run python -m isort
+        require_serial: true
+        types_or: [cython, pyi, python]
+        args: ['--filter-files']
       - id: mypy
         name: mypy
         language: system

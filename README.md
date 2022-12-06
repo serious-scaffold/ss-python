@@ -8,6 +8,7 @@ A serious Python project template for out-of-box and production usage.
 [![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/?version=latest)](https://serious-scaffold-python.readthedocs.io/en/latest/?badge=latest)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/huxuan/serious-scaffold-python)
 [![PyPI](https://img.shields.io/pypi/v/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
@@ -29,7 +30,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/huxua
 - [`typer`](https://github.com/tiangolo/typer) for CLI with tests and automatic documentation generation.
 - [`pydantic`](https://github.com/pydantic/pydantic) for [settings](https://pydantic-docs.helpmanual.io/usage/settings/) with tests and documentation as module samples.
 - [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) to extract the version for the package.
-- [`black`](https://github.com/psf/black), [`mypy`](https://github.com/python/mypy), [`ruff`](https://github.com/charliermarsh/ruff) and [`toml-sort`](https://github.com/pappasam/toml-sort) as linters.
+- [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff) and [`toml-sort`](https://github.com/pappasam/toml-sort) as linters.
 - [`pre-commit`](https://github.com/pre-commit/pre-commit) with [general hooks](https://github.com/pre-commit/pre-commit-hooks) and local linters.
 - `Makefile` as the entry point for common actions.
 - VSCode settings with recommended extensions.
