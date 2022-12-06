@@ -15,6 +15,7 @@
     "autofix",
     "automodule",
     "codecov",
+    "isort",
     "mypy",
     "pipenv",
     "pydantic",
