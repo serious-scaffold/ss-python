@@ -43,7 +43,7 @@ repos:
         entry: pipenv run python -m isort
         require_serial: true
         types_or: [cython, pyi, python]
-        args: ['--filter-files']
+        args: ["--filter-files"]
       - id: mypy
         name: mypy
         language: system
@@ -61,3 +61,8 @@ repos:
         language: system
         entry: pipenv run toml-sort -a -i
         types: [toml]
+      - id: forbidden-files
+        name: forbidden files
+        entry: found Copier update rejection files; review them and remove them
+        language: fail
+        files: "\\.rej$"
