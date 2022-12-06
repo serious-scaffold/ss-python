@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     class Config:
         """Config for settings."""
 
-        env_prefix = "{{ module_name }}_"
+        env_prefix = "{{ module_name|upper }}_"
 
 
 class GlobalSettings(BaseSettings):
