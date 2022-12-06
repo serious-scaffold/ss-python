@@ -15,7 +15,7 @@
     "autofix",
     "automodule",
     "codecov",
-    "{{ github_name }}",
+    "huxuan",
     "isort",
     "mypy",
     "pipenv",
