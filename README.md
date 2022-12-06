@@ -39,8 +39,11 @@ If you find this helpful, please consider [sponsorship](https://github.com/huxua
 ## Roadmap
 
 - More detailed documentation for all aspects.
-- [Cookiecutter](https://github.com/cookiecutter/cookiecutter) integration.
+- [Copier](https://copier.readthedocs.io/) integration.
+- [GitHub Dependabot](https://github.com/dependabot) integration.
+- [GitHub issue and pull request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests).
 - [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/) integration.
+- [Gitlab issue and merge request templates](https://docs.gitlab.com/ee/user/project/description_templates.html).
 
 ## License
 
