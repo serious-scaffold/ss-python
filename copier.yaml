@@ -1,3 +1,29 @@
 project_name:
   type: str
-  help: What is your project name?
+  help: "Project name in CamelCase:"
+  default: Serious Scaffold Python
+
+repo_namespace:
+  type: str
+  help: "GitHub username, organization or Gitlab namespace:"
+  default: huxuan
+
+github_username:
+  type: str
+  help: "Github username:"
+  default: "{{ repo_namespace }}"
+
+repo_name:
+  type: str
+  help: "Repo name:"
+  default: "{{ project_name|lower|replace(' ', '-') }}"
+
+package_name:
+  type: str
+  help: "Package name:"
+  default: "{{ repo_name|regex_replace('-python$','') }}"
+
+module_name:
+  type: str
+  help: "Module name:"
+  default: "{{ package_name|lower|replace('-', '_') }}"
