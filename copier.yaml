@@ -13,6 +13,16 @@ github_username:
   help: "Github username:"
   default: "{{ repo_namespace }}"
 
+author_name:
+  type: str
+  help: "Author name:"
+  default: "{{ github_username }}"
+
+author_email:
+  type: str
+  help: "Author email:"
+  default: "i@{{ author_name }}.org"
+
 repo_name:
   type: str
   help: "Repo name:"

@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     class Config:
         """Config for settings."""
 
-        env_prefix = "SERIOUS_SCAFFOLD_"
+        env_prefix = "{{ module_name }}_"
 
 
 class GlobalSettings(BaseSettings):
