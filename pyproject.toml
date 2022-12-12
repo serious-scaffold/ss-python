@@ -7,8 +7,8 @@ requires = [
 
 [project]
 authors = [
-    {name = "{{ project_name }}"},
-    {name = "{{ author_name }}", email = "{{ author_email }}"},
+    {name = "Serious Scaffold Python"},
+    {name = "huxuan", email = "i@huxuan.org"},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -19,7 +19,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-description = "{{ project_description }}"
+description = "A serious Python project template for out-of-box and production usage."
 dynamic = [
     "version",
     "dependencies",
@@ -31,16 +31,16 @@ keywords = [
     "project template",
     "template",
 ]
-name = "{{ package_name }}"
+name = "serious-scaffold"
 readme = "README.md"
 requires-python = ">=3.8"
 
 [project.scripts]
-{{ package_name }}-cli = "{{ module_name }}.cli:app"
+serious-scaffold-cli = "serious_scaffold.cli:app"
 
 [project.urls]
-homepage = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/"
-issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
+homepage = "https://github.com/huxuan/serious-scaffold-python/"
+issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 
 [tool.mypy]
 check_untyped_defs = true

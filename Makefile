@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort test freeze build upload docs docs-autobuild
+.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort tests freeze build upload docs docs-autobuild
 
 # Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
 SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
@@ -32,7 +32,7 @@ dev-%:
 	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 dev:
-	${PIPRUN} pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[docs,lint,package,tests] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
 version:
@@ -58,8 +58,8 @@ ruff:
 toml-sort:
 	${PIPRUN} toml-sort -a -i pyproject.toml
 
-test:
-	${PIPRUN} python -m pytest --cov=src --cov-fail-under=$(or $(SS_TEST_COVERAGE_THRESHOLD),0) .
+tests:
+	${PIPRUN} python -m pytest --cov=src --cov-fail-under=$(or $(SS_TESTS_COVERAGE_THRESHOLD),0) .
 
 freeze:
 	@${PIPRUN} pip freeze --exclude-editable

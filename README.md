@@ -3,9 +3,9 @@
 A serious Python project template for out-of-box and production usage.
 
 [![GitHub](https://img.shields.io/github/license/huxuan/serious-scaffold-python)](https://github.com/huxuan/serious-scaffold-python/blob/main/LICENSE)
-[![Lint & Test Status](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml)
+[![CI Status](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/huxuan/serious-scaffold-python/branch/main/graph/badge.svg?token=4JPKXI122N)](https://codecov.io/gh/huxuan/serious-scaffold-python)
-[![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/?version=latest)](https://serious-scaffold-python.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/)](https://serious-scaffold-python.readthedocs.io/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
@@ -34,7 +34,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - [`pre-commit`](https://github.com/pre-commit/pre-commit) with [general hooks](https://github.com/pre-commit/pre-commit-hooks) and local linters.
 - `Makefile` as the entry point for common actions.
 - VSCode settings with recommended extensions.
-- GitHub workflows for lint, test, package and documentation preview.
+- GitHub workflows for lint, tests, package and documentation preview.
 
 ## Roadmap
 

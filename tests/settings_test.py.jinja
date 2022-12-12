@@ -5,6 +5,6 @@ from {{ module_name }}.settings import global_settings, settings
 
 
 def test_settings() -> None:
-    """Test for default settings."""
+    """Tests for settings."""
     assert settings.logging_level == os.getenv("{{ module_name|upper }}_LOGGING_LEVEL", "INFO")
     assert str(global_settings.ci).lower() == os.getenv("CI", "False").lower()

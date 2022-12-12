@@ -25,7 +25,7 @@ repos:
             requirements/docs.txt,
             requirements/lint.txt,
             requirements/package.txt,
-            requirements/test.txt,
+            requirements/tests.txt,
           ]
       - id: sort-simple-yaml
         files: .pre-commit-config.yaml

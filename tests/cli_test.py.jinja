@@ -7,7 +7,7 @@ runner = CliRunner()
 
 
 def test_app() -> None:
-    """Test for cli."""
+    """Tests for cli."""
     result = runner.invoke(app)
     assert result.exit_code == 0
     assert result.output == ""
