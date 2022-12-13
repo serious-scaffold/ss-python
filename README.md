@@ -36,19 +36,24 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - VSCode settings with recommended extensions.
 - GitHub workflows for lint, tests, package and documentation preview.
 
-## Usage
+## Quickstart
 
 1. [Install Copier](https://copier.readthedocs.io/en/stable/#installation).
-1. Generate the project with the following command.
+1. Generate the project with the `copier` command.
 
    ```
    copier gh:huxuan/serious-scaffold-python /path/to/project
    ```
 
-1. Initialize the project with git.
+1. Initialize the project with the `git` and `make` commands.
 
    ```
-   cd /path/to/project && git init
+   cd /path/to/project
+   git init
+   git add .
+   make dev
+   make pre-commit
+   git commit -a -m "Init from serious-scaffold-python."
    ```
 
 1. Happy hacking.
