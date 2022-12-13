@@ -61,6 +61,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## Roadmap
 
 - More detailed documentation for all aspects.
+- Add logging module.
 - Refine README template.
 - [Github Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes) integration.
 - [GitHub Dependabot](https://github.com/dependabot) integration.
