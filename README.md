@@ -36,10 +36,26 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - VSCode settings with recommended extensions.
 - GitHub workflows for lint, tests, package and documentation preview.
 
+## Usage
+
+1. [Install Copier](https://copier.readthedocs.io/en/stable/#installation).
+1. Generate the project with the following command.
+
+   ```
+   copier gh:huxuan/serious-scaffold-python /path/to/project
+   ```
+
+1. Initialize the project with git.
+
+   ```
+   cd /path/to/project && git init
+   ```
+
+1. Happy hacking.
+
 ## Roadmap
 
 - More detailed documentation for all aspects.
-- [Copier](https://copier.readthedocs.io/) integration.
 - [GitHub Dependabot](https://github.com/dependabot) integration.
 - [GitHub issue and pull request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests).
 - [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/) integration.
