@@ -7,7 +7,6 @@ PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 &&
 # Remove common intermediate files.
 clean:
 	-rm -rf \
-		*.egg-info \
 		.copier-answers.yml \
 		.coverage \
 		.mypy_cache \
@@ -16,10 +15,11 @@ clean:
 		Pipfile* \
 		coverage.xml \
 		dist \
-		docs\_build
+		docs/_build
+	find . -name '*.egg-info' -print0 | xargs -0 rm -rf
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
-	find . -name '.DS_Store' -print0 | xargs -0 rm -rf
+	find . -name '.DS_Store' -print0 | xargs -0 rm -r
 	find . -name '__pycache__' -print0 | xargs -0 rm -rf
 
 deepclean: clean
