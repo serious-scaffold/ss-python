@@ -46,7 +46,9 @@ issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 fail_under = 100
 
 [tool.coverage.run]
-omit = ["src/{{ module_name }}/*"]
+omit = [
+  "src/{{ module_name }}/*",
+]
 
 [tool.mypy]
 check_untyped_defs = true
@@ -55,7 +57,9 @@ disallow_untyped_defs = true
 enable_error_code = [
   "ignore-without-code",
 ]
-exclude = ["src/{{ module_name }}"]
+exclude = [
+  "src/{{ module_name }}",
+]
 no_implicit_optional = true
 show_error_codes = true
 warn_return_any = true

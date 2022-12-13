@@ -45,12 +45,24 @@ issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
 [tool.coverage.report]
 fail_under = 100
 
+[tool.coverage.run]
+omit = [
+{%- if project_name == "Serious Scaffold Python" %}
+  "src/{{ '{{ module_name }}' }}/*",
+{%- endif %}
+]
+
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_unimported = true
 disallow_untyped_defs = true
 enable_error_code = [
   "ignore-without-code",
+]
+exclude = [
+{%- if project_name == "Serious Scaffold Python" %}
+  "src/{{ '{{ module_name }}' }}",
+{%- endif %}
 ]
 no_implicit_optional = true
 show_error_codes = true

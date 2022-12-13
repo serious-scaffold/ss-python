@@ -8,6 +8,9 @@ PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 &&
 clean:
 	-rm -rf \
 		*.egg-info \
+{%- if project_name == "Serious Scaffold Python" %}
+		.copier-answers.yml \
+{%- endif %}
 		.coverage \
 		.mypy_cache \
 		.pytest_cache \
