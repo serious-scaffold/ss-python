@@ -1,3 +1,15 @@
+_exclude:
+  - "*.py[co]"
+  - ".DS_Store"
+  - ".git"
+  - ".svn"
+  - "__pycache__"
+  - "copier.yaml"
+  - "copier.yml"
+  - "docs/modules/serious_scaffold.settings.rst"
+  - "src/serious_scaffold"
+  - "~*"
+
 project_name:
   type: str
   help: "Project name in CamelCase:"
