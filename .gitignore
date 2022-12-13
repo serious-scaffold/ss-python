@@ -1,10 +1,8 @@
 # Custom
 *.swp
 .DS_Store
-Pipfile
-
-# NOTE: Only ignore answers within template project.
 .copier-answers.yml
+Pipfile
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
