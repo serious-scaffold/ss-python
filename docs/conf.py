@@ -9,7 +9,7 @@ from importlib import metadata
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "Serious Scaffold Python"
+project = "serious-scaffold"
 package = project.replace("-", "_")
 author = metadata.metadata(package)["Author"]
 copyright = f"2022, {author}"  # noqa: A001
