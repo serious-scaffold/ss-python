@@ -1,5 +1,5 @@
-Welcome to serious-scaffold's documentation!
-============================================
+Welcome to Serious Scaffold Python's documentation!
+===================================================
 
 .. toctree::
    :maxdepth: 2
