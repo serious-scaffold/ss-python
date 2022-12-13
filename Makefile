@@ -60,7 +60,7 @@ toml-sort:
 	${PIPRUN} toml-sort -a -i pyproject.toml
 
 tests:
-	${PIPRUN} python -m pytest --cov=src --cov-fail-under=$(or $(SS_TESTS_COVERAGE_THRESHOLD),0) .
+	${PIPRUN} python -m pytest .
 
 freeze:
 	@${PIPRUN} pip freeze --exclude-editable

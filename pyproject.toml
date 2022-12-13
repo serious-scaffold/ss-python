@@ -42,6 +42,12 @@ serious-scaffold-cli = "serious_scaffold.cli:app"
 homepage = "https://github.com/huxuan/serious-scaffold-python/"
 issue = "https://github.com/huxuan/serious-scaffold-python/issues"
 
+[tool.coverage.report]
+fail_under = 100
+
+[tool.coverage.run]
+omit = ["src/{{ module_name }}/*"]
+
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_unimported = true
@@ -56,7 +62,7 @@ warn_return_any = true
 warn_unused_ignores = true
 
 [tool.pytest.ini_options]
-addopts = "-l -s -v --color=yes --durations=0 --cov-report xml"
+addopts = "-l -s --durations=0 --cov=src --cov-report term --cov-report xml"
 log_cli = true
 log_cli_level = "info"
 log_date_format = "%Y-%m-%d %H:%M:%S"
