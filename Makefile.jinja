@@ -7,7 +7,9 @@ PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 &&
 # Remove common intermediate files.
 clean:
 	-rm -rf \
+{%- if project_name == "Serious Scaffold Python" %}
 		.copier-answers.yml \
+{%- endif %}
 		.coverage \
 		.mypy_cache \
 		.pytest_cache \

@@ -20,7 +20,7 @@ jobs:
           cache: "pip"
       - run: make dev-lint
       - run: make lint
-  test:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -32,8 +32,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"
-      - run: make dev-test
-      - run: make test
+      - run: make dev-tests
+      - run: make tests
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         if: matrix.python-version == '3.8'

@@ -9,10 +9,10 @@ from importlib import metadata
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-author = "huxuan"
-copyright = "2022, huxuan"  # noqa: A001
-project = "Serious Scaffold Python"
-release = metadata.version("serious-scaffold")
+author = "{{ author_name }}"
+copyright = "2022, {{ author_name }}"  # noqa: A001
+project = "{{ project_name }}"
+release = metadata.version("{{ package_name }}")
 version = ".".join(release.split(".")[:2])
 
 

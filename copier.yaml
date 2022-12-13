@@ -1,0 +1,51 @@
+_exclude:
+  - "*.py[co]"
+  - ".DS_Store"
+  - ".git"
+  - ".svn"
+  - "__pycache__"
+  - "copier.yaml"
+  - "copier.yml"
+  - "docs/modules/serious_scaffold.settings.rst"
+  - "src/serious_scaffold"
+  - "~*"
+
+project_name:
+  type: str
+  help: "Project name in CamelCase:"
+  default: Serious Scaffold Python
+
+project_description:
+  type: str
+  help: "Brief project description:"
+  default: A serious Python project template for out-of-box and production usage.
+
+repo_namespace:
+  type: str
+  help: "Repo namespace, it should be the name of an user or an organization:"
+  default: huxuan
+
+author_name:
+  type: str
+  help: "Author name:"
+  default: "{{ repo_namespace }}"
+
+author_email:
+  type: str
+  help: "Author email:"
+  default: "i@{{ author_name }}.org"
+
+repo_name:
+  type: str
+  help: "Repo name:"
+  default: "{{ project_name|lower|replace(' ', '-') }}"
+
+package_name:
+  type: str
+  help: "Package name:"
+  default: "{{ repo_name|regex_replace('-python$','') }}"
+
+module_name:
+  type: str
+  help: "Module name:"
+  default: "{{ package_name|lower|replace('-', '_') }}"

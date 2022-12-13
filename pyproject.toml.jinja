@@ -7,7 +7,7 @@ requires = [
 
 [project]
 authors = [
-    {name = "huxuan", email = "i@huxuan.org"},
+    {name = "{{ author_name }}", email = "{{ author_email }}"},
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -18,7 +18,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-description = "A serious Python project template for out-of-box and production usage."
+description = "{{ project_description }}"
 dynamic = [
     "version",
     "dependencies",
@@ -30,23 +30,25 @@ keywords = [
     "project template",
     "template",
 ]
-name = "serious-scaffold"
+name = "{{ package_name }}"
 readme = "README.md"
 requires-python = ">=3.8"
 
 [project.scripts]
-serious-scaffold-cli = "serious_scaffold.cli:app"
+{{ package_name }}-cli = "{{ module_name }}.cli:app"
 
 [project.urls]
-homepage = "https://github.com/huxuan/serious-scaffold-python/"
-issue = "https://github.com/huxuan/serious-scaffold-python/issues"
+homepage = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/"
+issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
 
 [tool.coverage.report]
 fail_under = 100
 
 [tool.coverage.run]
 omit = [
-  "src/{{ module_name }}/*",
+{%- if project_name == "Serious Scaffold Python" %}
+  "src/{{ '{{ module_name }}' }}/*",
+{%- endif %}
 ]
 
 [tool.mypy]
@@ -57,7 +59,9 @@ enable_error_code = [
   "ignore-without-code",
 ]
 exclude = [
-  "src/{{ module_name }}",
+{%- if project_name == "Serious Scaffold Python" %}
+  "src/{{ '{{ module_name }}' }}",
+{%- endif %}
 ]
 no_implicit_optional = true
 show_error_codes = true

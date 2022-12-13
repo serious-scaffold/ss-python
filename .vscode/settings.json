@@ -15,6 +15,7 @@
     "autofix",
     "automodule",
     "codecov",
+    "huxuan",
     "isort",
     "mypy",
     "pipenv",
