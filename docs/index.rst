@@ -1,4 +1,4 @@
-Welcome to Serious Scaffold Python's documentation!
+Welcome to serious-scaffold's documentation!
 ============================================
 
 .. toctree::
