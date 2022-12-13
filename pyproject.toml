@@ -7,7 +7,6 @@ requires = [
 
 [project]
 authors = [
-    {name = "Serious Scaffold Python"},
     {name = "huxuan", email = "i@huxuan.org"},
 ]
 classifiers = [
