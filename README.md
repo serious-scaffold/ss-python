@@ -61,6 +61,8 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## Roadmap
 
 - More detailed documentation for all aspects.
+- Refine README template.
+- [Github Automatically generated release notes](https://docs.github.com/en/repositories/releasing-projects-on-github/automatically-generated-release-notes) integration.
 - [GitHub Dependabot](https://github.com/dependabot) integration.
 - [GitHub issue and pull request templates](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests).
 - [Gitlab CI/CD](https://docs.gitlab.com/ee/ci/) integration.
