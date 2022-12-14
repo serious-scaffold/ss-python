@@ -2,8 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
+    types: [opened, synchronize]
 
 jobs:
   lint:
@@ -36,4 +38,5 @@ jobs:
       - run: make tests
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
-        if: matrix.python-version == '3.8'
+        with:
+          flags: ${{ matrix.python-version }}
