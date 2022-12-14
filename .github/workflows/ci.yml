@@ -38,4 +38,5 @@ jobs:
       - run: make tests
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
-        flags: ${{ matrix.python-version }}
+        with:
+          flags: ${{ matrix.python-version }}
