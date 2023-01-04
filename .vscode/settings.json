@@ -11,6 +11,9 @@
     },
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
+  "[yaml]": {
+    "editor.defaultFormatter": "PascalReitermann93.vscode-yaml-sort"
+  },
   "cSpell.words": [
     "autofix",
     "automodule",
@@ -58,5 +61,20 @@
     "sortJSONTypeReverse": false,
     "sortJSONValues": false,
     "sortJSONValuesReverse": false
-  }
+  },
+  "vscode-yaml-sort.customSortKeywords_2": [
+    "_exclude",
+    "project_name",
+    "project_description",
+    "repo_namespace",
+    "author_name",
+    "author_email",
+    "repo_name",
+    "package_name",
+    "module_name"
+  ],
+  "vscode-yaml-sort.noCompatMode": true,
+  "vscode-yaml-sort.sortOnSave": 2,
+  "vscode-yaml-sort.useAsFormatter": true,
+  "vscode-yaml-sort.useLeadingDashes": false
 }

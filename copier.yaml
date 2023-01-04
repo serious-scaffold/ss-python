@@ -1,51 +1,43 @@
 _exclude:
-  - "*.py[co]"
-  - ".DS_Store"
-  - ".git"
-  - ".svn"
-  - "__pycache__"
-  - "copier.yaml"
-  - "copier.yml"
-  - "docs/modules/serious_scaffold.settings.rst"
-  - "src/serious_scaffold"
-  - "~*"
-
+  - '*.py[co]'
+  - .DS_Store
+  - .git
+  - .svn
+  - __pycache__
+  - copier.yaml
+  - copier.yml
+  - docs/modules/serious_scaffold.settings.rst
+  - src/serious_scaffold
+  - ~*
 project_name:
-  type: str
-  help: "Project name in CamelCase:"
   default: Serious Scaffold Python
-
+  help: 'Project name in CamelCase:'
+  type: str
 project_description:
-  type: str
-  help: "Brief project description:"
   default: A serious Python project template for out-of-box and production usage.
-
+  help: 'Brief project description:'
+  type: str
 repo_namespace:
-  type: str
-  help: "Repo namespace, it should be the name of an user or an organization:"
   default: huxuan
-
+  help: 'Repo namespace, it should be the name of an user or an organization:'
+  type: str
 author_name:
+  default: '{{ repo_namespace }}'
+  help: 'Author name:'
   type: str
-  help: "Author name:"
-  default: "{{ repo_namespace }}"
-
 author_email:
+  default: i@{{ author_name }}.org
+  help: 'Author email:'
   type: str
-  help: "Author email:"
-  default: "i@{{ author_name }}.org"
-
 repo_name:
+  default: '{{ project_name|lower|replace('' '', ''-'') }}'
+  help: 'Repo name:'
   type: str
-  help: "Repo name:"
-  default: "{{ project_name|lower|replace(' ', '-') }}"
-
 package_name:
+  default: '{{ repo_name|regex_replace(''-python$'','''') }}'
+  help: 'Package name:'
   type: str
-  help: "Package name:"
-  default: "{{ repo_name|regex_replace('-python$','') }}"
-
 module_name:
+  default: '{{ package_name|lower|replace(''-'', ''_'') }}'
+  help: 'Module name:'
   type: str
-  help: "Module name:"
-  default: "{{ package_name|lower|replace('-', '_') }}"
