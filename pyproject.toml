@@ -1,34 +1,34 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools",
-    "setuptools-scm",
+  "setuptools",
+  "setuptools-scm"
 ]
 
 [project]
 authors = [
-    {name = "huxuan", email = "i@huxuan.org"},
+  {email = "i@huxuan.org", name = "huxuan"}
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9"
 ]
 description = "A serious Python project template for out-of-box and production usage."
 dynamic = [
-    "version",
-    "dependencies",
-    "optional-dependencies",
+  "dependencies",
+  "optional-dependencies",
+  "version"
 ]
 keywords = [
-    "out-of-box",
-    "production",
-    "project template",
-    "template",
+  "out-of-box",
+  "production",
+  "project template",
+  "template"
 ]
 name = "serious-scaffold"
 readme = "README.md"
@@ -46,7 +46,7 @@ fail_under = 100
 
 [tool.coverage.run]
 omit = [
-  "src/{{ module_name }}/*",
+  "src/{{ module_name }}/*"
 ]
 
 [tool.mypy]
@@ -54,10 +54,10 @@ check_untyped_defs = true
 disallow_any_unimported = true
 disallow_untyped_defs = true
 enable_error_code = [
-  "ignore-without-code",
+  "ignore-without-code"
 ]
 exclude = [
-  "src/{{ module_name }}",
+  "src/{{ module_name }}"
 ]
 no_implicit_optional = true
 show_error_codes = true
@@ -84,30 +84,11 @@ extend-ignore = [
   "D407",
   "D408",
   "D409",
-  "D413",
-]
-extend-select = [
-  "I",
-  "D",
-  "U",
-  "N",
-  "S",
-  "C",
-  "FBT",
-  "B",
-  "A",
-  "I25",
-  "T",
-  "Q",
-  "ANN",
-  "YTT",
-  "BLE",
-  "C90",
-  "RUF",
-  "M",
+  "D413"
 ]
 fix = true
 per-file-ignores = {"tests/*" = ["S101"]}
+select = ["ALL"]
 src = ["src"]
 target-version = "py38"
 
