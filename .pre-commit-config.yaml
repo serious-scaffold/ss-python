@@ -37,9 +37,7 @@ repos:
         name: black
         types:
           - python
-      - args:
-          - '--filter-files'
-        entry: pipenv run python -m isort
+      - entry: pipenv run python -m isort
         id: isort
         language: system
         name: isort

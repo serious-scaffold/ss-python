@@ -51,6 +51,10 @@ omit = [
 {%- endif %}
 ]
 
+[tool.isort]
+filter_files = true
+profile = "black"
+
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_unimported = true
