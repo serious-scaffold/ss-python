@@ -2,12 +2,12 @@
 build-backend = "setuptools.build_meta"
 requires = [
   "setuptools",
-  "setuptools-scm"
+  "setuptools-scm",
 ]
 
 [project]
 authors = [
-  {email = "i@huxuan.org", name = "huxuan"}
+  {email = "i@huxuan.org", name = "huxuan"},
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -16,19 +16,19 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.8",
-  "Programming Language :: Python :: 3.9"
+  "Programming Language :: Python :: 3.9",
 ]
 description = "A serious Python project template for out-of-box and production usage."
 dynamic = [
   "dependencies",
   "optional-dependencies",
-  "version"
+  "version",
 ]
 keywords = [
   "out-of-box",
   "production",
   "project template",
-  "template"
+  "template",
 ]
 name = "serious-scaffold"
 readme = "README.md"
@@ -46,7 +46,7 @@ fail_under = 100
 
 [tool.coverage.run]
 omit = [
-  "src/{{ module_name }}/*"
+  "src/{{ module_name }}/*",
 ]
 
 [tool.mypy]
@@ -54,10 +54,10 @@ check_untyped_defs = true
 disallow_any_unimported = true
 disallow_untyped_defs = true
 enable_error_code = [
-  "ignore-without-code"
+  "ignore-without-code",
 ]
 exclude = [
-  "src/{{ module_name }}"
+  "src/{{ module_name }}",
 ]
 no_implicit_optional = true
 show_error_codes = true
@@ -84,7 +84,7 @@ extend-ignore = [
   "D407",
   "D408",
   "D409",
-  "D413"
+  "D413",
 ]
 fix = true
 per-file-ignores = {"tests/*" = ["S101"]}
@@ -102,3 +102,8 @@ package = {file = ["requirements/package.txt"]}
 tests = {file = ["requirements/tests.txt"]}
 
 [tool.setuptools_scm]
+
+[tool.tomlsort]
+all = true
+in_place = true
+trailing_comma_inline_array = true

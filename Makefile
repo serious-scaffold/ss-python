@@ -57,7 +57,7 @@ ruff:
 	${PIPRUN} python -m ruff docs tests src
 
 toml-sort:
-	${PIPRUN} toml-sort -a -i pyproject.toml
+	${PIPRUN} toml-sort pyproject.toml
 
 tests:
 	${PIPRUN} python -m pytest .
