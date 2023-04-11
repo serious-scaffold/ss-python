@@ -75,6 +75,8 @@
   ],
   "vscode-yaml-sort.noCompatMode": true,
   "vscode-yaml-sort.sortOnSave": 2,
-  "vscode-yaml-sort.useAsFormatter": true,
+  "vscode-yaml-sort.useArrayProcessor": false,
+  "vscode-yaml-sort.useBlockProcessor": false,
+  "vscode-yaml-sort.useHelmProcessor": false,
   "vscode-yaml-sort.useLeadingDashes": false
 }
