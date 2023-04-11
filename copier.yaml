@@ -30,14 +30,14 @@ author_email:
   help: 'Author email:'
   type: str
 repo_name:
-  default: '{{ project_name|lower|replace('' '', ''-'') }}'
+  default: '{{ project_name|lower|replace(" ", "-") }}'
   help: 'Repo name:'
   type: str
 package_name:
-  default: '{{ repo_name|regex_replace(''-python$'','''') }}'
+  default: '{{ repo_name|regex_replace("-python$", "") }}'
   help: 'Package name:'
   type: str
 module_name:
-  default: '{{ package_name|lower|replace(''-'', ''_'') }}'
+  default: '{{ package_name|lower|replace("-", "_") }}'
   help: 'Module name:'
   type: str
