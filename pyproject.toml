@@ -93,11 +93,10 @@ extend-ignore = [
 fix = true
 select = ["ALL"]
 src = ["src"]
-target-version = "py38"
 
 [tool.ruff.per-file-ignores]
 "docs/conf.py" = ["INP001"]
-"src/{{ module_name }}/__init__.py" = ["N999"]
+"src/\\{\\{ module_name \\}\\}/__init__.py" = ["N999"]
 "tests/*" = ["S101"]
 
 [tool.setuptools.dynamic]
