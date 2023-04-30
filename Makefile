@@ -33,7 +33,7 @@ dev-%:
 	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 dev:
-	${PIPRUN} pip install -e .[docs,lint,package,tests] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[dev,docs,lint,package,tests] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
 
 version:
