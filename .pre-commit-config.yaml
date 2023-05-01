@@ -31,13 +31,13 @@ repos:
     repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
   - hooks:
-      - entry: pipenv run python -m black
+      - entry: pipenv --site-packages run python -m black
         id: black
         language: system
         name: black
         types:
           - python
-      - entry: pipenv run python -m isort
+      - entry: pipenv --site-packages run python -m isort
         id: isort
         language: system
         name: isort
@@ -54,13 +54,13 @@ repos:
         require_serial: true
         types:
           - python
-      - entry: pipenv run python -m ruff
+      - entry: pipenv --site-packages run python -m ruff
         id: ruff
         language: system
         name: ruff
         types:
           - python
-      - entry: pipenv run toml-sort --check
+      - entry: pipenv --site-packages run toml-sort --check
         id: toml-sort
         language: system
         name: toml-sort
