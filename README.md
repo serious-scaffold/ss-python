@@ -39,6 +39,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## Quickstart
 
 1. [Install Copier](https://copier.readthedocs.io/en/stable/#installation).
+1. Install the necessary tools for development: `pipenv` and `pre-commit`.
 1. Generate the project with the `copier` command.
 
    ```
