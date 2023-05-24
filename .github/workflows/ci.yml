@@ -51,7 +51,6 @@ jobs:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: make dev-tests
-      - run: env | sort
       - run: make tests
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
