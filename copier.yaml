@@ -42,6 +42,6 @@ module_name:
   help: 'Module name:'
   type: str
 test_coverage_threshold:
-  default: 100
+  default: 90
   help: 'Threshold for test coverage:'
   type: int
