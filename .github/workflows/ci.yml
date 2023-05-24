@@ -1,3 +1,5 @@
+env:
+  SS_TEST_COVERAGE_MIN: ${{ vars.SS_TEST_COVERAGE_MIN }}
 jobs:
   consistency:
     runs-on: ubuntu-latest
