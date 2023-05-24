@@ -10,6 +10,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: pip install copier
       - run: copier -r HEAD -f . .
+      - run: git status --porcelain
       - run: |
           if [[ -n `git status --porcelain` ]]; then
             exit 1
