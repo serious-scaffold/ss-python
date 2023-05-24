@@ -1,13 +1,14 @@
 jobs:
+{%- if project_name == "Serious Scaffold Python" %}
   consistency:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python {{ '${{ matrix.python-version }}' }}
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: ${{ matrix.python-version }}
+          python-version: {{ '${{ matrix.python-version }}' }}
       - run: pip install copier
       - run: copier -r HEAD -f . .
       - run: git diff
@@ -23,15 +24,16 @@ jobs:
           - '3.9'
           - '3.10'
           - '3.11'
+{%- endif %}
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python {{ '${{ matrix.python-version }}' }}
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: ${{ matrix.python-version }}
+          python-version: {{ '${{ matrix.python-version }}' }}
       - run: make dev-lint
       - run: make lint
     strategy:
@@ -45,17 +47,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python {{ '${{ matrix.python-version }}' }}
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: ${{ matrix.python-version }}
+          python-version: {{ '${{ matrix.python-version }}' }}
       - run: make dev-tests
       - run: make tests
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
-          flags: ${{ matrix.python-version }}
+          flags: {{ '${{ matrix.python-version }}' }}
     strategy:
       matrix:
         python-version:
