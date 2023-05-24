@@ -71,7 +71,8 @@
     "author_email",
     "repo_name",
     "package_name",
-    "module_name"
+    "module_name",
+    "test_coverage_threshold"
   ],
   "vscode-yaml-sort.noCompatMode": true,
   "vscode-yaml-sort.sortOnSave": 2,

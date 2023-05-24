@@ -41,3 +41,7 @@ module_name:
   default: '{{ package_name|lower|replace("-", "_") }}'
   help: 'Module name:'
   type: str
+test_coverage_threshold:
+  default: 100
+  help: 'Threshold for test coverage:'
+  type: int
