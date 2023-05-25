@@ -52,8 +52,6 @@ jobs:
         with:
           cache: pip
           python-version: {{ '${{ matrix.python-version }}' }}
-      - run: pip install copier
-      - run: copier -r HEAD -f . .
       - run: make dev-tests
       - run: make tests
       - name: Upload coverage to Codecov
