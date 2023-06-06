@@ -39,9 +39,6 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## Quickstart
 
 1. [Install Copier](https://copier.readthedocs.io/en/stable/#installation).
-
-   Note: v8.0.0 introduces many breaking changes, please ensure you are using the latest version.
-
 1. Install the necessary tools for development: `pipenv` and `pre-commit`.
 1. Generate the project with the `copier` command.
 
