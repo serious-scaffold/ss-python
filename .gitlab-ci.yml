@@ -5,8 +5,9 @@ lint:
   image: python:3.11
   interruptible: true
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    - main
+    - merge_requests
   script:
     - env | sort
     - make dev-lint
@@ -21,8 +22,9 @@ test:
   image: python:3.11
   interruptible: true
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    - main
+    - merge_requests
   script:
     - env | sort
     - make dev-tests
@@ -52,8 +54,8 @@ pages:
     changes:
       - docs/**/*
     refs:
-      - master
       - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+      - main
   script:
     - make dev-docs
     - make docs
