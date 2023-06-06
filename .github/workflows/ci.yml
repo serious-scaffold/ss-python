@@ -9,7 +9,7 @@ jobs:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: pip install copier
-      - run: copier -r HEAD -f . .
+      - run: copier copy -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |
