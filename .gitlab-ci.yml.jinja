@@ -1,0 +1,60 @@
+stages:
+  - lint_test
+  - build_release
+lint:
+  image: {{ ci_image }}
+  interruptible: true
+  only:
+    - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+    - make dev-lint
+    - make lint
+  stage: lint_test
+test:
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+  image: {{ ci_image }}
+  interruptible: true
+  only:
+    - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+    - make dev-tests
+    - make tests
+  stage: lint_test
+package:
+  image: {{ ci_image }}
+  interruptible: true
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+    - make dev-package
+    - make build
+    - make upload
+  stage: build_release
+pages:
+  artifacts:
+    paths:
+      - public
+  except:
+    refs:
+      - schedules
+  image: {{ ci_image }}
+  interruptible: true
+  only:
+    changes:
+      - docs/**/*
+    refs:
+      - master
+      - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - make dev-docs
+    - make docs
+  stage: build_release
