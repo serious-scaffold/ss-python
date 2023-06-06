@@ -43,7 +43,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 1. Generate the project with the `copier` command.
 
    ```
-   copier gh:huxuan/serious-scaffold-python /path/to/project
+   copier copy gh:huxuan/serious-scaffold-python /path/to/project
    ```
 
 1. Initialize the project with the `git` and `make` commands.
