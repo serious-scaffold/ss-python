@@ -72,7 +72,13 @@
     "repo_name",
     "package_name",
     "module_name",
-    "test_coverage_threshold"
+    "ci_image",
+    "test_coverage_threshold",
+    "stages",
+    "lint",
+    "test",
+    "package",
+    "pages"
   ],
   "vscode-yaml-sort.noCompatMode": true,
   "vscode-yaml-sort.sortOnSave": 2,

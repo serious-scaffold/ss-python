@@ -41,6 +41,10 @@ module_name:
   default: '{{ package_name|lower|replace("-", "_") }}'
   help: 'Module name:'
   type: str
+ci_image:
+  default: python:3.11
+  help: 'Container image to run CI:'
+  type: str
 test_coverage_threshold:
   default: 100
   help: 'Threshold for test coverage:'
