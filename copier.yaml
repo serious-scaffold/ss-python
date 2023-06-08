@@ -49,3 +49,22 @@ test_coverage_threshold:
   default: 100
   help: 'Threshold for test coverage:'
   type: int
+minimal_python_version:
+  choices:
+    - '3.8'
+    - '3.9'
+    - '3.10'
+    - '3.11'
+  default: 3.8
+  help: 'Minimal Python Version to support:'
+  type: str
+maximal_python_version:
+  choices:
+    - '3.8'
+    - '3.9'
+    - '3.10'
+    - '3.11'
+  default: 3.11
+  help: 'Maximal Python Version to support:'
+  type: str
+  validator: '{% if minimal_python_version | float > maximal_python_version | float %}{% endif %}'

@@ -74,6 +74,8 @@
     "module_name",
     "ci_image",
     "test_coverage_threshold",
+    "minimal_python_version",
+    "maximal_python_version",
     "stages",
     "lint",
     "test",

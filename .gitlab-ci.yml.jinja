@@ -8,6 +8,13 @@ lint:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
     - main
     - merge_requests
+  parallel:
+    matrix:
+      - PYTHON_VERSION:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
   script:
     - env | sort
     - make dev-lint
@@ -25,6 +32,13 @@ test:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
     - main
     - merge_requests
+  parallel:
+    matrix:
+      - PYTHON_VERSION:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
   script:
     - env | sort
     - make dev-tests
