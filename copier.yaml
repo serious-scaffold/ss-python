@@ -67,4 +67,4 @@ maximal_python_version:
   default: 3.11
   help: 'Maximal Python Version to support:'
   type: str
-  validator: '{% if minimal_python_version | float > maximal_python_version | float %}{% endif %}'
+  validator: '{% if minimal_python_version | float > maximal_python_version | float %} Maximal Python Version must be newer than Minimal Python Version.{% endif %}'
