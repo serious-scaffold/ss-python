@@ -1,6 +1,3 @@
-default:
-  image: python:3.11
-  interruptible: true
 stages:
   - lint_test
   - build_release
@@ -22,7 +19,7 @@ lint:
     - make dev-lint
     - make lint
   stage: lint_test
-test:
+tests:
   artifacts:
     reports:
       coverage_report:
@@ -71,3 +68,6 @@ pages:
     - make dev-docs
     - make docs
   stage: build_release
+default:
+  image: python:3.11
+  interruptible: true

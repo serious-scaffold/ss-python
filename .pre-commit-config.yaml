@@ -11,9 +11,9 @@ repos:
       - id: forbid-new-submodules
       - id: mixed-line-ending
       - id: name-tests-test
-      - id: no-commit-to-branch
-        stages:
+      - stages:
           - push
+        id: no-commit-to-branch
       - args:
           - '--autofix'
         id: pretty-format-json

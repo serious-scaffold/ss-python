@@ -1,28 +1,4 @@
 jobs:
-  consistency:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          cache: pip
-          python-version: ${{ matrix.python-version }}
-      - run: pip install copier
-      - run: copier copy -r HEAD -f . .
-      - run: git diff
-      - run: git status --porcelain
-      - run: |
-          if [[ -n `git status --porcelain` ]]; then
-            exit 1
-          fi
-    strategy:
-      matrix:
-        python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -56,6 +32,30 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           flags: ${{ matrix.python-version }}
+    strategy:
+      matrix:
+        python-version:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: ${{ matrix.python-version }}
+      - run: pip install copier
+      - run: copier copy -r HEAD -f . .
+      - run: git diff
+      - run: git status --porcelain
+      - run: |
+          if [[ -n `git status --porcelain` ]]; then
+            exit 1
+          fi
     strategy:
       matrix:
         python-version:

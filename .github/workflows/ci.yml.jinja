@@ -1,39 +1,5 @@
 {% from pathjoin("includes", "version_compare.jinja") import version_between -%}
 jobs:
-{%- if project_name == "Serious Scaffold Python" %}
-  consistency:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python {{ '${{ matrix.python-version }}' }}
-        uses: actions/setup-python@v4
-        with:
-          cache: pip
-          python-version: {{ '${{ matrix.python-version }}' }}
-      - run: pip install copier
-      - run: copier copy -r HEAD -f . .
-      - run: git diff
-      - run: git status --porcelain
-      - run: |
-          if [[ -n `git status --porcelain` ]]; then
-            exit 1
-          fi
-    strategy:
-      matrix:
-        python-version:
-{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
-          - '3.8'
-{%- endif %}
-{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
-          - '3.9'
-{%- endif %}
-{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
-          - '3.10'
-{%- endif %}
-{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
-          - '3.11'
-{%- endif %}
-{%- endif %}
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -89,6 +55,40 @@ jobs:
 {%- endif %}
 {%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
+{%- if project_name == "Serious Scaffold Python" %}
+  consistency:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python {{ '${{ matrix.python-version }}' }}
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: {{ '${{ matrix.python-version }}' }}
+      - run: pip install copier
+      - run: copier copy -r HEAD -f . .
+      - run: git diff
+      - run: git status --porcelain
+      - run: |
+          if [[ -n `git status --porcelain` ]]; then
+            exit 1
+          fi
+    strategy:
+      matrix:
+        python-version:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
+          - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
+          - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
+          - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
+          - '3.11'
+{%- endif %}
 {%- endif %}
 name: CI
 on:
