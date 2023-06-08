@@ -1,3 +1,4 @@
+{% from pathjoin("includes", "version_compare.jinja") import version_between -%}
 jobs:
 {%- if project_name == "Serious Scaffold Python" %}
   consistency:
@@ -20,10 +21,18 @@ jobs:
     strategy:
       matrix:
         python-version:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
           - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
           - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
           - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
 {%- endif %}
   lint:
     runs-on: ubuntu-latest
@@ -39,10 +48,18 @@ jobs:
     strategy:
       matrix:
         python-version:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
           - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
           - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
           - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
   tests:
     runs-on: ubuntu-latest
     steps:
@@ -61,10 +78,18 @@ jobs:
     strategy:
       matrix:
         python-version:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
           - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
           - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
           - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
 name: CI
 on:
   pull_request:
