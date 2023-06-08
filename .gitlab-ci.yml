@@ -2,7 +2,7 @@ stages:
   - lint_test
   - build_release
 lint:
-  image: python:3.11
+  image: python:$PYTHON_VERSION
   interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -26,7 +26,7 @@ test:
       coverage_report:
         coverage_format: cobertura
         path: coverage.xml
-  image: python:3.11
+  image: python:$PYTHON_VERSION
   interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/

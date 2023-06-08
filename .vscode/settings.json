@@ -21,6 +21,7 @@
     "huxuan",
     "isort",
     "mypy",
+    "pathjoin",
     "pipenv",
     "pydantic",
     "setuptools",
@@ -76,6 +77,10 @@
     "test_coverage_threshold",
     "minimal_python_version",
     "maximal_python_version",
+    "3.8",
+    "3.9",
+    "3.10",
+    "3.11",
     "stages",
     "lint",
     "test",
@@ -86,6 +91,7 @@
   "vscode-yaml-sort.sortOnSave": 2,
   "vscode-yaml-sort.useArrayProcessor": false,
   "vscode-yaml-sort.useBlockProcessor": false,
+  "vscode-yaml-sort.useCustomSortRecursively": true,
   "vscode-yaml-sort.useHelmProcessor": false,
   "vscode-yaml-sort.useLeadingDashes": false
 }

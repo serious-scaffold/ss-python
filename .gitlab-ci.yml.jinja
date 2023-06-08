@@ -1,8 +1,9 @@
+{% from pathjoin("includes", "version_compare.jinja") import version_between -%}
 stages:
   - lint_test
   - build_release
 lint:
-  image: {{ ci_image }}
+  image: python:$PYTHON_VERSION
   interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -11,10 +12,18 @@ lint:
   parallel:
     matrix:
       - PYTHON_VERSION:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
           - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
           - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
           - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
   script:
     - env | sort
     - make dev-lint
@@ -26,7 +35,7 @@ test:
       coverage_report:
         coverage_format: cobertura
         path: coverage.xml
-  image: {{ ci_image }}
+  image: python:$PYTHON_VERSION
   interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -35,17 +44,25 @@ test:
   parallel:
     matrix:
       - PYTHON_VERSION:
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
           - '3.8'
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
           - '3.9'
+{%- endif %}
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
           - '3.10'
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
+{%- endif %}
   script:
     - env | sort
     - make dev-tests
     - make tests
   stage: lint_test
 package:
-  image: {{ ci_image }}
+  image: python:{{ default_python_version }}
   interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -62,7 +79,7 @@ pages:
   except:
     refs:
       - schedules
-  image: {{ ci_image }}
+  image: python:{{ default_python_version }}
   interruptible: true
   only:
     changes:
