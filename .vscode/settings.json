@@ -82,6 +82,7 @@
     "3.9",
     "3.10",
     "3.11",
+    "choices",
     "default",
     "stages",
     "lint",

@@ -3,5 +3,5 @@
 {%- endmacro %}
 
 {% macro version_between(version, version_min, version_max) -%}
-{{ (version.split(".") | map("int") | list >= version_min.split(".") | map("int") | list) and (version.split(".") | map("int") | list <= version_max.split(".") | map("int") | list) }}
+{{ (version_min.split(".") | map("int") | list <= version.split(".") | map("int") | list <= version_max.split(".") | map("int") | list ) }}
 {%- endmacro %}
