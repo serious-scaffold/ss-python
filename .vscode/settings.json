@@ -82,7 +82,11 @@
     "lint",
     "tests",
     "package",
-    "pages"
+    "pages",
+    "3.8",
+    "3.9",
+    "3.10",
+    "3.11"
   ],
   "vscode-yaml-sort.noCompatMode": true,
   "vscode-yaml-sort.sortOnSave": 2,

@@ -58,34 +58,34 @@ minimal_python_version:
   type: str
 maximal_python_version:
   choices:
-    '3.10':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.10", minimal_python_version) | bool }}'
-      value: '3.10'
-    '3.11':
-      value: '3.11'
     '3.8':
       validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.8", minimal_python_version) | bool }}'
       value: '3.8'
     '3.9':
       validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.9", minimal_python_version) | bool }}'
       value: '3.9'
+    '3.10':
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.10", minimal_python_version) | bool }}'
+      value: '3.10'
+    '3.11':
+      value: '3.11'
   default: '3.11'
   help: 'Maximal Python Version to support:'
   type: str
 default_python_version:
   choices:
-    '3.10':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.10", minimal_python_version, maximal_python_version) | bool }}'
-      value: '3.10'
-    '3.11':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.11", minimal_python_version, maximal_python_version) | bool }}'
-      value: '3.11'
     '3.8':
       validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.8", minimal_python_version, maximal_python_version) | bool }}'
       value: '3.8'
     '3.9':
       validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.9", minimal_python_version, maximal_python_version) | bool }}'
       value: '3.9'
+    '3.10':
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.10", minimal_python_version, maximal_python_version) | bool }}'
+      value: '3.10'
+    '3.11':
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.11", minimal_python_version, maximal_python_version) | bool }}'
+      value: '3.11'
   default: '{{ maximal_python_version }}'
   help: 'Default Python Version (e.g. for daily development, docs generation):'
   type: str

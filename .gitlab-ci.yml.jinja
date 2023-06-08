@@ -1,7 +1,4 @@
 {% from pathjoin("includes", "version_compare.jinja") import version_between -%}
-default:
-  image: python:{{ default_python_version }}
-  interruptible: true
 stages:
   - lint_test
   - build_release
@@ -31,7 +28,7 @@ lint:
     - make dev-lint
     - make lint
   stage: lint_test
-test:
+tests:
   artifacts:
     reports:
       coverage_report:
@@ -88,3 +85,6 @@ pages:
     - make dev-docs
     - make docs
   stage: build_release
+default:
+  image: python:{{ default_python_version }}
+  interruptible: true
