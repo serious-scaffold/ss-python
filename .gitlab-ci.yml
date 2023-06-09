@@ -25,6 +25,7 @@ tests:
       coverage_report:
         coverage_format: cobertura
         path: coverage.xml
+  coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
   image: python:$PYTHON_VERSION
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
