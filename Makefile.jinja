@@ -74,7 +74,7 @@ upload:
 	${PIPRUN} python -m twine upload dist/*
 
 docs:
-	${PIPRUN} python -m sphinx.cmd.build docs docs/_build
+	${PIPRUN} python -m sphinx.cmd.build docs public
 
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs docs/_build
+	${PIPRUN} python -m sphinx_autobuild docs public

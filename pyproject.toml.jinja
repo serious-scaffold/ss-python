@@ -1,3 +1,4 @@
+{% from pathjoin("includes", "version_compare.jinja") import version_between -%}
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
@@ -13,10 +14,18 @@ classifiers = [
   "Development Status :: 4 - Beta",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
+{%- if version_between("3.10", minimal_python_version, maximal_python_version) | bool %}
   "Programming Language :: Python :: 3.10",
+{%- endif %}
+{%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
   "Programming Language :: Python :: 3.11",
+{%- endif %}
+{%- if version_between("3.8", minimal_python_version, maximal_python_version) | bool %}
   "Programming Language :: Python :: 3.8",
+{%- endif %}
+{%- if version_between("3.9", minimal_python_version, maximal_python_version) | bool %}
   "Programming Language :: Python :: 3.9",
+{%- endif %}
 ]
 description = "{{ project_description }}"
 dynamic = [

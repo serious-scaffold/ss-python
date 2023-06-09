@@ -1,0 +1,7 @@
+{% macro version_lt(version1, version2) -%}
+{{ version1.split(".") | map("int") | list < version2.split(".") | map("int") | list }}
+{%- endmacro %}
+
+{% macro version_between(version, version_min, version_max) -%}
+{{ (version_min.split(".") | map("int") | list <= version.split(".") | map("int") | list <= version_max.split(".") | map("int") | list ) }}
+{%- endmacro %}
