@@ -83,6 +83,7 @@ pages:
       - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
       - main
   script:
+    - env | sort
     - make dev-docs
     - make docs
   stage: build_release
