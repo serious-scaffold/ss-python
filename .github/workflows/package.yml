@@ -8,6 +8,7 @@ jobs:
         with:
           cache: pip
           python-version: 3.x
+      - run: env | sort
       - run: make dev-package
       - run: make build
       - name: Publish a Python distribution to PyPI

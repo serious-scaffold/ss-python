@@ -8,6 +8,7 @@ jobs:
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
+      - run: env | sort
       - run: make dev-lint
       - run: make lint
     strategy:
@@ -26,6 +27,7 @@ jobs:
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
+      - run: env | sort
       - run: make dev-tests
       - run: make tests
       - name: Upload coverage to Codecov
@@ -48,6 +50,7 @@ jobs:
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
+      - run: env | sort
       - run: pip install copier
       - run: copier copy -r HEAD -f . .
       - run: git diff
