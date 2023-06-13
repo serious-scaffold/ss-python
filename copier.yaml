@@ -23,7 +23,7 @@ repo_namespace:
   help: 'Repo namespace, it should be the name of an user or an organization:'
   type: str
 author_name:
-  default: '{{ repo_namespace }}'
+  default: huxuan
   help: 'Author name:'
   type: str
 author_email:
