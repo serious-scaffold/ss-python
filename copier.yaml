@@ -19,7 +19,7 @@ project_description:
   help: 'Brief project description:'
   type: str
 repo_namespace:
-  default: huxuan
+  default: serious-scaffold
   help: 'Repo namespace, it should be the name of an user or an organization:'
   type: str
 author_name:

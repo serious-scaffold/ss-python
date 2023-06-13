@@ -2,24 +2,24 @@
 
 A serious Python project template for out-of-box and production usage.
 
-[![GitHub](https://img.shields.io/github/license/huxuan/serious-scaffold-python)](https://github.com/huxuan/serious-scaffold-python/blob/main/LICENSE)
-[![CI Status](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/huxuan/serious-scaffold-python/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/huxuan/serious-scaffold-python/branch/main/graph/badge.svg?token=4JPKXI122N)](https://codecov.io/gh/huxuan/serious-scaffold-python)
+[![GitHub](https://img.shields.io/github/license/serious-scaffold/serious-scaffold-python)](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE)
+[![CI Status](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/serious-scaffold/serious-scaffold-python/branch/main/graph/badge.svg?token=4JPKXI122N)](https://codecov.io/gh/serious-scaffold/serious-scaffold-python)
 [![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/)](https://serious-scaffold-python.readthedocs.io/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
 [![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
-[![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/huxuan/serious-scaffold-python)
+[![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/serious-scaffold/serious-scaffold-python)
 [![PyPI](https://img.shields.io/pypi/v/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 
 <div align="center">
-  <a href="https://github.com/huxuan/serious-scaffold-python">
+  <a href="https://github.com/serious-scaffold/serious-scaffold-python">
     <img src="docs/_static/images/logo.png" height=300 alt="Serious Scaffold Python">
   </a>
 </div>
 
-Many efforts have been made to ease the project setup, but most of them are only language-specified basic components. In practice, we have to deal with much more details, especially for team projects. Many commonly used tools and configurations need to be handled properly. Moreover, different people tend to have different favors in various aspects. If you are tired of the inefficient setup process and endless discussion, [Serious Scaffold Python](https://github.com/huxuan/serious-scaffold-python) is here to terminate those for Python Projects.
+Many efforts have been made to ease the project setup, but most of them are only language-specified basic components. In practice, we have to deal with much more details, especially for team projects. Many commonly used tools and configurations need to be handled properly. Moreover, different people tend to have different favors in various aspects. If you are tired of the inefficient setup process and endless discussion, [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) is here to terminate those for Python Projects.
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
@@ -43,7 +43,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 1. Generate the project with the `copier` command.
 
    ```
-   copier copy gh:huxuan/serious-scaffold-python /path/to/project
+   copier copy gh:serious-scaffold/serious-scaffold-python /path/to/project
    ```
 
 1. Initialize the project with the `git` and `make` commands.
