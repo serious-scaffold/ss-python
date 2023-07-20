@@ -1,6 +1,6 @@
 # Serious Scaffold Python
 
-A serious Python project template for out-of-box and production usage.
+A development-focused Python project template with various integrations, configurations and modules.
 
 [![GitHub](https://img.shields.io/github/license/serious-scaffold/serious-scaffold-python)](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE)
 [![CI Status](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
