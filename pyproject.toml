@@ -18,17 +18,15 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ]
-description = "A serious Python project template for out-of-box and production usage."
+description = "A development-focused Python project template with various integrations, configurations and modules."
 dynamic = [
   "dependencies",
   "optional-dependencies",
   "version",
 ]
 keywords = [
-  "out-of-box",
-  "production",
+  "development-focused",
   "project template",
-  "template",
 ]
 name = "serious-scaffold"
 readme = "README.md"

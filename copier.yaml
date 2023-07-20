@@ -15,7 +15,7 @@ project_name:
   help: 'Project name in CamelCase:'
   type: str
 project_description:
-  default: A serious Python project template for out-of-box and production usage.
+  default: A development-focused Python project template with various integrations, configurations and modules.
   help: 'Brief project description:'
   type: str
 repo_namespace:
