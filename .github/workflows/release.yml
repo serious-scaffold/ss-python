@@ -1,0 +1,46 @@
+jobs:
+  deploy-package:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: 3.x
+      - run: env | sort
+      - run: make dev-package
+      - run: make build
+      - name: Publish a Python distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+  deploy-pages:
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: 3.x
+      - run: env | sort
+      - run: make dev-docs
+      - run: make docs
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: public
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+name: Deploy Python Package & GitHub Pages
+on:
+  release:
+    types:
+      - published
