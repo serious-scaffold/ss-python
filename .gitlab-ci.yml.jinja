@@ -2,8 +2,11 @@
 stages:
   - lint_test
   - build_release
+default:
+  image: python:3.11
 lint:
   image: python:$PYTHON_VERSION
+  interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
     - main
@@ -36,6 +39,7 @@ tests:
         path: coverage.xml
   coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
   image: python:$PYTHON_VERSION
+  interruptible: true
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
     - main
@@ -81,12 +85,19 @@ pages:
       - docs/**/*
     refs:
       - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
-      - main
   script:
     - env | sort
     - make dev-docs
     - make docs
   stage: build_release
-default:
-  image: python:{{ default_python_version }}
-  interruptible: true
+release:
+  release:
+    description: $CI_COMMIT_TAG_MESSAGE
+    name: $CI_COMMIT_TAG
+    tag_name: $CI_COMMIT_TAG
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+  stage: build_release
