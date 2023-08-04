@@ -1,20 +1,20 @@
 """Settings Module."""
+from __future__ import annotations
+
 import logging
 from logging import getLevelName
-from typing import Optional
 
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     """Project specific settings."""
 
-    logging_level: Optional[str] = getLevelName(logging.INFO)
+    model_config = SettingsConfigDict(
+        env_prefix="SERIOUS_SCAFFOLD_",
+    )
 
-    class Config:
-        """Config for settings."""
-
-        env_prefix = "SERIOUS_SCAFFOLD_"
+    logging_level: str | None = getLevelName(logging.INFO)
 
 
 class GlobalSettings(BaseSettings):
