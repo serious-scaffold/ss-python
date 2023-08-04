@@ -15,7 +15,7 @@ clean:
 		Pipfile* \
 		coverage.xml \
 		dist \
-		docs/_build
+		public
 	find . -name '*.egg-info' -print0 | xargs -0 rm -rf
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
@@ -75,4 +75,4 @@ docs:
 	${PIPRUN} python -m sphinx.cmd.build docs public
 
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs public
+	${PIPRUN} python -m sphinx_autobuild docs public --watch src

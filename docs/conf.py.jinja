@@ -30,7 +30,9 @@ extensions = [
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-autodoc_pydantic_settings_show_field_summary = False
+autodoc_default_options = {
+    "members": None,
+}
 autodoc_pydantic_settings_show_json = False
 
 # -- Options for HTML output -------------------------------------------------
