@@ -5,7 +5,7 @@ Welcome to Serious Scaffold Python's documentation!
    :maxdepth: 2
 
    cli/index
-   modules/index
+   api/index
 
 Indices and tables
 ==================

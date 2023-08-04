@@ -10,17 +10,19 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Project specific settings."""
 
+    logging_level: str | None = getLevelName(logging.INFO)
+    """Default logging level for the project."""
+
     model_config = SettingsConfigDict(
         env_prefix="SERIOUS_SCAFFOLD_",
     )
-
-    logging_level: str | None = getLevelName(logging.INFO)
 
 
 class GlobalSettings(BaseSettings):
     """System level settings."""
 
     ci: bool = False
+    """Indicator for whether or not in CI/CD environment."""
 
 
 #: Instance for project specific settings.
