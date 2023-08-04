@@ -39,7 +39,7 @@ keywords = [
 ]
 name = "{{ package_name }}"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">={{ minimal_python_version }}"
 
 [project.scripts]
 {{ package_name }}-cli = "{{ module_name }}.cli:app"

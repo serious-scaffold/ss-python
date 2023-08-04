@@ -1,8 +1,7 @@
 """Settings Module."""
-from __future__ import annotations
-
 import logging
 from logging import getLevelName
+from typing import Optional
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -10,7 +9,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Project specific settings."""
 
-    logging_level: str | None = getLevelName(logging.INFO)
+    # NOTE(huxuan): Pydantic cannot leverage future annotations at runtime prior to
+    # Python 3.10, so `from __future__ import annotations` cannot be used here, and the
+    # lint error need to be ignored unless the minimal Python version >= 3.10.
+    # Reference: https://github.com/pydantic/pydantic/issues/3300#issuecomment-1034007897
+    logging_level: Optional[str] = getLevelName(logging.INFO)  # noqa: FA100
     """Default logging level for the project."""
 
     model_config = SettingsConfigDict(
