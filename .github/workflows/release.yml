@@ -30,8 +30,9 @@ jobs:
           cache: pip
           python-version: 3.x
       - run: env | sort
-      - run: make dev-docs
+      - run: make dev-docs,lint,tests
       - run: make docs
+      - run: make reports
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
