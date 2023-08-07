@@ -79,7 +79,7 @@ docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} --watch src
 
 mypy-reports:
-	${PIPRUN} python -m mypy docs tests src --html-report ${PUBLIC_DIR}/$@
+	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/$@
 
 tests-reports:
 	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/$@ .
