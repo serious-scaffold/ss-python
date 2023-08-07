@@ -10,7 +10,7 @@ def test_cli() -> None:
     """Tests for cli."""
     result = runner.invoke(app)
     assert result.exit_code == 0
-    assert not result.output
+    assert "Usage" in result.output
 
 
 def test_cli_run() -> None:
