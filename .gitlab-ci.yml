@@ -70,8 +70,9 @@ pages:
       - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
-    - make dev-docs
+    - make dev-docs,lint,tests
     - make docs
+    - make reports
   stage: build_release
 release:
   release:

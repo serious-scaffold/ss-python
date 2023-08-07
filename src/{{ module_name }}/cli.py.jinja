@@ -23,7 +23,3 @@ def main() -> None:
 # NOTE(huxuan): click object is used for document generation.
 # Reference: https://github.com/tiangolo/typer/issues/200#issuecomment-796485787
 typer_click_object = typer.main.get_command(app)
-
-
-if __name__ == "__main__":
-    app()  # pragma: no cover
