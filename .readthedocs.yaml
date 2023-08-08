@@ -14,4 +14,6 @@ python:
         - docs
       method: pip
       path: .
+sphinx:
+  fail_on_warning: true
 version: 2
