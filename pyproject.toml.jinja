@@ -53,7 +53,7 @@ fail_under = 100
 
 [tool.coverage.run]
 include = [
-  "src/{{ module_name }}/**",
+  "{{ module_name }}",
 ]
 omit = [
 {%- if project_name == "Serious Scaffold Python" %}
