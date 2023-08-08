@@ -76,8 +76,8 @@ upload:
 
 docs:
 	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}/html
-	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/html/$@
-	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/html/$@ .
+	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/html/reports/mypy
+	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/html/reports/coverage .
 
 docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR}/html --watch src
