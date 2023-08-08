@@ -4,6 +4,6 @@ build:
     python: '3'
   commands:
     - pip install --upgrade pip
-    - make dev-docs,lint,tests
+    - make dev-docs
     - make docs
 version: 2
