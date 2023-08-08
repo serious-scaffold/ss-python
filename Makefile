@@ -61,7 +61,9 @@ toml-sort:
 	${PIPRUN} toml-sort pyproject.toml
 
 tests:
-	${PIPRUN} python -m pytest .
+	${PIPRUN} python -m coverage erase
+	${PIPRUN} python -m coverage run -m pytest
+	${PIPRUN} python -m coverage report
 
 freeze:
 	@${PIPRUN} pip freeze --exclude-editable
@@ -80,4 +82,6 @@ docs-autobuild:
 
 reports:
 	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
-	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/reports/coverage .
+	${PIPRUN} python -m coverage erase
+	${PIPRUN} python -m coverage run -m pytest
+	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage

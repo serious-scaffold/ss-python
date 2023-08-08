@@ -44,7 +44,10 @@ fail_under = 100
 
 [tool.coverage.run]
 omit = [
-  "src/{{ module_name }}/*",
+  "src/{{ module_name }}/**",
+]
+source = [
+  "serious_scaffold",
 ]
 
 [tool.isort]
@@ -67,7 +70,7 @@ warn_return_any = true
 warn_unused_ignores = true
 
 [tool.pytest.ini_options]
-addopts = "-l -s --durations=0 --cov=src --cov-report term --cov-report xml --cov-fail-under=100"
+addopts = "-l -s --durations=0"
 log_cli = true
 log_cli_level = "info"
 log_date_format = "%Y-%m-%d %H:%M:%S"
