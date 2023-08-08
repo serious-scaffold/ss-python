@@ -52,13 +52,13 @@ issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
 fail_under = 100
 
 [tool.coverage.run]
-include = [
-  "{{ module_name }}",
-]
 omit = [
 {%- if project_name == "Serious Scaffold Python" %}
   "src/{{ '{{ module_name }}' }}/**",
 {%- endif %}
+]
+source = [
+  "{{ module_name }}",
 ]
 
 [tool.isort]

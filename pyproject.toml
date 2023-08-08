@@ -43,11 +43,11 @@ issue = "https://github.com/serious-scaffold/serious-scaffold-python/issues"
 fail_under = 100
 
 [tool.coverage.run]
-include = [
-  "serious_scaffold",
-]
 omit = [
   "src/{{ module_name }}/**",
+]
+source = [
+  "serious_scaffold",
 ]
 
 [tool.isort]
