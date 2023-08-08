@@ -59,7 +59,7 @@ package:
 pages:
   artifacts:
     paths:
-      - public
+      - public/html
   except:
     refs:
       - schedules

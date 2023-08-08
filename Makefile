@@ -73,15 +73,15 @@ upload:
 	${PIPRUN} python -m twine upload dist/*
 
 docs:
-	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
+	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}/html
 
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} --watch src
+	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR}/html --watch src
 
 mypy-reports:
-	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/$@
+	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/html/$@
 
 tests-reports:
-	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/$@ .
+	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/html/$@ .
 
 reports: mypy-reports tests-reports
