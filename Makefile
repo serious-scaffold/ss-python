@@ -3,6 +3,7 @@
 # Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
 SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
 PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo pipenv ${SITE_PACKAGES_FLAG} run)
+PUBLIC_DIR := $(or $(READTHEDOCS_OUTPUT),public)
 
 # Remove common intermediate files.
 clean:
@@ -15,7 +16,7 @@ clean:
 		Pipfile* \
 		coverage.xml \
 		dist \
-		public
+		$(PUBLIC_DIR)
 	find . -name '*.egg-info' -print0 | xargs -0 rm -rf
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
@@ -72,7 +73,9 @@ upload:
 	${PIPRUN} python -m twine upload dist/*
 
 docs:
-	${PIPRUN} python -m sphinx.cmd.build docs public
+	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}/html
+	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/html/reports/mypy
+	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/html/reports/coverage .
 
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs public --watch src
+	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR}/html --watch src

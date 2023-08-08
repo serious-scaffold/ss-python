@@ -2,10 +2,8 @@ build:
   os: ubuntu-22.04
   tools:
     python: '3'
-python:
-  install:
-    - extra_requirements:
-        - docs
-      method: pip
-      path: .
+  commands:
+    - pip install --upgrade pip
+    - make dev-docs
+    - make docs
 version: 2

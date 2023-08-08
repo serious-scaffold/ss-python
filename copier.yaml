@@ -6,7 +6,6 @@ _exclude:
   - __pycache__
   - copier.yaml
   - copier.yml
-  - docs/modules/serious_scaffold.settings.rst
   - includes
   - src/serious_scaffold
   - ~*

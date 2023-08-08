@@ -1,6 +1,9 @@
 # Requirements for docs.
 autodoc-pydantic
 furo
+mypy[reports]
+pytest
+pytest-cov
 Sphinx
 sphinx-autobuild
 sphinx-click
