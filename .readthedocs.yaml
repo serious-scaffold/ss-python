@@ -1,9 +1,17 @@
 build:
+  jobs:
+    post_build:
+      - make reports
   os: ubuntu-22.04
   tools:
     python: '3'
-  commands:
-    - pip install --upgrade pip
-    - make dev-docs
-    - make docs
+formats:
+  - pdf
+  - epub
+python:
+  install:
+    - extra_requirements:
+        - docs
+      method: pip
+      path: .
 version: 2

@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort tests freeze build upload docs docs-autobuild
+.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort tests freeze build upload docs docs-autobuild reports
 
 # Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
 SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
@@ -74,8 +74,10 @@ upload:
 
 docs:
 	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
-	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
-	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/reports/coverage .
 
 docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} --watch src
+
+reports:
+	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
+	${PIPRUN} python -m pytest --cov-report html:${PUBLIC_DIR}/reports/coverage .

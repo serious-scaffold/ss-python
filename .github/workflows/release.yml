@@ -32,6 +32,7 @@ jobs:
       - run: env | sort
       - run: make dev-docs
       - run: make docs
+      - run: make reports
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
