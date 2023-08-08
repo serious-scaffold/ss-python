@@ -72,7 +72,6 @@ pages:
     - env | sort
     - make dev-docs,lint,tests
     - make docs
-    - make reports
   stage: build_release
 release:
   release:

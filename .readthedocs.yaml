@@ -6,5 +6,4 @@ build:
     - pip install --upgrade pip
     - make dev-docs,lint,tests
     - make docs
-    - make reports
 version: 2

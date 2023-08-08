@@ -6,6 +6,7 @@ Welcome to Serious Scaffold Python's documentation!
 
    cli/index
    api/index
+   reports/index
 
 Indices and tables
 ==================
