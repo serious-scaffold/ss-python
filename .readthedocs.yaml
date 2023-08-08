@@ -2,15 +2,9 @@ build:
   os: ubuntu-22.04
   tools:
     python: '3'
-  jobs:
-    post_build:
-      - make reports
-python:
-  install:
-    - extra_requirements:
-        - docs
-        - lint
-        - tests
-      method: pip
-      path: .
+  commands:
+    - pip install --upgrade pip
+    - make dev-docs,lint,tests
+    - make docs
+    - make reports
 version: 2
