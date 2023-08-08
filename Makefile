@@ -81,7 +81,7 @@ docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} --watch src
 
 reports:
-	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
+	# ${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
 	${PIPRUN} python -m coverage erase
-	${PIPRUN} python -m coverage run -m pytest
-	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
+	${PIPRUN} python -m coverage run --debug=config,data,trace -m pytest
+	${PIPRUN} python -m coverage html --debug=config,data,trace -d ${PUBLIC_DIR}/reports/coverage
