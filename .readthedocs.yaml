@@ -7,9 +7,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: '3'
-formats:
-  - pdf
-  - epub
 sphinx:
   fail_on_warning: true
 version: 2
