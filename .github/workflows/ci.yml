@@ -45,14 +45,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Git
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: env | sort
-      - run: pip install copier
-      - run: copier copy -r HEAD -f . .
+      - name: Install copier for template rendering
+        run: python -m pip install --user copier
+      - name: Generate the project with the default value
+        run: |
+          rm -rf src/serious_scaffold
+          copier copy -x '!src/serious_scaffold' -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |
