@@ -51,8 +51,12 @@ jobs:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: env | sort
-      - run: pip install copier
-      - run: copier copy -r HEAD -f . .
+      - name: Generate the project with the default value
+        # Workaround for self rendering as `src/serious_scaffold` should be excluded in other cases.
+        run: |
+          pip install copier
+          rm -rf src/serious_scaffold
+          copier copy -x '!src/serious_scaffold' -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |
