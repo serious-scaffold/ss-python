@@ -56,8 +56,8 @@ jobs:
       - name: Generate the project with the default value
         # Workaround for self rendering as `src/serious_scaffold` need to be excluded in other cases.
         run: |
-          rm -rf src/serious_scaffold
-          copier copy -x '!src/serious_scaffold' -r HEAD -f . .
+          # rm -rf src/serious_scaffold
+          copier copy -x '!src/serious_scaffold' -r HEAD -l . .
       - run: git diff
       - run: git status --porcelain
       - run: |
