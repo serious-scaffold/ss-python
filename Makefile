@@ -7,7 +7,7 @@
 # Only create virtual environment when not in CI and pipenv is available.
 PIPRUN := $(if $(and $(shell [ "$$CI" != "true" ] && echo 1),$(shell command -v pipenv > /dev/null 2>&1 && echo 1)),pipenv run)
 
-# Documentation target directory, will be adapted to specific folder when under readthedocs build environment.
+# Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(if $(shell [ "$$READTHEDOCS" = "True" ] && echo 1),$$READTHEDOCS_OUTPUT/html,public)
 
 ########################################################################################
