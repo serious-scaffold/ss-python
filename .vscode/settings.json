@@ -31,7 +31,6 @@
     "pydantic",
     "pytest",
     "Quickstart",
-    "Roadmap",
     "setuptools",
     "typer"
   ],
