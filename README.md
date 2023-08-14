@@ -29,7 +29,8 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 
 - Basic Python project structure as a package.
 - `Makefile` as the entry point for common actions.
-- Lint with [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), [`toml-sort`](https://github.com/pappasam/toml-sort) and [`pre-commit`](https://github.com/pre-commit/pre-commit) with [general hooks](https://github.com/pre-commit/pre-commit-hooks).
+- Lint with [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), [`toml-sort`](https://github.com/pappasam/toml-sort).
+- [`pre-commit`](https://github.com/pre-commit/pre-commit) with [the out-of-the-box hooks](https://github.com/pre-commit/pre-commit-hooks) and local linters with autofix.
 - Test with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) report and threshold.
 - Documentation with [`sphinx`](https://www.sphinx-doc.org/) and [`furo`](https://pradyunsg.me/furo) with mypy and coverage reports.
 - Categorized dependency management with [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) for different environments.
