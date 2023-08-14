@@ -60,7 +60,7 @@ repos:
         name: ruff
         types:
           - python
-      - entry: pipenv run toml-sort --check
+      - entry: pipenv run toml-sort
         id: toml-sort
         language: system
         name: toml-sort

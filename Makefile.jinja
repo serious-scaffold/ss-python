@@ -1,13 +1,23 @@
-.PHONY: clean deepclean install dev version pre-commit lint black mypy ruff toml-sort tests freeze build upload docs docs-autobuild reports
+.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit tests freeze version build upload docs docs-autobuild docs-coverage reports docs-all
 
-# Construct pipenv run command with or without site-packages flag when not in CI environment and pipenv command exists.
-SITE_PACKAGES_FLAG = $(shell [ "${SS_SITE_PACKAGES}" = "true" ] && echo --site-packages)
-PIPRUN := $(shell [ "${CI}" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo pipenv ${SITE_PACKAGES_FLAG} run)
-PUBLIC_DIR := $(if $(READTHEDOCS_OUTPUT),$(READTHEDOCS_OUTPUT)/html,public)
+########################################################################################
+# Variables
+########################################################################################
+
+# Only create virtual environment when not in CI and pipenv is available.
+PIPRUN := $(if $(and $(shell [ "$$CI" != "true" ] && echo 1),$(shell command -v pipenv > /dev/null 2>&1 && echo 1)),pipenv run)
+
+# Documentation target directory, will be adapted to specific folder for readthedocs.
+PUBLIC_DIR := $(if $(shell [ "$$READTHEDOCS" = "True" ] && echo 1),$$READTHEDOCS_OUTPUT/html,public)
+
+########################################################################################
+# Development Environment Management
+########################################################################################
 
 # Remove common intermediate files.
 clean:
 	-rm -rf \
+		${PUBLIC_DIR} \
 {%- if project_name == "Serious Scaffold Python" %}
 		.copier-answers.yml \
 {%- endif %}
@@ -17,73 +27,121 @@ clean:
 		.ruff_cache \
 		Pipfile* \
 		coverage.xml \
-		dist \
-		$(PUBLIC_DIR)
+		dist
 	find . -name '*.egg-info' -print0 | xargs -0 rm -rf
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
 	find . -name '.DS_Store' -print0 | xargs -0 rm -f
 	find . -name '__pycache__' -print0 | xargs -0 rm -rf
 
+# Remove pre-commit hook, virtual environment alongside itermediate files.
 deepclean: clean
-	-pre-commit uninstall --hook-type pre-push
-	-pipenv --venv >/dev/null 2>&1 && pipenv --rm
+	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall --hook-type pre-push; fi
+	if command -v pipenv >/dev/null 2>&1 && pipenv --venv >/dev/null 2>&1; then pipenv --rm; fi
 
+# Install the package in editable mode.
 install:
 	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
+# Install the package in editable mode with specific optional dependencies.
 dev-%:
 	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
+# Prepare the development environment.
+# Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
 	${PIPRUN} pip install -e .[docs,lint,package,tests] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
-	-[ "${CI}" != "true" ] && pre-commit install --hook-type pre-push
+	if [ "${CI}" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
 
-version:
-	${PIPRUN} python -m setuptools_scm
+########################################################################################
+# Lint and pre-commit
+########################################################################################
 
-pre-commit:
-	pre-commit run --all-files
-
+# Check lint with black.
 black:
-	${PIPRUN} python -m black docs tests src
+	${PIPRUN} python -m black --check docs tests src
 
-lint: isort mypy ruff toml-sort
-
+# Check lint with isort.
 isort:
 	${PIPRUN} python -m isort .
 
+# Check lint with mypy.
 mypy:
 	${PIPRUN} python -m mypy docs tests src
 
+# Check lint with ruff.
 ruff:
 	${PIPRUN} python -m ruff docs tests src
 
+# Check lint with toml-sort.
 toml-sort:
-	${PIPRUN} toml-sort pyproject.toml
+	${PIPRUN} toml-sort --check pyproject.toml
 
+# Check lint with all linters.
+lint-check: black isort mypy ruff toml-sort
+
+# Run pre-commit with autofix against all files.
+lint:
+	pre-commit run --all-files
+
+########################################################################################
+# Tests
+########################################################################################
+
+# Run tests with coverage report.
 tests:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage report
 
+########################################################################################
+# Packages
+########################################################################################
+
+# Show currently installed dependecies excluding the package itself with versions
 freeze:
 	@${PIPRUN} pip freeze --exclude-editable
 
+# Get the version of the package.
+version:
+	${PIPRUN} python -m setuptools_scm
+
+# Build the package
 build:
 	${PIPRUN} python -m build
 
+# Upload the package
 upload:
 	${PIPRUN} python -m twine upload dist/*
 
+########################################################################################
+# Documentation
+########################################################################################
+
+# Generate documentation.
 docs:
 	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
 
+# Generate documentation with auto build when changes happen.
 docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} --watch src
 
-reports:
+# Generate mypy reports.
+docs-mypy:
 	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
+
+# Generate coverage reports.
+docs-coverage:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
+
+# Generate all reports.
+reports: docs-mypy docs-coverage
+
+# Generate all documentation with reports.
+docs-all: docs reports
+
+########################################################################################
+# End
+########################################################################################

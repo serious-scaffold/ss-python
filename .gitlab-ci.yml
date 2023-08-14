@@ -20,7 +20,7 @@ lint:
   script:
     - env | sort
     - make dev-lint
-    - make lint
+    - make lint-check
   stage: lint_test
 tests:
   artifacts:
@@ -71,8 +71,7 @@ pages:
   script:
     - env | sort
     - make dev-docs
-    - make docs
-    - make reports
+    - make docs-all
   stage: build_release
 release:
   release:
