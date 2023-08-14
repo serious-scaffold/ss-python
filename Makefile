@@ -56,7 +56,7 @@ dev:
 ########################################################################################
 
 # Check lint with black.
-black-check:
+black:
 	${PIPRUN} python -m black --check docs tests src
 
 # Check lint with isort.
