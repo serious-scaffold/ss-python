@@ -67,23 +67,17 @@ pipx install pre-commit # Git hooks package management tool.
    git init
    ```
 
-1. Create virtual environment and install default dependencies for development.
+1. Prepare development environment.
 
    ```bash
    make dev
    ```
 
-1.
-
-the project with the `git` and `make` commands.
+1. Submit the first commit.
 
    ```bash
-   cd /path/to/project
-   git init
    git add .
-   make dev
-   make lint
-   git commit -a -m "Init from serious-scaffold-python."
+   git commit -m "Init from serious-scaffold-python."
    ```
 
 1. Happy hacking.
