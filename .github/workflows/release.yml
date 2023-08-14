@@ -31,8 +31,7 @@ jobs:
           python-version: 3.x
       - run: env | sort
       - run: make dev-docs
-      - run: make docs
-      - run: make reports
+      - run: make docs-all
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:
