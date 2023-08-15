@@ -24,32 +24,20 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 
 ## :hammer_and_wrench: Features
 
-- **Template Rendering**
-  - Leverage [`copier`](https://copier.readthedocs.io/) for project initiation and  template updates.
-- **Environment Management**
-  - Manage [virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) with [`pipenv`](https://pipenv.pypa.io/) for daily development.
-  - Run CI/CD in containers with different Python versions to ensure compatibility.
-- **Dependency Management**
-  - Categorize dependencies by purpose, allowing for selective installation.
-  - Use [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) to pin dependencies on different environments to ensure reproducibility.
-- **Code Quality**
-  - Incorporate linters such as [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
-  - Integrate [`pre-commit`](https://pre-commit.com/) with [built-in hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters for Git hooks automation.
-- **Tests**
-  - Leverage [`pytest`](https://pytest.org/) for tests, supplemented by [`coverage`](https://coverage.readthedocs.io) reports and thresholds.
-- **Package**
-  - Utilize [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) for versioning using git metadata.
-- **Documentation**
-  - Leverage [`sphinx`](https://www.sphinx-doc.org/) with the [`furo`](https://pradyunsg.me/furo) theme, incorporating [MyPy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [Coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
-  - Support integration with [Read the Docs](https://readthedocs.org/).
-- **Continuous Integration**
-  - Provide pre-configured [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) for features above.
-- **Common Modules**
-  - Utilize [`typer`](https://typer.tiangolo.com/) for Command Line Interface development.
-  - Utilize [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) for settings management.
-- **Miscellaneous**
-  - Offer a unified `Makefile` as the entry point for common actions.
-  - Provide VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
+- Project setup and template update with [`copier`](https://copier.readthedocs.io/).
+- [Virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) management with [`pipenv`](https://pipenv.pypa.io/).
+- Dependency management with categorized dependencies and [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files).
+- Automate Git hooks with [pre-commit hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters.
+- Lint with [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
+- Tests with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
+- Document with [`sphinx`](https://www.sphinx-doc.org/), the [`furo`](https://pradyunsg.me/furo) theme, and [mypy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
+- Version Package using git metadata with [`setuptools-scm`](https://github.com/pypa/setuptools_scm/).
+- Continuous Integration with [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/).
+- [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) with [Read the Docs](https://readthedocs.org/) integration.
+- Command Line Interface development with [`typer`](https://typer.tiangolo.com/).
+- Configuration management with [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
+- Centralize common actions with a unified [`Makefile`](Makefile).
+- VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
 
 ## :wrench: Prerequisites
 
