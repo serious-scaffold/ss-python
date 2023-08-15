@@ -25,17 +25,17 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## :hammer_and_wrench: Features
 
 - Project setup and template update with [`copier`](https://copier.readthedocs.io/).
-- [Virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) management with [`pipenv`](https://pipenv.pypa.io/).
-- Dependency management with categorized dependencies and [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files).
+- Manage [virtual environments](https://docs.python.org/3/glossary.html#term-virtual-environment) for development with [`pipenv`](https://pipenv.pypa.io/).
+- Manage dependency with categorized [requirements](https://pip.pypa.io/en/stable/user_guide/#requirements-files) and [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files).
 - Automate Git hooks with [pre-commit hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters.
 - Lint with [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
-- Tests with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
+- Test with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
 - Document with [`sphinx`](https://www.sphinx-doc.org/), the [`furo`](https://pradyunsg.me/furo) theme, and [mypy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation)/[coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
-- Version Package using git metadata with [`setuptools-scm`](https://github.com/pypa/setuptools_scm/).
+- Version the package using git metadata with [`setuptools-scm`](https://github.com/pypa/setuptools_scm/).
 - Continuous Integration with [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/).
 - [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) with [Read the Docs](https://readthedocs.org/) integration.
-- Command Line Interface development with [`typer`](https://typer.tiangolo.com/).
-- Configuration management with [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
+- Develop Command Line Interfaces with [`typer`](https://typer.tiangolo.com/).
+- Manage configurations with [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
 - Centralize common actions with a unified [`Makefile`](Makefile).
 - VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
 
@@ -46,10 +46,8 @@ Certain system-level Python applications are needed and it is recommended to use
 ```bash
 # Copier: Template rendering for projects.
 pipx install copier
-
 # Pipenv: Virtual environment and package manager for Python.
 pipx install pipenv
-
 # Pre-commit: Automates Git hooks for code quality checks.
 pipx install pre-commit
 ```
@@ -62,28 +60,28 @@ pipx install pre-commit
    copier copy gh:serious-scaffold/serious-scaffold-python /path/to/project
    ```
 
-1. Navigate to the project directory and initialize a git repository.
+2. Navigate to the project directory and initialize a git repository.
 
    ```bash
    cd /path/to/project
    git init
    ```
 
-1. Set up the development environment.
+3. Set up the development environment.
 
    ```bash
    make dev
    ```
 
-1. Commit the initialized project.
+4. Commit the initialized project.
 
    ```bash
    git add .
    git commit -m "Initialize from serious-scaffold-python."
    ```
 
-1. That's it! Focus on the coding mostly within `src` folder now.
+5. That's it! Feel free to focus on the coding within `src` folder.
 
 ## :scroll: License
 
-MIT, for more details, check out the [LICENSE](LICENSE) file.
+MIT, for more details, see the [LICENSE](LICENSE) file.
