@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit tests freeze version build upload docs docs-autobuild docs-coverage reports docs-all
+.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-coverage reports docs-all
 
 ########################################################################################
 # Variables
@@ -50,7 +50,7 @@ dev-%:
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	${PIPRUN} pip install -e .[docs,lint,package,tests] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	${PIPRUN} pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 	if [ "${CI}" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
 
 ########################################################################################
@@ -59,7 +59,7 @@ dev:
 
 # Check lint with black.
 black:
-	${PIPRUN} python -m black --check docs tests src
+	${PIPRUN} python -m black --check docs test src
 
 # Check lint with isort.
 isort:
@@ -67,11 +67,11 @@ isort:
 
 # Check lint with mypy.
 mypy:
-	${PIPRUN} python -m mypy docs tests src
+	${PIPRUN} python -m mypy docs test src
 
 # Check lint with ruff.
 ruff:
-	${PIPRUN} python -m ruff docs tests src
+	${PIPRUN} python -m ruff docs test src
 
 # Check lint with toml-sort.
 toml-sort:
@@ -85,11 +85,11 @@ lint:
 	pre-commit run --all-files
 
 ########################################################################################
-# Tests
+# Test
 ########################################################################################
 
-# Run tests with coverage report.
-tests:
+# Run test with coverage report.
+test:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage report
@@ -128,7 +128,7 @@ docs-autobuild:
 
 # Generate mypy reports.
 docs-mypy:
-	${PIPRUN} python -m mypy tests src --html-report ${PUBLIC_DIR}/reports/mypy
+	${PIPRUN} python -m mypy test src --html-report ${PUBLIC_DIR}/reports/mypy
 
 # Generate coverage reports.
 docs-coverage:

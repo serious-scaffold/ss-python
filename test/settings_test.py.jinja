@@ -1,11 +1,11 @@
-"""Tests for settings."""
+"""Test for settings."""
 import os
 
 from {{ module_name }}.settings import global_settings, settings
 
 
 def test_settings() -> None:
-    """Tests for settings."""
+    """Test for settings."""
     assert settings.logging_level == os.getenv(
         "{{ module_name|upper }}_LOGGING_LEVEL",
         "INFO",

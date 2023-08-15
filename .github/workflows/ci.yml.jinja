@@ -27,7 +27,7 @@ jobs:
 {%- if version_between("3.11", minimal_python_version, maximal_python_version) | bool %}
           - '3.11'
 {%- endif %}
-  tests:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,8 +37,8 @@ jobs:
           cache: pip
           python-version: {{ '${{ matrix.python-version }}' }}
       - run: env | sort
-      - run: make dev-tests
-      - run: make tests
+      - run: make dev-test
+      - run: make test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:

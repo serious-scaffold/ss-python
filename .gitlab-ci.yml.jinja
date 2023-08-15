@@ -31,7 +31,7 @@ lint:
     - make dev-lint
     - make lint-check
   stage: lint_test
-tests:
+test:
   artifacts:
     reports:
       coverage_report:
@@ -61,8 +61,8 @@ tests:
 {%- endif %}
   script:
     - env | sort
-    - make dev-tests
-    - make tests
+    - make dev-test
+    - make test
   stage: lint_test
 package:
   only:
