@@ -22,10 +22,10 @@ Project setup often involves more than just creating a basic project structure. 
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
-## 🛠 Features
+## :hammer_and_wrench: Features
 
 - **Template Rendering**
-  - Harness [`copier`](https://copier.readthedocs.io/) to initiate projects and enable template updates.
+  - Utilize [`copier`](https://copier.readthedocs.io/) to initiate projects and enable template updates.
 - **Environment Management**
   - Utilize [`pipenv`](https://pipenv.pypa.io/) for virtual environment management.
   - Use containers and system-level `pip` for CI/CD.
