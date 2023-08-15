@@ -93,7 +93,7 @@ tests:
 	${PIPRUN} python -m coverage report
 
 ########################################################################################
-# Packages
+# Package
 ########################################################################################
 
 # Show currently installed dependecies excluding the package itself with versions

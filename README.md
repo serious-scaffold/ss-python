@@ -27,25 +27,28 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - **Template Rendering**
   - Leverage [`copier`](https://copier.readthedocs.io/) for project initiation and  template updates.
 - **Environment Management**
-  - Leverage [`pipenv`](https://pipenv.pypa.io/) for [virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) management in development and containers for CI/CD.
+  - Manage [virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) with [`pipenv`](https://pipenv.pypa.io/) for daily development.
+  - Run CI/CD in containers with different Python versions to ensure compatibility.
 - **Dependency Management**
-  - Categorize dependencies with [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) for different environments.
+  - Categorize dependencies by purpose, allowing for selective installation.
+  - Use [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) to pin dependencies on different environments to ensure reproducibility.
 - **Code Quality**
   - Incorporate linters such as [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
   - Integrate [`pre-commit`](https://pre-commit.com/) with [built-in hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters for Git hooks automation.
 - **Tests**
   - Leverage [`pytest`](https://pytest.org/) for tests, supplemented by [`coverage`](https://coverage.readthedocs.io) reports and thresholds.
+- **Package**
+  - Utilize [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) for versioning using git metadata.
 - **Documentation**
-  - Adopt [`sphinx`](https://www.sphinx-doc.org/) with the [`furo`](https://pradyunsg.me/furo) theme, incorporating [MyPy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [Coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
-- **Continuous Integration**
-  - Include pre-configured [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) for lint, tests, documentation generation, and package deployment.
-  - Offer a unified `Makefile` as the entry point for common actions.
+  - Leverage [`sphinx`](https://www.sphinx-doc.org/) with the [`furo`](https://pradyunsg.me/furo) theme, incorporating [MyPy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [Coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
   - Support integration with [Read the Docs](https://readthedocs.org/).
+- **Continuous Integration**
+  - Provide pre-configured [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) for features above.
 - **Common Modules**
   - Utilize [`typer`](https://typer.tiangolo.com/) for Command Line Interface development.
-  - Utilize [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) for versioning using git metadata.
   - Utilize [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) for settings management.
 - **Miscellaneous**
+  - Offer a unified `Makefile` as the entry point for common actions.
   - Provide VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
 
 ## :wrench: Prerequisites
@@ -95,4 +98,4 @@ pipx install pre-commit
 
 ## :scroll: License
 
-MIT, for more details, see the [LICENSE](LICENSE) file.
+MIT, for more details, check out the [LICENSE](LICENSE) file.
