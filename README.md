@@ -18,39 +18,37 @@ A development-focused Python project template with various integrations, configu
 
 [![Serious Scaffold Python](docs/_static/images/logo.svg)](https://github.com/serious-scaffold/serious-scaffold-python)
 
-Project setup often involves more than just creating a basic project structure. It includes tasks like setting up GitHub Actions or GitLab CI/CD, configuring linters, tests and documentation, and implementing settings and logging modules. If you are tired of this repetitive process, [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) is here to help. Utilizing the power of [`copier`](https://copier.readthedocs.io/), you can generate a new Python project with just one command. Simply answer a few questions, and your project will be fully set up. Additionally, your project can be updated alongside the advancement of the template.
+Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring linters, tests and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) streamlines this process. Powered by [`copier`](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
 ## :hammer_and_wrench: Features
 
 - **Template Rendering**
-  - Utilize [`copier`](https://copier.readthedocs.io/) to initiate projects and enable template updates.
+  - Leverage [`copier`](https://copier.readthedocs.io/) for project initiation and  template updates.
 - **Environment Management**
-  - Utilize [`pipenv`](https://pipenv.pypa.io/) for virtual environment management.
-  - Use containers and system-level `pip` for CI/CD.
+  - Leverage [`pipenv`](https://pipenv.pypa.io/) for [virtual environment](https://docs.python.org/3/glossary.html#term-virtual-environment) management in development and containers for CI/CD.
 - **Dependency Management**
-  - Manage dependencies categorically with [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) for different environments.
-- **Code Quality Checks**
-  - Incorporate linters including [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
-  - Integrate [`pre-commit`](https://github.com/pre-commit/pre-commit) for Git hooks automation.
+  - Categorize dependencies with [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files) for different environments.
+- **Code Quality**
+  - Incorporate linters such as [`black`](https://github.com/psf/black), [`isort`](https://pycqa.github.io/isort/), [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
+  - Integrate [`pre-commit`](https://pre-commit.com/) with [built-in hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters for Git hooks automation.
 - **Tests**
-  - Execute tests with [`pytest`](https://pytest.org/), supplemented by [`coverage`](https://coverage.readthedocs.io) reports and thresholds.
+  - Leverage [`pytest`](https://pytest.org/) for tests, supplemented by [`coverage`](https://coverage.readthedocs.io) reports and thresholds.
 - **Documentation**
-  - Use [`sphinx`](https://www.sphinx-doc.org/) with the [`furo`](https://pradyunsg.me/furo) theme.
-  - Include [MyPy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [Coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
+  - Adopt [`sphinx`](https://www.sphinx-doc.org/) with the [`furo`](https://pradyunsg.me/furo) theme, incorporating [MyPy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation) and [Coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
 - **Continuous Integration**
-  - Offer a unified `Makefile` for common actions.
-  - Provide configurations for [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/).
-  - Support [Read the Docs](https://readthedocs.org/) integration.
+  - Include pre-configured [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) for lint, tests, documentation generation, and package deployment.
+  - Offer a unified `Makefile` as the entry point for common actions.
+  - Support integration with [Read the Docs](https://readthedocs.org/).
 - **Common Modules**
-  - Use [`typer`](https://typer.tiangolo.com/) for CLI tasks, including tests, documentation, and configuration.
-  - Adopt [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) for versioning via git metadata.
-  - Implement [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) for robust settings management.
+  - Utilize [`typer`](https://typer.tiangolo.com/) for Command Line Interface development.
+  - Utilize [`setuptools-scm`](https://github.com/pypa/setuptools_scm/) for versioning using git metadata.
+  - Utilize [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/) for settings management.
 - **Miscellaneous**
-  - Offer VSCode [settings](.vscode/settings.json) and recommended [extensions](.vscode/extensions.json).
+  - Provide VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
 
-## 🔧 Prerequisites
+## :wrench: Prerequisites
 
 Certain system-level Python applications are needed and it is recommended to use [`pipx`](https://pypa.github.io/pipx/) to install and run them in isolated environments. Refer to pipx's installation instructions [here](https://pypa.github.io/pipx/installation/). Once `pipx` is set up, install the necessary tools using the following commands.
 
@@ -65,22 +63,22 @@ pipx install pipenv
 pipx install pre-commit
 ```
 
-## 🚀 Quickstart
+## :rocket: Quickstart
 
-1. Generate the project by answering several questions.
+1. Generate the project.
 
    ```bash
    copier copy gh:serious-scaffold/serious-scaffold-python /path/to/project
    ```
 
-1. Initialize an empty git repository.
+1. Navigate to the project directory and initialize a git repository.
 
    ```bash
    cd /path/to/project
    git init
    ```
 
-1. Prepare development environment.
+1. Set up the development environment.
 
    ```bash
    make dev
@@ -90,11 +88,11 @@ pipx install pre-commit
 
    ```bash
    git add .
-   git commit -m "Init from serious-scaffold-python."
+   git commit -m "Initialize from serious-scaffold-python."
    ```
 
-1. Initialization Done! Focus on the logical code within `src` folder now.
+1. That's it! Focus on the coding mostly within `src` folder now.
 
-## 📜 License
+## :scroll: License
 
 MIT, for more details, see the [LICENSE](LICENSE) file.
