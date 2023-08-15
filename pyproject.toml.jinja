@@ -111,7 +111,7 @@ src = ["src"]
 [tool.ruff.per-file-ignores]
 "docs/conf.py" = ["INP001"]
 "src/\\{\\{ module_name \\}\\}/__init__.py" = ["N999"]
-"tests/*" = ["S101"]
+"test/*" = ["S101"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
@@ -120,7 +120,7 @@ dependencies = {file = ["requirements.txt"]}
 docs = {file = ["requirements/docs.txt"]}
 lint = {file = ["requirements/lint.txt"]}
 package = {file = ["requirements/package.txt"]}
-tests = {file = ["requirements/tests.txt"]}
+test = {file = ["requirements/test.txt"]}
 
 [tool.setuptools_scm]
 

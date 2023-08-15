@@ -18,7 +18,7 @@ jobs:
           - '3.9'
           - '3.10'
           - '3.11'
-  tests:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,8 +28,8 @@ jobs:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: env | sort
-      - run: make dev-tests
-      - run: make tests
+      - run: make dev-test
+      - run: make test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:

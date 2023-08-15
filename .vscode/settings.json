@@ -86,7 +86,7 @@
     "stages",
     "default",
     "lint",
-    "tests",
+    "test",
     "package",
     "pages",
     "release",

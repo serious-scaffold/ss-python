@@ -23,7 +23,7 @@ repos:
           - requirements/docs.txt
           - requirements/lint.txt
           - requirements/package.txt
-          - requirements/tests.txt
+          - requirements/test.txt
         id: requirements-txt-fixer
       - files: .pre-commit-config.yaml
         id: sort-simple-yaml
