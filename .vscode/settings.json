@@ -82,7 +82,7 @@
     "repo_name",
     "package_name",
     "module_name",
-    "test_coverage_threshold",
+    "coverage_threshold",
     "minimal_python_version",
     "maximal_python_version",
     "choices",

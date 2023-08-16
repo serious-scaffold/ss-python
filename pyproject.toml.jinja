@@ -49,7 +49,7 @@ homepage = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/"
 issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = {{ coverage_threshold }}
 
 [tool.coverage.run]
 omit = [

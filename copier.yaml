@@ -50,11 +50,11 @@ module_name:
   default: '{{ package_name|lower|replace("-", "_") }}'
   help: 'Module name:'
   type: str
-test_coverage_threshold:
+coverage_threshold:
   default: 100
   help: 'Threshold for test coverage (0-100):'
   type: int
-  validator: '{% if not 0 <= test_coverage_threshold <= 100 %}Invalid threshold{% endif %}'
+  validator: '{% if not 0 <= coverage_threshold <= 100 %}Coverage threshold should be between 0 and 100.{% endif %}'
 minimal_python_version:
   choices:
     - '3.8'
@@ -67,13 +67,13 @@ minimal_python_version:
 maximal_python_version:
   choices:
     '3.8':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.8", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_less_than -%}{{ "Invalid" if version_less_than("3.8", minimal_python_version) | bool }}'
       value: '3.8'
     '3.9':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.9", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_less_than -%}{{ "Invalid" if version_less_than("3.9", minimal_python_version) | bool }}'
       value: '3.9'
     '3.10':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.10", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_less_than -%}{{ "Invalid" if version_less_than("3.10", minimal_python_version) | bool }}'
       value: '3.10'
     '3.11':
       value: '3.11'

@@ -1,4 +1,4 @@
-{% macro version_lt(version1, version2) -%}
+{% macro version_less_than(version1, version2) -%}
 {{ version1.split(".") | map("int") | list < version2.split(".") | map("int") | list }}
 {%- endmacro %}
 

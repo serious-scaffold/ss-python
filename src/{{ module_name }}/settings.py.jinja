@@ -1,8 +1,8 @@
-{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}
+{% from pathjoin("includes", "version_compare.jinja") import version_less_than -%}
 """Settings Module."""
 import logging
 from logging import getLevelName
-{%- if version_lt(minimal_python_version, "3.10") | bool %}
+{%- if version_less_than(minimal_python_version, "3.10") | bool %}
 from typing import Optional
 {%- endif %}
 
@@ -18,7 +18,7 @@ class GlobalSettings(BaseSettings):
 
 class Settings(BaseSettings):
     """Project specific settings."""
-{%- if version_lt(minimal_python_version, "3.10") | bool %}
+{%- if version_less_than(minimal_python_version, "3.10") | bool %}
 
     # NOTE(huxuan): Pydantic cannot leverage future annotations at runtime prior to
     # Python 3.10, so `from __future__ import annotations` cannot be used here, and the
