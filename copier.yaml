@@ -17,17 +17,26 @@ project_description:
   default: A development-focused Python project template with various integrations, configurations and modules.
   help: 'Brief project description:'
   type: str
-repo_namespace:
-  default: serious-scaffold
-  help: 'Repo namespace, it should be the name of an user or an organization:'
-  type: str
 author_name:
   default: huxuan
   help: 'Author name:'
   type: str
+organization_name:
+  default: Serious Scaffold
+  help: 'Organization name:'
+  type: str
 author_email:
-  default: i@{{ author_name }}.org
+  default: |-
+    {% if author_name == 'huxuan' and organization_name == 'Serious Scaffold' -%}
+      i@huxuan.org
+    {%- else -%}
+      {{ author_name }}@{{ organization_name|lower|replace(" ", "-") }}.com
+    {%- endif %}
   help: 'Author email:'
+  type: str
+repo_namespace:
+  default: '{{ organization_name|lower|replace(" ", "-") }}'
+  help: 'Github Repository Owner or GitLab Namespace, it should be the account name of the author or the organization:'
   type: str
 repo_name:
   default: '{{ project_name|lower|replace(" ", "-") }}'
