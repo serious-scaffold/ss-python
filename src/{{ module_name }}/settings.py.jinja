@@ -2,7 +2,7 @@
 """Settings Module."""
 import logging
 from logging import getLevelName
-{%- if version_higher_than("3.10", min_py) %}
+{%- if version_higher_than(min_py, "3.10") %}
 from typing import Optional
 {%- endif %}
 
@@ -18,7 +18,7 @@ class GlobalSettings(BaseSettings):
 
 class Settings(BaseSettings):
     """Project specific settings."""
-{%- if version_higher_than("3.10", min_py) %}
+{%- if version_higher_than(min_py, "3.10") %}
 
     # NOTE(huxuan): Pydantic cannot leverage future annotations at runtime prior to
     # Python 3.10, so `from __future__ import annotations` cannot be used here, and the
