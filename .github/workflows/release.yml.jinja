@@ -9,14 +9,14 @@ jobs:
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: '3.11'
+          python-version: '{{ default_py }}'
       - run: env | sort
       - run: make dev-package
       - run: make build
       - name: Publish a Python distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: {{ '${{ secrets.PYPI_API_TOKEN }}' }}
   deploy-pages:
     permissions:
       pages: write
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: '3.11'
+          python-version: '{{ default_py }}'
       - run: env | sort
       - run: make dev-docs
       - run: make docs-all

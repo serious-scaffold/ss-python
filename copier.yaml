@@ -11,80 +11,89 @@ _exclude:
   - ~*
 project_name:
   default: Serious Scaffold Python
-  help: 'Project name in CamelCase:'
+  help: 'Enter the name of the project in CamelCase format:'
   type: str
 project_description:
   default: A development-focused Python project template with various integrations, configurations and modules.
-  help: 'Brief project description:'
-  type: str
-repo_namespace:
-  default: serious-scaffold
-  help: 'Repo namespace, it should be the name of an user or an organization:'
+  help: 'Provide a brief description for the project:'
   type: str
 author_name:
   default: huxuan
-  help: 'Author name:'
+  help: 'Specify the name of the author:'
+  type: str
+organization_name:
+  default: Serious Scaffold
+  help: 'Provide the name of the organization associated with the project:'
   type: str
 author_email:
-  default: i@{{ author_name }}.org
-  help: 'Author email:'
+  default: |-
+    {% if author_name == 'huxuan' and organization_name == 'Serious Scaffold' -%}
+      i@huxuan.org
+    {%- else -%}
+      {{ author_name }}@{{ organization_name|lower|replace(" ", "-") }}.com
+    {%- endif %}
+  help: 'Specify the email address of the author:'
+  type: str
+repo_namespace:
+  default: '{{ organization_name|lower|replace(" ", "-") }}'
+  help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
   type: str
 repo_name:
   default: '{{ project_name|lower|replace(" ", "-") }}'
-  help: 'Repo name:'
+  help: 'Provide a name for the repository:'
   type: str
 package_name:
   default: '{{ repo_name|regex_replace("-python$", "") }}'
-  help: 'Package name:'
+  help: 'Specify the name of the distributable package for the project (often used in "pip install <package_name>"):'
   type: str
 module_name:
   default: '{{ package_name|lower|replace("-", "_") }}'
-  help: 'Module name:'
+  help: 'Specify the name of the primary module within the package (often used in "import <module_name>"):'
   type: str
-test_coverage_threshold:
+coverage_threshold:
   default: 100
-  help: 'Threshold for test coverage (0-100):'
+  help: 'Set the threshold for test coverage, ranging from 0 to 100:'
   type: int
-  validator: '{% if not 0 <= test_coverage_threshold <= 100 %}Invalid threshold{% endif %}'
-minimal_python_version:
+  validator: '{% if not 0 <= coverage_threshold <= 100 %}Test Coverage threshold should be between 0 and 100{% endif %}'
+min_py:
   choices:
     - '3.8'
     - '3.9'
     - '3.10'
     - '3.11'
   default: '3.8'
-  help: 'Minimal Python Version to support:'
+  help: 'Choose the minimal Python version the project should support:'
   type: str
-maximal_python_version:
+max_py:
   choices:
     '3.8':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.8", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.8", min_py) }}'
       value: '3.8'
     '3.9':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.9", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.9", min_py) }}'
       value: '3.9'
     '3.10':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_lt -%}{{ "Invalid" if version_lt("3.10", minimal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.10", min_py) }}'
       value: '3.10'
     '3.11':
       value: '3.11'
   default: '3.11'
-  help: 'Maximal Python Version to support:'
+  help: 'Choose the maximal Python version the project should support:'
   type: str
-default_python_version:
+default_py:
   choices:
     '3.8':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.8", minimal_python_version, maximal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.8", min_py, max_py) }}'
       value: '3.8'
     '3.9':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.9", minimal_python_version, maximal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.9", min_py, max_py) }}'
       value: '3.9'
     '3.10':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.10", minimal_python_version, maximal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.10", min_py, max_py) }}'
       value: '3.10'
     '3.11':
-      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between %}{{ "Invalid" if not version_between("3.11", minimal_python_version, maximal_python_version) | bool }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.11", min_py, max_py) }}'
       value: '3.11'
-  default: '{{ maximal_python_version }}'
-  help: 'Default Python Version (e.g. for daily development, docs generation):'
+  default: '{{ max_py }}'
+  help: 'Choose the default Python version for development, documentation generation, and package build:'
   type: str
