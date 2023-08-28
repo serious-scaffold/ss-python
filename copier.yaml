@@ -2,6 +2,8 @@ _exclude:
   - '*.py[co]'
   - .DS_Store
   - .git
+  - .github
+  - .gitlab-ci.yml
   - .svn
   - __pycache__
   - copier.yaml
@@ -96,4 +98,11 @@ default_py:
       value: '3.11'
   default: '{{ max_py }}'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
+  type: str
+ci:
+  choices:
+    GitHub Actions: github
+    GitLab CI: gitlab
+  default: github
+  help: 'Choose the Continuous Integration service to use:'
   type: str

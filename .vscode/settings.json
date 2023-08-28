@@ -86,6 +86,7 @@
     "min_py",
     "max_py",
     "default_py",
+    "ci",
     "choices",
     "stages",
     "default",
