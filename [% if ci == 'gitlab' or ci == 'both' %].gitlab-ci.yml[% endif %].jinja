@@ -1,4 +1,4 @@
-{% from pathjoin("includes", "version_compare.jinja") import version_between -%}
+[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 stages:
   - lint_test
   - build_release
@@ -14,18 +14,18 @@ lint:
   parallel:
     matrix:
       - PYTHON_VERSION:
-{%- if version_between("3.8", min_py, max_py) %}
+[%- if version_between("3.8", min_py, max_py) %]
           - '3.8'
-{%- endif %}
-{%- if version_between("3.9", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
           - '3.9'
-{%- endif %}
-{%- if version_between("3.10", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
           - '3.10'
-{%- endif %}
-{%- if version_between("3.11", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
           - '3.11'
-{%- endif %}
+[%- endif %]
   script:
     - env | sort
     - make dev-lint
@@ -47,18 +47,18 @@ test:
   parallel:
     matrix:
       - PYTHON_VERSION:
-{%- if version_between("3.8", min_py, max_py) %}
+[%- if version_between("3.8", min_py, max_py) %]
           - '3.8'
-{%- endif %}
-{%- if version_between("3.9", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
           - '3.9'
-{%- endif %}
-{%- if version_between("3.10", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
           - '3.10'
-{%- endif %}
-{%- if version_between("3.11", min_py, max_py) %}
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
           - '3.11'
-{%- endif %}
+[%- endif %]
   script:
     - env | sort
     - make dev-test

@@ -62,7 +62,7 @@ jobs:
           rm -rf src/serious_scaffold
           rm -rf .github
           rm -rf .gitlab-ci.yml
-          copier copy -x '!src/serious_scaffold' -r HEAD -f . .
+          copier copy -x '!src/serious_scaffold' -d ci=both -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |
