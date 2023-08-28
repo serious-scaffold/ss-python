@@ -18,9 +18,9 @@ PUBLIC_DIR := $(if $(shell [ "$$READTHEDOCS" = "True" ] && echo 1),$$READTHEDOCS
 clean:
 	-rm -rf \
 		${PUBLIC_DIR} \
-{%- if project_name == "Serious Scaffold Python" %}
+[%- if project_name == "Serious Scaffold Python" %]
 		.copier-answers.yml \
-{%- endif %}
+[%- endif %]
 		.coverage \
 		.mypy_cache \
 		.pytest_cache \

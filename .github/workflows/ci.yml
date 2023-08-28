@@ -60,7 +60,9 @@ jobs:
       - name: Generate the project with the default value
         run: |
           rm -rf src/serious_scaffold
-          copier copy -x '!src/serious_scaffold' -r HEAD -f . .
+          rm -rf .github
+          rm -rf .gitlab-ci.yml
+          copier copy -x '!src/serious_scaffold' -d ci=both -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |

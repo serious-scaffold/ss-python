@@ -72,6 +72,7 @@
     "sortJSONValuesReverse": false
   },
   "vscode-yaml-sort.customSortKeywords_2": [
+    "_envops",
     "_exclude",
     "project_name",
     "project_description",
@@ -86,6 +87,7 @@
     "min_py",
     "max_py",
     "default_py",
+    "ci",
     "choices",
     "stages",
     "default",
