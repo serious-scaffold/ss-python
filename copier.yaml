@@ -2,8 +2,6 @@ _exclude:
   - '*.py[co]'
   - .DS_Store
   - .git
-  - .github
-  - .gitlab-ci.yml
   - .svn
   - __pycache__
   - copier.yaml
