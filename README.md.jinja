@@ -1,11 +1,14 @@
+[% from pathjoin("includes", "variable.jinja") import ci_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import license_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 # {{ project_name }}
 
 {{ project_description }}
 
-[![CI Status](https://github.com/{{ repo_namespace }}/{{ repo_name }}/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/{{ repo_namespace }}/{{ repo_name }}/actions/workflows/ci.yml)
+{{ ci_badge() }}
 [![codecov](https://codecov.io/gh/{{ repo_namespace }}/{{ repo_name }}/branch/main/graph/badge.svg?token=4JPKXI122N)](https://codecov.io/gh/{{ repo_namespace }}/{{ repo_name }})
 [![Documentation Status](https://readthedocs.org/projects/{{ repo_name }}/badge/)](https://{{ repo_name }}.readthedocs.io/)
-[![GitHub](https://img.shields.io/github/license/{{ repo_namespace }}/{{ repo_name }})](https://github.com/{{ repo_namespace }}/{{ repo_name }}/blob/main/LICENSE)
+{{ license_badge() }}
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
 [![PyPI](https://img.shields.io/pypi/v/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
 
@@ -16,11 +19,14 @@
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/5697b1e4c4a9790ece607654e6c02a160620c7e1/docs/badge/v2.json)](https://pydantic.dev)
 [![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/serious-scaffold/serious-scaffold-python)
 
-[![{{ project_name }}](docs/_static/images/logo.svg)](https://github.com/{{ repo_namespace }}/{{ repo_name }})
+[![{{ project_name }}](docs/_static/images/logo.svg)](https://{{ repo_url() }})
 
 Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring lint, test and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) streamlines this process. Powered by [`copier`](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.
 
+[% if repo_host_type == 'github.com' -%]
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/{{ author_name }}).
+
+[% endif -%]
 
 ## :hammer_and_wrench: Features
 

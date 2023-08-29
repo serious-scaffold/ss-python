@@ -37,6 +37,19 @@ author_email:
     [%- endif %]
   help: 'Specify the email address of the author:'
   type: str
+repo_host_type:
+  choices:
+    GitHub: github.com
+    GitLab: gitlab.com
+    GitLab (self-managed): gitlab-self-managed
+  default: github.com
+  help: 'Choose the host for the repository:'
+  type: str
+repo_host:
+  default: '{{ repo_host_type }}'
+  help: 'Specify the host of the self-managed GitLab:'
+  type: str
+  when: '{{ repo_host_type == "gitlab-self-managed" }}'
 repo_namespace:
   default: '{{ organization_name|lower|replace(" ", "-") }}'
   help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
@@ -99,12 +112,4 @@ default_py:
       value: '3.11'
   default: '{{ max_py }}'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
-  type: str
-ci:
-  choices:
-    Both (for test only): both
-    GitHub Actions: github
-    GitLab CI: gitlab
-  default: github
-  help: 'Choose the Continuous Integration service to use:'
   type: str
