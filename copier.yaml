@@ -1,17 +1,7 @@
 _envops:
   block_end_string: '%]'
   block_start_string: '[%'
-_exclude:
-  - '*.py[co]'
-  - .DS_Store
-  - .git
-  - .svn
-  - __pycache__
-  - copier.yaml
-  - copier.yml
-  - includes
-  - src/serious_scaffold
-  - ~*
+_subdirectory: template
 project_name:
   default: Serious Scaffold Python
   help: 'Enter the name of the project in CamelCase format:'

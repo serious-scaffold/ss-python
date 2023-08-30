@@ -1,0 +1,74 @@
+repos:
+  - hooks:
+      - id: check-added-large-files
+      - id: check-docstring-first
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-toml
+      - id: check-xml
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: forbid-new-submodules
+      - id: mixed-line-ending
+      - id: name-tests-test
+      - stages:
+          - push
+        id: no-commit-to-branch
+      - args:
+          - '--autofix'
+        id: pretty-format-json
+      - args:
+          - constraints/default.txt
+          - requirements.txt
+          - requirements/docs.txt
+          - requirements/lint.txt
+          - requirements/package.txt
+          - requirements/test.txt
+        id: requirements-txt-fixer
+      - files: .pre-commit-config.yaml
+        id: sort-simple-yaml
+      - id: trailing-whitespace
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+  - hooks:
+      - entry: pipenv run python -m black
+        id: black
+        language: system
+        name: black
+        types:
+          - python
+      - entry: pipenv run python -m isort
+        id: isort
+        language: system
+        name: isort
+        require_serial: true
+        types_or:
+          - cython
+          - pyi
+          - python
+      - entry: make mypy
+        id: mypy
+        language: system
+        name: mypy
+        pass_filenames: false
+        require_serial: true
+        types:
+          - python
+      - entry: pipenv run python -m ruff
+        id: ruff
+        language: system
+        name: ruff
+        types:
+          - python
+      - entry: pipenv run toml-sort
+        id: toml-sort
+        language: system
+        name: toml-sort
+        types:
+          - toml
+      - entry: found Copier update rejection files; review them and remove them
+        files: \.rej$
+        id: forbidden-files
+        language: fail
+        name: forbidden files
+    repo: local

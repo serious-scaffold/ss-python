@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "DavidAnson.vscode-markdownlint",
+    "PascalReitermann93.vscode-yaml-sort",
+    "charliermarsh.ruff",
+    "ms-python.black-formatter",
+    "ms-python.mypy-type-checker",
+    "ms-python.python",
+    "richie5um2.vscode-sort-json",
+    "shd101wyy.markdown-preview-enhanced",
+    "streetsidesoftware.code-spell-checker",
+    "trond-snekvik.simple-rst"
+  ]
+}
