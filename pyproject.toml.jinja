@@ -1,3 +1,5 @@
+[% from pathjoin("includes", "variable.jinja") import repo_base_url with context -%]
+[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
 build-backend = "setuptools.build_meta"
@@ -45,8 +47,8 @@ requires-python = ">={{ min_py }}"
 {{ package_name }}-cli = "{{ module_name }}.cli:app"
 
 [project.urls]
-homepage = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/"
-issue = "https://github.com/{{ repo_namespace }}/{{ repo_name }}/issues"
+homepage = "https://{{ repo_url() }}/"
+issue = "https://{{ repo_base_url() }}/issues"
 
 [tool.coverage.report]
 fail_under = {{ coverage_threshold }}

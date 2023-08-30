@@ -80,7 +80,9 @@ jobs:
           rm -rf src/serious_scaffold
           rm -rf .github
           rm -rf .gitlab-ci.yml
-          copier copy -x '!src/serious_scaffold' -d ci=both -r HEAD -f . .
+          copier copy -x '!src/serious_scaffold' -d repo_host_type=gitlab.com -r HEAD -f . .
+          rm .copier-answers.yml
+          copier copy -r HEAD -f . .
       - run: git diff
       - run: git status --porcelain
       - run: |
