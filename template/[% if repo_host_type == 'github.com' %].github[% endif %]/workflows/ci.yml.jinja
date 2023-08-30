@@ -84,7 +84,7 @@ jobs:
           rm .copier-answers.yml
       - run: git diff
       - run: git status --porcelain
-      - run: [[ -n `git status --porcelain` ]] && exit 1
+      - run: test -z "$(git status --porcelain)"
     strategy:
       matrix:
         python-version:
