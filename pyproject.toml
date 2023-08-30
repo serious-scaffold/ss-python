@@ -39,6 +39,13 @@ serious-scaffold-cli = "serious_scaffold.cli:app"
 homepage = "https://github.com/serious-scaffold/serious-scaffold-python/"
 issue = "https://github.com/serious-scaffold/serious-scaffold-python/issues"
 
+[tool.black]
+force-exclude = '''
+(
+  template/.*
+)
+'''
+
 [tool.coverage.report]
 fail_under = 100
 
@@ -48,7 +55,10 @@ source = [
 ]
 
 [tool.isort]
-filter_files = true
+color_output = true
+extend_skip = [
+  "template",
+]
 profile = "black"
 
 [tool.mypy]
@@ -57,6 +67,9 @@ disallow_any_unimported = true
 disallow_untyped_defs = true
 enable_error_code = [
   "ignore-without-code",
+]
+exclude = [
+  "template",
 ]
 no_implicit_optional = true
 show_error_codes = true

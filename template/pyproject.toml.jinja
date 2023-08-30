@@ -49,6 +49,15 @@ requires-python = ">={{ min_py }}"
 [project.urls]
 homepage = "https://{{ repo_url() }}/"
 issue = "https://{{ repo_base_url() }}/issues"
+[%- if project_name == "Serious Scaffold Python" %]
+
+[tool.black]
+force-exclude = '''
+(
+  template/.*
+)
+'''
+[%- endif %]
 
 [tool.coverage.report]
 fail_under = {{ coverage_threshold }}
@@ -59,7 +68,12 @@ source = [
 ]
 
 [tool.isort]
-filter_files = true
+color_output = true
+[%- if project_name == "Serious Scaffold Python" %]
+extend_skip = [
+  "template",
+]
+[%- endif %]
 profile = "black"
 
 [tool.mypy]
@@ -69,6 +83,11 @@ disallow_untyped_defs = true
 enable_error_code = [
   "ignore-without-code",
 ]
+[%- if project_name == "Serious Scaffold Python" %]
+exclude = [
+  "template",
+]
+[%- endif %]
 no_implicit_optional = true
 show_error_codes = true
 warn_return_any = true
