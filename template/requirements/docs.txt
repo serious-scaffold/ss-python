@@ -1,0 +1,9 @@
+# Requirements for docs.
+autodoc-pydantic
+coverage
+furo
+mypy[reports]
+pytest
+Sphinx
+sphinx-autobuild
+sphinx-click

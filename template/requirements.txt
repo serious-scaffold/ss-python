@@ -1,0 +1,3 @@
+# Requirements for runtime.
+pydantic-settings
+typer[all]
