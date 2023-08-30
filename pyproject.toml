@@ -39,19 +39,26 @@ serious-scaffold-cli = "serious_scaffold.cli:app"
 homepage = "https://github.com/serious-scaffold/serious-scaffold-python/"
 issue = "https://github.com/serious-scaffold/serious-scaffold-python/issues"
 
+[tool.black]
+force-exclude = '''
+(
+  template/.*
+)
+'''
+
 [tool.coverage.report]
 fail_under = 100
 
 [tool.coverage.run]
-omit = [
-  "src/{{ module_name }}/**",
-]
 source = [
   "serious_scaffold",
 ]
 
 [tool.isort]
-filter_files = true
+color_output = true
+extend_skip = [
+  "template",
+]
 profile = "black"
 
 [tool.mypy]
@@ -62,7 +69,7 @@ enable_error_code = [
   "ignore-without-code",
 ]
 exclude = [
-  "src/{{ module_name }}",
+  "template",
 ]
 no_implicit_optional = true
 show_error_codes = true
@@ -78,6 +85,9 @@ log_format = "%(asctime)s %(levelname)s %(message)s"
 minversion = "6.0"
 
 [tool.ruff]
+extend-exclude = [
+  "template",
+]
 extend-ignore = [
   "D203",
   "D204",
@@ -97,7 +107,6 @@ src = ["src"]
 
 [tool.ruff.per-file-ignores]
 "docs/conf.py" = ["INP001"]
-"src/\\{\\{ module_name \\}\\}/__init__.py" = ["N999"]
 "test/*" = ["S101"]
 
 [tool.setuptools.dynamic]

@@ -37,7 +37,7 @@ repos:
         name: black
         types:
           - python
-      - entry: pipenv run python -m isort
+      - entry: pipenv run python -m isort --filter-files
         id: isort
         language: system
         name: isort
@@ -54,7 +54,7 @@ repos:
         require_serial: true
         types:
           - python
-      - entry: pipenv run python -m ruff
+      - entry: pipenv run python -m ruff --force-exclude
         id: ruff
         language: system
         name: ruff

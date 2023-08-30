@@ -59,19 +59,19 @@ dev:
 
 # Check lint with black.
 black:
-	${PIPRUN} python -m black --check docs test src
+	${PIPRUN} python -m black --check .
 
 # Check lint with isort.
 isort:
-	${PIPRUN} python -m isort .
+	${PIPRUN} python -m isort --check .
 
 # Check lint with mypy.
 mypy:
-	${PIPRUN} python -m mypy docs test src
+	${PIPRUN} python -m mypy .
 
 # Check lint with ruff.
 ruff:
-	${PIPRUN} python -m ruff docs test src
+	${PIPRUN} python -m ruff .
 
 # Check lint with toml-sort.
 toml-sort:
