@@ -91,6 +91,7 @@ test:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage report
+	${PIPRUN} python -m coverage xml
 
 ########################################################################################
 # Package
