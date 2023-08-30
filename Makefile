@@ -126,7 +126,7 @@ docs-autobuild:
 
 # Generate mypy reports.
 docs-mypy:
-	${PIPRUN} python -m mypy test src --html-report ${PUBLIC_DIR}/reports/mypy
+	${PIPRUN} python -m mypy . --html-report ${PUBLIC_DIR}/reports/mypy
 
 # Generate coverage reports.
 docs-coverage:
