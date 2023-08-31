@@ -91,6 +91,7 @@ test:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage report
+	${PIPRUN} python -m coverage xml
 
 ########################################################################################
 # Package
@@ -126,7 +127,7 @@ docs-autobuild:
 
 # Generate mypy reports.
 docs-mypy:
-	${PIPRUN} python -m mypy test src --html-report ${PUBLIC_DIR}/reports/mypy
+	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
 
 # Generate coverage reports.
 docs-coverage:
