@@ -12,7 +12,7 @@ lint_title:
     - |
       if ! echo "${{ github.event.pull_request.title }}" | grep -Pq "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*"; then
         echo "The title does not conform to the Conventional Commit."
-        echo "Please refer to `https://www.conventionalcommits.org/`"
+        echo "Please refer to 'https://www.conventionalcommits.org/'"
         exit 1
       fi
   stage: lint_test
