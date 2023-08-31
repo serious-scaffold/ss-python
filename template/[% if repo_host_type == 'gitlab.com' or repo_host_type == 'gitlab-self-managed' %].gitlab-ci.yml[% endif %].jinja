@@ -15,6 +15,7 @@ lint_title:
         echo "Please refer to `https://www.conventionalcommits.org/`"
         exit 1
       fi
+  stage: lint_test
 lint:
   image: python:$PYTHON_VERSION
   interruptible: true
