@@ -3,6 +3,17 @@ stages:
   - build_release
 default:
   image: python:3.11
+lint_title:
+  interruptible: true
+  only:
+    - merge_requests
+  script:
+    - |
+      if ! echo "${{ github.event.pull_request.title }}" | grep -Pq "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*"; then
+        echo "The title does not conform to the Conventional Commit."
+        echo "Please refer to `https://www.conventionalcommits.org/`"
+        exit 1
+      fi
 lint:
   image: python:$PYTHON_VERSION
   interruptible: true
