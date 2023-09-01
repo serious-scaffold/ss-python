@@ -10,12 +10,26 @@
   [%- endif %]
 [%- endmacro %]
 
+[% macro page_base_url() -%]
+  [% if repo_host_type == 'github.com' -%]
+    {{ repo_namespace }}.github.io/{{ repo_name }}
+  [%- elif repo_host_type == 'gitlab.com' -%]
+    {{ repo_namespace }}.gitlab.io{{ repo_namespace | replace(repo_namespace.split("/")[0], "", 1) }}/{{ repo_name }}
+  [%- elif repo_host_type == 'gitlab-self-managed' -%]
+    {{ repo_namespace|split("/")|first }}.{{ page_host }}{{ repo_namespace | replace(repo_namespace.split("/")[0], "", 1) }}/{{ repo_name }}
+  [%- endif %]
+[%- endmacro %]
+
 [% macro ci_badge() -%]
   [% if repo_host_type == 'github.com' -%]
     [![CI Status](https://{{ repo_url() }}/actions/workflows/ci.yml/badge.svg?branch=main)](https://{{ repo_url() }}/actions/workflows/ci.yml)
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
     [![pipeline status](https://{{ repo_url() }}/badges/main/pipeline.svg)](https://{{ repo_base_url() }}/commits/main)
   [%- endif %]
+[%- endmacro %]
+
+[% macro coverage_badge() -%]
+  [![Coverage](https://img.shields.io/endpoint?url=https://{{ page_base_url() }}/reports/coverage/coverage_badge.json)](https://{{ page_base_url() }}/reports/coverage)
 [%- endmacro %]
 
 [% macro license_badge() -%]

@@ -131,11 +131,12 @@ docs-autobuild:
 docs-mypy:
 	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
 
-# Generate coverage reports.
+# Generate coverage reports and badge.
 docs-coverage:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
+	${PIPRUN} bash scripts/generate-coverage-badge.sh ${PUBLIC_DIR}/reports/coverage
 
 # Generate all reports.
 reports: docs-mypy docs-coverage
