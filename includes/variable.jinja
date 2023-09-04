@@ -13,10 +13,9 @@
 [% macro page_base_url() -%]
   [% if repo_host_type == 'github.com' -%]
     {{ repo_namespace }}.github.io/{{ repo_name }}
-  [%- elif repo_host_type == 'gitlab.com' -%]
-    {{ repo_namespace }}.gitlab.io{{ repo_namespace | replace(repo_namespace.split("/")[0], "", 1) }}/{{ repo_name }}
-  [%- elif repo_host_type == 'gitlab-self-managed' -%]
-    {{ repo_namespace|split("/")|first }}.{{ page_host }}{{ repo_namespace | replace(repo_namespace.split("/")[0], "", 1) }}/{{ repo_name }}
+  [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
+    [%- set repo_namespace_root = repo_namespace.split("/")[0] -%]
+    {{ repo_namespace_root }}.{{ page_host }}{{ repo_namespace | replace(repo_namespace_root, "", 1) }}/{{ repo_name }}
   [%- endif %]
 [%- endmacro %]
 
