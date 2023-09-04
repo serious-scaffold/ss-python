@@ -1,0 +1,32 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: '3.11'
+      - run: env | sort
+      - run: make dev-docs
+      - run: make docs-all
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+name: Deploy GitHub Pages
+on:
+  release:
+    types:
+      - published

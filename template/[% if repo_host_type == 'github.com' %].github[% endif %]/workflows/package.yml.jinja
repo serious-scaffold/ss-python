@@ -1,0 +1,22 @@
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: '{{ default_py }}'
+      - run: env | sort
+      - run: make dev-package
+      - run: make build
+      - env:
+          TWINE_NON_INTERACTIVE: true
+          TWINE_PASSWORD: {{ '${{ secrets.TWINE_PASSWORD }}' }}
+        run: make upload
+name: Deploy Python Package
+on:
+  release:
+    types:
+      - published
