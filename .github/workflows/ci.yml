@@ -30,10 +30,6 @@ jobs:
       - run: env | sort
       - run: make dev-test
       - run: make test
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          flags: ${{ matrix.python-version }}
     strategy:
       matrix:
         python-version:

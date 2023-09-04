@@ -3,7 +3,7 @@
 A development-focused Python project template with various integrations, configurations and modules.
 
 [![CI Status](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/serious-scaffold/serious-scaffold-python/branch/main/graph/badge.svg?token=4JPKXI122N)](https://codecov.io/gh/serious-scaffold/serious-scaffold-python)
+[![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage/coverage_badge.json)](https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage)
 [![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/)](https://serious-scaffold-python.readthedocs.io/)
 [![GitHub](https://img.shields.io/github/license/serious-scaffold/serious-scaffold-python)](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)

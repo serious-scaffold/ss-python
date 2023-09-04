@@ -40,6 +40,16 @@ repo_host:
   help: 'Specify the host of the self-managed GitLab:'
   type: str
   when: '{{ repo_host_type == "gitlab-self-managed" }}'
+page_host:
+  default: |-
+    [% if repo_host_type == 'github.com' -%]
+      github.io
+    [%- elif repo_host_type == 'gitlab.com' -%]
+      gitlab.io
+    [%- endif %]
+  help: 'Specify the host of the self-managed GitLab Pages:'
+  type: str
+  when: '{{ repo_host_type == "gitlab-self-managed" }}'
 repo_namespace:
   default: '{{ organization_name|lower|replace(" ", "-") }}'
   help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
