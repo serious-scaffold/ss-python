@@ -2,12 +2,13 @@
 
 A development-focused Python project template with various integrations, configurations and modules.
 
-[![CI Status](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
+[![CI](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
+[![Pages](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/pages.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/pages.yml)
+[![Package](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/package.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/package.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage/coverage_badge.json)](https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage)
-[![Documentation Status](https://readthedocs.org/projects/serious-scaffold-python/badge/)](https://serious-scaffold-python.readthedocs.io/)
 [![GitHub](https://img.shields.io/github/license/serious-scaffold/serious-scaffold-python)](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![PyPI](https://img.shields.io/pypi/v/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
