@@ -1,12 +1,16 @@
 #!/bin/bash
 
 TOTAL_COVERAGE=$(coverage report --format=total)
-COLOR="red"
+COLOR="#9f9f9f"
 
-if [ "$TOTAL_COVERAGE" -gt 90 ]; then
-    COLOR="green"
+if [ "$TOTAL_COVERAGE" -gt 95 ]; then
+    COLOR="#4c1"
+elif [ "$TOTAL_COVERAGE" -gt 90 ]; then
+    COLOR="#a3c51c"
 elif [ "$TOTAL_COVERAGE" -gt 75 ]; then
-    COLOR="yellow"
+    COLOR="#dfb317"
+elif [ "$TOTAL_COVERAGE" -gt 0 ]; then
+    COLOR="#e05d44"
 fi
 
 cat << EOF > "${1:-.}/coverage_badge.json"
