@@ -1,4 +1,3 @@
-[% from pathjoin("includes", "variable.jinja") import repo_base_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
@@ -48,7 +47,11 @@ requires-python = ">={{ min_py }}"
 
 [project.urls]
 homepage = "https://{{ repo_url() }}/"
-issue = "https://{{ repo_base_url() }}/issues"
+[% if repo_host_type == 'github.com' -%]
+issue = "https://{{ repo_url() }}/issues"
+[%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
+issue = "https://{{ repo_url() }}/-/issues"
+[%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
 
 [tool.black]
