@@ -1,17 +1,17 @@
-[% from pathjoin("includes", "variable.jinja") import ci_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import coverage_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import license_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import pipeline_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import release_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 # {{ project_name }}
 
 {{ project_description }}
 
-{{ ci_badge() }}
+{{ pipeline_badge() }}
 {{ coverage_badge() }}
-[![Documentation Status](https://readthedocs.org/projects/{{ repo_name }}/badge/)](https://{{ repo_name }}.readthedocs.io/)
 {{ license_badge() }}
+{{ release_badge() }}
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
-[![PyPI](https://img.shields.io/pypi/v/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
