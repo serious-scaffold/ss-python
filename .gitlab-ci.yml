@@ -69,7 +69,7 @@ package:
     - make upload
   stage: build_release
   variables:
-    TWINE_NON_INTERACTIVE: true
+    TWINE_NON_INTERACTIVE: 'true'
 pages:
   artifacts:
     paths:
