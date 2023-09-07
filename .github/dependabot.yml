@@ -8,6 +8,11 @@ updates:
   - commit-message:
       prefix: build(requirements)
     directory: /
+    groups:
+      dev:
+        dependency-type: development
+      prod:
+        dependency-type: production
     package-ecosystem: pip
     schedule:
       interval: weekly
