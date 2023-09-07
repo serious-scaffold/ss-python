@@ -52,7 +52,7 @@ setuptools-scm==7.1.0
 shellingham==1.5.0.post1
 six==1.16.0
 snowballstemmer==2.2.0
-soupsieve==2.4.1
+soupsieve==2.5
 Sphinx==7.1.2
 sphinx-autobuild==2021.3.14
 sphinx-basic-ng==1.0.0b2
