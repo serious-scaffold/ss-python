@@ -1,0 +1,14 @@
+updates:
+  - commit-message:
+      prefix: build(req)
+    directory: /
+    package-ecosystem: github-actions
+    schedule:
+      interval: weekly
+  - commit-message:
+      prefix: build(actions)
+    directory: /
+    package-ecosystem: pip
+    schedule:
+      interval: weekly
+version: 2
