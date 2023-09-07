@@ -1,12 +1,12 @@
 updates:
   - commit-message:
-      prefix: build(requirements)
+      prefix: build(actions)
     directory: /
     package-ecosystem: github-actions
     schedule:
       interval: weekly
   - commit-message:
-      prefix: build(actions)
+      prefix: build(requirements)
     directory: /
     package-ecosystem: pip
     schedule:
