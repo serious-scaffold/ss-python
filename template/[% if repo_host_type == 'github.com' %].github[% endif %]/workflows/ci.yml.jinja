@@ -3,7 +3,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python {{ '${{ matrix.python-version }}' }}
         uses: actions/setup-python@v4
         with:
@@ -30,7 +30,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Python {{ '${{ matrix.python-version }}' }}
         uses: actions/setup-python@v4
         with:
@@ -58,7 +58,7 @@ jobs:
   consistency:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Git
         run: |
           git config --global user.name github-actions
