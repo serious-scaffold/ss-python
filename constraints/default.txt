@@ -42,7 +42,7 @@ Pygments==2.15.1
 pyproject_hooks==1.0.0
 pytest==7.4.0
 python-dotenv==1.0.0
-readme-renderer==40.0
+readme-renderer==41.0
 requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
