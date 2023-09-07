@@ -1,6 +1,6 @@
 updates:
   - commit-message:
-      prefix: build(req)
+      prefix: build(requirements)
     directory: /
     package-ecosystem: github-actions
     schedule:
