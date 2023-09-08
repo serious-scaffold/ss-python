@@ -38,8 +38,8 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) with [Read the Docs](https://readthedocs.org/) integration.
 - Develop Command Line Interfaces with [`typer`](https://typer.tiangolo.com/).
 - Manage configurations with [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
-- Centralize common actions with a unified [`Makefile`](Makefile).
-- VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
+- Centralize common actions with a unified Makefile.
+- VSCode settings with recommended extensions.
 
 ## :wrench: Prerequisites
 
@@ -86,4 +86,4 @@ pipx install pre-commit
 
 ## :scroll: License
 
-MIT, for more details, see the [LICENSE](LICENSE) file.
+MIT, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.

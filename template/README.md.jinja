@@ -1,5 +1,6 @@
 [% from pathjoin("includes", "variable.jinja") import coverage_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import license_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import license_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import pipeline_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import release_badge with context -%]
@@ -93,4 +94,4 @@ pipx install pre-commit
 
 ## :scroll: License
 
-MIT, for more details, see the [LICENSE](LICENSE) file.
+MIT, for more details, see the [LICENSE]({{ license_url() }}) file.
