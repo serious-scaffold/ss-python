@@ -22,10 +22,12 @@
     "endmacro",
     "epub",
     "furo",
+    "genindex",
     "huxuan",
     "interruptible",
     "isort",
     "JPKXI",
+    "modindex",
     "mypy",
     "pathjoin",
     "pipenv",
@@ -35,6 +37,7 @@
     "pytest",
     "Quickstart",
     "setuptools",
+    "toctree",
     "typer"
   ],
   "editor.codeActionsOnSave": {

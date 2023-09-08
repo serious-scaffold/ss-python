@@ -24,7 +24,7 @@ Setting up a project often involves more than just establishing a basic project 
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
-## :hammer_and_wrench: Features
+## 🛠️ Features
 
 - Project setup and template update with [`copier`](https://copier.readthedocs.io/).
 - Manage [virtual environments](https://docs.python.org/3/glossary.html#term-virtual-environment) for development with [`pipenv`](https://pipenv.pypa.io/).
@@ -38,10 +38,10 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) with [Read the Docs](https://readthedocs.org/) integration.
 - Develop Command Line Interfaces with [`typer`](https://typer.tiangolo.com/).
 - Manage configurations with [`pydantic-settings`](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
-- Centralize common actions with a unified [`Makefile`](Makefile).
-- VSCode [settings](.vscode/settings.json) with recommended [extensions](.vscode/extensions.json).
+- Centralize common actions with a unified Makefile.
+- VSCode settings with recommended extensions.
 
-## :wrench: Prerequisites
+## 🔧 Prerequisites
 
 Certain system-level Python applications are needed and it is recommended to use [`pipx`](https://pypa.github.io/pipx/) to install and run them in isolated environments. Refer to pipx's installation instructions [here](https://pypa.github.io/pipx/installation/). Once `pipx` is set up, install the necessary tools using the following commands.
 
@@ -52,9 +52,11 @@ pipx install copier
 pipx install pipenv
 # Pre-commit: Automates Git hooks for code quality checks.
 pipx install pre-commit
+# Git-changelog: Automatic changelog generator from git commits.
+pipx install git-changelog
 ```
 
-## :rocket: Quickstart
+## 🚀 Quickstart
 
 1. Generate the project.
 
@@ -84,6 +86,6 @@ pipx install pre-commit
 
 5. That's it! Feel free to focus on the coding within `src` folder.
 
-## :scroll: License
+## 📜 License
 
-MIT, for more details, see the [LICENSE](LICENSE) file.
+MIT, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.

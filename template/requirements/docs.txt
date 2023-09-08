@@ -3,6 +3,7 @@ autodoc-pydantic
 coverage
 furo
 mypy[reports]
+myst-parser
 pytest
 Sphinx
 sphinx-autobuild

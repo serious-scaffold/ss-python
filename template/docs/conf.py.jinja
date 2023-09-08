@@ -20,23 +20,34 @@ version = ".".join(release.split(".")[:2])
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
+    "myst_parser",
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx_click",
     "sphinxcontrib.autodoc_pydantic",
 ]
-
-templates_path = ["_templates"]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-
-autodoc_default_options = {
-    "members": None,
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "markdown",
 }
-autodoc_pydantic_settings_show_json = False
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+templates_path = ["_templates"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "furo"
 html_static_path = ["_static"]
+
+# -- Options for autodoc extension  ------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
+
+autodoc_default_options = {
+    "members": None,
+}
+
+# -- Options for autodoc_pydantic extension  ---------------------------------
+# https://autodoc-pydantic.readthedocs.io/en/stable/users/configuration.html
+
+autodoc_pydantic_settings_show_json = False
