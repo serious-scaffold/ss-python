@@ -40,7 +40,6 @@ templates_path = ["_templates"]
 html_theme = "furo"
 html_static_path = ["_static"]
 
-
 # -- Options for autodoc extension  ------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
 
