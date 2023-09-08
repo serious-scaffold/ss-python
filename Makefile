@@ -105,6 +105,14 @@ freeze:
 version:
 	${PIPRUN} python -m setuptools_scm
 
+# Generate changelog from git commits.
+changelog:
+	git-changelog -Trio CHANGELOG.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+
+# Bump new release with changelog.
+bump:
+	git-changelog -bTrio CHANGELOG.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+
 # Build the package
 build:
 	${PIPRUN} python -m build
