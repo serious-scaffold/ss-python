@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-mypy docs-coverage reports docs-all
+.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-mypy docs-coverage reports changelog docs-all
 
 ########################################################################################
 # Variables
@@ -105,14 +105,6 @@ freeze:
 version:
 	${PIPRUN} python -m setuptools_scm
 
-# Generate changelog from git commits.
-changelog:
-	git-changelog -Trio CHANGELOG.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
-
-# Bump new release with changelog.
-bump:
-	git-changelog -bTrio CHANGELOG.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
-
 # Build the package
 build:
 	${PIPRUN} python -m build
@@ -137,11 +129,11 @@ docs-autobuild:
 		--watch src
 
 # Generate mypy reports.
-docs-mypy:
+docs-mypy: docs
 	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
 
 # Generate coverage reports and badge.
-docs-coverage:
+docs-coverage: docs
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
 	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
@@ -150,8 +142,12 @@ docs-coverage:
 # Generate all reports.
 reports: docs-mypy docs-coverage
 
+# Generate changelog from git commits.
+changelog:
+	git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+
 # Generate all documentation with reports.
-docs-all: docs reports
+docs-all: changelog docs reports
 
 ########################################################################################
 # End
