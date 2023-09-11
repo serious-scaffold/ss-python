@@ -4,6 +4,8 @@ build:
       - make reports
     post_install:
       - make dev-docs
+    pre_build:
+      - make changelog
   os: ubuntu-22.04
   tools:
     python: '{{ default_py }}'

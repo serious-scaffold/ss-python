@@ -1,5 +1,5 @@
 # Changelog
 
-```{include} ../CHANGELOG.md
-:start-line: 1
-```
+<!-- insertion marker -->
+<!-- placeholder for generated changelog -->
+<!-- insertion marker -->
