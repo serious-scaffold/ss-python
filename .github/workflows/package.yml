@@ -2,8 +2,9 @@ jobs:
   package:
     runs-on: ubuntu-latest
     steps:
-      - fetch-tags: 'true'
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          fetch-tags: 'true'
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
