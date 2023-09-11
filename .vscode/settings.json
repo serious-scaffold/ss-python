@@ -27,6 +27,7 @@
     "interruptible",
     "isort",
     "JPKXI",
+    "maxdepth",
     "modindex",
     "mypy",
     "pathjoin",
