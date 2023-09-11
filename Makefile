@@ -144,7 +144,7 @@ reports: docs-mypy docs-coverage
 
 # Generate changelog from git commits.
 changelog:
-	git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	${PIPRUN} git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Generate all documentation with reports.
 docs-all: changelog docs reports
