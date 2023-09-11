@@ -1,6 +1,6 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 jobs:
-  lint:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -9,36 +9,18 @@ jobs:
         with:
           cache: pip
           python-version: {{ '${{ matrix.python-version }}' }}
-      - run: env | sort
-      - run: make dev-lint
-      - run: make lint-check
-    strategy:
-      matrix:
-        python-version:
-[%- if version_between("3.8", min_py, max_py) %]
-          - '3.8'
-[%- endif %]
-[%- if version_between("3.9", min_py, max_py) %]
-          - '3.9'
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
-          - '3.10'
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
-          - '3.11'
-[%- endif %]
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python {{ '${{ matrix.python-version }}' }}
-        uses: actions/setup-python@v4
-        with:
-          cache: pip
-          python-version: {{ '${{ matrix.python-version }}' }}
-      - run: env | sort
-      - run: make dev-test
-      - run: make test
+      - name: Show environment variables for potential debug.
+        run: env | sort
+      - name: Install the package in editable mode with all dependencies
+        run: make dev
+      - name: Run lint
+        run: make lint
+      - name: Run test
+        run: make test
+      - name: Build the documentation without deployment.
+        run: make docs
+      - name: Build the package without deployment.
+        run: make build
     strategy:
       matrix:
         python-version:

@@ -77,6 +77,9 @@
     "sortJSONValuesReverse": false
   },
   "vscode-yaml-sort.customSortKeywords_2": [
+    "stages",
+    "default",
+    "lint_title",
     "_envops",
     "_subdirectory",
     "project_name",
@@ -97,11 +100,6 @@
     "max_py",
     "default_py",
     "choices",
-    "stages",
-    "default",
-    "lint_title",
-    "lint",
-    "test",
     "package",
     "pages",
     "release",

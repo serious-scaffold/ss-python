@@ -1,5 +1,5 @@
 jobs:
-  lint:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -8,28 +8,18 @@ jobs:
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
-      - run: env | sort
-      - run: make dev-lint
-      - run: make lint-check
-    strategy:
-      matrix:
-        python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          cache: pip
-          python-version: ${{ matrix.python-version }}
-      - run: env | sort
-      - run: make dev-test
-      - run: make test
+      - name: Show environment variables for potential debug.
+        run: env | sort
+      - name: Install the package in editable mode with all dependencies
+        run: make dev
+      - name: Run lint
+        run: make lint
+      - name: Run test
+        run: make test
+      - name: Build the documentation without deployment.
+        run: make docs
+      - name: Build the package without deployment.
+        run: make build
     strategy:
       matrix:
         python-version:

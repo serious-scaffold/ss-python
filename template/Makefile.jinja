@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-coverage reports docs-all
+.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-mypy docs-coverage reports docs-all
 
 ########################################################################################
 # Variables
@@ -78,10 +78,10 @@ toml-sort:
 	${PIPRUN} toml-sort --check pyproject.toml
 
 # Check lint with all linters.
-lint-check: black isort mypy ruff toml-sort
+lint: black isort mypy ruff toml-sort
 
 # Run pre-commit with autofix against all files.
-lint:
+pre-commit:
 	pre-commit run --all-files
 
 ########################################################################################
