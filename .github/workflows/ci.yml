@@ -3,11 +3,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-tags: true
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
+      - run: git shortlog -s
+      - run: git tag
       - run: env | sort
       - run: make dev
       - run: make lint
