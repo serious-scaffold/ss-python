@@ -11,7 +11,9 @@ jobs:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: env | sort
-      - run: make dev-lint
+      - run: make dev
+      - run: make docs
+      - run: make build
       - run: make lint-check
     strategy:
       matrix:
