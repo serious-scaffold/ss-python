@@ -2,18 +2,15 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-tags: true
+      - uses: actions/checkout@v4
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           cache: pip
           python-version: ${{ matrix.python-version }}
       - run: env | sort
-      - run: make dev
-      - run: make build
-      - run: make docs
+      - run: make dev-lint
+      - run: make lint-check
     strategy:
       matrix:
         python-version:
