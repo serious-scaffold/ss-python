@@ -39,7 +39,8 @@
     "Quickstart",
     "setuptools",
     "toctree",
-    "typer"
+    "typer",
+    "unshallow"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true

@@ -2,6 +2,8 @@ build:
   jobs:
     post_build:
       - make reports
+    post_checkout:
+      - git fetch --unshallow || true
     post_install:
       - make dev-docs
     pre_build:
