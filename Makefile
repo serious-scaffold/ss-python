@@ -7,8 +7,8 @@
 # Run in virtual environment when not in CI and pipenv is available.
 VENVRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
-# Get the Python version in `major.minor` format, invoking the virtual environment if exists.
-PYTHON_VERSION := $(shell $(VENVRUN) python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
+# Get the Python version in `major.minor` format, using the environment variable or the virtual environment if exists.
+PYTHON_VERSION := $(shell echo $$PYTHON_VERSION 2>/dev/null || $(VENVRUN) python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
 
 # Determine the constraints file based on the Python version.
 CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
@@ -63,7 +63,7 @@ dev:
 
 # Generate constraints for current Python version.
 constraints: deepclean
-	$(VENVRUN) pip install --upgrade -e .[docs,lint,package,test]
+	$(VENVRUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
 	$(VENVRUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
 
 ########################################################################################
