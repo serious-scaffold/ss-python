@@ -149,6 +149,7 @@ docs-coverage: docs
 reports: docs-mypy docs-coverage
 
 # Generate changelog from git commits.
+# NOTE(xuan.hu): Need to be run before document generation to take effect.
 changelog:
 	@if wget -q --spider ${CHANGELOG_URL}; then \
 		echo "Existing Changelog found at '${CHANGELOG_URL}', download for incremental generation."; \
