@@ -124,7 +124,6 @@ docs:
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} \
-		--watch CHANGELOG.md \
 		--watch README.md \
 		--watch src
 
