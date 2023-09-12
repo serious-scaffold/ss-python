@@ -7,6 +7,9 @@
 # Only create virtual environment when not in CI and pipenv is available.
 PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
+# Get Python version with in `major.minor` format.
+PYTHON_VERSION := $(shell $(PIPRUN) python -V 2>&1 | cut -d' ' -f 2 | cut -d'.' -f 1,2)
+
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
 
