@@ -6,10 +6,10 @@
 ########################################################################################
 
 # Only create virtual environment when not in CI and pipenv is available.
-PIPRUN := $(if $(and $(shell [ "$$CI" != "true" ] && echo 1),$(shell command -v pipenv > /dev/null 2>&1 && echo 1)),pipenv run)
+PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
-PUBLIC_DIR := $(if $(shell [ "$$READTHEDOCS" = "True" ] && echo 1),$$READTHEDOCS_OUTPUT/html,public)
+PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
 
 # URL and Path of changelog source code.
 CHANGELOG_URL := https://{{ page_url() }}/_sources/changelog.md.txt
@@ -22,7 +22,7 @@ CHANGELOG_PATH := docs/changelog.md
 # Remove common intermediate files.
 clean:
 	-rm -rf \
-		${PUBLIC_DIR} \
+		$(PUBLIC_DIR) \
 [%- if project_name == "Serious Scaffold Python" %]
 		.copier-answers.yml \
 [%- endif %]
@@ -46,17 +46,17 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	${PIPRUN} pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(PIPRUN) pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	${PIPRUN} pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(PIPRUN) pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	${PIPRUN} pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
-	if [ "${CI}" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
+	$(PIPRUN) pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
 
 ########################################################################################
 # Lint and pre-commit
@@ -64,23 +64,23 @@ dev:
 
 # Check lint with black.
 black:
-	${PIPRUN} python -m black --check .
+	$(PIPRUN) python -m black --check .
 
 # Check lint with isort.
 isort:
-	${PIPRUN} python -m isort --check .
+	$(PIPRUN) python -m isort --check .
 
 # Check lint with mypy.
 mypy:
-	${PIPRUN} python -m mypy .
+	$(PIPRUN) python -m mypy .
 
 # Check lint with ruff.
 ruff:
-	${PIPRUN} python -m ruff .
+	$(PIPRUN) python -m ruff .
 
 # Check lint with toml-sort.
 toml-sort:
-	${PIPRUN} toml-sort --check pyproject.toml
+	$(PIPRUN) toml-sort --check pyproject.toml
 
 # Check lint with all linters.
 lint: black isort mypy ruff toml-sort
@@ -95,13 +95,13 @@ pre-commit:
 
 # Clean and run test with coverage.
 test-run:
-	${PIPRUN} python -m coverage erase
-	${PIPRUN} python -m coverage run -m pytest
+	$(PIPRUN) python -m coverage erase
+	$(PIPRUN) python -m coverage run -m pytest
 
 # Generate coverage report for terminal and xml.
 test: test-run
-	${PIPRUN} python -m coverage report
-	${PIPRUN} python -m coverage xml
+	$(PIPRUN) python -m coverage report
+	$(PIPRUN) python -m coverage xml
 
 ########################################################################################
 # Package
@@ -109,19 +109,19 @@ test: test-run
 
 # Show currently installed dependecies excluding the package itself with versions.
 freeze:
-	@${PIPRUN} pip freeze --exclude-editable
+	@$(PIPRUN) pip freeze --exclude-editable
 
 # Get the version of the package.
 version:
-	${PIPRUN} python -m setuptools_scm
+	$(PIPRUN) python -m setuptools_scm
 
 # Build the package.
 build:
-	${PIPRUN} python -m build
+	$(PIPRUN) python -m build
 
 # Upload the package.
 upload:
-	${PIPRUN} python -m twine upload dist/*
+	$(PIPRUN) python -m twine upload dist/*
 
 ########################################################################################
 # Documentation
@@ -129,31 +129,31 @@ upload:
 
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
-	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} \
+	$(PIPRUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
 
 # Generate changelog from git commits.
 # NOTE(xuan.hu): Need to be run before document generation to take effect.
 changelog:
-	@if wget -q --spider ${CHANGELOG_URL}; then \
-		echo "Existing Changelog found at '${CHANGELOG_URL}', download for incremental generation."; \
-		wget -q -O ${CHANGELOG_PATH} ${CHANGELOG_URL}; \
+	@if wget -q --spider $(CHANGELOG_URL); then \
+		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
+		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	${PIPRUN} git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	$(PIPRUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Build documentation only from src.
 docs-gen:
-	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
+	$(PIPRUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
 docs-mypy: docs-gen
-	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
+	$(PIPRUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
 docs-coverage: test-run docs-gen
-	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
-	${PIPRUN} bash scripts/generate-coverage-badge.sh ${PUBLIC_DIR}/reports/coverage
+	$(PIPRUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
+	$(PIPRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
 
 # Generate all documentation with reports.
 docs: changelog docs-gen docs-mypy docs-coverage
