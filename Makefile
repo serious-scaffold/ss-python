@@ -1,14 +1,17 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test-run test freeze version build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev constraints black isort mypy ruff toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables
 ########################################################################################
 
-# Only create virtual environment when not in CI and pipenv is available.
-PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
+# Run in virtual environment when not in CI and pipenv is available.
+VENVRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
-# Get Python version with in `major.minor` format.
-PYTHON_VERSION := $(shell $(PIPRUN) python -V 2>&1 | cut -d' ' -f 2 | cut -d'.' -f 1,2)
+# Get the Python version in `major.minor` format, invoking the virtual environment if exists.
+PYTHON_VERSION := $(shell $(VENVRUN) python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
+
+# Determine the constraints file based on the Python version.
+CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
@@ -46,17 +49,22 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	$(PIPRUN) pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(VENVRUN) pip install -e . -c $(CONSTRAINTS_FILE)
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	$(PIPRUN) pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(VENVRUN) pip install -e .[$*] -c $(CONSTRAINTS_FILE)
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	$(PIPRUN) pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(VENVRUN) pip install -e .[docs,lint,package,test] -c $(CONSTRAINTS_FILE)
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
+
+# Generate constraints for current Python version.
+constraints: deepclean
+	$(VENVRUN) pip install --upgrade -e .[docs,lint,package,test]
+	$(VENVRUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
 
 ########################################################################################
 # Lint and pre-commit
@@ -64,23 +72,23 @@ dev:
 
 # Check lint with black.
 black:
-	$(PIPRUN) python -m black --check .
+	$(VENVRUN) python -m black --check .
 
 # Check lint with isort.
 isort:
-	$(PIPRUN) python -m isort --check .
+	$(VENVRUN) python -m isort --check .
 
 # Check lint with mypy.
 mypy:
-	$(PIPRUN) python -m mypy .
+	$(VENVRUN) python -m mypy .
 
 # Check lint with ruff.
 ruff:
-	$(PIPRUN) python -m ruff .
+	$(VENVRUN) python -m ruff .
 
 # Check lint with toml-sort.
 toml-sort:
-	$(PIPRUN) toml-sort --check pyproject.toml
+	$(VENVRUN) toml-sort --check pyproject.toml
 
 # Check lint with all linters.
 lint: black isort mypy ruff toml-sort
@@ -95,33 +103,25 @@ pre-commit:
 
 # Clean and run test with coverage.
 test-run:
-	$(PIPRUN) python -m coverage erase
-	$(PIPRUN) python -m coverage run -m pytest
+	$(VENVRUN) python -m coverage erase
+	$(VENVRUN) python -m coverage run -m pytest
 
 # Generate coverage report for terminal and xml.
 test: test-run
-	$(PIPRUN) python -m coverage report
-	$(PIPRUN) python -m coverage xml
+	$(VENVRUN) python -m coverage report
+	$(VENVRUN) python -m coverage xml
 
 ########################################################################################
 # Package
 ########################################################################################
 
-# Show currently installed dependecies excluding the package itself with versions.
-freeze:
-	@$(PIPRUN) pip freeze --exclude-editable
-
-# Get the version of the package.
-version:
-	$(PIPRUN) python -m setuptools_scm
-
 # Build the package.
 build:
-	$(PIPRUN) python -m build
+	$(VENVRUN) python -m build
 
 # Upload the package.
 upload:
-	$(PIPRUN) python -m twine upload dist/*
+	$(VENVRUN) python -m twine upload dist/*
 
 ########################################################################################
 # Documentation
@@ -129,7 +129,7 @@ upload:
 
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
-	$(PIPRUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
+	$(VENVRUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
 
@@ -140,20 +140,20 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	$(PIPRUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	$(VENVRUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Build documentation only from src.
 docs-gen:
-	$(PIPRUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
+	$(VENVRUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
 docs-mypy: docs-gen
-	$(PIPRUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
+	$(VENVRUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
 docs-coverage: test-run docs-gen
-	$(PIPRUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
-	$(PIPRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
+	$(VENVRUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
+	$(VENVRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
 
 # Generate all documentation with reports.
 docs: changelog docs-gen docs-mypy docs-coverage
