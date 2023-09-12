@@ -10,6 +10,10 @@ PIPRUN := $(if $(and $(shell [ "$$CI" != "true" ] && echo 1),$(shell command -v 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(if $(shell [ "$$READTHEDOCS" = "True" ] && echo 1),$$READTHEDOCS_OUTPUT/html,public)
 
+# URL and Path of changelog source code.
+CHANGELOG_URL := https://serious-scaffold.github.io/serious-scaffold-python/_sources/changelog.md.txt
+CHANGELOG_PATH := docs/changelog.md
+
 ########################################################################################
 # Development Environment Management
 ########################################################################################
@@ -143,6 +147,10 @@ reports: docs-mypy docs-coverage
 
 # Generate changelog from git commits.
 changelog:
+	@if wget -q --spider ${CHANGELOG_URL}; then \
+		echo "Existing Changelog found at '${CHANGELOG_URL}', download for incremental generation."; \
+		wget -q -O ${CHANGELOG_PATH} ${CHANGELOG_URL}; \
+	fi
 	${PIPRUN} git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Generate all documentation with reports.
