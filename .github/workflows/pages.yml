@@ -12,7 +12,7 @@ jobs:
           python-version: '3.11'
       - run: env | sort
       - run: make dev-docs
-      - run: make docs-all
+      - run: make docs
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v2
         with:

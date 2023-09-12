@@ -1,7 +1,8 @@
 build:
   jobs:
     post_build:
-      - make reports
+      - make docs-mypy
+      - make docs-coverage
     post_checkout:
       - git fetch --unshallow || true
     post_install:

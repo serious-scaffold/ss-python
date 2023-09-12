@@ -63,7 +63,7 @@ pages:
   script:
     - env | sort
     - make dev-docs
-    - make docs-all
+    - make docs
   stage: build_release
 release:
   release:

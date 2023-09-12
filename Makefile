@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test freeze version build upload docs docs-autobuild docs-mypy docs-coverage reports changelog docs-all
+.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test-run test freeze version build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables
@@ -90,10 +90,13 @@ pre-commit:
 # Test
 ########################################################################################
 
-# Run test with coverage report.
-test:
+# Clean and run test with coverage.
+test-run:
 	${PIPRUN} python -m coverage erase
 	${PIPRUN} python -m coverage run -m pytest
+
+# Generate coverage report for terminal and xml.
+test: test-run
 	${PIPRUN} python -m coverage report
 	${PIPRUN} python -m coverage xml
 
@@ -101,7 +104,7 @@ test:
 # Package
 ########################################################################################
 
-# Show currently installed dependecies excluding the package itself with versions
+# Show currently installed dependecies excluding the package itself with versions.
 freeze:
 	@${PIPRUN} pip freeze --exclude-editable
 
@@ -109,11 +112,11 @@ freeze:
 version:
 	${PIPRUN} python -m setuptools_scm
 
-# Build the package
+# Build the package.
 build:
 	${PIPRUN} python -m build
 
-# Upload the package
+# Upload the package.
 upload:
 	${PIPRUN} python -m twine upload dist/*
 
@@ -121,29 +124,11 @@ upload:
 # Documentation
 ########################################################################################
 
-# Generate documentation.
-docs:
-	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
-
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
 	${PIPRUN} python -m sphinx_autobuild docs ${PUBLIC_DIR} \
 		--watch README.md \
 		--watch src
-
-# Generate mypy reports.
-docs-mypy: docs
-	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
-
-# Generate coverage reports and badge.
-docs-coverage: docs
-	${PIPRUN} python -m coverage erase
-	${PIPRUN} python -m coverage run -m pytest
-	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
-	${PIPRUN} bash scripts/generate-coverage-badge.sh ${PUBLIC_DIR}/reports/coverage
-
-# Generate all reports.
-reports: docs-mypy docs-coverage
 
 # Generate changelog from git commits.
 # NOTE(xuan.hu): Need to be run before document generation to take effect.
@@ -154,8 +139,21 @@ changelog:
 	fi
 	${PIPRUN} git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
+# Build documentation only from src.
+docs-gen:
+	${PIPRUN} python -m sphinx.cmd.build docs ${PUBLIC_DIR}
+
+# Generate mypy reports.
+docs-mypy: docs-gen
+	${PIPRUN} python -m mypy src test --html-report ${PUBLIC_DIR}/reports/mypy
+
+# Generate html coverage reports with badge.
+docs-coverage: test-run docs-gen
+	${PIPRUN} python -m coverage html -d ${PUBLIC_DIR}/reports/coverage
+	${PIPRUN} bash scripts/generate-coverage-badge.sh ${PUBLIC_DIR}/reports/coverage
+
 # Generate all documentation with reports.
-docs-all: changelog docs reports
+docs: changelog docs-gen docs-mypy docs-coverage
 
 ########################################################################################
 # End
