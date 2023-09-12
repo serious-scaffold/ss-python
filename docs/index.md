@@ -2,6 +2,7 @@
 
 ```{toctree}
 :hidden:
+Overview <self>
 cli/index
 api/index
 reports/index
