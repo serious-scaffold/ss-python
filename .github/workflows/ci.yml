@@ -3,6 +3,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
@@ -10,10 +12,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: env | sort
       - run: make dev
-      - run: make lint
-      - run: make test
-      - run: make docs
-      - run: make build
+      - run: make lint test docs build
     strategy:
       matrix:
         python-version:
