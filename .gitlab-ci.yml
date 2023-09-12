@@ -32,10 +32,7 @@ ci:
   script:
     - env | sort
     - make dev
-    - make lint
-    - make test
-    - make docs
-    - make build
+    - make lint test docs build
   stage: lint_test
 package:
   only:
