@@ -8,10 +8,7 @@
 PIPENV_RUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
 # Get the Python version in `major.minor` format, using the environment variable or the virtual environment if exists.
-PYTHON_VERSION := $(shell echo $$PYTHON_VERSION 2>/dev/null || $(PIPENV_RUN) python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
-
-# Finalize the invocation of the potential existed virtual environment.
-VENV_RUN = $(and $(PIPENV_RUN),$(shell echo "pipenv run --python $(PYTHON_VERSION)"))
+PYTHON_VERSION := $(shell echo $${PYTHON_VERSION:-$$(python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)})
 
 # Determine the constraints file based on the Python version.
 CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
@@ -52,22 +49,22 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	$(VENV_RUN) pip install -e . -c $(CONSTRAINTS_FILE)
+	$(PIPENV_RUN) pip install -e . -c $(CONSTRAINTS_FILE)
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	$(VENV_RUN) pip install -e .[$*] -c $(CONSTRAINTS_FILE)
+	$(PIPENV_RUN) pip install -e .[$*] -c $(CONSTRAINTS_FILE)
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	$(VENV_RUN) pip install -e .[docs,lint,package,test] -c $(CONSTRAINTS_FILE)
+	$(PIPENV_RUN) pip install -e .[docs,lint,package,test] -c $(CONSTRAINTS_FILE)
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
 
 # Generate constraints for current Python version.
 constraints: deepclean
-	$(VENV_RUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
-	$(VENV_RUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
+	$(PIPENV_RUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
+	$(PIPENV_RUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
 
 ########################################################################################
 # Lint and pre-commit
@@ -75,23 +72,23 @@ constraints: deepclean
 
 # Check lint with black.
 black:
-	$(VENV_RUN) python -m black --check .
+	$(PIPENV_RUN) python -m black --check .
 
 # Check lint with isort.
 isort:
-	$(VENV_RUN) python -m isort --check .
+	$(PIPENV_RUN) python -m isort --check .
 
 # Check lint with mypy.
 mypy:
-	$(VENV_RUN) python -m mypy .
+	$(PIPENV_RUN) python -m mypy .
 
 # Check lint with ruff.
 ruff:
-	$(VENV_RUN) python -m ruff .
+	$(PIPENV_RUN) python -m ruff .
 
 # Check lint with toml-sort.
 toml-sort:
-	$(VENV_RUN) toml-sort --check pyproject.toml
+	$(PIPENV_RUN) toml-sort --check pyproject.toml
 
 # Check lint with all linters.
 lint: black isort mypy ruff toml-sort
@@ -106,13 +103,13 @@ pre-commit:
 
 # Clean and run test with coverage.
 test-run:
-	$(VENV_RUN) python -m coverage erase
-	$(VENV_RUN) python -m coverage run -m pytest
+	$(PIPENV_RUN) python -m coverage erase
+	$(PIPENV_RUN) python -m coverage run -m pytest
 
 # Generate coverage report for terminal and xml.
 test: test-run
-	$(VENV_RUN) python -m coverage report
-	$(VENV_RUN) python -m coverage xml
+	$(PIPENV_RUN) python -m coverage report
+	$(PIPENV_RUN) python -m coverage xml
 
 ########################################################################################
 # Package
@@ -120,11 +117,11 @@ test: test-run
 
 # Build the package.
 build:
-	$(VENV_RUN) python -m build
+	$(PIPENV_RUN) python -m build
 
 # Upload the package.
 upload:
-	$(VENV_RUN) python -m twine upload dist/*
+	$(PIPENV_RUN) python -m twine upload dist/*
 
 ########################################################################################
 # Documentation
@@ -132,7 +129,7 @@ upload:
 
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
-	$(VENV_RUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
+	$(PIPENV_RUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
 
@@ -143,20 +140,20 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	$(VENV_RUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	$(PIPENV_RUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Build documentation only from src.
 docs-gen:
-	$(VENV_RUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
+	$(PIPENV_RUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
 docs-mypy: docs-gen
-	$(VENV_RUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
+	$(PIPENV_RUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
 docs-coverage: test-run docs-gen
-	$(VENV_RUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
-	$(VENV_RUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
+	$(PIPENV_RUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
+	$(PIPENV_RUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
 
 # Generate all documentation with reports.
 docs: changelog docs-gen docs-mypy docs-coverage
