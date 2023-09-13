@@ -22,8 +22,9 @@ jobs:
           PYTHON_VERSION=3.11 make constraints
       - name: Sync template
         run: cp -rf constraints/* template/constraints/
-      - run: git commit -a -m "Update constraints and sync template."
-      - run: git push
+      - run: |
+          git commit -a -m "Update constraints and sync template."
+          git push
   lint-title:
     runs-on: ubuntu-latest
     steps:
