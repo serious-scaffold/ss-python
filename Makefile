@@ -1,11 +1,17 @@
-.PHONY: clean deepclean install dev black isort mypy ruff toml-sort lint pre-commit test-run test freeze version build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev constraints black isort mypy ruff toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables
 ########################################################################################
 
-# Only create virtual environment when not in CI and pipenv is available.
+# Determine whether to invoke pipenv based on CI environment variable and the availability of pipenv.
 PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
+
+# Get the Python version in `major.minor` format, using the environment variable or the virtual environment if exists.
+PYTHON_VERSION := $(shell echo $${PYTHON_VERSION:-$$(python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)})
+
+# Determine the constraints file based on the Python version.
+CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
@@ -43,17 +49,22 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	$(PIPRUN) pip install -e . -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(PIPRUN) pip install -e . -c $(CONSTRAINTS_FILE)
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	$(PIPRUN) pip install -e .[$*] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(PIPRUN) pip install -e .[$*] -c $(CONSTRAINTS_FILE)
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	$(PIPRUN) pip install -e .[docs,lint,package,test] -c constraints/$(or $(SS_CONSTRAINTS_VERSION),default).txt
+	$(PIPRUN) pip install -e .[docs,lint,package,test] -c $(CONSTRAINTS_FILE)
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
+
+# Generate constraints for current Python version.
+constraints: deepclean
+	$(PIPRUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
+	$(PIPRUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
 
 ########################################################################################
 # Lint and pre-commit
@@ -103,14 +114,6 @@ test: test-run
 ########################################################################################
 # Package
 ########################################################################################
-
-# Show currently installed dependecies excluding the package itself with versions.
-freeze:
-	@$(PIPRUN) pip freeze --exclude-editable
-
-# Get the version of the package.
-version:
-	$(PIPRUN) python -m setuptools_scm
 
 # Build the package.
 build:
