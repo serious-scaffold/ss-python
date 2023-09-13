@@ -90,7 +90,7 @@ jobs:
           CI= PYTHON_VERSION=3.10 make constraints
           CI= PYTHON_VERSION=3.11 make constraints
       - name: Sync template
-        run: cp -rf constraints/* template/constraints/
+        run: cp -v constraints/* template/constraints/
       - run: |
           if [[ -n `git status --porcelain` ]]; then
             git commit -a -m "Update constraints and sync template."
