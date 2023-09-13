@@ -1,7 +1,7 @@
 jobs:
   dependabot:
     permissions:
-      pull-requests: write
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
