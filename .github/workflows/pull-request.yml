@@ -23,6 +23,10 @@ jobs:
             3.11
       - name: Install pipenv using pipx
         run: pipx install pipenv
+      - run: which pipenv
+      - run: whereis pipenv
+      - run: pipx -h
+      - run: echo $PATH
       - name: Generate constraints for all supported Python versions
         run: |
           PYTHON_VERSION=3.8 make constraints
