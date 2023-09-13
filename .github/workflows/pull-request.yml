@@ -32,8 +32,10 @@ jobs:
       - name: Sync template
         run: cp -rf constraints/* template/constraints/
       - run: |
-          git commit -a -m "Update constraints and sync template."
-          git push
+          if [[ -n `git status --porcelain` ]]; then
+            git commit -a -m "Update constraints and sync template."
+            git push
+          fi
   lint-title:
     runs-on: ubuntu-latest
     steps:
