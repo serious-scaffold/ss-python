@@ -9,7 +9,7 @@ jobs:
             echo "Please refer to 'https://www.conventionalcommits.org/'"
             exit 1
           fi
-name: Pull Request Check
+name: Lint pull request title
 on:
   pull_request:
     types:

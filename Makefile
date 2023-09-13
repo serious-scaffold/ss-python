@@ -63,9 +63,6 @@ dev:
 
 # Generate constraints for current Python version.
 constraints: deepclean
-	echo ####
-	echo $(PIPRUN)
-	echo ####
 	$(PIPRUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
 	$(PIPRUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
 
