@@ -18,7 +18,10 @@ repos:
           - '--autofix'
         id: pretty-format-json
       - args:
-          - constraints/default.txt
+          - constraints/3.8.txt
+          - constraints/3.9.txt
+          - constraints/3.10.txt
+          - constraints/3.11.txt
           - requirements.txt
           - requirements/docs.txt
           - requirements/lint.txt
