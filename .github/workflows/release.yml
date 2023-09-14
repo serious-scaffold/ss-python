@@ -32,7 +32,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: changelog
-          path: docs/changelog.md
+          path: docs/
       - name: Prepare release notes
         run: make release-notes
       - name: Create GitHub release
