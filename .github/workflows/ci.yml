@@ -25,6 +25,25 @@ jobs:
           - '3.9'
           - '3.10'
           - '3.11'
+  release:
+    needs: pages-build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install git-changelog using pipx
+        run: pipx install git-changelog
+      - name: Remove changelog to avoid file already exists error
+        run: rm -v docs/changelog.md
+      - name: Download changelog
+        uses: actions/download-artifact@v3
+        with:
+          name: changelog
+          path: docs/
+      - run: ls -al
+      - run: ls docs/ -al
+      - name: Prepare release notes
+        run: make release-notes
+      - run: ls -al
   consistency:
     if: ${{ !cancelled() && ! failure() }}
     needs: dependabot
@@ -99,6 +118,25 @@ jobs:
             git commit -a -m "build: Update constraints for dependabot."
             git push
           fi
+  pages-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: '3.11'
+      - run: env | sort
+      - run: make dev-docs
+      - run: make changelog
+      - name: Upload changelog
+        uses: actions/upload-artifact@v3
+        with:
+          name: changelog
+          path: docs/changelog.md
 name: CI
 on:
   pull_request:
