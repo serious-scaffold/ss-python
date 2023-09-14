@@ -24,13 +24,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install git-changelog using pipx
+        run: pipx install git-changelog
+      - name: Remove changelog to avoid file already exists error
+        run: rm -v docs/changelog.md
       - name: Download changelog
         uses: actions/download-artifact@v3
         with:
           name: changelog
           path: docs/changelog.md
-      - name: Install git-changelog using pipx
-        run: pipx install git-changelog
       - name: Prepare release notes
         run: make release-notes
       - name: Create GitHub release
