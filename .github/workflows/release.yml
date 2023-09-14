@@ -1,0 +1,65 @@
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: '3.11'
+      - run: env | sort
+      - run: make dev-package
+      - run: make build
+      - env:
+          TWINE_NON_INTERACTIVE: true
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+          TWINE_USERNAME: ${{ vars.TWINE_USERNAME }}
+        run: make upload
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install git-changelog using pipx
+        run: pipx install git-changelog
+      - name: Prepare release notes
+        run: git-changelog --release-notes > release-notes.md
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release-notes.md
+          prerelease: ${{ startsWith(github.ref, 'refs/tags/v0') }}
+  pages-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: '3.11'
+      - run: env | sort
+      - run: make dev-docs
+      - run: make docs
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: public
+  pages-deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+name: Release
+on:
+  push:
+    tags:
+      - v[1-9][0-9]*.[0-9]+.[0-9]+
+      - v0.[0-9]+.[0-9]+
