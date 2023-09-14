@@ -119,12 +119,14 @@ jobs:
 [%- if version_between("3.11", min_py, max_py) %]
           CI= PYTHON_VERSION=3.11 make constraints
 [%- endif %]
+[%- if project_name == "Serious Scaffold Python" %]
       - name: Sync template
         run: cp -v constraints/* template/constraints/
+[%- endif %]
       - name: Push changes if applicable
         run: |
           if [[ -n `git status --porcelain` ]]; then
-            git commit -a -m "Update constraints and sync template."
+            git commit -a -m "build: Update constraints for dependabot."
             git push
           fi
 name: CI
