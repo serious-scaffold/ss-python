@@ -1,4 +1,7 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
     runs-on: ubuntu-latest
