@@ -54,6 +54,7 @@ jobs:
           - '3.10'
           - '3.11'
   dependabot:
+    if: ${{ github.actor == 'dependabot[bot]' }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
