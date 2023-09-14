@@ -48,7 +48,7 @@ jobs:
         with:
           path: public
   pages-deploy:
-    needs: build
+    needs: pages-build
     permissions:
       pages: write
       id-token: write
