@@ -72,6 +72,61 @@ jobs:
           - '3.11'
 [%- endif %]
 [%- endif %]
+  dependabot:
+    if: {{ '${{ github.actor == \'dependabot[bot]\' }}' }}
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: {{ '${{ github.head_ref }}' }}
+      - name: Set up Git
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+      - name: Set up Python with multiple versions.
+        uses: actions/setup-python@v4
+        with:
+          cache: pip
+          python-version: |
+[%- if version_between("3.8", min_py, max_py) %]
+            3.8
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+            3.9
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
+            3.10
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
+            3.11
+[%- endif %]
+      - name: Install pipenv using pipx
+        run: pipx install pipenv
+      - name: Generate constraints for all supported Python versions
+        run: |
+[%- if version_between("3.8", min_py, max_py) %]
+          CI= PYTHON_VERSION=3.8 make constraints
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+          CI= PYTHON_VERSION=3.9 make constraints
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
+          CI= PYTHON_VERSION=3.10 make constraints
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
+          CI= PYTHON_VERSION=3.11 make constraints
+[%- endif %]
+      - name: Sync template
+        run: cp -v constraints/* template/constraints/
+      - name: Push changes if applicable
+        run: |
+          if [[ -n `git status --porcelain` ]]; then
+            git commit -a -m "Update constraints and sync template."
+            git push
+          fi
 name: CI
 on:
   pull_request:
