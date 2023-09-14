@@ -96,7 +96,7 @@ jobs:
       - name: Push changes if applicable
         run: |
           if [[ -n `git status --porcelain` ]]; then
-            git commit -a -m "Update constraints and sync template."
+            git commit -a -m "build: Update constraints for dependabot."
             git push
           fi
 name: CI
