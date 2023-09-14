@@ -3,7 +3,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
-    if: needs.dependabot.result == 'success' || needs.dependabot.result == 'skipped'
+    if: ${{ !cancelled() && ! failure() }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
@@ -26,7 +26,7 @@ jobs:
           - '3.10'
           - '3.11'
   consistency:
-    if: needs.dependabot.result == 'success' || needs.dependabot.result == 'skipped'
+    if: ${{ !cancelled() && ! failure() }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
