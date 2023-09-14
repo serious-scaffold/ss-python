@@ -32,9 +32,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: changelog
-          path: docs/changelog.md
+          path: docs/
       - name: Prepare release notes
-        run: make release-notes
+        run: make release-notes > release-notes.md
       - name: Create GitHub release
         uses: softprops/action-gh-release@v1
         with:
