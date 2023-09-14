@@ -143,7 +143,11 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	$(PIPRUN) git-changelog -ETrio docs/changelog.md -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	$(PIPRUN) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+
+# Generate release notes from changelog.
+release-notes:
+	$(PIPRUN) git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
 docs-gen:
