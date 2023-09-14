@@ -1,7 +1,6 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 jobs:
   ci:
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +31,6 @@ jobs:
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -82,7 +80,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: {{ '${{ github.event.pull_request.head.ref }}' }}
+          ref: ${{ github.head_ref }}
       - name: Set up Git
         run: |
           git config --global user.name github-actions
@@ -122,7 +120,8 @@ jobs:
 [%- endif %]
       - name: Sync template
         run: cp -v constraints/* template/constraints/
-      - run: |
+      - name: Push changes if applicable
+        run: |
           if [[ -n `git status --porcelain` ]]; then
             git commit -a -m "Update constraints and sync template."
             git push

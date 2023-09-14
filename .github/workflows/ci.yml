@@ -1,6 +1,5 @@
 jobs:
   ci:
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +21,6 @@ jobs:
           - '3.10'
           - '3.11'
   consistency:
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -63,7 +61,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ github.event.pull_request.head.ref }}
+          ref: ${{ github.head_ref }}
       - name: Set up Git
         run: |
           git config --global user.name github-actions
@@ -87,7 +85,8 @@ jobs:
           CI= PYTHON_VERSION=3.11 make constraints
       - name: Sync template
         run: cp -v constraints/* template/constraints/
-      - run: |
+      - name: Push changes if applicable
+        run: |
           if [[ -n `git status --porcelain` ]]; then
             git commit -a -m "Update constraints and sync template."
             git push
