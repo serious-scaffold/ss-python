@@ -38,6 +38,7 @@
     "pytest",
     "Quickstart",
     "setuptools",
+    "softprops",
     "toctree",
     "typer",
     "unshallow"

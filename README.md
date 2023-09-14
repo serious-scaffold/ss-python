@@ -3,8 +3,7 @@
 A development-focused Python project template with various integrations, configurations and modules.
 
 [![CI](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
-[![Pages](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/pages.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/pages.yml)
-[![Package](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/package.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/package.yml)
+[![Release](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage/coverage_badge.json)](https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage)
 [![PyPI](https://img.shields.io/pypi/v/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)

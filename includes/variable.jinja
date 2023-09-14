@@ -38,8 +38,7 @@
 [% macro pipeline_badge() -%]
   [% if repo_host_type == 'github.com' -%]
 [![CI](https://{{ repo_url() }}/actions/workflows/ci.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/ci.yml)
-[![Pages](https://{{ repo_url() }}/actions/workflows/pages.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/pages.yml)
-[![Package](https://{{ repo_url() }}/actions/workflows/package.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/package.yml)
+[![Release](https://{{ repo_url() }}/actions/workflows/release.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/release.yml)
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
 [![pipeline status](https://{{ repo_url() }}/badges/main/pipeline.svg)](https://{{ repo_url() }}/-/commits/main)
   [%- endif %]
