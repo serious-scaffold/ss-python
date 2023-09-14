@@ -4,6 +4,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
+    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,6 +35,7 @@ jobs:
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
+    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -3,6 +3,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
+    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,6 +25,7 @@ jobs:
           - '3.10'
           - '3.11'
   consistency:
+    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
