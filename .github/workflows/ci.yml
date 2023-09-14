@@ -32,8 +32,11 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install git-changelog using pipx
         run: pipx install git-changelog
+      - run: ls docs/ -al
+      - run: cat docs/changelog.md
       - name: Remove changelog to avoid file already exists error
         run: rm -v docs/changelog.md
+      - run: ls docs/ -al
       - name: Download changelog
         uses: actions/download-artifact@v3
         with:
@@ -41,6 +44,7 @@ jobs:
           path: docs/
       - run: ls -al
       - run: ls docs/ -al
+      - run: cat docs/changelog.md
       - name: Prepare release notes
         run: make release-notes
       - run: ls -al
@@ -132,6 +136,7 @@ jobs:
       - run: env | sort
       - run: make dev-docs
       - run: make changelog
+      - run: cat docs/changelog.md
       - name: Upload changelog
         uses: actions/upload-artifact@v3
         with:
