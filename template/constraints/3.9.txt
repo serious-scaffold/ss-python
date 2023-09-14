@@ -63,7 +63,7 @@ shellingham==1.5.3
 six==1.16.0
 snowballstemmer==2.2.0
 soupsieve==2.5
-Sphinx==7.2.5
+Sphinx==7.2.6
 sphinx-autobuild==2021.3.14
 sphinx-basic-ng==1.0.0b2
 sphinx-click==5.0.1
