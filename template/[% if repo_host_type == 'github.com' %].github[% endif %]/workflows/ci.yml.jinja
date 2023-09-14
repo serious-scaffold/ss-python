@@ -4,6 +4,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
+    if: {{ '${{ always() }}' }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
@@ -35,6 +36,7 @@ jobs:
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
+    if: {{ '${{ always() }}' }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:

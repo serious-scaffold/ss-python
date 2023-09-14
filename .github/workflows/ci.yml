@@ -3,6 +3,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   ci:
+    if: ${{ always() }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
@@ -25,6 +26,7 @@ jobs:
           - '3.10'
           - '3.11'
   consistency:
+    if: ${{ always() }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
