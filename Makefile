@@ -8,7 +8,7 @@
 PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
 
 # Get the Python version in `major.minor` format, using the environment variable or the virtual environment if exists.
-PYTHON_VERSION := $(shell echo $${PYTHON_VERSION:-$$(python -V 2>&1 | cut -d ' ' -f 2 | cut -d '.' -f 1,2)})
+PYTHON_VERSION := $(shell echo $${PYTHON_VERSION:-$$(python -V 2>&1 | cut -d ' ' -f 2)} | cut -d '.' -f 1,2)
 
 # Determine the constraints file based on the Python version.
 CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
@@ -17,7 +17,7 @@ CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
 
 # URL and Path of changelog source code.
-CHANGELOG_URL := https://serious-scaffold.github.io/serious-scaffold-python/_sources/changelog.md.txt
+CHANGELOG_URL := $(shell echo $${CI_PAGES_URL:-https://serious-scaffold.github.io/serious-scaffold-python}/_sources/changelog.md.txt)
 CHANGELOG_PATH := docs/changelog.md
 
 ########################################################################################
