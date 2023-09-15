@@ -1,6 +1,6 @@
 stages:
   - ci
-  - pages-build
+  - docs-build
   - release-create
   - deploy
 default:
@@ -30,6 +30,25 @@ ci:
     - make dev
     - make lint test docs build
   stage: ci
+docs-build:
+  artifacts:
+    paths:
+      - public
+      - docs/changelog.md
+      - release-notes.md
+  except:
+    refs:
+      - schedules
+  only:
+    - merge_requests
+  script:
+    - env | sort
+    - make dev-docs
+    - make docs
+    - make release-notes > release-notes.md
+    - cat docs/changelog.md
+    - cat release-notes.md
+  stage: docs-build
 lint_title:
   interruptible: true
   only:
@@ -66,30 +85,18 @@ pages:
   script:
     - env | sort
     - ls -al
+    - cat docs/changelog.md
   stage: deploy
-pages-build:
-  artifacts:
-    paths:
-      - public
-  except:
-    refs:
-      - schedules
-  only:
-    - merge_requests
-  script:
-    - env | sort
-    - make dev-docs
-    - make docs
-  stage: pages-build
 release-create:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   only:
     - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   release:
-    description: $CI_COMMIT_TAG_MESSAGE
+    description: release-notes.md
     tag_name: test
   script:
     - env | sort
     - ls -al
+    - cat release-notes.md
   stage: release-create
