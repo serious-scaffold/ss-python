@@ -9,6 +9,7 @@ docs:
       - schedules
   only:
     - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
     - make dev-docs
@@ -20,6 +21,7 @@ package:
     - release
   only:
     - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
     - make dev-package
@@ -40,6 +42,7 @@ pages:
     - docs
   only:
     - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
   stage: release
