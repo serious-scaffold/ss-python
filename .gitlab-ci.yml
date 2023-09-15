@@ -1,8 +1,6 @@
 stages:
   - ci
-  - docs-build
-  - release-create
-  - deploy
+  - release
 default:
   image: python:3.11
 ci:
@@ -48,7 +46,7 @@ docs-build:
     - make release-notes > release-notes.md
     - cat docs/changelog.md
     - cat release-notes.md
-  stage: docs-build
+  stage: release
 lint_title:
   interruptible: true
   only:
@@ -62,6 +60,8 @@ lint_title:
       fi
   stage: ci
 package:
+  needs:
+    - release
   only:
     - merge_requests
   script:
@@ -70,7 +70,7 @@ package:
     - make dev-package
     - make build
     - make upload
-  stage: deploy
+  stage: release
   variables:
     TWINE_NON_INTERACTIVE: 'true'
 pages:
@@ -80,15 +80,19 @@ pages:
   except:
     refs:
       - schedules
+  needs:
+    - release
   only:
     - merge_requests
   script:
     - env | sort
     - ls -al
     - cat docs/changelog.md
-  stage: deploy
-release-create:
+  stage: release
+release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - docs-build
   only:
     - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -99,4 +103,4 @@ release-create:
     - env | sort
     - ls -al
     - cat release-notes.md
-  stage: release-create
+  stage: release
