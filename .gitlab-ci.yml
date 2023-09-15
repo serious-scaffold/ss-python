@@ -88,8 +88,7 @@ release-create:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   release:
     description: $CI_COMMIT_TAG_MESSAGE
-    name: $CI_COMMIT_TAG
-    tag_name: $CI_COMMIT_TAG
+    tag_name: test
   script:
     - env | sort
     - ls -al
