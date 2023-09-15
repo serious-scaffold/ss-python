@@ -51,8 +51,8 @@ jobs:
           cache: pip
           python-version: '{{ default_py }}'
       - run: env | sort
-      - name: Install copier for template rendering
-        run: python -m pip install --user copier
+      - name: Install copier for template rendering using pipx
+        run: pipx install copier
       - name: Generate the project with the default value
         run: |
           find . -maxdepth 1 | grep -vE "(\.|template|includes|\.git|copier\.yaml)$" | xargs -I {} rm -r {}
