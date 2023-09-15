@@ -144,7 +144,7 @@ changelog:
 
 # Generate release notes from changelog.
 release-notes:
-	$(PIPRUN) git-changelog --input $(CHANGELOG_PATH) --release-notes
+	@$(PIPRUN) git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
 docs-gen:
