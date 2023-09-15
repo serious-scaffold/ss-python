@@ -1,0 +1,58 @@
+docs:
+  artifacts:
+    paths:
+      - public
+      - docs/changelog.md
+      - release-notes.md
+  except:
+    refs:
+      - schedules
+  only:
+    - merge_requests
+  script:
+    - env | sort
+    - make dev-docs
+    - make docs
+    - make release-notes > release-notes.md
+  stage: release
+package:
+  needs:
+    - release
+  only:
+    - merge_requests
+  script:
+    - env | sort
+    - make dev-package
+    - make build
+    - make upload
+  stage: release
+  variables:
+    TWINE_NON_INTERACTIVE: 'true'
+pages:
+  artifacts:
+    paths:
+      - public
+  except:
+    refs:
+      - schedules
+  needs:
+    - release
+    - docs
+  only:
+    - merge_requests
+  script:
+    - env | sort
+  stage: release
+release:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - docs
+  only:
+    - merge_requests
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  release:
+    description: release-notes.md
+    tag_name: test
+  script:
+    - env | sort
+  stage: release
