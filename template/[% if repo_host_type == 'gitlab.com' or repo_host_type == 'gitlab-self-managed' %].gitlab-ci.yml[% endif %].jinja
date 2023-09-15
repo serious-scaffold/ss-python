@@ -4,18 +4,6 @@ stages:
   - release
 default:
   image: python:{{ default_py }}
-lint_title:
-  interruptible: true
-  only:
-    - merge_requests
-  script:
-    - |
-      if ! echo "$CI_MERGE_REQUEST_TITLE" | grep -Pq "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*"; then
-        echo "The title does not conform to the Conventional Commit."
-        echo "Please refer to 'https://www.conventionalcommits.org/'"
-        exit 1
-      fi
-  stage: ci
 ci:
   artifacts:
     reports:
@@ -49,6 +37,18 @@ ci:
     - make dev
     - make lint test docs build
   stage: ci
+lint_title:
+  interruptible: true
+  only:
+    - merge_requests
+  script:
+    - |
+      if ! echo "$CI_MERGE_REQUEST_TITLE" | grep -Pq "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*"; then
+        echo "The title does not conform to the Conventional Commit."
+        echo "Please refer to 'https://www.conventionalcommits.org/'"
+        exit 1
+      fi
+  stage: ci
 package:
   only:
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
@@ -78,13 +78,13 @@ pages:
     - make docs
   stage: release
 release:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   release:
     description: $CI_COMMIT_TAG_MESSAGE
     name: $CI_COMMIT_TAG
     tag_name: $CI_COMMIT_TAG
-  image: registry.gitlab.com/gitlab-org/release-cli:latest
-  only:
-    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
   stage: release
