@@ -35,11 +35,11 @@ jobs:
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.11'
       - run: env | sort
       - name: Install copier for template rendering
         run: python -m pip install --user copier
@@ -53,13 +53,6 @@ jobs:
       - run: git diff
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
-    strategy:
-      matrix:
-        python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
   dependabot:
     if: ${{ github.actor == 'dependabot[bot]' }}
     permissions:
