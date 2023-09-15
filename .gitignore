@@ -3,7 +3,9 @@
 .DS_Store
 .copier-answers.yml
 Pipfile
+docs/changelog.md
 public
+release-notes.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
