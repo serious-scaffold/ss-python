@@ -81,7 +81,6 @@
   "vscode-yaml-sort.customSortKeywords_2": [
     "stages",
     "default",
-    "lint_title",
     "_envops",
     "_subdirectory",
     "project_name",
@@ -101,10 +100,6 @@
     "min_py",
     "max_py",
     "default_py",
-    "choices",
-    "package",
-    "pages",
-    "release",
     "3.8",
     "3.9",
     "3.10",

@@ -28,11 +28,11 @@ author_email:
   help: 'Specify the email address of the author:'
   type: str
 repo_host_type:
+  default: github.com
   choices:
     GitHub: github.com
     GitLab: gitlab.com
     GitLab (self-managed): gitlab-self-managed
-  default: github.com
   help: 'Choose the host for the repository:'
   type: str
 repo_host:
@@ -72,15 +72,16 @@ coverage_threshold:
   type: int
   validator: '[% if not 0 <= coverage_threshold <= 100 %]Test Coverage threshold should be between 0 and 100[% endif %]'
 min_py:
+  default: '3.8'
   choices:
     - '3.8'
     - '3.9'
     - '3.10'
     - '3.11'
-  default: '3.8'
   help: 'Choose the minimal Python version the project should support:'
   type: str
 max_py:
+  default: '3.11'
   choices:
     '3.8':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.8", min_py) }}'
@@ -93,10 +94,10 @@ max_py:
       value: '3.10'
     '3.11':
       value: '3.11'
-  default: '3.11'
   help: 'Choose the maximal Python version the project should support:'
   type: str
 default_py:
+  default: '{{ max_py }}'
   choices:
     '3.8':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.8", min_py, max_py) }}'
@@ -110,6 +111,5 @@ default_py:
     '3.11':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.11", min_py, max_py) }}'
       value: '3.11'
-  default: '{{ max_py }}'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
   type: str
