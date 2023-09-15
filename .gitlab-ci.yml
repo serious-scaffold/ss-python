@@ -82,6 +82,7 @@ pages:
       - schedules
   needs:
     - release
+    - docs-build
   only:
     - merge_requests
   script:
