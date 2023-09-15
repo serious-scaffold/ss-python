@@ -1,6 +1,8 @@
 stages:
   - ci
-  - release
+  - pages-build
+  - release-create
+  - deploy
 default:
   image: python:3.11
 ci:
@@ -42,13 +44,14 @@ lint_title:
   stage: ci
 package:
   only:
-    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    - merge_requests
   script:
     - env | sort
+    - ls -al
     - make dev-package
     - make build
     - make upload
-  stage: release
+  stage: deploy
   variables:
     TWINE_NON_INTERACTIVE: 'true'
 pages:
@@ -59,18 +62,29 @@ pages:
     refs:
       - schedules
   only:
-    changes:
-      - docs/**/*
+    - merge_requests
+  script:
+    - env | sort
+    - ls -al
+  stage: deploy
+pages-build:
+  artifacts:
+    paths:
+      - public
+  except:
     refs:
-      - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+      - schedules
+  only:
+    - merge_requests
   script:
     - env | sort
     - make dev-docs
     - make docs
-  stage: release
-release:
+  stage: pages-build
+release-create:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
   only:
+    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   release:
     description: $CI_COMMIT_TAG_MESSAGE
@@ -78,4 +92,5 @@ release:
     tag_name: $CI_COMMIT_TAG
   script:
     - env | sort
-  stage: release
+    - ls -al
+  stage: release-create
