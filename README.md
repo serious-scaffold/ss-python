@@ -85,4 +85,4 @@ pipx install pre-commit
 
 ## 📜 License
 
-MIT, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.
+MIT License, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.

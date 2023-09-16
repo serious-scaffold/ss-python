@@ -2,22 +2,43 @@ _envops:
   block_end_string: '%]'
   block_start_string: '[%'
 _subdirectory: template
+_message_before_copy: |
+    Thanks for generating a project using our template.
+
+    You'll be asked a series of questions whose answers will be used to
+    generate a tailored project for you.
+_message_after_copy: |
+    Your project "{{ project_name }}" has been created successfully!
+_message_before_update: |
+    Thanks for updating your project using our template.
+
+    You'll be asked a series of questions whose answers are pre-populated
+    with previously entered values. Feel free to change them as needed.
+_message_after_update: |
+    Your project "{{ project_name }}" has been updated successfully!
+    In case there are any conflicts, please resolve them. Then,
+    you're done.
+
 project_name:
   default: Serious Scaffold Python
   help: 'Enter the name of the project in CamelCase format:'
   type: str
+
 project_description:
   default: A development-focused Python project template with various integrations, configurations and modules.
   help: 'Provide a brief description for the project:'
   type: str
+
 author_name:
   default: huxuan
   help: 'Specify the name of the author:'
   type: str
+
 organization_name:
   default: Serious Scaffold
   help: 'Provide the name of the organization associated with the project:'
   type: str
+
 author_email:
   default: |-
     [% if author_name == 'huxuan' and organization_name == 'Serious Scaffold' -%]
@@ -27,6 +48,7 @@ author_email:
     [%- endif %]
   help: 'Specify the email address of the author:'
   type: str
+
 repo_host_type:
   default: github.com
   choices:
@@ -35,11 +57,13 @@ repo_host_type:
     GitLab (self-managed): gitlab-self-managed
   help: 'Choose the host for the repository:'
   type: str
+
 repo_host:
   default: '{{ repo_host_type }}'
   help: 'Specify the host of the self-managed GitLab:'
   type: str
   when: '{{ repo_host_type == "gitlab-self-managed" }}'
+
 page_host:
   default: |-
     [% if repo_host_type == 'github.com' -%]
@@ -50,22 +74,27 @@ page_host:
   help: 'Specify the host of the self-managed GitLab Pages:'
   type: str
   when: '{{ repo_host_type == "gitlab-self-managed" }}'
+
 repo_namespace:
   default: '{{ organization_name|lower|replace(" ", "-") }}'
   help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
   type: str
+
 repo_name:
   default: '{{ project_name|lower|replace(" ", "-") }}'
   help: 'Provide a name for the repository:'
   type: str
+
 package_name:
   default: '{{ repo_name|regex_replace("-python$", "") }}'
   help: 'Specify the name of the distributable package for the project (often used in "pip install <package_name>"):'
   type: str
+
 module_name:
   default: '{{ package_name|lower|replace("-", "_") }}'
   help: 'Specify the name of the primary module within the package (often used in "import <module_name>"):'
   type: str
+
 coverage_threshold:
   default: 100
   help: 'Set the threshold for test coverage, ranging from 0 to 100:'
@@ -80,6 +109,7 @@ min_py:
     - '3.11'
   help: 'Choose the minimal Python version the project should support:'
   type: str
+
 max_py:
   default: '3.11'
   choices:
@@ -96,6 +126,7 @@ max_py:
       value: '3.11'
   help: 'Choose the maximal Python version the project should support:'
   type: str
+
 default_py:
   default: '{{ max_py }}'
   choices:
@@ -113,3 +144,27 @@ default_py:
       value: '3.11'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
   type: str
+
+copyright_license:
+  type: str
+  help: Choose the project's license (e.g. "MIT", "GPL-3.0").
+  default: MIT License
+  choices:
+    - Apache Software License
+    - Boost Software License 1.0 (BSL-1.0)
+    - GNU Affero General Public License v3
+    - GNU General Public License v3 (GPLv3)
+    - GNU Lesser General Public License v3 (LGPLv3)
+    - MIT License
+    - Mozilla Public License 2.0 (MPL 2.0)
+    - The Unlicense (Unlicense)
+
+copyright_year:
+  type: str
+  help: Enter the copyright year or range (e.g. "2022-2023").
+  default: '2022-{{ "%Y" | strftime }}'
+
+copyright_holder:
+  type: str
+  help: Name(s) or organization(s) holding the copyright.
+  default: '{{ organization_name }}'
