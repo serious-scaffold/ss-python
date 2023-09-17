@@ -3,4 +3,4 @@ stages:
   - release
 default:
   image: python:3.11
-include: .gitlab/**.yml
+include: .gitlab/ci/**.yml
