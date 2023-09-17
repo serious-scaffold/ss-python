@@ -4,11 +4,7 @@ docs:
       - public
       - docs/changelog.md
       - release-notes.md
-  except:
-    refs:
-      - schedules
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
@@ -20,7 +16,6 @@ package:
   needs:
     - release
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
@@ -34,14 +29,10 @@ pages:
   artifacts:
     paths:
       - public
-  except:
-    refs:
-      - schedules
   needs:
     - release
     - docs
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   script:
     - env | sort
@@ -51,11 +42,10 @@ release:
   needs:
     - docs
   only:
-    - merge_requests
     - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
   release:
     description: release-notes.md
-    tag_name: test
+    tag_name: $CI_COMMIT_TAG
   script:
     - env | sort
   stage: release
