@@ -88,7 +88,9 @@ minversion = "6.0"
 extend-exclude = [
   "template",
 ]
-extend-ignore = [
+fix = true
+ignore = [
+  # https://docs.astral.sh/ruff/rules/#pydocstyle-d
   "D203",
   "D204",
   "D213",
@@ -101,7 +103,6 @@ extend-ignore = [
   "D409",
   "D413",
 ]
-fix = true
 select = ["ALL"]
 src = ["src"]
 
