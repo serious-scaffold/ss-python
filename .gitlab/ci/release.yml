@@ -1,0 +1,51 @@
+docs:
+  artifacts:
+    paths:
+      - public
+      - docs/changelog.md
+      - release-notes.md
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+    - make dev-docs
+    - make docs
+    - make release-notes > release-notes.md
+  stage: release
+package:
+  needs:
+    - release
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+    - make dev-package
+    - make build
+    - make upload
+  stage: release
+  variables:
+    TWINE_NON_INTERACTIVE: 'true'
+pages:
+  artifacts:
+    paths:
+      - public
+  needs:
+    - release
+    - docs
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  script:
+    - env | sort
+  stage: release
+release:
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  needs:
+    - docs
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+  release:
+    description: release-notes.md
+    tag_name: $CI_COMMIT_TAG
+  script:
+    - env | sort
+  stage: release

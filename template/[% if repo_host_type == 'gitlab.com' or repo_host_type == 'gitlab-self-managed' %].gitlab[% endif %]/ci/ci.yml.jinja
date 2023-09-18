@@ -1,0 +1,34 @@
+[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+ci:
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+  coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
+  image: python:$PYTHON_VERSION
+  interruptible: true
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    - main
+    - merge_requests
+  parallel:
+    matrix:
+      - PYTHON_VERSION:
+[%- if version_between("3.8", min_py, max_py) %]
+          - '3.8'
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+          - '3.9'
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
+          - '3.10'
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
+          - '3.11'
+[%- endif %]
+  script:
+    - env | sort
+    - make dev
+    - make lint test docs build
+  stage: ci

@@ -1,0 +1,25 @@
+ci:
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+  coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
+  image: python:$PYTHON_VERSION
+  interruptible: true
+  only:
+    - /^v(?P<major>0|[1-9]\d*)\.(?P<minor>0|[1-9]\d*)\.(?P<patch>0|[1-9]\d*)$/
+    - main
+    - merge_requests
+  parallel:
+    matrix:
+      - PYTHON_VERSION:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+  script:
+    - env | sort
+    - make dev
+    - make lint test docs build
+  stage: ci
