@@ -31,7 +31,7 @@
   [% if repo_host_type == 'github.com' -%]
 [![GitHub](https://img.shields.io/github/license/{{ repo_namespace }}/{{ repo_name }})]({{ license_url() }})
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
-[![GitLab](https://img.shields.io/gitlab/license/{{ repo_namespace }}/{{ repo_name }}?gitlab_url=https%3A%2F%2F{{ repo_host }})](license_url())
+[![GitLab](https://img.shields.io/gitlab/license/{{ repo_namespace }}/{{ repo_name }}?gitlab_url=https%3A%2F%2F{{ repo_host }})]({{ license_url() }})
   [%- endif -%]
 [%- endmacro %]
 
