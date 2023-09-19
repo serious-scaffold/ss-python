@@ -161,7 +161,7 @@ docs-mypy: docs-gen
 # Generate html coverage reports with badge.
 docs-coverage: test-run docs-gen
 	$(PIPRUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
-	$(PIPRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/reports/coverage
+	$(PIPRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
 docs: changelog docs-gen docs-mypy docs-coverage
