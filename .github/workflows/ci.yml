@@ -54,7 +54,7 @@ jobs:
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
   dependabot:
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'dependabot[bot]' && startsWith(github.head_ref, 'dependabot/pip/') }}
     permissions:
       contents: write
     runs-on: ubuntu-latest

@@ -1,22 +1,17 @@
-[% macro repo_url() -%]
-  {{ repo_host }}/{{ repo_namespace }}/{{ repo_name }}
-[%- endmacro %]
-
-[% macro page_url() -%]
-  [% if repo_host_type == 'github.com' -%]
-    {{ repo_namespace }}.github.io/{{ repo_name }}
-  [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
-    [%- set repo_namespace_root = repo_namespace.split("/")[0] -%]
-    {{ repo_namespace_root }}.{{ page_host }}{{ repo_namespace | replace(repo_namespace_root, "", 1) }}/{{ repo_name }}
-  [%- endif %]
-[%- endmacro %]
-
 [% macro coverage_badge() -%]
   [% if repo_host_type == 'github.com' -%]
-[![Coverage](https://img.shields.io/endpoint?url=https://{{ page_url() }}/reports/coverage/coverage_badge.json)](https://{{ page_url() }}/reports/coverage)
+[![Coverage](https://img.shields.io/endpoint?url=https://{{ page_url() }}/_static/badges/coverage.json)](https://{{ page_url() }}/reports/coverage)
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
 [![coverage report](https://{{ repo_url() }}/badges/main/coverage.svg)](https://{{ repo_url() }}/-/commits/main)
   [%- endif %]
+[%- endmacro %]
+
+[% macro license_badge() -%]
+  [% if repo_host_type == 'github.com' -%]
+[![GitHub](https://img.shields.io/github/license/{{ repo_namespace }}/{{ repo_name }})]({{ license_url() }})
+  [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
+[![GitLab](https://img.shields.io/gitlab/license/{{ repo_namespace }}/{{ repo_name }}?gitlab_url=https%3A%2F%2F{{ repo_host }})]({{ license_url() }})
+  [%- endif -%]
 [%- endmacro %]
 
 [% macro license_url() -%]
@@ -27,12 +22,21 @@
   [%- endif -%]
 [%- endmacro %]
 
-[% macro license_badge() -%]
+[% macro logo_badge() -%]
+  [![Serious Scaffold Python]({{ logo_badge_url() }})](https://{{ page_url() }})
+[%- endmacro %]
+
+[% macro logo_badge_url() -%]
+  https://img.shields.io/endpoint?url=https://{{ page_url() }}/_static/badges/logo.json
+[%- endmacro %]
+
+[% macro page_url() -%]
   [% if repo_host_type == 'github.com' -%]
-[![GitHub](https://img.shields.io/github/license/{{ repo_namespace }}/{{ repo_name }})]({{ license_url() }})
+    {{ repo_namespace }}.github.io/{{ repo_name }}
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
-[![GitLab](https://img.shields.io/gitlab/license/{{ repo_namespace }}/{{ repo_name }}?gitlab_url=https%3A%2F%2F{{ repo_host }})]({{ license_url() }})
-  [%- endif -%]
+    [%- set repo_namespace_root = repo_namespace.split("/")[0] -%]
+    {{ repo_namespace_root }}.{{ page_host }}{{ repo_namespace | replace(repo_namespace_root, "", 1) }}/{{ repo_name }}
+  [%- endif %]
 [%- endmacro %]
 
 [% macro pipeline_badge() -%]
@@ -49,4 +53,8 @@
 [![Latest Release](https://{{ repo_url() }}/-/badges/release.svg)](https://{{ repo_url() }}/-/releases)
   [%- endif -%]
 [![PyPI](https://img.shields.io/pypi/v/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
+[%- endmacro %]
+
+[% macro repo_url() -%]
+  {{ repo_host }}/{{ repo_namespace }}/{{ repo_name }}
 [%- endmacro %]

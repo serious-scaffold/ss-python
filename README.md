@@ -4,7 +4,7 @@ A development-focused Python project template with various integrations, configu
 
 [![CI](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
 [![Release](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml)
-[![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage/coverage_badge.json)](https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage)
+[![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/coverage.json)](https://serious-scaffold.github.io/serious-scaffold-python/reports/coverage)
 [![PyPI](https://img.shields.io/pypi/v/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/serious-scaffold)](https://pypi.org/project/serious-scaffold/)
 [![GitHub](https://img.shields.io/github/license/serious-scaffold/serious-scaffold-python)](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE)
@@ -15,7 +15,7 @@ A development-focused Python project template with various integrations, configu
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/5697b1e4c4a9790ece607654e6c02a160620c7e1/docs/badge/v2.json)](https://pydantic.dev)
-[![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/serious-scaffold/serious-scaffold-python)
+[![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
 
 [![Serious Scaffold Python](https://serious-scaffold.github.io/serious-scaffold-python/_static/images/logo.svg)](https://github.com/serious-scaffold/serious-scaffold-python)
 
@@ -82,6 +82,23 @@ pipx install pre-commit
    ```
 
 5. That's it! Feel free to focus on the coding within `src` folder.
+
+## 🛡 Badge
+
+Badge for markdown:
+
+```markdown
+[![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
+```
+
+Badge for restructuredtext:
+
+```restructuredtext
+.. image:: https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json
+    :target: serious-scaffold.github.io/serious-scaffold-python
+```
+
+It will looks like this: [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
 
 ## 📜 License
 

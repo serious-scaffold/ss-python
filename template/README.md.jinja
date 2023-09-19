@@ -1,6 +1,8 @@
 [% from pathjoin("includes", "variable.jinja") import coverage_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import license_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import license_url with context -%]
+[% from pathjoin("includes", "variable.jinja") import logo_badge with context -%]
+[% from pathjoin("includes", "variable.jinja") import logo_badge_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import pipeline_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import release_badge with context -%]
@@ -21,7 +23,7 @@
 [![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/5697b1e4c4a9790ece607654e6c02a160620c7e1/docs/badge/v2.json)](https://pydantic.dev)
-[![Serious Scaffold Python](https://img.shields.io/badge/serious%20scaffold-python-blue)](https://github.com/serious-scaffold/serious-scaffold-python)
+{{ logo_badge() }}
 
 [![{{ project_name }}](https://{{ page_url() }}/_static/images/logo.svg)](https://{{ repo_url() }})
 
@@ -91,6 +93,23 @@ pipx install pre-commit
    ```
 
 5. That's it! Feel free to focus on the coding within `src` folder.
+
+## 🛡 Badge
+
+Badge for markdown:
+
+```markdown
+{{ logo_badge() }}
+```
+
+Badge for restructuredtext:
+
+```restructuredtext
+.. image:: {{ logo_badge_url() }}
+    :target: {{ page_url() }}
+```
+
+It will looks like this: {{ logo_badge() }}
 
 ## 📜 License
 
