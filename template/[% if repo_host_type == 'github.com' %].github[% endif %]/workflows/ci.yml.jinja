@@ -4,7 +4,7 @@ concurrency:
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
 jobs:
   ci:
-    if: !cancelled() && ! failure()
+    if: {{ '${{ !cancelled() && ! failure() }}' }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
@@ -36,7 +36,7 @@ jobs:
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
-    if: !cancelled() && ! failure()
+    if: {{ '${{ !cancelled() && ! failure() }}' }}
     needs: dependabot
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +65,7 @@ jobs:
       - run: test -z "$(git status --porcelain)"
 [%- endif %]
   dependabot:
-    if: github.actor == 'dependabot[bot]' && startsWith(github.head_ref, 'dependabot/pip/')
+    if: {{ '${{ github.actor == \'dependabot[bot]\' && startsWith(github.head_ref, \'dependabot/pip/\') }}' }}
     permissions:
       contents: write
     runs-on: ubuntu-latest
