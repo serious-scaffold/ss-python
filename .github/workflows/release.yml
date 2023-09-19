@@ -56,7 +56,7 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install git-changelog using pipx
         run: pipx install git-changelog
       - name: Remove changelog to avoid file already exists error
