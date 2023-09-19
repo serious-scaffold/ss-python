@@ -1,6 +1,6 @@
 [% macro coverage_badge() -%]
   [% if repo_host_type == 'github.com' -%]
-[![Coverage](https://img.shields.io/endpoint?url=https://{{ page_url() }}/reports/coverage/coverage_badge.json)](https://{{ page_url() }}/reports/coverage)
+[![Coverage](https://img.shields.io/endpoint?url=https://{{ page_url() }}/_static/badges/coverage.json)](https://{{ page_url() }}/reports/coverage)
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
 [![coverage report](https://{{ repo_url() }}/badges/main/coverage.svg)](https://{{ repo_url() }}/-/commits/main)
   [%- endif %]
