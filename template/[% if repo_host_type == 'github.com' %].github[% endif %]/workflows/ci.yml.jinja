@@ -55,7 +55,7 @@ jobs:
         run: pipx install copier
       - name: Generate the project with the default value
         run: |
-          find . -maxdepth 1 | grep -vE "(\.|template|includes|\.git|copier\.yaml)$" | xargs -I {} rm -r {}
+          find . -maxdepth 1 | grep -vE '(\.|template|includes|\.git|copier\.yaml)$' | xargs -I {} rm -r {}
           copier copy -d repo_host_type=gitlab.com -r HEAD -f . .
           rm .copier-answers.yml
           copier copy -r HEAD -f . .
