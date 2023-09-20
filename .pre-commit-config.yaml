@@ -3,7 +3,9 @@ repos:
       - id: check-added-large-files
       - id: check-docstring-first
       - id: check-json
-      - id: check-merge-conflict
+      - args:
+          - '--assume-in-merge'
+        id: check-merge-conflict
       - id: check-toml
       - id: check-xml
       - id: check-yaml
