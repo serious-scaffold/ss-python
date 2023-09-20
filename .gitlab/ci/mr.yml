@@ -4,7 +4,7 @@ lint_title:
     - merge_requests
   script:
     - |
-      if ! echo "$CI_MERGE_REQUEST_TITLE" | grep -Pq "^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*"; then
+      if ! echo "$CI_MERGE_REQUEST_TITLE" | grep -Pq '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*''; then
         echo "The title does not conform to the Conventional Commit."
         echo "Please refer to 'https://www.conventionalcommits.org/'"
         exit 1
