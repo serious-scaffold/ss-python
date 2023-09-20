@@ -2,6 +2,22 @@ _envops:
   block_end_string: '%]'
   block_start_string: '[%'
 _subdirectory: template
+_message_before_copy: |
+  Thanks for generating a project using our template.
+
+  You'll be asked a series of questions whose answers will be used to
+  generate a tailored project for you.
+_message_after_copy: |
+  Your project "{{ project_name }}" has been created successfully!
+_message_before_update: |
+  Thanks for updating your project using our template.
+
+  You'll be asked a series of questions whose answers are pre-populated
+  with previously entered values. Feel free to change them as needed.
+_message_after_update: |
+  Your project "{{ project_name }}" has been updated successfully!
+  In case there are any conflicts, please resolve them. Then,
+  you're done.
 project_name:
   default: Serious Scaffold Python
   help: 'Enter the name of the project in CamelCase format:'
@@ -10,6 +26,23 @@ project_description:
   default: A development-focused Python project template with various integrations, configurations and modules.
   help: 'Provide a brief description for the project:'
   type: str
+copyright_license:
+  default: MIT License
+  choices:
+    - Apache Software License
+    - Boost Software License 1.0 (BSL-1.0)
+    - GNU Affero General Public License v3
+    - GNU General Public License v3 (GPLv3)
+    - GNU Lesser General Public License v3 (LGPLv3)
+    - MIT License
+    - Mozilla Public License 2.0 (MPL 2.0)
+    - The Unlicense (Unlicense)
+  help: Choose the project's license (e.g. "MIT", "GPL-3.0").
+  type: str
+copyright_year:
+  default: 2022-{{ "%Y" | strftime }}
+  help: Enter the copyright year or range (e.g. "2022-2023").
+  type: str
 author_name:
   default: huxuan
   help: 'Specify the name of the author:'
@@ -17,6 +50,10 @@ author_name:
 organization_name:
   default: Serious Scaffold
   help: 'Provide the name of the organization associated with the project:'
+  type: str
+copyright_holder:
+  default: '{{ organization_name }}'
+  help: Name(s) or organization(s) holding the copyright.
   type: str
 author_email:
   default: |-

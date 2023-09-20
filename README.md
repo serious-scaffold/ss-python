@@ -102,4 +102,4 @@ It will looks like this: [![Serious Scaffold Python](https://img.shields.io/endp
 
 ## 📜 License
 
-MIT, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.
+MIT License, for more details, see the [LICENSE](https://github.com/serious-scaffold/serious-scaffold-python/blob/main/LICENSE) file.
