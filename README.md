@@ -98,7 +98,7 @@ Badge for restructuredtext:
     :target: serious-scaffold.github.io/serious-scaffold-python
 ```
 
-It will looks like this: [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
+It will look like this: [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
 
 ## 📜 License
 
