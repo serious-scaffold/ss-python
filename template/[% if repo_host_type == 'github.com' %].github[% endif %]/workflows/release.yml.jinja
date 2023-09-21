@@ -71,7 +71,7 @@ jobs:
       - id: prerelease
         name: Determine prerelease
         run: |
-          if [[ "${{ github.ref }}" =~ (a|b|rc)(0|[1-9][0-9]*)?$ ]]; then
+          if [[ {{ '"${{ github.ref }}"' }} =~ (a|b|rc)(0|[1-9][0-9]*)?$ ]]; then
             echo "is_prerelease=true" > $GITHUB_OUTPUT
           else
             echo "is_prerelease=false" > $GITHUB_OUTPUT
@@ -80,7 +80,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           body_path: release-notes.md
-          prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
+          prerelease: {{ '${{ steps.prerelease.outputs.is_prerelease }}' }}
 name: Release
 on:
   push:
