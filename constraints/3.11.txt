@@ -11,7 +11,7 @@ charset-normalizer==3.2.0
 click==8.1.7
 colorama==0.4.6
 coverage==7.3.1
-cryptography==41.0.3
+cryptography==41.0.4
 docutils==0.20.1
 furo==2023.9.10
 git-changelog==2.2.0
@@ -43,7 +43,7 @@ pluggy==1.3.0
 pycparser==2.21
 pydantic==2.3.0
 pydantic-settings==2.0.3
-pydantic_core==2.6.3
+pydantic_core==2.10.0
 Pygments==2.16.1
 pyproject_hooks==1.0.0
 pytest==7.4.2
@@ -54,10 +54,10 @@ requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.5.3
-ruff==0.0.290
+ruff==0.0.291
 SecretStorage==3.3.3
 semver==3.0.1
-setuptools-scm==7.1.0
+setuptools-scm==8.0.3
 shellingham==1.5.3
 six==1.16.0
 snowballstemmer==2.2.0
@@ -77,6 +77,6 @@ tomlkit==0.12.1
 tornado==6.3.3
 twine==4.0.2
 typer==0.9.0
-typing_extensions==4.7.1
-urllib3==2.0.4
-zipp==3.16.2
+typing_extensions==4.8.0
+urllib3==2.0.5
+zipp==3.17.0
