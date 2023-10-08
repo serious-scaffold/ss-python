@@ -138,7 +138,7 @@ max_py:
   help: 'Choose the maximal Python version the project should support:'
   type: str
 default_py:
-  default: '{{ max_py }}'
+  default: '3.11'
   choices:
     '3.8':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.8", min_py, max_py) }}'
