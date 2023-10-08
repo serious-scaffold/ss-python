@@ -115,10 +115,11 @@ min_py:
     - '3.9'
     - '3.10'
     - '3.11'
+    - '3.12'
   help: 'Choose the minimal Python version the project should support:'
   type: str
 max_py:
-  default: '3.11'
+  default: '3.12'
   choices:
     '3.8':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.8", min_py) }}'
@@ -130,7 +131,10 @@ max_py:
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.10", min_py) }}'
       value: '3.10'
     '3.11':
+      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.11", min_py) }}'
       value: '3.11'
+    '3.12':
+      value: '3.12'
   help: 'Choose the maximal Python version the project should support:'
   type: str
 default_py:
@@ -148,5 +152,8 @@ default_py:
     '3.11':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.11", min_py, max_py) }}'
       value: '3.11'
+    '3.12':
+      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.12", min_py, max_py) }}'
+      value: '3.12'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
   type: str

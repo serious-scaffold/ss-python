@@ -24,6 +24,7 @@ repos:
           - constraints/3.9.txt
           - constraints/3.10.txt
           - constraints/3.11.txt
+          - constraints/3.12.txt
           - requirements.txt
           - requirements/docs.txt
           - requirements/lint.txt
