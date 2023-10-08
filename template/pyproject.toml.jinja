@@ -21,6 +21,9 @@ classifiers = [
 [%- if version_between("3.11", min_py, max_py) %]
   "Programming Language :: Python :: 3.11",
 [%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+  "Programming Language :: Python :: 3.12",
+[%- endif %]
 [%- if version_between("3.8", min_py, max_py) %]
   "Programming Language :: Python :: 3.8",
 [%- endif %]

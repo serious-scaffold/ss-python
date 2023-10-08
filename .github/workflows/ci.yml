@@ -25,6 +25,7 @@ jobs:
           - '3.9'
           - '3.10'
           - '3.11'
+          - '3.12'
   consistency:
     if: ${{ !cancelled() && ! failure() }}
     needs: dependabot
@@ -39,7 +40,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           cache: pip
-          python-version: '3.11'
+          python-version: '3.12'
       - run: env | sort
       - name: Install copier for template rendering using pipx
         run: pipx install copier
@@ -76,6 +77,7 @@ jobs:
             3.9
             3.10
             3.11
+            3.12
       - name: Install pipenv using pipx
         run: pipx install pipenv
       - name: Generate constraints for all supported Python versions
@@ -84,6 +86,7 @@ jobs:
           CI= PYTHON_VERSION=3.9 make constraints
           CI= PYTHON_VERSION=3.10 make constraints
           CI= PYTHON_VERSION=3.11 make constraints
+          CI= PYTHON_VERSION=3.12 make constraints
       - name: Sync template
         run: cp -v constraints/* template/constraints/
       - name: Push changes if applicable

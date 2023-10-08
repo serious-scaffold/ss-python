@@ -34,6 +34,9 @@ jobs:
 [%- if version_between("3.11", min_py, max_py) %]
           - '3.11'
 [%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+          - '3.12'
+[%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
@@ -95,6 +98,9 @@ jobs:
 [%- if version_between("3.11", min_py, max_py) %]
             3.11
 [%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+            3.12
+[%- endif %]
       - name: Install pipenv using pipx
         run: pipx install pipenv
       - name: Generate constraints for all supported Python versions
@@ -110,6 +116,9 @@ jobs:
 [%- endif %]
 [%- if version_between("3.11", min_py, max_py) %]
           CI= PYTHON_VERSION=3.11 make constraints
+[%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+          CI= PYTHON_VERSION=3.12 make constraints
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
       - name: Sync template

@@ -2,5 +2,5 @@ stages:
   - ci
   - release
 default:
-  image: python:3.11
+  image: python:3.12
 include: .gitlab/ci/**.yml

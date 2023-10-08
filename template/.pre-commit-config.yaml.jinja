@@ -33,6 +33,9 @@ repos:
 [%- if version_between("3.11", min_py, max_py) %]
           - constraints/3.11.txt
 [%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+          - constraints/3.12.txt
+[%- endif %]
           - requirements.txt
           - requirements/docs.txt
           - requirements/lint.txt
