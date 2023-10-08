@@ -11,7 +11,7 @@ build:
       - make changelog
   os: ubuntu-22.04
   tools:
-    python: '{{ default_py }}'
+    python: 3
 sphinx:
   fail_on_warning: true
 version: 2
