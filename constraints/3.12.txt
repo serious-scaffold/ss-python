@@ -12,7 +12,7 @@ colorama==0.4.6
 coverage==7.3.2
 docutils==0.20.1
 furo==2023.9.10
-git-changelog==2.2.0
+git-changelog==2.3.0
 idna==3.4
 imagesize==1.4.1
 importlib-metadata==6.8.0
