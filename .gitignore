@@ -3,7 +3,6 @@
 .DS_Store
 .copier-answers.yml
 Pipfile
-docs/changelog.md
 public
 release-notes.md
 
