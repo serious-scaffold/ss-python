@@ -9,3 +9,4 @@ pytest
 Sphinx
 sphinx-autobuild
 sphinx-click
+sphinx-togglebutton

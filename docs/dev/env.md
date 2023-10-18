@@ -1,6 +1,6 @@
 # Environment management
 
-## Perquisites
+## Prerequisites
 
 After generating the project via `copier`, several necessary tools can be installed with the following commands.
 Note that, it is recommended to use `pipx` to manage them and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
@@ -14,7 +14,7 @@ pipx install pre-commit
 
 ## Environment setup
 
-There is a all-in-one command to setup environment for daily development.
+There is an all-in-one command to setup environment for daily development.
 
 ```bash
 make dev
@@ -22,7 +22,7 @@ make dev
 
 This command will accomplish the following tasks:
 
-- Create a virtual environment if applicable (when `pipenv` is available and not in CI environment).
+- Create a virtual environment when `pipenv` is available and not in a CI environment.
 - Install the project in editable mode with the requirements for documentation, lint, package and test.
 - Install Git hooks for various kinds of check at `pre-push` stage.
 
@@ -50,9 +50,9 @@ make deepclean
 
 With this command, the repo will be as if it has been re-cloned. It is useful if we want to start almost from scratch.
 
-```{caution}
+:::{caution}
 This will remove all untracked files, please use it with caution. It is recommended to check with dry-run mode (`git clean -dfnx`) before actually removing anything. For more information, please refer to the [git-clean documentation](https://git-scm.com/docs/git-clean).
-```
+:::
 
 ```bash
 git clean -dfx
@@ -99,7 +99,7 @@ recommended for scenarios like package CI/CD process.
 make dev-package
 ```
 
-### Test
+### Testing
 
 Install the project in editable mode with `test` related dependencies,
 recommended for scenarios like test CI/CD process.
@@ -108,6 +108,13 @@ recommended for scenarios like test CI/CD process.
 make dev-test
 ```
 
-```{tip}
-We can also install a combination of the optional dependencies. For example, using `make dev-docs,lint` to install requirements for `docs` and `lint`.
+:::{admonition} Install a combination of the optional dependencies
+:class: tip, dropdown
+
+For example, to install requirements for `docs` and `lint`, we can use the following command.
+
+```bash
+make dev-docs,lint
 ```
+
+:::
