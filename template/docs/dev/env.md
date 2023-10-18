@@ -3,7 +3,10 @@
 ## Prerequisites
 
 After generating the project via `copier`, several necessary tools can be installed with the following commands.
-Note that using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
+
+:::{note}
+Using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
+:::
 
 ```bash
 # Pipenv: Virtual environment and package manager for Python.
