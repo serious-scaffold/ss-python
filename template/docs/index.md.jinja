@@ -3,6 +3,7 @@
 ```{toctree}
 :hidden:
 Overview <self>
+dev/index
 cli/index
 api/index
 reports/index

@@ -18,6 +18,7 @@
     "autofix",
     "automodule",
     "cobertura",
+    "deepclean",
     "elif",
     "endmacro",
     "epub",

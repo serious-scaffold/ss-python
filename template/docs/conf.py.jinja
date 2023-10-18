@@ -25,6 +25,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx_click",
+    "sphinx_togglebutton",
     "sphinxcontrib.autodoc_pydantic",
 ]
 source_suffix = {
@@ -51,3 +52,10 @@ autodoc_default_options = {
 # https://autodoc-pydantic.readthedocs.io/en/stable/users/configuration.html
 
 autodoc_pydantic_settings_show_json = False
+
+# -- Options for myst-parser -------------------------------------------------
+# https://myst-parser.readthedocs.io/en/latest/configuration.html
+
+myst_enable_extensions = [
+    "colon_fence",
+]
