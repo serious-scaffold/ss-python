@@ -12,7 +12,7 @@ pipx install pipenv
 pipx install pre-commit
 ```
 
-## Environment setup
+## Environment Setup
 
 :::{note}
 A universal `Makefile` is located at the root directory of the repo, and all `make` related commands are supposed to run there.
@@ -62,7 +62,7 @@ This will remove all untracked files, please use it with caution. It is recommen
 git clean -dfx
 ```
 
-## Partial environment setup
+## Partial Environment Setup
 
 In certain cases, it is unnecessary to install all requirements as well as the pre-commit hook.
 Then we can benefit from the following partial environment setup, for example, it will reduce the time of running corresponding CI/CD.
