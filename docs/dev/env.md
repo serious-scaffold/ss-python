@@ -3,7 +3,7 @@
 ## Prerequisites
 
 After generating the project via `copier`, several necessary tools can be installed with the following commands.
-Note that, it is recommended to use `pipx` to manage them and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
+Note that using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
 
 ```bash
 # Pipenv: Virtual environment and package manager for Python.
@@ -14,6 +14,10 @@ pipx install pre-commit
 
 ## Environment setup
 
+:::{note}
+A universal `Makefile` is located at the root directory of the repo, and all `make` related commands are supposed to run there.
+:::
+
 There is an all-in-one command to setup environment for daily development.
 
 ```bash
@@ -22,13 +26,13 @@ make dev
 
 This command will accomplish the following tasks:
 
-- Create a virtual environment when `pipenv` is available and not in a CI environment.
+- Create a virtual environment if `pipenv` is available. If CI context is detected, the creation will be skipped.
 - Install the project in editable mode with the requirements for documentation, lint, package and test.
 - Install Git hooks for various kinds of check at `pre-push` stage.
 
 ## Environment Cleanup
 
-In daily development, especially when we need to upgrade or add new dependencies, we tend to encounter environment related problem. A straightforward solution is cleanup the current environment and setup a new one with command like `make dev`. Three different levels of cleanup approach are recommended here.
+In daily development, especially when we need to upgrade or add new dependencies, we tend to encounter environment-related problems. A straightforward solution is to cleanup the current environment and setup a new one with a command like `make dev`. Three different levels of cleanup approach are recommended here.
 
 ### Intermediate cleanup
 
@@ -63,7 +67,7 @@ git clean -dfx
 In certain cases, it is unnecessary to install all requirements as well as the pre-commit hook.
 Then we can benefit from the following partial environment setup, for example, it will reduce the time of running corresponding CI/CD.
 
-### Minimal Installation
+### Minimal installation
 
 Install the project in editable mode with no extra dependency,
 recommended for deployment scenario that only need minimal installation.
