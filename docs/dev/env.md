@@ -23,17 +23,16 @@ make dev
 This command will accomplish the following tasks:
 
 - Create a virtual environment if applicable (when `pipenv` is available and not in CI environment).
-- Install the project in editable mode also with the requirements for documentation, lint, package and test.
-- Install pre-push Git hooks for various kinds of check.
+- Install the project in editable mode with the requirements for documentation, lint, package and test.
+- Install Git hooks for various kinds of check at `pre-push` stage.
 
 ## Environment Cleanup
 
-In daily development, especially when we need to upgrade or add new dependencies, we tend to encounter environment related problem. A straightforward solution is cleanup the current environment and setup a new one. Three different levels of cleanup approach are recommended here.
+In daily development, especially when we need to upgrade or add new dependencies, we tend to encounter environment related problem. A straightforward solution is cleanup the current environment and setup a new one with command like `make dev`. Three different levels of cleanup approach are recommended here.
 
 ### Intermediate cleanup
 
 This command will only remove common intermediate files, such as generated documentation, package, coverage report, cache files for mypy, pytest, ruff and so on.
-It is useful for scenarios like generating documentation or running lint or test that want to have no cache remained.
 
 ```bash
 make clean
@@ -41,7 +40,7 @@ make clean
 
 ### Deep cleanup
 
-This command will remove the pre-commit hook and the virtual environment if created alongside the common intermediate files. It is useful for environment reconstruction, so it is usually used with `make dev`.
+This command will remove the pre-commit hook and the virtual environment if created alongside the common intermediate files.
 
 ```bash
 make deepclean
@@ -52,18 +51,17 @@ make deepclean
 With this command, the repo will be as if it has been re-cloned. It is useful if we want to start almost from scratch.
 
 ```{caution}
-This will remove all untracked files. Only changes to tracked files will be remained.
+This will remove all untracked files, please use it with caution. It is recommended to check with dry-run mode (`git clean -dfnx`) before actually removing anything. For more information, please refer to the [git-clean documentation](https://git-scm.com/docs/git-clean).
 ```
 
 ```bash
-git clean -xdf
+git clean -dfx
 ```
 
 ## Partial environment setup
 
-In certain cases, we do not need to install all the requirements, and
-virtual environment and pre-commit hook are also not necessary.
-In this way, we can benefit from the following environment setup commands.
+In certain cases, it is unnecessary to install all requirements as well as the pre-commit hook.
+Then we can benefit from the following partial environment setup, for example, it will reduce the time of running corresponding CI/CD.
 
 ### Minimal Installation
 
@@ -101,11 +99,15 @@ recommended for scenarios like package CI/CD process.
 make dev-package
 ```
 
-### Unit Test
+### Test
 
 Install the project in editable mode with `test` related dependencies,
 recommended for scenarios like test CI/CD process.
 
 ```bash
 make dev-test
+```
+
+```{tip}
+We can also install a combination of the optional dependencies. For example, using `make dev-docs,lint` to install requirements for `docs` and `lint`.
 ```
