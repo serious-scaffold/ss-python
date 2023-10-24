@@ -47,14 +47,14 @@ pipx install copier
     ```bash
     git add .
     git commit -m "chore: Initialize from serious-scaffold-python."
-    git push
+    SKIP=no-commit-to-branch git push
     ```
 
 Now, everything is done for initialization.
 
 ## Project Configuration
 
-Some notable recommended configuration are listed since there exist many detailed aspects. Feel free
+Some notable recommended configuration are listed here since there exist too many detailed aspects. Feel free to adjust according to the actual requirements.
 
 1.
 
