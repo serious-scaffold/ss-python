@@ -60,14 +60,14 @@ Some notable recommended configuration are listed since there exist many detaile
 
 ## Project Update
 
-Thanks to the update mechanism provided natively by `copier`, when there is a new version of `serious-scaffold-python`, To update the project, we can just run the following command under the root directory.
+Thanks to the update mechanism provided natively by `copier`, when a new version of the scaffold is released, we can just run the following command under the root directory to update the project.
 
 ```bash
 copier update
 ```
 
+Generally, `copier` will handle everything properly. If there are any conflicts, since everything is controlled by Git, we can theoretically take care of them manually. For further information, please refer to the official documentation of [copier update](https://copier.readthedocs.io/en/stable/updating/).
+
 ```{tip}
 To avoid potential conflicts, we should avoid changing the generated files unless necessary.
 ```
-
-Generally, `copier` will handle everything properly. If there are any conflicts, since everything is controlled by Git, we can theoretically take care of them manually. For further information, please refer to the official documentation for [copier update](https://copier.readthedocs.io/en/stable/updating/).
