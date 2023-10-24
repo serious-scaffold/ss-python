@@ -4,9 +4,9 @@
 
 After generating the project via `copier`, several necessary tools can be installed with the following commands.
 
-:::{note}
+```{note}
 Using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
-:::
+```
 
 ```bash
 # Pipenv: Virtual environment and package manager for Python.
@@ -17,9 +17,9 @@ pipx install pre-commit
 
 ## Environment Setup
 
-:::{note}
+```{note}
 A universal `Makefile` is located at the root directory of the repo, and all `make` related commands are supposed to run there.
-:::
+```
 
 There is an all-in-one command to setup environment for daily development.
 
@@ -57,9 +57,9 @@ make deepclean
 
 With this command, the repo will be as if it has been re-cloned. It is useful if we want to start almost from scratch.
 
-:::{caution}
+```{caution}
 This will remove all untracked files, please use it with caution. It is recommended to check with dry-run mode (`git clean -dfnx`) before actually removing anything. For more information, please refer to the [git-clean documentation](https://git-scm.com/docs/git-clean).
-:::
+```
 
 ```bash
 git clean -dfx
@@ -115,13 +115,11 @@ recommended for scenarios like test CI/CD process.
 make dev-test
 ```
 
-:::{admonition} Install a combination of the optional dependencies
+````{admonition} Install a combination of the optional dependencies
 :class: tip, dropdown
-
 For example, to install requirements for `docs` and `lint`, we can use the following command.
 
 ```bash
 make dev-docs,lint
 ```
-
-:::
+````
