@@ -79,4 +79,4 @@ To minimize potential conflicts, there are several suggestions to follow:
 1. For scaffold related changes, it is advised to propose a issue or change request to the scaffold directly.
 ```
 
-For more details, check out `copier update --help` or refer to [the official documentation](https://copier.readthedocs.io/en/stable/updating/).
+For more details, please refer to `copier update --help` and [the official documentation](https://copier.readthedocs.io/en/stable/updating/).
