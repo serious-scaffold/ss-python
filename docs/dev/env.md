@@ -1,4 +1,4 @@
-# Environment management
+# Environment Management
 
 ## Prerequisites
 
