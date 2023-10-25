@@ -60,14 +60,23 @@ Some notable recommended configuration are listed here since there exist too man
 
 ## Project Update
 
-Thanks to the update mechanism provided natively by `copier`, when a new version of the scaffold is released, we can just run the following command under the root directory to update the project.
+Thanks to the update mechanism provided natively by `copier`, when a new version of the scaffold is released, you can easily update the project. Just run the following command under the root directory:
 
 ```bash
 copier update
 ```
 
-Generally, `copier` will handle everything properly. If there are any conflicts, since everything is controlled by Git, we can theoretically take care of them manually. For further information, please refer to the official documentation of [copier update](https://copier.readthedocs.io/en/stable/updating/).
+```{note}
+Flag `-A/--skip-answered` can be used to skip questions that have already been answered.
+```
+
+In most cases, `copier` will manage updates seamlessly. If there are any conflicts, since everything is controlled by Git, we can theoretically take care of them manually.
 
 ```{tip}
-To avoid potential conflicts, we should avoid changing the generated files unless necessary.
+To minimize potential conflicts, there are several suggestions to follow:
+1. Do not modify the auto-generated files unless necessary.
+1. For project related changes, it is advised to adopt inheritance or extension approach rather than overwrite.
+1. For scaffold related changes, it is advised to propose a issue or change request to the scaffold directly.
 ```
+
+For more details, check out `copier update --help` or refer to [the official documentation](https://copier.readthedocs.io/en/stable/updating/).
