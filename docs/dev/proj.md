@@ -56,7 +56,19 @@ Now, everything is done for initialization.
 
 Some notable recommended configuration are listed here since there exist too many detailed aspects. Feel free to adjust according to the actual requirements.
 
-1.
+1. Require pull request or merge request before merging to the default branch.
+1. Require passing CI/CD before merging to the default branch.
+1. Require squash merging and use pull request or merge request title as commit message.
+1. Only maintainers can create tags match `v*` pattern, e.g., `v1.2.3`.
+1. Make sure Linux-based CI/CD runner(s) is available.
+1. Make sure the following variables meet requirements and available during CI/CD:
+    1. `TWINE_REPOSITORY_URL`: The repository (package index) URL to upload the package to. If not set, it will upload to [the official PyPI](https://pypi.org).
+    1. `TWINE_USERNAME`: The username to authenticate to the repository (package index) as, default to `__token__` which is used for [API token](https://pypi.org/help/#apitoken).
+    1. `TWINE_PASSWORD`: The password to authenticate to the repository (package index) with.
+
+    ```{note}
+    Only `TWINE_PASSWORD` is necessary if the package is supposed to upload to the official PyPI with API token.
+    ```
 
 ## Project Update
 
