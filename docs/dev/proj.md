@@ -54,7 +54,7 @@ Now, everything is done for initialization.
 
 ## Project Configuration
 
-Some notable recommended configuration are listed here since there exist too many detailed aspects. Feel free to adjust according to the actual requirements.
+Below are key recommended configurations. You can adjust these based on your specific needs.
 
 1. Require a pull request or merge request before merging to the default branch.
 1. Ensure passing CI/CD before merging to the default branch.
@@ -87,7 +87,7 @@ In most cases, `copier` will manage updates seamlessly. If conflicts arise, they
 ```{tip}
 To minimize potential conflicts, there are several suggestions to follow:
 1. Avoid modifying the auto-generated files unless absolutely necessary.
-1. For template-related changes, consider proposing an issue or change request directly to the template.
+1. For template-related changes, consider proposing an issue or change request directly to the template repository.
 1. For project-specific changes, adopt an inheritance or extension approach to minimize the changes to auto-generated contents.
 ```
 
