@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-[`copier`](https://copier.readthedocs.io/) is a fundamental and distinct component for `serious-scaffold-python` compared with other project templates. Installation can be done with the following command.
+[`copier`](https://copier.readthedocs.io/) serves as a key tool in `serious-scaffold-python`, differentiating it from other project templates. Installation can be done with the following command.
 
 ```{note}
 Using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
@@ -18,7 +18,7 @@ pipx install copier
 1. Create a Git repository on the hosting platform. Clone it to local and navigate to the root directory.
 
     ```{note}
-    The repository url `git@git.example.com/demo_namespace/demo_name.git` is used for demonstration.
+    The provided repository URL, `git@git.example.com/demo_namespace/demo_name.git`, is purely for demonstration purposes.
     ```
 
     ```bash
@@ -29,7 +29,7 @@ pipx install copier
 1. Generate the project.
 
     ```{note}
-    Several questions will be asked here. Your patient is appreciated for the one-time job.
+    Several questions will be prompted during this process. Your patience is appreciated for this one-time job.
     ```
 
     ```bash
@@ -67,7 +67,7 @@ Some notable recommended configuration are listed here since there exist too man
     1. `TWINE_PASSWORD`: The password to authenticate to the repository (package index) with.
 
     ```{note}
-    Only `TWINE_PASSWORD` is necessary if the package is supposed to upload to the official PyPI with API token.
+    Only `TWINE_PASSWORD` is necessary if the package is supposed to upload to [the official PyPI](https://pypi.org) with [API token](https://pypi.org/help/#apitoken).
     ```
 
 ## Project Update
@@ -82,13 +82,13 @@ copier update
 The `-A/--skip-answered` flag can be used to skip questions that have already been answered.
 ```
 
-In most cases, `copier` will manage updates seamlessly. will manage updates seamlessly. If conflicts arise, they can be resolved manually since everything is version-controlled by Git.
+In most cases, `copier` will manage updates seamlessly. If conflicts arise, they can be resolved manually since everything is version-controlled by Git.
 
 ```{tip}
-To minimize potential conflicts, there are several suggestions to follow:
+To release potential conflicts, there are several suggestions to follow:
 1. Avoid modifying the auto-generated files unless absolutely necessary.
-2. For project-related changes, it's advised to use the inheritance or extension approach instead of overwriting.
-3. For template-related changes, consider proposing an issue or change request directly to the template.
+1. For template-related changes, consider proposing an issue or change request directly to the template.
+1. For project-specific changes, adopt an inheritance or extension approach to minimize the changes to auto-generated contents.
 ```
 
 For more details, please refer to `copier update --help` and [the official documentation](https://copier.readthedocs.io/en/stable/updating/).
