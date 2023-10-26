@@ -17,6 +17,10 @@ A development-focused Python project template with various integrations, configu
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/5697b1e4c4a9790ece607654e6c02a160620c7e1/docs/badge/v2.json)](https://pydantic.dev)
 [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
 
+```{warning}
+_Serious Scaffold Python_ is currently in its alpha phase. Changes and potential instability should be anticipated. Any feedback, comments, suggestions and contributions are welcome!
+```
+
 [![Serious Scaffold Python](https://serious-scaffold.github.io/serious-scaffold-python/_static/images/logo.svg)](https://github.com/serious-scaffold/serious-scaffold-python)
 
 Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring lint, test and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) streamlines this process. Powered by [`copier`](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.

@@ -34,6 +34,13 @@ source_suffix = {
 }
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 templates_path = ["_templates"]
+html_theme_options = {
+    "announcement": (
+        "<em>Serious Scaffold Python</em> is currently in its alpha phase."
+        "Changes and potential instability should be anticipated."
+        "Any feedback, comments, suggestions and contributions are welcome!"
+    ),
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
