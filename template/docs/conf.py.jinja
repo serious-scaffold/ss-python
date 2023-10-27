@@ -36,11 +36,11 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 templates_path = ["_templates"]
 html_theme_options = {
     "announcement": (
-        "<em>{{ project_name }}</em> is in the <strong>{{ development_status }}</strong> phase."
+        "<em>{{ project_name }}</em> is in the <strong>{{ development_status }}</strong> phase. "
 [%- if development_status == "Alpha" %]
-        "Frequent changes and instability should be anticipated."
+        "Frequent changes and instability should be anticipated. "
 [%- elif development_status == "Beta" %]
-        "Changes and potential instability should be anticipated."
+        "Changes and potential instability should be anticipated. "
 [%- endif %]
         "Any feedback, comments, suggestions and contributions are welcome!"
     ),
