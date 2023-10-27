@@ -19,6 +19,7 @@
     "automodule",
     "cobertura",
     "deepclean",
+    "deflist",
     "elif",
     "endmacro",
     "epub",
@@ -40,9 +41,12 @@
     "Quickstart",
     "setuptools",
     "softprops",
+    "sphinxcontrib",
     "toctree",
+    "togglebutton",
     "typer",
-    "unshallow"
+    "unshallow",
+    "viewcode"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -67,7 +71,10 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
-  "markdown-preview-enhanced.breakOnSingleNewLine": false,
+  "myst.preview.extensions": [
+    "dollarmath",
+    "deflist"
+  ],
   "sortJSON.contextMenu": {
     "sortJSONAlphaNum": false,
     "sortJSONAlphaNumReverse": false,
