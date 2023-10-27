@@ -26,6 +26,14 @@ project_description:
   default: A development-focused Python project template with various integrations, configurations and modules.
   help: 'Provide a brief description for the project:'
   type: str
+development_status:
+  default: Alpha
+  choices:
+    - Alpha
+    - Beta
+    - Production/Stable
+  help: 'Choose the development status:'
+  type: str
 copyright_license:
   default: MIT License
   choices:

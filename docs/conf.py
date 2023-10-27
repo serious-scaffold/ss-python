@@ -36,8 +36,8 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 templates_path = ["_templates"]
 html_theme_options = {
     "announcement": (
-        "<em>Serious Scaffold Python</em> is currently in its alpha phase."
-        "Changes and potential instability should be anticipated."
+        "<em>Serious Scaffold Python</em> is in the <strong>Alpha</strong> phase."
+        "Frequent changes and instability should be anticipated."
         "Any feedback, comments, suggestions and contributions are welcome!"
     ),
 }
