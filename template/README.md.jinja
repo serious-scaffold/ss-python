@@ -25,8 +25,20 @@
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/5697b1e4c4a9790ece607654e6c02a160620c7e1/docs/badge/v2.json)](https://pydantic.dev)
 {{ logo_badge() }}
 
+[%- if development_status == "Alpha" %]
 > [!WARNING]
-> _Serious Scaffold Python_ is currently in its alpha phase. Changes and potential instability should be anticipated. Any feedback, comments, suggestions and contributions are welcome!
+[%- elif development_status == "Beta" %]
+> [!IMPORTANT]
+[%- elif development_status == "Stable" %]
+> [!NOTE]
+[%- endif %]
+> _{{ project_name }}_ is in the **{{ development_status }}** phase.
+[%- if development_status == "Alpha" %]
+> Frequent changes and instability should be anticipated.
+[%- elif development_status == "Beta" %]
+> Changes and potential instability should be anticipated.
+[%- endif %]
+> Any feedback, comments, suggestions and contributions are welcome!
 
 [![{{ project_name }}](https://{{ page_url() }}/_static/images/logo.svg)](https://{{ repo_url() }})
 

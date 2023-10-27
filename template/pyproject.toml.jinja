@@ -12,7 +12,13 @@ authors = [
   {email = "{{ author_email }}", name = "{{ author_name }}"},
 ]
 classifiers = [
+[%- if development_status == "Alpha" %]
+  "Development Status :: 3 - Alpha",
+[%- elif development_status == "Beta" %]
   "Development Status :: 4 - Beta",
+[%- elif development_status == "Stable" %]
+  "Development Status :: 5 - Production/Stable",
+[%- endif %]
   "License :: OSI Approved :: {{ copyright_license }}",
   "Operating System :: OS Independent",
 [%- if version_between("3.10", min_py, max_py) %]
