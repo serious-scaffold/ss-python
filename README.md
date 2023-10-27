@@ -18,7 +18,8 @@ A development-focused Python project template with various integrations, configu
 [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/serious-scaffold-python/_static/badges/logo.json)](https://serious-scaffold.github.io/serious-scaffold-python)
 
 > [!WARNING]
-> _Serious Scaffold Python_ is in the **Alpha** phase. Frequent changes and instability should be anticipated.
+> _Serious Scaffold Python_ is in the **Alpha** phase.
+> Frequent changes and instability should be anticipated.
 > Any feedback, comments, suggestions and contributions are welcome!
 
 [![Serious Scaffold Python](https://serious-scaffold.github.io/serious-scaffold-python/_static/images/logo.svg)](https://github.com/serious-scaffold/serious-scaffold-python)
