@@ -4,13 +4,13 @@ Using structured commit messages, we can enhance the readability of our project 
 
 ## Commit Message Pattern
 
-```bash
+```text
 <type>(<optional scope>): <description>
 ```
 
 Examples:
 
-```bash
+```text
 build(requirements): bump the prod group with 9 updates.
 docs: Add docs for commit convention.
 chore: remove deprecated key in ruff config.
@@ -54,7 +54,7 @@ In this way, individual commit within development branches does not need to stri
 ````{note}
 A CI/CD pipeline checks the titles of pull/merge requests against the following regex pattern:
 
-```bash
+```text
 ^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*
 ```
 ````
