@@ -6,7 +6,7 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 
 from importlib import metadata
 
-# -- Project information -----------------------------------------------------
+# -- Project information ---------------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 author = "huxuan"
@@ -16,7 +16,7 @@ release = metadata.version("serious-scaffold")
 version = ".".join(release.split(".")[:2])
 
 
-# -- General configuration ---------------------------------------------------
+# -- General configuration -------------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
@@ -42,20 +42,28 @@ html_theme_options = {
     ),
 }
 
-# -- Options for HTML output -------------------------------------------------
+# -- Options for HTML output -----------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "furo"
 html_static_path = ["_static"]
 
-# -- Options for autodoc extension  ------------------------------------------
+# -- Options for autodoc extension  ----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html#configuration
 
 autodoc_default_options = {
     "members": None,
 }
 
-# -- Options for autodoc_pydantic extension  ---------------------------------
+# -- Options for autodoc_pydantic extension  -------------------------------------------
 # https://autodoc-pydantic.readthedocs.io/en/stable/users/configuration.html
 
 autodoc_pydantic_settings_show_json = False
+
+# -- Options for myst-parser extension  ------------------------------------------------
+# https://myst-parser.readthedocs.io/en/latest/configuration.html
+
+myst_enable_extensions = [
+    "deflist",
+]
+myst_heading_anchors = 3
