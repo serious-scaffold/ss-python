@@ -90,6 +90,7 @@
     "_message_after_update",
     "project_name",
     "project_description",
+    "development_status",
     "copyright_license",
     "copyright_year",
     "author_name",
