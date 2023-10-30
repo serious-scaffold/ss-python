@@ -42,6 +42,7 @@
     "setuptools",
     "softprops",
     "sphinxcontrib",
+    "titlesonly",
     "toctree",
     "togglebutton",
     "typer",
