@@ -1,6 +1,6 @@
 # Serious Scaffold Python
 
-A development-focused Python project template with various integrations, configurations and modules.
+A Python project template covering the entire development lifecycle with various integrations, configurations and modules.
 
 [![CI](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/ci.yml)
 [![Release](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/serious-scaffold-python/actions/workflows/release.yml)

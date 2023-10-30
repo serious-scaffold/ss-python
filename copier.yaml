@@ -23,7 +23,7 @@ project_name:
   help: 'Enter the name of the project in CamelCase format:'
   type: str
 project_description:
-  default: A development-focused Python project template with various integrations, configurations and modules.
+  default: A Python project template covering the entire development lifecycle with various integrations, configurations and modules.
   help: 'Provide a brief description for the project:'
   type: str
 development_status:
