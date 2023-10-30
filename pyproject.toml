@@ -26,9 +26,10 @@ dynamic = [
   "version",
 ]
 keywords = [
-  "copier template",
-  "entire development lifecycle",
-  "project template",
+  "copier-template",
+  "full-development-lifecycle",
+  "project-template",
+  "serious-scaffold",
 ]
 name = "serious-scaffold"
 readme = "README.md"
