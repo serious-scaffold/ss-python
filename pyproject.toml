@@ -19,15 +19,17 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ]
-description = "A development-focused Python project template with various integrations, configurations and modules."
+description = "A Python project template covering the entire development lifecycle with various integrations, configurations and modules."
 dynamic = [
   "dependencies",
   "optional-dependencies",
   "version",
 ]
 keywords = [
-  "development-focused",
-  "project template",
+  "copier-template",
+  "full-development-lifecycle",
+  "project-template",
+  "serious-scaffold",
 ]
 name = "serious-scaffold"
 readme = "README.md"
