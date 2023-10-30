@@ -5,4 +5,5 @@
 proj
 env
 commit
+release
 ```
