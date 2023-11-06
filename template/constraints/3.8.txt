@@ -8,7 +8,7 @@ black==23.10.1
 build==1.0.3
 certifi==2023.7.22
 cffi==1.16.0
-charset-normalizer==3.3.1
+charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
 coverage==7.3.2
@@ -16,7 +16,7 @@ cryptography==41.0.5
 docutils==0.20.1
 exceptiongroup==1.1.3
 furo==2023.9.10
-git-changelog==2.3.2
+git-changelog==2.4.0
 idna==3.4
 imagesize==1.4.1
 importlib-metadata==6.8.0
@@ -58,7 +58,7 @@ requests==2.31.0
 requests-toolbelt==1.0.0
 rfc3986==2.0.0
 rich==13.6.0
-ruff==0.1.3
+ruff==0.1.4
 SecretStorage==3.3.3
 semver==3.0.2
 setuptools-scm==8.0.4
@@ -79,7 +79,7 @@ sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.5
 toml-sort==0.23.1
 tomli==2.0.1
-tomlkit==0.12.1
+tomlkit==0.12.2
 tornado==6.3.3
 twine==4.0.2
 typer==0.9.0
