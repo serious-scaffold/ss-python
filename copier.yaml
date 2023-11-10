@@ -1,3 +1,4 @@
+_answers_file: ss-python.yaml
 _envops:
   block_end_string: '%]'
   block_start_string: '[%'
@@ -26,14 +27,6 @@ project_description:
   default: A Python project template covering the entire development lifecycle with various integrations, configurations and modules.
   help: 'Provide a brief description for the project:'
   type: str
-development_status:
-  default: Alpha
-  choices:
-    - Alpha
-    - Beta
-    - Production/Stable
-  help: 'Choose the development status:'
-  type: str
 copyright_license:
   default: MIT License
   choices:
@@ -51,17 +44,25 @@ copyright_year:
   default: 2022-{{ "%Y" | strftime }}
   help: Enter the copyright year or range (e.g. "2022-2023").
   type: str
+copyright_holder:
+  default: 'Serious Scaffold'
+  help: Name(s) or organization(s) holding the copyright.
+  type: str
+development_status:
+  default: Alpha
+  choices:
+    - Alpha
+    - Beta
+    - Production/Stable
+  help: 'Choose the development status:'
+  type: str
 author_name:
   default: huxuan
   help: 'Specify the name of the author:'
   type: str
 organization_name:
-  default: Serious Scaffold
+  default: '{{ copyright_holder }}'
   help: 'Provide the name of the organization associated with the project:'
-  type: str
-copyright_holder:
-  default: '{{ organization_name }}'
-  help: Name(s) or organization(s) holding the copyright.
   type: str
 author_email:
   default: |-

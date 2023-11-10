@@ -1,4 +1,5 @@
 # Custom
+/.copier-answers/
 *.swp
 .DS_Store
 .copier-answers.yml
