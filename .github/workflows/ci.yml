@@ -48,9 +48,9 @@ jobs:
         run: |
           find . -maxdepth 1 | grep -vE '(\.|template|includes|\.git|copier\.yaml)$' | xargs -I {} rm -r {}
           copier copy -d repo_host_type=gitlab.com -r HEAD -f . .
-          rm .copier-answers.yml
+          rm -r .copier-answers
           copier copy -r HEAD -f . .
-          rm .copier-answers.yml
+          rm -r .copier-answers
       - run: git diff
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
