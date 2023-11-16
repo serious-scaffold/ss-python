@@ -42,7 +42,7 @@
 
 [![{{ project_name }}](https://{{ page_url() }}/_static/images/logo.svg)](https://{{ repo_url() }})
 
-Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring lint, test and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/serious-scaffold-python) streamlines this process. Powered by [`copier`](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.
+Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring lint, test and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/ss-python) streamlines this process. Powered by [`copier`](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.
 
 [% if repo_host_type == 'github.com' -%]
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/{{ author_name }}).
@@ -84,7 +84,7 @@ pipx install pre-commit
 1. Generate the project.
 
    ```bash
-   copier copy gh:serious-scaffold/serious-scaffold-python /path/to/project
+   copier copy gh:serious-scaffold/ss-python /path/to/project
    ```
 
 2. Navigate to the project directory and initialize a git repository.
@@ -104,7 +104,7 @@ pipx install pre-commit
 
    ```bash
    git add .
-   git commit -m "Initialize from serious-scaffold-python."
+   git commit -m "Initialize from serious-scaffold."
    ```
 
 5. That's it! Feel free to focus on the coding within `src` folder.

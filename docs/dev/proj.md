@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-[`copier`](https://copier.readthedocs.io/) serves as a key tool in `serious-scaffold-python`, differentiating it from other project templates. The installation can be done with the following command.
+[`copier`](https://copier.readthedocs.io/) serves as a key tool in `serious-scaffold`, differentiating it from other project templates. The installation can be done with the following command.
 
 ```{note}
 Using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
@@ -33,7 +33,7 @@ pipx install copier
     ```
 
     ```bash
-    copier copy gh:serious-scaffold/serious-scaffold-python .
+    copier copy gh:serious-scaffold/ss-python .
     ```
 
 1. Set up the development environment.
@@ -46,7 +46,7 @@ pipx install copier
 
     ```bash
     git add .
-    git commit -m "chore: Initialize from serious-scaffold-python."
+    git commit -m "chore: Initialize from ss-python."
     SKIP=no-commit-to-branch git push
     ```
 

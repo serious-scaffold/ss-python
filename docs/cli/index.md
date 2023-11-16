@@ -1,7 +1,7 @@
 # CLI Reference
 
 ```{eval-rst}
-.. click:: serious_scaffold.cli:typer_click_object
-  :prog: serious-scaffold-cli
+.. click:: ss_python.cli:typer_click_object
+  :prog: ss-python-cli
   :nested: full
 ```

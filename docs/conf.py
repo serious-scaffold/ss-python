@@ -12,7 +12,7 @@ from importlib import metadata
 author = "huxuan"
 copyright = "2023, huxuan"  # noqa: A001
 project = "Serious Scaffold Python"
-release = metadata.version("serious-scaffold")
+release = metadata.version("ss-python")
 version = ".".join(release.split(".")[:2])
 
 
