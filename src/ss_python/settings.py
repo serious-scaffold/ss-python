@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     """Default logging level for the project."""
 
     model_config = SettingsConfigDict(
-        env_prefix="SERIOUS_SCAFFOLD_",
+        env_prefix="SS_PYTHON_",
     )
 
 

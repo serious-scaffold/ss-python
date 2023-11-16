@@ -1,5 +1,5 @@
-# serious_scaffold.settings
+# ss_python.settings
 
 ```{eval-rst}
-.. automodule:: serious_scaffold.settings
+.. automodule:: ss_python.settings
 ```

@@ -100,11 +100,21 @@ repo_namespace:
   help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
   type: str
 repo_name:
-  default: '{{ project_name|lower|replace(" ", "-") }}'
+  default: |-
+    [% if project_name == 'Serious Scaffold Python' -%]
+      ss-python
+    [%- else -%]
+      {{ project_name|lower|replace(" ", "-") }}
+    [%- endif %]
   help: 'Provide a name for the repository:'
   type: str
 package_name:
-  default: '{{ repo_name|regex_replace("-python$", "") }}'
+  default: |-
+    [% if project_name == 'Serious Scaffold Python' -%]
+      {{ repo_name }}
+    [%- else -%]
+      {{ repo_name|regex_replace("-python$", "") }}
+    [%- endif %]
   help: 'Specify the name of the distributable package for the project (often used in "pip install <package_name>"):'
   type: str
 module_name:

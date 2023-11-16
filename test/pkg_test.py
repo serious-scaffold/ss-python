@@ -1,8 +1,8 @@
 """Test for pkg."""
 
-import serious_scaffold
+import ss_python
 
 
 def test_pkg() -> None:
     """Test for pkg."""
-    assert serious_scaffold.__package__ == "serious_scaffold"
+    assert ss_python.__package__ == "ss_python"

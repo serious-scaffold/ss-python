@@ -31,16 +31,16 @@ keywords = [
   "project-template",
   "serious-scaffold",
 ]
-name = "serious-scaffold"
+name = "ss-python"
 readme = "README.md"
 requires-python = ">=3.8"
 
 [project.scripts]
-serious-scaffold-cli = "serious_scaffold.cli:app"
+ss-python-cli = "ss_python.cli:app"
 
 [project.urls]
-homepage = "https://github.com/serious-scaffold/serious-scaffold-python/"
-issue = "https://github.com/serious-scaffold/serious-scaffold-python/issues"
+homepage = "https://github.com/serious-scaffold/ss-python/"
+issue = "https://github.com/serious-scaffold/ss-python/issues"
 
 [tool.black]
 force-exclude = '''
@@ -54,7 +54,7 @@ fail_under = 100
 
 [tool.coverage.run]
 source = [
-  "serious_scaffold",
+  "ss_python",
 ]
 
 [tool.isort]

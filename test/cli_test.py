@@ -1,7 +1,7 @@
 """Test for cli."""
 from typer.testing import CliRunner
 
-from serious_scaffold.cli import app
+from ss_python.cli import app
 
 runner = CliRunner()
 
