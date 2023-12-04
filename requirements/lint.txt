@@ -1,6 +1,4 @@
 # Requirements for lint.
-black
-isort
 mypy
 ruff
 toml-sort

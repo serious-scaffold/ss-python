@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev constraints black isort mypy ruff toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev constraints mypy ruff toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables
@@ -71,14 +71,6 @@ constraints: deepclean
 # Lint and pre-commit
 ########################################################################################
 
-# Check lint with black.
-black:
-	$(PIPRUN) python -m black --check .
-
-# Check lint with isort.
-isort:
-	$(PIPRUN) python -m isort --check .
-
 # Check lint with mypy.
 mypy:
 	$(PIPRUN) python -m mypy .
@@ -92,7 +84,7 @@ toml-sort:
 	$(PIPRUN) toml-sort --check pyproject.toml
 
 # Check lint with all linters.
-lint: black isort mypy ruff toml-sort
+lint: mypy ruff toml-sort
 
 # Run pre-commit with autofix against all files.
 pre-commit:

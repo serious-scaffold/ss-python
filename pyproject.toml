@@ -42,13 +42,6 @@ ss-python-cli = "ss_python.cli:app"
 homepage = "https://github.com/serious-scaffold/ss-python/"
 issue = "https://github.com/serious-scaffold/ss-python/issues"
 
-[tool.black]
-force-exclude = '''
-(
-  template/.*
-)
-'''
-
 [tool.coverage.report]
 fail_under = 100
 
@@ -56,13 +49,6 @@ fail_under = 100
 source = [
   "ss_python",
 ]
-
-[tool.isort]
-color_output = true
-extend_skip = [
-  "template",
-]
-profile = "black"
 
 [tool.mypy]
 check_untyped_defs = true
