@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev constraints mypy ruff toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev constraints mypy ruff ruff-format toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables

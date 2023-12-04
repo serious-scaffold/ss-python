@@ -95,7 +95,6 @@ select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"docs/conf.py" = ["INP001"]
 "test/*" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
