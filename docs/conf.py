@@ -10,7 +10,7 @@ from importlib import metadata
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 author = "huxuan"
-copyright = "2023, huxuan"  # noqa: A001
+copyright = "2023, huxuan"
 project = "Serious Scaffold Python"
 release = metadata.version("ss-python")
 version = ".".join(release.split(".")[:2])

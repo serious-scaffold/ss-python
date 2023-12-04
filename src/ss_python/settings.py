@@ -16,11 +16,7 @@ class GlobalSettings(BaseSettings):
 class Settings(BaseSettings):
     """Project specific settings."""
 
-    # NOTE(huxuan): Pydantic cannot leverage future annotations at runtime prior to
-    # Python 3.10, so `from __future__ import annotations` cannot be used here, and the
-    # lint error need to be ignored unless the minimal Python version >= 3.10.
-    # Reference: https://github.com/pydantic/pydantic/issues/3300#issuecomment-1034007897
-    logging_level: Optional[str] = getLevelName(logging.INFO)  # noqa: FA100
+    logging_level: Optional[str] = getLevelName(logging.INFO)
     """Default logging level for the project."""
 
     model_config = SettingsConfigDict(
