@@ -6,12 +6,12 @@
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[python]": {
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll.ruff": true,
       "source.organizeImports.ruff": true
     },
-    "editor.defaultFormatter": "charliermarsh.ruff"
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
   },
   "[yaml]": {
     "editor.defaultFormatter": "PascalReitermann93.vscode-yaml-sort"
