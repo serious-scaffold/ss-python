@@ -1,11 +1,13 @@
 repos:
-  - hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
       - id: check-added-large-files
       - id: check-docstring-first
       - id: check-json
-      - args:
+      - id: check-merge-conflict
+        args:
           - '--assume-in-merge'
-        id: check-merge-conflict
       - id: check-toml
       - id: check-xml
       - id: check-yaml
@@ -13,13 +15,14 @@ repos:
       - id: forbid-new-submodules
       - id: mixed-line-ending
       - id: name-tests-test
-      - stages:
+      - id: no-commit-to-branch
+        stages:
           - push
-        id: no-commit-to-branch
-      - args:
+      - id: pretty-format-json
+        args:
           - '--autofix'
-        id: pretty-format-json
-      - args:
+      - id: requirements-txt-fixer
+        args:
           - constraints/3.8.txt
           - constraints/3.9.txt
           - constraints/3.10.txt
@@ -30,46 +33,44 @@ repos:
           - requirements/lint.txt
           - requirements/package.txt
           - requirements/test.txt
-        id: requirements-txt-fixer
-      - files: .pre-commit-config.yaml
-        id: sort-simple-yaml
+      - id: sort-simple-yaml
+        files: .pre-commit-config.yaml
       - id: trailing-whitespace
-    repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
-  - hooks:
-      - entry: make mypy
-        id: mypy
-        language: system
+  - repo: local
+    hooks:
+      - id: mypy
         name: mypy
-        pass_filenames: false
-        require_serial: true
-        types:
-          - python
-      - entry: pipenv run python -m ruff check --force-exclude
-        id: ruff
+        entry: pipenv run python -m mypy
         language: system
+        exclude: ^template/.*
+        types_or:
+          - python
+          - pyi
+        require_serial: true
+      - id: ruff
         name: ruff
-        require_serial: true
+        entry: pipenv run python -m ruff check --force-exclude
+        language: system
         types_or:
           - python
           - pyi
-      - entry: pipenv run python -m ruff format --check --force-exclude
-        id: ruff-format
-        language: system
+        require_serial: true
+      - id: ruff-format
         name: ruff-format
-        require_serial: true
+        entry: pipenv run python -m ruff format --force-exclude
+        language: system
         types_or:
           - python
           - pyi
-      - entry: pipenv run toml-sort
-        id: toml-sort
-        language: system
+        require_serial: true
+      - id: toml-sort
         name: toml-sort
+        entry: pipenv run toml-sort
+        language: system
         types:
           - toml
-      - entry: found Copier update rejection files; review them and remove them
-        files: \.rej$
-        id: forbidden-files
-        language: fail
+      - id: forbidden-files
         name: forbidden files
-    repo: local
+        entry: found Copier update rejection files; review them and remove them
+        language: fail
+        files: \.rej$
