@@ -48,21 +48,6 @@ repos:
     repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
   - hooks:
-      - entry: pipenv run python -m black
-        id: black
-        language: system
-        name: black
-        types:
-          - python
-      - entry: pipenv run python -m isort --filter-files
-        id: isort
-        language: system
-        name: isort
-        require_serial: true
-        types_or:
-          - cython
-          - pyi
-          - python
       - entry: make mypy
         id: mypy
         language: system
@@ -71,12 +56,22 @@ repos:
         require_serial: true
         types:
           - python
-      - entry: pipenv run python -m ruff --force-exclude
+      - entry: pipenv run python -m ruff check --force-exclude
         id: ruff
         language: system
         name: ruff
-        types:
+        require_serial: true
+        types_or:
           - python
+          - pyi
+      - entry: pipenv run python -m ruff format --check --force-exclude
+        id: ruff-format
+        language: system
+        name: ruff-format
+        require_serial: true
+        types_or:
+          - python
+          - pyi
       - entry: pipenv run toml-sort
         id: toml-sort
         language: system

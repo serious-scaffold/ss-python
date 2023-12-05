@@ -7,9 +7,11 @@
   },
   "[python]": {
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.fixAll.ruff": true,
+      "source.organizeImports.ruff": true
     },
-    "editor.defaultFormatter": "ms-python.black-formatter"
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true
   },
   "[yaml]": {
     "editor.defaultFormatter": "PascalReitermann93.vscode-yaml-sort"
@@ -27,7 +29,6 @@
     "genindex",
     "huxuan",
     "interruptible",
-    "isort",
     "JPKXI",
     "maxdepth",
     "modindex",
