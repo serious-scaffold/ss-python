@@ -12,7 +12,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up Python {{ '${{ matrix.python-version }}' }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           cache: pip
           python-version: {{ '${{ matrix.python-version }}' }}
@@ -49,7 +49,7 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           cache: pip
           python-version: '{{ default_py }}'
@@ -82,7 +82,7 @@ jobs:
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
       - name: Set up Python with multiple versions.
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           cache: pip
           python-version: |
