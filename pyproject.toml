@@ -40,7 +40,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 
 [project.optional-dependencies]
-doc = [
+docs = [
   "Sphinx",
   "autodoc-pydantic",
   "coverage",
