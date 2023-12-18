@@ -9,8 +9,8 @@ Using `pipx` for management is recommended and you can find pipx's installation 
 ```
 
 ```bash
-# Pipenv: Virtual environment and package manager for Python.
-pipx install pipenv
+# PDM: A modern Python package and dependency manager supporting the latest PEP standards.
+pipx install pdm
 # Pre-commit: Automates Git hooks for code quality checks.
 pipx install pre-commit
 ```
@@ -29,8 +29,8 @@ make dev
 
 This command will accomplish the following tasks:
 
-- Create a virtual environment if `pipenv` is available. If CI context is detected, the creation will be skipped.
-- Install the project in editable mode with the requirements for documentation, lint, package and test.
+- Create a virtual environment if `pdm` is available. If CI context is detected, the creation will be skipped.
+- Install the project in editable mode with the dependencies for documentation, lint, package and test.
 - Install Git hooks for various kinds of check at `pre-push` stage.
 
 ## Environment Cleanup
@@ -67,7 +67,7 @@ git clean -dfx
 
 ## Partial Environment Setup
 
-In certain cases, it is unnecessary to install all requirements as well as the pre-commit hook.
+In certain cases, it is unnecessary to install all dependencies as well as the pre-commit hook.
 Then we can benefit from the following partial environment setup, for example, it will reduce the time of running corresponding CI/CD.
 
 ### Minimal installation
@@ -117,7 +117,7 @@ make dev-test
 
 ````{admonition} Install a combination of the optional dependencies
 :class: tip, dropdown
-For example, to install requirements for `docs` and `lint`, we can use the following command.
+For example, to install dependencies for `docs` and `lint`, we can use the following command.
 
 ```bash
 make dev-docs,lint

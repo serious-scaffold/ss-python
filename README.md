@@ -29,8 +29,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 ## 🛠️ Features
 
 - Project setup and template update with [`copier`](https://copier.readthedocs.io/).
-- Manage [virtual environments](https://docs.python.org/3/glossary.html#term-virtual-environment) for development with [`pipenv`](https://pipenv.pypa.io/).
-- Manage dependency with categorized [requirements](https://pip.pypa.io/en/stable/user_guide/#requirements-files) and [constraints](https://pip.pypa.io/en/stable/user_guide/#constraints-files).
+- Manage dependencies and virtual environments with [`pdm`](https://pdm-project.org/).
 - Automate Git hooks with [pre-commit hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters.
 - Lint with [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
 - Test with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
@@ -50,8 +49,8 @@ Certain system-level Python applications are needed and it is recommended to use
 ```bash
 # Copier: Template rendering for projects.
 pipx install copier
-# Pipenv: Virtual environment and package manager for Python.
-pipx install pipenv
+# PDM: A modern Python package and dependency manager supporting the latest PEP standards.
+pipx install pdm
 # Pre-commit: Automates Git hooks for code quality checks.
 pipx install pre-commit
 ```
