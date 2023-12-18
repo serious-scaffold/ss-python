@@ -62,7 +62,7 @@ jobs:
       - name: Remove changelog to avoid file already exists error
         run: rm -v docs/changelog.md
       - name: Download changelog
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: changelog
           path: docs/
