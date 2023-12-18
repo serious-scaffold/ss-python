@@ -6,7 +6,8 @@ build:
     post_checkout:
       - git fetch --unshallow || true
     post_install:
-      - make dev-docs
+      - python -m pip install --upgrade --no-cache-dir pdm
+      - pdm install --global --group docs
     pre_build:
       - make changelog
   os: ubuntu-22.04
