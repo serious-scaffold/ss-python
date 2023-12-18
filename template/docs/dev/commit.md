@@ -11,7 +11,7 @@ Using structured commit messages, we can enhance the readability of our project 
 Examples:
 
 ```text
-build(requirements): bump the prod group with 9 updates.
+build(dependencies): bump the prod group with 9 updates.
 docs: Add docs for commit convention.
 chore: remove deprecated key in ruff config.
 ```

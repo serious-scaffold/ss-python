@@ -1,20 +1,19 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+name: CI
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
 jobs:
   ci:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Python {{ '${{ matrix.python-version }}' }}
-        uses: actions/setup-python@v5
+      - uses: pdm-project/setup-pdm@v3
         with:
-          cache: pip
+          cache: true
           python-version: {{ '${{ matrix.python-version }}' }}
       - run: env | sort
       - run: make dev
@@ -40,7 +39,6 @@ jobs:
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
-    needs: dependabot
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,10 +46,9 @@ jobs:
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: pdm-project/setup-pdm@v3
         with:
-          cache: pip
+          cache: true
           python-version: '{{ default_py }}'
       - run: env | sort
       - name: Install copier for template rendering using pipx
@@ -67,70 +64,6 @@ jobs:
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
 [%- endif %]
-  dependabot:
-    if: {{ '${{ github.actor == \'dependabot[bot]\' && startsWith(github.head_ref, \'dependabot/pip/\') }}' }}
-    permissions:
-      contents: write
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: {{ '${{ github.head_ref }}' }}
-      - name: Set up Git
-        run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-      - name: Set up Python with multiple versions.
-        uses: actions/setup-python@v5
-        with:
-          cache: pip
-          python-version: |
-[%- if version_between("3.8", min_py, max_py) %]
-            3.8
-[%- endif %]
-[%- if version_between("3.9", min_py, max_py) %]
-            3.9
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
-            3.10
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
-            3.11
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
-            3.12
-[%- endif %]
-      - name: Install pipenv using pipx
-        run: pipx install pipenv
-      - name: Generate constraints for all supported Python versions
-        run: |
-[%- if version_between("3.8", min_py, max_py) %]
-          CI= PYTHON_VERSION=3.8 make constraints
-[%- endif %]
-[%- if version_between("3.9", min_py, max_py) %]
-          CI= PYTHON_VERSION=3.9 make constraints
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
-          CI= PYTHON_VERSION=3.10 make constraints
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
-          CI= PYTHON_VERSION=3.11 make constraints
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
-          CI= PYTHON_VERSION=3.12 make constraints
-[%- endif %]
-[%- if project_name == "Serious Scaffold Python" %]
-      - name: Sync template
-        run: cp -v constraints/* template/constraints/
-[%- endif %]
-      - name: Push changes if applicable
-        run: |
-          if [[ -n `git status --porcelain` ]]; then
-            git commit -a -m "build: Update constraints for dependabot."
-            git push
-          fi
-name: CI
 on:
   pull_request:
     types:

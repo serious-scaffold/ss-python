@@ -4,6 +4,9 @@
 [%- if project_name == "Serious Scaffold Python" %]
 .copier-answers.yml
 [%- endif %]
+# TODO: Move `.pdm-python` out of custom section when upstream pull request merged.
+# Reference: https://github.com/github/gitignore/pull/4279
+.pdm-python
 Pipfile
 public
 release-notes.md

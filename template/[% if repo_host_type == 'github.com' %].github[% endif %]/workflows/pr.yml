@@ -1,3 +1,4 @@
+name: Lint pull request title
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -12,7 +13,6 @@ jobs:
             echo 'Please refer to "https://www.conventionalcommits.org/"'
             exit 1
           fi
-name: Lint pull request title
 on:
   pull_request:
     types:
