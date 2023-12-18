@@ -32,7 +32,7 @@ jobs:
       - run: make dev-docs
       - run: make docs
       - name: Upload changelog
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: changelog
           path: docs/changelog.md
