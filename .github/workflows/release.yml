@@ -11,7 +11,7 @@ jobs:
           python-version: '3.12'
       - run: env | sort
       - env:
-          PDM_PUBLISH_USERNAME: ${{ secrets.PDM_PUBLISH_PASSWORD }}
+          PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}
           PDM_PUBLISH_USERNAME: ${{ vars.PDM_PUBLISH_USERNAME != '' && vars.PDM_PUBLISH_USERNAME || '__token__' }}
         run: make publish
   pages-build:

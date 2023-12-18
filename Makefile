@@ -25,9 +25,11 @@ clean:
 		.copier-answers.yml \
 		.coverage \
 		.mypy_cache \
+		.pdm-python \
 		.pytest_cache \
 		.ruff_cache \
 		Pipfile* \
+		__pypackages__ \
 		build \
 		coverage.xml \
 		dist \
