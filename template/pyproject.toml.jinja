@@ -1,11 +1,9 @@
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
-build-backend = "setuptools.build_meta"
+build-backend = "pdm.backend"
 requires = [
-  "setuptools",
-  "setuptools-scm",
-  "wheel",
+  "pdm-backend",
 ]
 
 [project]
@@ -137,6 +135,9 @@ test = [
   "pytest",
 ]
 
+[tool.pdm.version]
+source = "scm"
+
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
 log_cli = true
@@ -173,8 +174,6 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.setuptools_scm]
 
 [tool.tomlsort]
 all = true
