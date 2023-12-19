@@ -38,6 +38,7 @@
     "pipx",
     "pycache",
     "pydantic",
+    "pyproject",
     "pytest",
     "Quickstart",
     "setuptools",

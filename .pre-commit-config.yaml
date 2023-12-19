@@ -1,3 +1,10 @@
+default_install_hook_types:
+  - post-checkout
+  - post-merge
+  - pre-push
+default_stages:
+  - manual
+  - pre-push
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -17,7 +24,7 @@ repos:
       - id: name-tests-test
       - id: no-commit-to-branch
         stages:
-          - push
+          - pre-push
       - id: pretty-format-json
         args:
           - '--autofix'
@@ -26,6 +33,21 @@ repos:
       - id: trailing-whitespace
   - repo: local
     hooks:
+      - id: pdm-sync
+        name: pdm-sync
+        entry: pdm sync
+        language: python
+        stages:
+          - post-checkout
+          - post-merge
+        always_run: true
+        pass_filenames: false
+      - id: pdm-lock
+        name: pdm-lock
+        entry: pdm lock
+        language: python
+        files: ^pyproject.toml$
+        pass_filenames: false
       - id: mypy
         name: mypy
         entry: pdm run python -m mypy
