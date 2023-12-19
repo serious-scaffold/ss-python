@@ -45,7 +45,7 @@ clean:
 
 # Remove pre-commit hook, virtual environment alongside itermediate files.
 deepclean: clean
-	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall --hook-type pre-push; fi
+	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall; fi
 	if command -v pdm >/dev/null 2>&1 && pdm venv list | grep -q in-project ; then pdm venv remove --yes in-project >/dev/null 2>&1; fi
 
 # Install the package in editable mode.
@@ -60,7 +60,7 @@ dev-%:
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
 	pdm install $(PDM_GLOBAL)
-	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
+	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 ########################################################################################
 # Lint and pre-commit
@@ -87,7 +87,7 @@ lint: mypy ruff ruff-format toml-sort
 
 # Run pre-commit with autofix against all files.
 pre-commit:
-	pre-commit run --all-files
+	pre-commit run --all-files --hook-stage manual
 
 ########################################################################################
 # Test
