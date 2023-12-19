@@ -51,7 +51,7 @@ install:
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	pdm install $(PDM_GLOBAL) --group $*
+	pdm install $(PDM_GLOBAL) --dev --group $*
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.

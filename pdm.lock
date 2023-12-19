@@ -2,10 +2,10 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "lint", "test", "docs"]
+groups = ["default", "docs", "lint", "test"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:936c811afdcd32ba7dbddac0a70ef9b5d707328ef6d1c4ab039cf5dadd7d3c0d"
+content_hash = "sha256:9bc8d0735145014ed96e6d0bdd83145c57c6ed34ee4d3058e75b46112c2b7dd0"
 
 [[package]]
 name = "alabaster"

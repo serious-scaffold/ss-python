@@ -39,30 +39,6 @@ name = "ss-python"
 readme = "README.md"
 requires-python = ">=3.8"
 
-[project.optional-dependencies]
-docs = [
-  "Sphinx",
-  "autodoc-pydantic",
-  "coverage",
-  "furo",
-  "git-changelog",
-  "mypy[reports]",
-  "myst-parser",
-  "pytest",
-  "sphinx-autobuild",
-  "sphinx-click",
-  "sphinx-togglebutton",
-]
-lint = [
-  "mypy",
-  "ruff",
-  "toml-sort",
-]
-test = [
-  "coverage",
-  "pytest",
-]
-
 [project.scripts]
 ss-python-cli = "ss_python.cli:app"
 
@@ -96,6 +72,30 @@ warn_unused_ignores = true
 
 [tool.pdm]
 package-type = "library"
+
+[tool.pdm.dev-dependencies]
+docs = [
+  "Sphinx",
+  "autodoc-pydantic",
+  "coverage",
+  "furo",
+  "git-changelog",
+  "mypy[reports]",
+  "myst-parser",
+  "pytest",
+  "sphinx-autobuild",
+  "sphinx-click",
+  "sphinx-togglebutton",
+]
+lint = [
+  "mypy",
+  "ruff",
+  "toml-sort",
+]
+test = [
+  "coverage",
+  "pytest",
+]
 
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
