@@ -1,10 +1,9 @@
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
-build-backend = "setuptools.build_meta"
+build-backend = "pdm.backend"
 requires = [
-  "setuptools",
-  "setuptools-scm",
+  "pdm-backend",
 ]
 
 [project]
@@ -37,10 +36,12 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
 [%- endif %]
 ]
+dependencies = [
+  "pydantic-settings",
+  "typer[all]",
+]
 description = "{{ project_description }}"
 dynamic = [
-  "dependencies",
-  "optional-dependencies",
   "version",
 ]
 keywords = [
@@ -49,6 +50,23 @@ keywords = [
   "project-template",
   "serious-scaffold",
 ]
+[%- if copyright_license == "Apache Software License" %]
+license = {text = "Apache-2.0"}
+[%- elif copyright_license == "Boost Software License 1.0 (BSL-1.0)" %]
+license = {text = "BSL-1.0"}
+[%- elif copyright_license == "GNU Affero General Public License v3" %]
+license = {text = "AGPLv3"}
+[%- elif copyright_license == "GNU General Public License v3 (GPLv3)" %]
+license = {text = "GPLv3"}
+[%- elif copyright_license == "GNU Lesser General Public License v3 (LGPLv3)" %]
+license = {text = "LGPLv3"}
+[%- elif copyright_license == "MIT License" %]
+license = {text = "MIT"}
+[%- elif copyright_license == "Mozilla Public License 2.0 (MPL 2.0)" %]
+license = {text = "MPL-2.0"}
+[%- elif copyright_license == "The Unlicense (Unlicense)" %]
+license = {text = "Unlicense"}
+[%- endif %]
 name = "{{ package_name }}"
 readme = "README.md"
 requires-python = ">={{ min_py }}"
@@ -79,15 +97,46 @@ disallow_untyped_defs = true
 enable_error_code = [
   "ignore-without-code",
 ]
-[%- if project_name == "Serious Scaffold Python" %]
 exclude = [
+  "build",
+[%- if project_name == "Serious Scaffold Python" %]
   "template",
-]
 [%- endif %]
+]
 no_implicit_optional = true
 show_error_codes = true
 warn_return_any = true
 warn_unused_ignores = true
+
+[tool.pdm]
+package-type = "library"
+
+[tool.pdm.dev-dependencies]
+docs = [
+  "Sphinx",
+  "autodoc-pydantic",
+  "coverage",
+  "furo",
+  "git-changelog",
+  "mypy[reports]",
+  "myst-parser",
+  "pytest",
+  "sphinx-autobuild",
+  "sphinx-click",
+  "sphinx-togglebutton",
+]
+lint = [
+  "mypy",
+  "ruff",
+  "toml-sort",
+]
+test = [
+  "coverage",
+  "pytest",
+]
+
+[tool.pdm.version]
+source = "scm"
 
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
@@ -125,17 +174,6 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-
-[tool.setuptools.dynamic.optional-dependencies]
-docs = {file = ["requirements/docs.txt"]}
-lint = {file = ["requirements/lint.txt"]}
-package = {file = ["requirements/package.txt"]}
-test = {file = ["requirements/test.txt"]}
-
-[tool.setuptools_scm]
 
 [tool.tomlsort]
 all = true

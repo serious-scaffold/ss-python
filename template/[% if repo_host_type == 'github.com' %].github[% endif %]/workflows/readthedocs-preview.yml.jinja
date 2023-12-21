@@ -1,3 +1,4 @@
+name: Read the Docs Pull Request Preview
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
@@ -8,7 +9,6 @@ jobs:
       - uses: readthedocs/actions/preview@v1
         with:
           project-slug: {{ repo_name }}
-name: Read the Docs Pull Request Preview
 on:
   pull_request_target:
     types:

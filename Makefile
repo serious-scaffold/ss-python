@@ -1,17 +1,11 @@
-.PHONY: clean deepclean install dev constraints mypy ruff ruff-format toml-sort lint pre-commit test-run test build upload docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
 
 ########################################################################################
 # Variables
 ########################################################################################
 
-# Determine whether to invoke pipenv based on CI environment variable and the availability of pipenv.
-PIPRUN := $(shell [ "$$CI" != "true" ] && command -v pipenv > /dev/null 2>&1 && echo "pipenv run")
-
-# Get the Python version in `major.minor` format, using the environment variable or the virtual environment if exists.
-PYTHON_VERSION := $(shell echo $${PYTHON_VERSION:-$$(python -V 2>&1 | cut -d ' ' -f 2)} | cut -d '.' -f 1,2)
-
-# Determine the constraints file based on the Python version.
-CONSTRAINTS_FILE := constraints/$(PYTHON_VERSION).txt
+# Global option for pdm, when in CI or readthedocs environment, no need to use venv.
+PDM_GLOBAL := $(shell [ "$$CI" = "true" ] || [ "$$READTHEDOCS" = "True" ] && echo "--global --project .")
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
@@ -31,9 +25,12 @@ clean:
 		.copier-answers.yml \
 		.coverage \
 		.mypy_cache \
+		.pdm-python \
 		.pytest_cache \
 		.ruff_cache \
 		Pipfile* \
+		__pypackages__ \
+		build \
 		coverage.xml \
 		dist \
 		release-notes.md
@@ -45,27 +42,22 @@ clean:
 
 # Remove pre-commit hook, virtual environment alongside itermediate files.
 deepclean: clean
-	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall --hook-type pre-push; fi
-	if command -v pipenv >/dev/null 2>&1 && pipenv --venv >/dev/null 2>&1; then pipenv --rm; fi
+	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall; fi
+	if command -v pdm >/dev/null 2>&1 && pdm venv list | grep -q in-project ; then pdm venv remove --yes in-project >/dev/null 2>&1; fi
 
 # Install the package in editable mode.
 install:
-	$(PIPRUN) pip install -e . -c $(CONSTRAINTS_FILE)
+	pdm install $(PDM_GLOBAL) --prod
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	$(PIPRUN) pip install -e .[$*] -c $(CONSTRAINTS_FILE)
+	pdm install $(PDM_GLOBAL) --dev --group $*
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	$(PIPRUN) pip install -e .[docs,lint,package,test] -c $(CONSTRAINTS_FILE)
-	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install --hook-type pre-push; fi
-
-# Generate constraints for current Python version.
-constraints: deepclean
-	$(PIPRUN) --python $(PYTHON_VERSION) pip install --upgrade -e .[docs,lint,package,test]
-	$(PIPRUN) pip freeze --exclude-editable > $(CONSTRAINTS_FILE)
+	pdm install $(PDM_GLOBAL)
+	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 ########################################################################################
 # Lint and pre-commit
@@ -73,26 +65,26 @@ constraints: deepclean
 
 # Check lint with mypy.
 mypy:
-	$(PIPRUN) python -m mypy .
+	pdm run $(PDM_GLOBAL) python -m mypy .
 
 # Lint with ruff.
 ruff:
-	$(PIPRUN) python -m ruff check .
+	pdm run $(PDM_GLOBAL) python -m ruff check .
 
 # Format with ruff.
 ruff-format:
-	$(PIPRUN) python -m ruff format --check .
+	pdm run $(PDM_GLOBAL) python -m ruff format --check .
 
 # Check lint with toml-sort.
 toml-sort:
-	$(PIPRUN) toml-sort --check pyproject.toml
+	pdm run $(PDM_GLOBAL) toml-sort --check pyproject.toml
 
 # Check lint with all linters.
 lint: mypy ruff ruff-format toml-sort
 
 # Run pre-commit with autofix against all files.
 pre-commit:
-	pre-commit run --all-files
+	pre-commit run --all-files --hook-stage manual
 
 ########################################################################################
 # Test
@@ -100,13 +92,13 @@ pre-commit:
 
 # Clean and run test with coverage.
 test-run:
-	$(PIPRUN) python -m coverage erase
-	$(PIPRUN) python -m coverage run -m pytest
+	pdm run $(PDM_GLOBAL) python -m coverage erase
+	pdm run $(PDM_GLOBAL) python -m coverage run -m pytest
 
 # Generate coverage report for terminal and xml.
 test: test-run
-	$(PIPRUN) python -m coverage report
-	$(PIPRUN) python -m coverage xml
+	pdm run $(PDM_GLOBAL) python -m coverage report
+	pdm run $(PDM_GLOBAL) python -m coverage xml
 
 ########################################################################################
 # Package
@@ -114,11 +106,11 @@ test: test-run
 
 # Build the package.
 build:
-	$(PIPRUN) python -m build
+	pdm build
 
-# Upload the package.
-upload:
-	$(PIPRUN) python -m twine upload dist/*
+# Publish the package.
+publish:
+	pdm publish
 
 ########################################################################################
 # Documentation
@@ -126,7 +118,7 @@ upload:
 
 # Generate documentation with auto build when changes happen.
 docs-autobuild:
-	$(PIPRUN) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
+	pdm run $(PDM_GLOBAL) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
 
@@ -137,24 +129,24 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	$(PIPRUN) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	pdm run $(PDM_GLOBAL) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
 
 # Generate release notes from changelog.
 release-notes:
-	@$(PIPRUN) git-changelog --input $(CHANGELOG_PATH) --release-notes
+	pdm run $(PDM_GLOBAL) git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
 docs-gen:
-	$(PIPRUN) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
+	pdm run $(PDM_GLOBAL) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
 docs-mypy: docs-gen
-	$(PIPRUN) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
+	pdm run $(PDM_GLOBAL) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
 docs-coverage: test-run docs-gen
-	$(PIPRUN) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
-	$(PIPRUN) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
+	pdm run $(PDM_GLOBAL) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
+	pdm run $(PDM_GLOBAL) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
 docs: changelog docs-gen docs-mypy docs-coverage

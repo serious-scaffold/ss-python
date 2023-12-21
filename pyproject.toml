@@ -1,8 +1,7 @@
 [build-system]
-build-backend = "setuptools.build_meta"
+build-backend = "pdm.backend"
 requires = [
-  "setuptools",
-  "setuptools-scm",
+  "pdm-backend",
 ]
 
 [project]
@@ -19,10 +18,12 @@ classifiers = [
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
 ]
+dependencies = [
+  "pydantic-settings",
+  "typer[all]",
+]
 description = "A Python project template covering the entire development lifecycle with various integrations, configurations and modules."
 dynamic = [
-  "dependencies",
-  "optional-dependencies",
   "version",
 ]
 keywords = [
@@ -31,6 +32,7 @@ keywords = [
   "project-template",
   "serious-scaffold",
 ]
+license = {text = "MIT"}
 name = "ss-python"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -58,12 +60,43 @@ enable_error_code = [
   "ignore-without-code",
 ]
 exclude = [
+  "build",
   "template",
 ]
 no_implicit_optional = true
 show_error_codes = true
 warn_return_any = true
 warn_unused_ignores = true
+
+[tool.pdm]
+package-type = "library"
+
+[tool.pdm.dev-dependencies]
+docs = [
+  "Sphinx",
+  "autodoc-pydantic",
+  "coverage",
+  "furo",
+  "git-changelog",
+  "mypy[reports]",
+  "myst-parser",
+  "pytest",
+  "sphinx-autobuild",
+  "sphinx-click",
+  "sphinx-togglebutton",
+]
+lint = [
+  "mypy",
+  "ruff",
+  "toml-sort",
+]
+test = [
+  "coverage",
+  "pytest",
+]
+
+[tool.pdm.version]
+source = "scm"
 
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
@@ -99,17 +132,6 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
-
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
-
-[tool.setuptools.dynamic.optional-dependencies]
-docs = {file = ["requirements/docs.txt"]}
-lint = {file = ["requirements/lint.txt"]}
-package = {file = ["requirements/package.txt"]}
-test = {file = ["requirements/test.txt"]}
-
-[tool.setuptools_scm]
 
 [tool.tomlsort]
 all = true

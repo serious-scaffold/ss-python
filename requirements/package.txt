@@ -1,4 +1,0 @@
-# Requirements for package.
-build
-setuptools-scm
-twine

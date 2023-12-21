@@ -1,4 +1,11 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+default_install_hook_types:
+  - post-checkout
+  - post-merge
+  - pre-push
+default_stages:
+  - manual
+  - pre-push
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -18,40 +25,33 @@ repos:
       - id: name-tests-test
       - id: no-commit-to-branch
         stages:
-          - push
+          - pre-push
       - id: pretty-format-json
         args:
           - '--autofix'
-      - id: requirements-txt-fixer
-        args:
-[%- if version_between("3.8", min_py, max_py) %]
-          - constraints/3.8.txt
-[%- endif %]
-[%- if version_between("3.9", min_py, max_py) %]
-          - constraints/3.9.txt
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
-          - constraints/3.10.txt
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
-          - constraints/3.11.txt
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
-          - constraints/3.12.txt
-[%- endif %]
-          - requirements.txt
-          - requirements/docs.txt
-          - requirements/lint.txt
-          - requirements/package.txt
-          - requirements/test.txt
       - id: sort-simple-yaml
         files: .pre-commit-config.yaml
       - id: trailing-whitespace
   - repo: local
     hooks:
+      - id: pdm-sync
+        name: pdm-sync
+        entry: pdm sync
+        language: python
+        stages:
+          - post-checkout
+          - post-merge
+        always_run: true
+        pass_filenames: false
+      - id: pdm-lock
+        name: pdm-lock
+        entry: pdm lock
+        language: python
+        files: ^pyproject.toml$
+        pass_filenames: false
       - id: mypy
         name: mypy
-        entry: pipenv run python -m mypy
+        entry: pdm run python -m mypy
         language: system
 [%- if project_name == 'Serious Scaffold Python' %]
         exclude: ^template/.*
@@ -62,7 +62,7 @@ repos:
         require_serial: true
       - id: ruff
         name: ruff
-        entry: pipenv run python -m ruff check --force-exclude
+        entry: pdm run python -m ruff check --force-exclude
         language: system
         types_or:
           - python
@@ -70,7 +70,7 @@ repos:
         require_serial: true
       - id: ruff-format
         name: ruff-format
-        entry: pipenv run python -m ruff format --force-exclude
+        entry: pdm run python -m ruff format --force-exclude
         language: system
         types_or:
           - python
@@ -78,7 +78,7 @@ repos:
         require_serial: true
       - id: toml-sort
         name: toml-sort
-        entry: pipenv run toml-sort
+        entry: pdm run toml-sort
         language: system
         types:
           - toml

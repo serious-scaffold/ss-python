@@ -6,6 +6,7 @@ build:
     post_checkout:
       - git fetch --unshallow || true
     post_install:
+      - python -m pip install --upgrade --no-cache-dir pdm
       - make dev-docs
     pre_build:
       - make changelog

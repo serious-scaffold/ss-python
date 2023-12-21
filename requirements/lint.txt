@@ -1,4 +1,0 @@
-# Requirements for lint.
-mypy
-ruff
-toml-sort

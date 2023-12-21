@@ -6,7 +6,7 @@ updates:
     schedule:
       interval: weekly
   - commit-message:
-      prefix: build(requirements)
+      prefix: build(dependencies)
     directory: /
     groups:
       dev:

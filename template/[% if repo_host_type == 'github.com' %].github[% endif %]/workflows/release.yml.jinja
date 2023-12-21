@@ -1,32 +1,28 @@
+name: Release
 jobs:
   package:
     needs: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: pdm-project/setup-pdm@v3
         with:
-          cache: pip
+          cache: true
           python-version: '{{ default_py }}'
       - run: env | sort
-      - run: make dev-package
-      - run: make build
       - env:
-          TWINE_NON_INTERACTIVE: true
-          TWINE_PASSWORD: {{ '${{ secrets.TWINE_PASSWORD }}' }}
-          TWINE_USERNAME: {{ '${{ vars.TWINE_USERNAME != \'\' && vars.TWINE_USERNAME || \'__token__\' }}' }}
-        run: make upload
+          PDM_PUBLISH_PASSWORD: {{ '${{ secrets.PDM_PUBLISH_PASSWORD }}' }}
+          PDM_PUBLISH_USERNAME: {{ '${{ vars.PDM_PUBLISH_USERNAME != \'\' && vars.PDM_PUBLISH_USERNAME || \'__token__\' }}' }}
+        run: make publish
   pages-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: pdm-project/setup-pdm@v3
         with:
-          cache: pip
+          cache: true
           python-version: '{{ default_py }}'
       - run: env | sort
       - run: make dev-docs
@@ -81,7 +77,6 @@ jobs:
         with:
           body_path: release-notes.md
           prerelease: {{ '${{ steps.prerelease.outputs.is_prerelease }}' }}
-name: Release
 on:
   push:
     tags:

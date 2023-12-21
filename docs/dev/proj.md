@@ -62,13 +62,13 @@ Below are key recommended configurations. You can adjust these based on your spe
 1. Allow only maintainers to create tags matching the `v*` pattern, for example, `v1.2.3`.
 1. Ensure Linux-based CI/CD runner(s) are available.
 1. Ensure GitHub/GitLab Pages is enabled and properly configured.
-1. Ensure the following environment variables meet the project's requirements and are accessible during CI/CD process:
-    1. `TWINE_REPOSITORY_URL`: The repository (package index) URL to upload the package to. If not set, it will upload to [the official PyPI](https://pypi.org).
-    1. `TWINE_USERNAME`: The username to authenticate to the repository (package index) as, default to `__token__` which is used for [API token](https://pypi.org/help/#apitoken).
-    1. `TWINE_PASSWORD`: The password to authenticate to the repository (package index) with.
+1. Ensure the following environment variables meet the project's dependencies and are accessible during CI/CD process:
+    1. `PDM_PUBLISH_REPO`: The repository (package index) URL to upload the package to. If not set, it will upload to [the official PyPI](https://pypi.org).
+    1. `PDM_PUBLISH_USERNAME`: The username to authenticate to the repository (package index) as, default to `__token__` which is used for [API token](https://pypi.org/help/#apitoken).
+    1. `PDM_PUBLISH_PASSWORD`: The password to authenticate to the repository (package index) with.
 
     ```{note}
-    Only `TWINE_PASSWORD` is necessary if the package is supposed to upload to [the official PyPI](https://pypi.org) with [API token](https://pypi.org/help/#apitoken).
+    Only `PDM_PUBLISH_PASSWORD` is necessary if the package is supposed to upload to [the official PyPI](https://pypi.org) with [API token](https://pypi.org/help/#apitoken).
     ```
 
 ```{note}
