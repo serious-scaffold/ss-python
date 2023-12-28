@@ -2,8 +2,9 @@
 *.swp
 .DS_Store
 .copier-answers.yml
-# TODO: Move `.pdm-python` out of custom section when upstream pull request merged.
+# TODO: Move `.pdm-build/` and `.pdm-python` out of custom section when upstream pull request merged.
 # Reference: https://github.com/github/gitignore/pull/4279
+.pdm-build/
 .pdm-python
 Pipfile
 public

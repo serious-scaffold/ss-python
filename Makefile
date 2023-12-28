@@ -25,6 +25,7 @@ clean:
 		.copier-answers.yml \
 		.coverage \
 		.mypy_cache \
+		.pdm-build \
 		.pdm-python \
 		.pytest_cache \
 		.ruff_cache \
