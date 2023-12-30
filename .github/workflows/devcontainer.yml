@@ -4,7 +4,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   prebuild:
-    needs: release
     permissions:
       contents: read
       packages: write
