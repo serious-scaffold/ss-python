@@ -18,7 +18,7 @@ devcontainer-prebuild:
     - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
     - |
       devcontainer build \
-        --image-name ${CI_REGISTRY_IMAGE}:prod-py${PYTHON_VERSION} \
+        --image-name ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION} \
         --push true \
         --workspace-folder .devcontainer/prebuild/
   services:

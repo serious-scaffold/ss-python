@@ -3,9 +3,9 @@
         "args": {
             "PYTHON_VERSION": "${localEnv:PYTHON_VERSION}"
         },
-        "cacheFrom": "ghcr.io/serious-scaffold/ss-python:prod-py${localEnv:PYTHON_VERSION}",
+        "cacheFrom": "ghcr.io/serious-scaffold/ss-python:dev-py${localEnv:PYTHON_VERSION}",
         "context": "../../..",
         "dockerfile": "Dockerfile",
-        "target": "prod"
+        "target": "dev"
     }
 }
