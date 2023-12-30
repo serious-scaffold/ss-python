@@ -1,9 +1,9 @@
-name: DevContainer
+name: DevContainer Prebuild
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
-  prebuild:
+  devcontainer_prebuild:
     permissions:
       contents: read
       packages: write
@@ -34,12 +34,6 @@ jobs:
           - '3.11'
           - '3.12'
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-    paths:
-      - .devcontainer/build/**
   push:
     branches:
       - main

@@ -1,10 +1,10 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
-name: DevContainer
+name: DevContainer Prebuild
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
 jobs:
-  prebuild:
+  devcontainer_prebuild:
     permissions:
       contents: read
       packages: write
