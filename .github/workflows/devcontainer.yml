@@ -39,7 +39,7 @@ on:
       - opened
       - synchronize
     paths:
-      - .devcontainer/prebuild/**
+      - .devcontainer/build/**
   push:
     branches:
       - main
