@@ -1,6 +1,3 @@
-# Reference:
-# - https://pdm-project.org/latest/usage/advanced/#use-pdm-in-a-multi-stage-dockerfile
-
 ARG PYTHON_VERSION=3.12
 
 ########################################################################################
