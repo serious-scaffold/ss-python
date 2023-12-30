@@ -34,10 +34,6 @@ jobs:
           - '3.11'
           - '3.12'
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
   push:
     branches:
       - main
