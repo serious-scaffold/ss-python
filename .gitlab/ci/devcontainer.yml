@@ -3,6 +3,7 @@ devcontainer-prebuild:
   interruptible: true
   only:
     - main
+    - merge_requests
   parallel:
     matrix:
       - PYTHON_VERSION:
