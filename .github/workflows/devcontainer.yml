@@ -37,3 +37,5 @@ on:
   push:
     branches:
       - main
+    paths:
+      - .devcontainer/prebuild/**
