@@ -3,5 +3,5 @@ stages:
   - ci
   - release
 default:
-  image: ${CI_REGISTRY_IMAGE}-dev:3.12
+  image: ${CI_REGISTRY_IMAGE}:dev-py3.12
 include: .gitlab/ci/**.yml
