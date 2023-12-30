@@ -1,0 +1,28 @@
+devcontainer-prebuild:
+  image: docker:latest
+  interruptible: true
+  only:
+    - main
+  parallel:
+    matrix:
+      - PYTHON_VERSION:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
+  script:
+    - apk add --update nodejs npm python3 make g++
+    - npm install -g @devcontainers/cli
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+    - |
+      devcontainer build \
+        --image-name ${CI_REGISTRY_IMAGE}:${PYTHON_VERSION} \
+        --push true \
+        --workspace-folder .devcontainer/prebuild/
+  services:
+    - docker:dind
+  stage: build
+  variables:
+    DOCKER_TLS_CERTDIR: /certs
+    PYTHON_VERSION: ${PYTHON_VERSION}

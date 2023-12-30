@@ -1,0 +1,40 @@
+name: CI
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+jobs:
+  prebuild:
+    needs: release
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: docker/login-action@v3
+        with:
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+      - uses: devcontainers/ci@v0.3
+        with:
+          env:
+            PYTHON_VERSION: ${{ matrix.python-version }}
+          imageName: ghcr.io/${{ github.repository }}
+          imageTag: ${{ matrix.python-version }}
+          push: always
+          subFolder: .devcontainer/prebuild
+    strategy:
+      matrix:
+        python-version:
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
+on:
+  push:
+    branches:
+      - main

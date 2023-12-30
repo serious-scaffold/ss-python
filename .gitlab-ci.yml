@@ -1,4 +1,5 @@
 stages:
+  - build
   - ci
   - release
 default:
