@@ -22,7 +22,7 @@ jobs:
         uses: devcontainers/ci@v0.3
         with:
           imageName: ghcr.io/${{ github.repository }}
-          imageTag: ${{ matrix.python-version }}
+          imageTag: dev-py${{ matrix.python-version }}
           push: always
           subFolder: .devcontainer/prebuild
     strategy:
