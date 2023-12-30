@@ -18,10 +18,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           username: ${{ github.actor }}
-      - uses: devcontainers/ci@v0.3
+      - env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        uses: devcontainers/ci@v0.3
         with:
-          env:
-            PYTHON_VERSION: ${{ matrix.python-version }}
           imageName: ghcr.io/${{ github.repository }}
           imageTag: ${{ matrix.python-version }}
           push: always
