@@ -6,7 +6,7 @@ ci:
         coverage_format: cobertura
         path: coverage.xml
   coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
-  image: python:$PYTHON_VERSION
+  image: ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION}
   interruptible: true
   only:
     - main
