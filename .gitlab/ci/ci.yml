@@ -7,9 +7,6 @@ ci:
   coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
   image: ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION}
   interruptible: true
-  only:
-    - main
-    - merge_requests
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -18,6 +15,9 @@ ci:
           - '3.10'
           - '3.11'
           - '3.12'
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - env | sort
     - make dev
