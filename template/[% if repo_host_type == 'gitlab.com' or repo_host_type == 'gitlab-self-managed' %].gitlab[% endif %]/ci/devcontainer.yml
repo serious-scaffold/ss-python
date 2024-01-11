@@ -1,8 +1,6 @@
 devcontainer-prebuild:
   image: docker:latest
   interruptible: true
-  only:
-    - main
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -11,6 +9,10 @@ devcontainer-prebuild:
           - '3.10'
           - '3.11'
           - '3.12'
+  rules:
+    - changes:
+        - .devcontainer/prebuild/**
+      if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - apk add --update nodejs npm python3 make g++
     - npm install -g @devcontainers/cli
