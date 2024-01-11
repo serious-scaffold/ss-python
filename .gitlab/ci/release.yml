@@ -5,7 +5,7 @@ docs:
       - docs/changelog.md
       - release-notes.md
   rules:
-    if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
+    - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
     - env | sort
     - make dev-docs
@@ -16,7 +16,7 @@ package:
   needs:
     - release
   rules:
-    if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
+    - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
     - env | sort
     - make publish
@@ -29,7 +29,7 @@ pages:
     - release
     - docs
   rules:
-    if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
+    - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
     - env | sort
   stage: release
@@ -41,7 +41,7 @@ release:
     description: release-notes.md
     tag_name: $CI_COMMIT_TAG
   rules:
-    if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
+    - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
     - env | sort
   stage: release
