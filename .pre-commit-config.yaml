@@ -42,9 +42,9 @@ repos:
           - post-merge
         always_run: true
         pass_filenames: false
-      - id: pdm-lock
-        name: pdm-lock
-        entry: pdm lock
+      - id: pdm-lock-check
+        name: pdm-lock-check
+        entry: pdm lock --check
         language: python
         files: ^pyproject.toml$
         pass_filenames: false
