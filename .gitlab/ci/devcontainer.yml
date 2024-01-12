@@ -11,7 +11,7 @@ devcontainer-prebuild:
           - '3.12'
   rules:
     - changes:
-        - .devcontainer/prebuild/**
+        - .devcontainer/prebuild/**/*
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - apk add --update nodejs npm python3 make g++
