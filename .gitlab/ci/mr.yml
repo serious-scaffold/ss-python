@@ -1,7 +1,7 @@
 lint_title:
   interruptible: true
-  only:
-    - merge_requests
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - |
       if ! echo "$CI_MERGE_REQUEST_TITLE" | grep -Pq '^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*'; then
