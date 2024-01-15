@@ -4,8 +4,8 @@
 # Variables
 ########################################################################################
 
-# Global option for pdm, when in the readthedocs environment.
-PDM_GLOBAL := $(shell [ "$$READTHEDOCS" = "True" ] && echo "--global --project .")
+# Global option for pdm, when in CI or readthedocs environment, no need to use venv.
+PDM_GLOBAL := $(shell [ "$$CI" = "true" ] || [ "$$READTHEDOCS" = "True" ] && echo "--global --project .")
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
