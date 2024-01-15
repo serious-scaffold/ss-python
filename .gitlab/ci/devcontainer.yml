@@ -13,9 +13,6 @@ devcontainer-prebuild:
     - changes:
         - .devcontainer/prebuild/**/*
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    - changes:
-        - .devcontainer/prebuild/**/*
-      if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - apk add --update nodejs npm python3 make g++
     - npm install -g @devcontainers/cli
