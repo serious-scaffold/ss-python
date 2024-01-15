@@ -20,8 +20,6 @@ ci:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - env | sort
-    - ls -alh
-    - git tag -l
     - make dev
     - make lint test docs build
   stage: ci
