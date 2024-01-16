@@ -15,6 +15,9 @@
         }
     },
     "image": "ghcr.io/{{ repo_namespace }}/{{ repo_name }}:dev-py{{ default_py }}",
+    // Force the image update to ensure the latest version which might be a bug.
+    // Reference: https://github.com/microsoft/vscode-remote-release/issues/9391
+    "initializeCommand": "docker pull ghcr.io/{{ repo_namespace }}/{{ repo_name }}:dev-py{{ default_py }}",
     // Use a targeted named volume for .venv folder to improve disk performance.
     // Reference: https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
     "mounts": [
