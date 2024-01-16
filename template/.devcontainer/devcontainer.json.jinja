@@ -1,26 +1,30 @@
 {
-	"name": "{{ repo_name }}",
-	"image": "ghcr.io/{{ repo_namespace }}/{{ repo_name }}:dev-py{{ default_py }}",
-	// Use a targeted named volume for .venv folder to improve disk performance.
-	// Reference: https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
-	"mounts": [
-		"source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
-	],
-	// Prepare the development environment when the container starts.
-	"postStartCommand": "make dev",
-	"customizations": {
-		// Configure extensions specific to VS Code.
-		"vscode": {
-			"extensions": [
-				"DavidAnson.vscode-markdownlint",
-				"ExecutableBookProject.myst-highlight",
-				"PascalReitermann93.vscode-yaml-sort",
-				"charliermarsh.ruff",
-				"ms-python.mypy-type-checker",
-				"ms-python.python",
-				"richie5um2.vscode-sort-json",
-				"streetsidesoftware.code-spell-checker"
-			]
-		}
-	}
+    "customizations": {
+        // Configure extensions specific to VS Code.
+        "vscode": {
+            "extensions": [
+                "DavidAnson.vscode-markdownlint",
+                "ExecutableBookProject.myst-highlight",
+                "PascalReitermann93.vscode-yaml-sort",
+                "charliermarsh.ruff",
+                "ms-python.mypy-type-checker",
+                "ms-python.python",
+                "richie5um2.vscode-sort-json",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "image": "ghcr.io/{{ repo_namespace }}/{{ repo_name }}:dev-py{{ default_py }}",
+    // Use a targeted named volume for .venv folder to improve disk performance.
+    // Reference: https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
+    "mounts": [
+        "source=${localWorkspaceFolderBasename}-venv,target=${containerWorkspaceFolder}/.venv,type=volume"
+    ],
+    "name": "{{ repo_name }}",
+    // Set proper permission for the .venv folder when the container created.
+    "postCreateCommand": "sudo chown {{ repo_name }}:{{ repo_name }} .venv",
+    // Prepare the development environment when the container starts.
+    "postStartCommand": "make dev",
+    // Use the non-root user in the container.
+    "remoteUser": "{{ repo_name }}"
 }
