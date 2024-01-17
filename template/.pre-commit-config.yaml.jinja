@@ -12,7 +12,6 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-docstring-first
-      - id: check-json
       - id: check-merge-conflict
         args:
           - '--assume-in-merge'
@@ -26,9 +25,6 @@ repos:
       - id: no-commit-to-branch
         stages:
           - pre-push
-      - id: pretty-format-json
-        args:
-          - '--autofix'
       - id: sort-simple-yaml
         files: .pre-commit-config.yaml
       - id: trailing-whitespace
