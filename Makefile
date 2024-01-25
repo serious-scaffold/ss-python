@@ -142,7 +142,7 @@ doc-gen:
 
 # Generate mypy reports.
 doc-mypy: doc-gen
-	pdm run $(PDM_GLOBAL) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
+	pdm run $(PDM_GLOBAL) python -m mypy src tests --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
 doc-coverage: test-run doc-gen
