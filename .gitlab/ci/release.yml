@@ -7,7 +7,6 @@ doc:
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
-    - env | sort
     - make dev-doc
     - make doc
     - make release-notes > release-notes.md
@@ -18,7 +17,6 @@ package:
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
-    - env | sort
     - make publish
   stage: release
 pages:
@@ -31,7 +29,7 @@ pages:
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
-    - env | sort
+    - echo "Running the pages job."
   stage: release
 release:
   image: registry.gitlab.com/gitlab-org/release-cli:latest
@@ -43,5 +41,5 @@ release:
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
-    - env | sort
+    - echo "Running the release job."
   stage: release

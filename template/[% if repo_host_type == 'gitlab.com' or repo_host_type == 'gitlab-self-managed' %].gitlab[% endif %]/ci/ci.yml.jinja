@@ -30,7 +30,6 @@ ci:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
-    - env | sort
     - make dev
     - make lint test doc build
   stage: ci

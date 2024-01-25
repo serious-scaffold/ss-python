@@ -3,5 +3,7 @@ stages:
   - ci
   - release
 default:
+  before_script:
+    - env | sort
   image: ${CI_REGISTRY_IMAGE}:dev-py{{ default_py }}
 include: .gitlab/ci/**.yml
