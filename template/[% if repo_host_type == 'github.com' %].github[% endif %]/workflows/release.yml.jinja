@@ -25,8 +25,8 @@ jobs:
           cache: true
           python-version: '{{ default_py }}'
       - run: env | sort
-      - run: make dev-docs
-      - run: make docs
+      - run: make dev-doc
+      - run: make doc
       - name: Upload changelog
         uses: actions/upload-artifact@v4
         with:

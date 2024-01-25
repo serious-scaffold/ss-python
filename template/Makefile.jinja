@@ -1,5 +1,5 @@
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish docs-autobuild changelog docs-gen docs-mypy docs-coverage docs
+.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild changelog doc-gen doc-mypy doc-coverage doc
 
 ########################################################################################
 # Variables
@@ -121,7 +121,7 @@ publish:
 ########################################################################################
 
 # Generate documentation with auto build when changes happen.
-docs-autobuild:
+doc-autobuild:
 	pdm run $(PDM_GLOBAL) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
@@ -133,27 +133,27 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	pdm run $(PDM_GLOBAL) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test
+	pdm run $(PDM_GLOBAL) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,doc,feat,fix,perf,refactor,revert,style,test
 
 # Generate release notes from changelog.
 release-notes:
 	pdm run $(PDM_GLOBAL) git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
-docs-gen:
+doc-gen:
 	pdm run $(PDM_GLOBAL) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
-docs-mypy: docs-gen
+doc-mypy: doc-gen
 	pdm run $(PDM_GLOBAL) python -m mypy src test --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
-docs-coverage: test-run docs-gen
+doc-coverage: test-run doc-gen
 	pdm run $(PDM_GLOBAL) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
 	pdm run $(PDM_GLOBAL) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
-docs: changelog docs-gen docs-mypy docs-coverage
+doc: changelog doc-gen doc-mypy doc-coverage
 
 ########################################################################################
 # End

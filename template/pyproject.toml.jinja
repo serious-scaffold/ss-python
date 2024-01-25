@@ -112,7 +112,7 @@ warn_unused_ignores = true
 package-type = "library"
 
 [tool.pdm.dev-dependencies]
-docs = [
+doc = [
   "Sphinx",
   "autodoc-pydantic",
   "coverage",
@@ -170,7 +170,7 @@ select = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"test/*" = ["S101"]
+"tests/*" = ["S101"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

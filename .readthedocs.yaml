@@ -1,13 +1,13 @@
 build:
   jobs:
     post_build:
-      - make docs-mypy
-      - make docs-coverage
+      - make doc-mypy
+      - make doc-coverage
     post_checkout:
       - git fetch --unshallow || true
     post_install:
       - python -m pip install --upgrade --no-cache-dir pdm
-      - make dev-docs
+      - make dev-doc
     pre_build:
       - make changelog
   os: ubuntu-22.04

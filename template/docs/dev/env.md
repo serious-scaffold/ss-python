@@ -81,11 +81,11 @@ make install
 
 ### Documentation generation
 
-Install the project in editable mode with `docs` related dependencies,
+Install the project in editable mode with `doc` related dependencies,
 recommended for scenarios like documentation generation CI/CD process.
 
 ```bash
-make dev-docs
+make dev-doc
 ```
 
 ### Lint check
@@ -117,9 +117,9 @@ make dev-test
 
 ````{admonition} Install a combination of the optional dependencies
 :class: tip, dropdown
-For example, to install dependencies for `docs` and `lint`, we can use the following command.
+For example, to install dependencies for `doc` and `lint`, we can use the following command.
 
 ```bash
-make dev-docs,lint
+make dev-doc,lint
 ```
 ````

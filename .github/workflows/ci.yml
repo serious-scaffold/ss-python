@@ -16,7 +16,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - run: env | sort
       - run: make dev
-      - run: make lint test docs build
+      - run: make lint test doc build
     strategy:
       matrix:
         python-version:
