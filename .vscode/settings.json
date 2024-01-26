@@ -7,8 +7,8 @@
   },
   "[python]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.ruff": true,
-      "source.organizeImports.ruff": true
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
     },
     "editor.defaultFormatter": "charliermarsh.ruff",
     "editor.formatOnSave": true
@@ -55,7 +55,7 @@
     "viewcode"
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
   "editor.formatOnSave": true,
   "editor.rulers": [
