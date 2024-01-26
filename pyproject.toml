@@ -69,7 +69,7 @@ warn_return_any = true
 warn_unused_ignores = true
 
 [tool.pdm]
-package-type = "library"
+distribution = true
 
 [tool.pdm.dev-dependencies]
 doc = [
