@@ -128,6 +128,7 @@
     "repo_host_type",
     "repo_host",
     "page_host",
+    "container_registry_host",
     "ci",
     "repo_namespace",
     "repo_name",
