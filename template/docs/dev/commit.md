@@ -12,7 +12,7 @@ Examples:
 
 ```text
 build(dependencies): bump the prod group with 9 updates.
-docs: Add docs for commit convention.
+doc: Add doc for commit convention.
 chore: remove deprecated key in ruff config.
 ```
 
@@ -24,7 +24,7 @@ Type
 | `build`   | Changes that affect the build system or dependencies.  |
 | `chore`   | Routine tasks or changes outside the src/runtime code. |
 | `ci`      | Changes related to continuous integration.             |
-| `docs`    | Documentation changes.                                 |
+| `doc`     | Documentation changes.                                 |
 | `feat`    | New features.                                          |
 | `fix`     | Bug fixes.                                             |
 | `perf`    | Performance improvements.                              |
@@ -55,6 +55,6 @@ In this way, individual commit within development branches does not need to stri
 A CI/CD pipeline checks the titles of pull/merge requests against the following regex pattern:
 
 ```text
-^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*
+^(build|chore|ci|doc|feat|fix|perf|refactor|revert|style|test)(\(\w+\))?!?:\s.*
 ```
 ````

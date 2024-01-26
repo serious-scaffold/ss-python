@@ -21,5 +21,5 @@ ci:
   script:
     - env | sort
     - make dev
-    - make lint test docs build
+    - make lint test doc build
   stage: ci
