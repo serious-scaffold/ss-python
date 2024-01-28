@@ -3,7 +3,7 @@
     "args": {
       "PYTHON_VERSION": "${localEnv:PYTHON_VERSION}"
     },
-    "cacheFrom": "ghcr.io/serious-scaffold/ss-python:dev-py${localEnv:PYTHON_VERSION}",
+    "cacheFrom": "{{ container_registry_host }}/{{ repo_namespace }}/{{ repo_name }}:dev-py${localEnv:PYTHON_VERSION}",
     "context": "../../..",
     "dockerfile": "Dockerfile",
     "target": "dev"
