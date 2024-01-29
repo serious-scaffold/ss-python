@@ -1,4 +1,4 @@
-lint_title:
+lint-title:
   interruptible: true
   rules:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
