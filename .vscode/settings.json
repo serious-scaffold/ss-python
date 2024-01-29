@@ -141,6 +141,7 @@
     "id-token",
     "pages-build",
     "release-publish",
+    "container-publish",
     "package-publish",
     "pages",
     "3.8",
