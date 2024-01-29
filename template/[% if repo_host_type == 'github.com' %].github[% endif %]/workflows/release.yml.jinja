@@ -1,19 +1,5 @@
 name: Release
 jobs:
-  package:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pdm-project/setup-pdm@v4
-        with:
-          cache: true
-          python-version: '{{ default_py }}'
-      - run: env | sort
-      - env:
-          PDM_PUBLISH_PASSWORD: {{ '${{ secrets.PDM_PUBLISH_PASSWORD }}' }}
-          PDM_PUBLISH_USERNAME: {{ '${{ vars.PDM_PUBLISH_USERNAME != \'\' && vars.PDM_PUBLISH_USERNAME || \'__token__\' }}' }}
-        run: make publish
   pages-build:
     runs-on: ubuntu-latest
     steps:
@@ -36,17 +22,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
-  pages-deploy:
-    needs: release
-    permissions:
-      id-token: write
-      pages: write
-    runs-on: ubuntu-latest
-    steps:
-      - id: deployment
-        name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-  release:
+  release-publish:
     needs: pages-build
     permissions:
       contents: write
@@ -77,6 +53,30 @@ jobs:
         with:
           body_path: release-notes.md
           prerelease: {{ '${{ steps.prerelease.outputs.is_prerelease }}' }}
+  package-publish:
+    needs: release-publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pdm-project/setup-pdm@v4
+        with:
+          cache: true
+          python-version: '{{ default_py }}'
+      - run: env | sort
+      - env:
+          PDM_PUBLISH_PASSWORD: {{ '${{ secrets.PDM_PUBLISH_PASSWORD }}' }}
+          PDM_PUBLISH_USERNAME: {{ '${{ vars.PDM_PUBLISH_USERNAME != \'\' && vars.PDM_PUBLISH_USERNAME || \'__token__\' }}' }}
+        run: make publish
+  pages:
+    needs: release-publish
+    permissions:
+      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
 on:
   push:
     tags:
