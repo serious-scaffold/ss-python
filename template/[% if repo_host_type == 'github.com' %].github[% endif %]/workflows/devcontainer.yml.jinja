@@ -4,7 +4,7 @@ concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
 jobs:
-  devcontainer_prebuild:
+  dev-container-publish:
     permissions:
       contents: read
       packages: write
