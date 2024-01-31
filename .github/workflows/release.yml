@@ -75,7 +75,7 @@ jobs:
             PYTHON_VERSION=${{ matrix.python-version }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }}
           cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }},mode=max
-          file: .devcontainer/prebuild/.devcontainer/Dockerfile
+          file: .devcontainer/Dockerfile
           provenance: false
           push: true
           tags: |
@@ -91,7 +91,7 @@ jobs:
             PYTHON_VERSION=${{ matrix.python-version }}
             PDM_BUILD_SCM_VERSION=${{ github.ref_name }}
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }}
-          file: .devcontainer/prebuild/.devcontainer/Dockerfile
+          file: .devcontainer/Dockerfile
           provenance: false
           push: true
           tags: |

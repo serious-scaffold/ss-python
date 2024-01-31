@@ -38,7 +38,6 @@
     "pathjoin",
     "pipenv",
     "pipx",
-    "prebuild",
     "pycache",
     "pydantic",
     "pyproject",
