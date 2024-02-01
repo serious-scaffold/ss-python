@@ -46,11 +46,11 @@ FROM dev as build
 # Copy necessary files for build.
 COPY pyproject.toml pdm.lock README.md /workspace/
 COPY src/ /workspace/src
-COPY .git/ /workspace/.git
 
 # Install dependencies and project into the local packages directory.
 WORKDIR /workspace
-RUN mkdir __pypackages__ && pdm sync --prod --no-editable
+ARG PDM_BUILD_SCM_VERSION=0.0.0
+RUN mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
 # Prod image is used for deployment and distribution.
@@ -70,4 +70,4 @@ COPY --from=build /workspace/__pypackages__/${PYTHON_VERSION}/lib /workspace/pkg
 COPY --from=build /workspace/__pypackages__/${PYTHON_VERSION}/bin/* /usr/local/bin/
 
 # Set command to run the cli by default.
-CMD ["ss-python-cli"]
+ENTRYPOINT ["{{ package_name }}-cli"]

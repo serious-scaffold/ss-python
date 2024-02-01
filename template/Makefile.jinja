@@ -137,7 +137,7 @@ changelog:
 
 # Generate release notes from changelog.
 release-notes:
-	pdm run $(PDM_GLOBAL) git-changelog --input $(CHANGELOG_PATH) --release-notes
+	git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
 doc-gen:
