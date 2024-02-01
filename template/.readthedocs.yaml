@@ -4,12 +4,13 @@ build:
       - make doc-mypy
       - make doc-coverage
     post_checkout:
+      - env | sort
       - git fetch --unshallow || true
     post_install:
       - python -m pip install --upgrade --no-cache-dir pdm
       - make dev-doc
     pre_build:
-      - make changelog
+      - CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
   os: ubuntu-22.04
   tools:
     python: '3'

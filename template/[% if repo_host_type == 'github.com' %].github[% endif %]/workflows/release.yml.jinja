@@ -11,9 +11,14 @@ jobs:
         with:
           cache: true
           python-version: '{{ default_py }}'
+      - id: pages
+        name: Setup Pages
+        uses: actions/configure-pages@v4
       - run: env | sort
       - run: make dev-doc
-      - run: make doc
+      - env:
+          CI_PAGES_URL: {{ '${{ steps.pages.outputs.base_url }}' }}
+        run: make doc
       - name: Upload changelog
         uses: actions/upload-artifact@v4
         with:
