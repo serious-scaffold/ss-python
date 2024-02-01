@@ -11,7 +11,7 @@ jobs:
           cache: true
           python-version: '3.12'
       - id: pages
-        name: Setup Pages
+        name: Setup pages
         uses: actions/configure-pages@v4
       - run: env | sort
       - run: make dev-doc
