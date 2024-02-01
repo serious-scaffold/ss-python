@@ -1,0 +1,58 @@
+[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+name: DevContainer
+concurrency:
+  cancel-in-progress: true
+  group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
+jobs:
+  dev-container-publish:
+    permissions:
+      contents: read
+      packages: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/login-action@v3
+        with:
+          password: {{ '${{ secrets.GITHUB_TOKEN }}' }}
+          registry: ghcr.io
+          username: {{ '${{ github.actor }}' }}
+      - name: Build and push dev container
+        env:
+          SOURCE_DATE_EPOCH: 0
+        uses: docker/build-push-action@v5
+        with:
+          build-args: |
+            PYTHON_VERSION={{ '${{ matrix.python-version }}' }}
+          cache-from: type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}:build-cache-dev-py{{ '${{ matrix.python-version }}' }}
+          cache-to: type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}:build-cache-dev-py{{ '${{ matrix.python-version }}' }},mode=max
+          file: .devcontainer/Dockerfile
+          provenance: false
+          push: true
+          tags: |
+            ghcr.io/{{ '${{ github.repository }}' }}:dev-py{{ '${{ matrix.python-version }}' }}
+          target: dev
+    strategy:
+      matrix:
+        python-version:
+[%- if version_between("3.8", min_py, max_py) %]
+          - '3.8'
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+          - '3.9'
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
+          - '3.10'
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
+          - '3.11'
+[%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+          - '3.12'
+[%- endif %]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .devcontainer/Dockerfile
+  workflow_dispatch: null
