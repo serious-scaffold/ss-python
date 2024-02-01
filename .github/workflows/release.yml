@@ -15,9 +15,7 @@ jobs:
         uses: actions/configure-pages@v4
       - run: env | sort
       - run: make dev-doc
-      - env:
-          CI_PAGES_URL: ${{ steps.pages.outputs.base_url }}
-        run: make doc
+      - run: CI_PAGES_URL=${{ steps.pages.outputs.base_url }} make doc
       - name: Upload changelog
         uses: actions/upload-artifact@v4
         with:
