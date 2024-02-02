@@ -16,11 +16,13 @@ jobs:
       - run: env | sort
       - run: make dev-doc
       - run: CI_PAGES_URL=${{ steps.pages.outputs.base_url }} make doc
-      - name: Upload changelog
+      - name: Generate release notes
+        run: make release-notes > release-notes.md
+      - name: Upload release notes
         uses: actions/upload-artifact@v4
         with:
-          name: changelog
-          path: docs/changelog.md
+          name: release-notes
+          path: release-notes.md
       - name: Upload pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -31,18 +33,10 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install git-changelog using pipx
-        run: pipx install git-changelog
-      - name: Remove changelog to avoid file already exists error
-        run: rm -v docs/changelog.md
-      - name: Download changelog
+      - name: Download release notes
         uses: actions/download-artifact@v4
         with:
-          name: changelog
-          path: docs/
-      - name: Prepare release notes
-        run: make release-notes > release-notes.md
+          name: release-notes
       - id: prerelease
         name: Determine prerelease
         run: |
