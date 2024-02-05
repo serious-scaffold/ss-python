@@ -1,4 +1,4 @@
-# Development Environment Management
+# Development Environment
 
 This page show the approach to manage development environment. To simplify the process, a unified `Makefile` is maintained at the root directory of the repo. In other words, all the `make` related commands are supposed to run there.
 
