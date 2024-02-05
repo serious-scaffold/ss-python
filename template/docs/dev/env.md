@@ -1,4 +1,6 @@
-# Environment Management
+# Development Environment Management
+
+This page show the approach to manage development environment. To simplify the process, a unified `Makefile` is maintained at the root directory of the repo. In other words, all the `make` related commands are supposed to run there.
 
 ## Prerequisites
 
@@ -15,13 +17,9 @@ pipx install pdm
 pipx install pre-commit
 ```
 
-## Environment Setup
+## Setup
 
-```{note}
-A universal `Makefile` is located at the root directory of the repo, and all `make` related commands are supposed to run there.
-```
-
-There is an all-in-one command to setup environment for daily development.
+Development environment can be setup with the following command:
 
 ```bash
 make dev
@@ -29,17 +27,20 @@ make dev
 
 This command will accomplish the following tasks:
 
-- Create a virtual environment if `pdm` is available. If CI context is detected, the creation will be skipped.
-- Install the project in editable mode with the dependencies for documentation, lint, package and test.
-- Install Git hooks for various kinds of check at `pre-push` stage.
+- Create a virtual environment.
+- Install all the dependencies, including those for documentation, lint, package and test.
+- Install the project in editable mode.
+- Install git hook scripts for `pre-commit`.
 
-## Environment Cleanup
+To speed up the setup process in certain scenarios, you may find <project:#partial-setup> helpful.
 
-In daily development, especially when we need to upgrade or add new dependencies, we tend to encounter environment-related problems. A straightforward solution is to cleanup the current environment and setup a new one with a command like `make dev`. Three different levels of cleanup approach are recommended here.
+## Cleanup
+
+When encountering environment-related problems. A straightforward solution is to cleanup the environment and setup a new one. Three different levels of cleanup approach are provided here.
 
 ### Intermediate cleanup
 
-This command will only remove common intermediate files, such as generated documentation, package, coverage report, cache files for mypy, pytest, ruff and so on.
+Intermediate cleanup will only remove common intermediate files, such as generated documentation, package, coverage report, cache files for mypy, pytest, ruff and so on.
 
 ```bash
 make clean
@@ -47,7 +48,7 @@ make clean
 
 ### Deep cleanup
 
-This command will remove the pre-commit hook and the virtual environment if created alongside the common intermediate files.
+Deep cleanup will remove the pre-commit hook and the virtual environment alongside the common intermediate files.
 
 ```bash
 make deepclean
@@ -55,7 +56,7 @@ make deepclean
 
 ### Complete cleanup
 
-With this command, the repo will be as if it has been re-cloned. It is useful if we want to start almost from scratch.
+Complete cleanup will make the repo as if it has been re-cloned. It is useful if we want to start from scratch.
 
 ```{caution}
 This will remove all untracked files, please use it with caution. It is recommended to check with dry-run mode (`git clean -dfnx`) before actually removing anything. For more information, please refer to the [git-clean documentation](https://git-scm.com/docs/git-clean).
@@ -65,15 +66,13 @@ This will remove all untracked files, please use it with caution. It is recommen
 git clean -dfx
 ```
 
-## Partial Environment Setup
+## Partial Setup
 
-In certain cases, it is unnecessary to install all dependencies as well as the pre-commit hook.
-Then we can benefit from the following partial environment setup, for example, it will reduce the time of running corresponding CI/CD.
+In certain cases, it is unnecessary to install all dependencies as well as the pre-commit hook. For example, speed up the setup process in CI/CD.
 
 ### Minimal installation
 
-Install the project in editable mode with no extra dependency,
-recommended for deployment scenario that only need minimal installation.
+Install the project in editable mode only with necessary dependencies, useful for scenarios like deployment.
 
 ```bash
 make install
