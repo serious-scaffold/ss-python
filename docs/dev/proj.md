@@ -56,10 +56,10 @@ pipx install copier
 
     :::{tab-item} GitHub
     :sync: github
-    Open the [DevContainer Workflow](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml) page and run the workflow from the default branch.
+    Open the [Dev Container Workflow](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml) page and run the workflow from the default branch.
 
     ```{image} /_static/images/bootstrap-dev-container-github.png
-    :alt: Bootstrap DevContainer on GitHub.
+    :alt: Bootstrap Dev Container on GitHub.
     :target: https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml
     ```
 
@@ -70,7 +70,7 @@ pipx install copier
     Open the [Run Pipelines](https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new) page and run pipeline for the default branch.
 
     ```{image} /_static/images/bootstrap-dev-container-gitlab.png
-    :alt: Bootstrap DevContainer on GitLab.
+    :alt: Bootstrap Dev Container on GitLab.
     :target: https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new
     ```
 

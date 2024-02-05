@@ -9,16 +9,16 @@ Best practices can vary based on specific circumstances. We are open to comments
 ```{toctree}
 :hidden:
 proj
-env
-devcontainers
+dev-env
+dev-containers
 commit
 release
 ```
 
 ## For Developers
 
-- <project:env.md>
-- <project:devcontainers.md>
+- <project:dev-env.md>
+- <project:dev-containers.md>
 - <project:commit.md>
 
 ## For Maintainers
