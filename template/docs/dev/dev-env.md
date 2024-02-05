@@ -40,7 +40,7 @@ When encountering environment-related problems. A straightforward solution is to
 
 ### Intermediate cleanup
 
-Intermediate cleanup will only remove common intermediate files, such as generated documentation, package, coverage report, cache files for mypy, pytest, ruff and so on.
+Intermediate cleanup only removes common intermediate files, such as generated documentation, package, coverage report, cache files for mypy, pytest, ruff and so on.
 
 ```bash
 make clean
@@ -48,7 +48,7 @@ make clean
 
 ### Deep cleanup
 
-Deep cleanup will remove the pre-commit hook and the virtual environment alongside the common intermediate files.
+Deep cleanup removes the pre-commit hook and the virtual environment alongside the common intermediate files.
 
 ```bash
 make deepclean
@@ -56,7 +56,7 @@ make deepclean
 
 ### Complete cleanup
 
-Complete cleanup will make the repo as if it has been re-cloned. It is useful if we want to start from scratch.
+Complete cleanup restores the repository to its original, freshly-cloned state, ideal for starting over from scratch.
 
 ```{caution}
 This will remove all untracked files, please use it with caution. It is recommended to check with dry-run mode (`git clean -dfnx`) before actually removing anything. For more information, please refer to the [git-clean documentation](https://git-scm.com/docs/git-clean).
