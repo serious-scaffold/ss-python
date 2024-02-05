@@ -17,8 +17,8 @@ release
 
 ## For Developers
 
-- <project:devcontainers.md>
 - <project:env.md>
+- <project:devcontainers.md>
 - <project:commit.md>
 
 ## For Maintainers
