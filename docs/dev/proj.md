@@ -67,7 +67,7 @@ pipx install copier
 
     :::{tab-item} GitLab
     :sync: gitlab
-    Open the [Run Pipelines](https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new) page and run pipeline for the default branch.
+    Open the [Run pipeline](https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new) page and run pipeline for the default branch.
 
     ```{image} /_static/images/bootstrap-dev-container-gitlab.png
     :alt: Bootstrap Dev Container on GitLab.
