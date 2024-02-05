@@ -1,4 +1,4 @@
-# Development Containers
+# Development Container
 
 Instead of manually configuring your development environment, [Dev Containers](https://containers.dev/) offer a seamless containerized development experience right out of the box.
 
