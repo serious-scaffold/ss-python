@@ -70,14 +70,14 @@ jobs:
         with:
           build-args: |
             PYTHON_VERSION=${{ matrix.python-version }}
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }}
-          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }},mode=max
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/build-cache-dev:py${{ matrix.python-version }}
+          cache-to: type=registry,ref=ghcr.io/${{ github.repository }}/build-cache-dev:py${{ matrix.python-version }},mode=max
           file: .devcontainer/Dockerfile
           provenance: false
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:dev-py${{ matrix.python-version }}
-            ghcr.io/${{ github.repository }}:dev-py${{ matrix.python-version }}-${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }}
+            ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }}-${{ github.ref_name }}
           target: dev
       - name: Build and push prod container
         env:
@@ -87,13 +87,13 @@ jobs:
           build-args: |
             PYTHON_VERSION=${{ matrix.python-version }}
             PDM_BUILD_SCM_VERSION=${{ github.ref_name }}
-          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}:build-cache-dev-py${{ matrix.python-version }}
+          cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/build-cache-dev:py${{ matrix.python-version }}
           file: .devcontainer/Dockerfile
           provenance: false
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}:prod-py${{ matrix.python-version }}
-            ghcr.io/${{ github.repository }}:prod-py${{ matrix.python-version }}-${{ github.ref_name }}
+            ghcr.io/${{ github.repository }}/prod:py${{ matrix.python-version }}
+            ghcr.io/${{ github.repository }}/prod:py${{ matrix.python-version }}-${{ github.ref_name }}
           target: prod
     strategy:
       matrix:
