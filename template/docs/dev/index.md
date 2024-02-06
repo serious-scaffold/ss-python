@@ -6,18 +6,22 @@ This section is a comprehensive guide that spans various aspects of the developm
 Best practices can vary based on specific circumstances. We are open to comments and suggestions to refine the approach.
 ```
 
+```{toctree}
+:hidden:
+proj
+dev-env
+dev-containers
+commit
+release
+```
+
 ## For Developers
 
-```{toctree}
-:titlesonly:
-env
-commit
-```
+- <project:dev-env.md>
+- <project:dev-containers.md>
+- <project:commit.md>
 
 ## For Maintainers
 
-```{toctree}
-:titlesonly:
-proj
-release
-```
+- <project:proj.md>
+- <project:release.md>

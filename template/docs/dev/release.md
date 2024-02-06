@@ -4,10 +4,29 @@ The release process is primarily automated to ensure consistency and efficiency.
 
 The release process includes the following tasks:
 
-1. Build the documentation, which includes automatically generated [changelog](../changelog.md), [coverage report](../reports/coverage/index.md) and [mypy report](../reports/mypy/index.md).
-1. Deploy the documentation to GitHub/GitLab Pages.
-1. Build the Python package.
-1. Upload the package to the configured package repository.
+::::{tab-set}
+
+:::{tab-item} GitHub
+:sync: github
+
+1. Publish a new GitHub Release.
+1. Build and publish the documentation to GitHub Pages.
+1. Build and publish the Python package to the configured package repository.
+1. Build and publish the Development and Production Containers to GitHub Packages.
+
+:::
+
+:::{tab-item} GitLab
+:sync: gitlab
+
+1. Publish a new GitLab Release.
+1. Build and publish the documentation to GitLab Pages.
+1. Build and publish the Python package to the configured package repository.
+1. Build and publish the Development and Production Containers to GitLab Container Registry.
+
+:::
+
+::::
 
 ## Trigger a New Release
 

@@ -25,6 +25,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx_click",
+    "sphinx_design",
     "sphinx_togglebutton",
     "sphinxcontrib.autodoc_pydantic",
 ]
@@ -64,6 +65,12 @@ autodoc_pydantic_settings_show_json = False
 # https://myst-parser.readthedocs.io/en/latest/configuration.html
 
 myst_enable_extensions = [
+    "colon_fence",
     "deflist",
 ]
 myst_heading_anchors = 3
+myst_url_schemes = {
+    "http": None,
+    "https": None,
+    "vscode": None,
+}

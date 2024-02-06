@@ -50,6 +50,34 @@ pipx install copier
     SKIP=no-commit-to-branch git push
     ```
 
+1. Bootstrap the dev container.
+
+    ::::{tab-set}
+
+    :::{tab-item} GitHub
+    :sync: github
+    Open the [Dev Container Workflow](https://github.com/{{ repo_namespace }}/{{ repo_name }}/actions/workflows/devcontainer.yml) page and run the workflow from the default branch.
+
+    ```{image} /_static/images/bootstrap-dev-container-github.png
+    :alt: Bootstrap Dev Container on GitHub.
+    :target: https://github.com/{{ repo_namespace }}/{{ repo_name }}/actions/workflows/devcontainer.yml
+    ```
+
+    :::
+
+    :::{tab-item} GitLab
+    :sync: gitlab
+    Open the [Run pipeline](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/pipelines/new) page and run pipeline for the default branch.
+
+    ```{image} /_static/images/bootstrap-dev-container-gitlab.png
+    :alt: Bootstrap Dev Container on GitLab.
+    :target: https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/pipelines/new
+    ```
+
+    :::
+
+    ::::
+
 Now, everything is done for initialization.
 
 ## Project Configuration
@@ -62,6 +90,7 @@ Below are key recommended configurations. You can adjust these based on your spe
 1. Allow only maintainers to create tags matching the `v*` pattern, for example, `v1.2.3`.
 1. Ensure Linux-based CI/CD runner(s) are available.
 1. Ensure GitHub/GitLab Pages is enabled and properly configured.
+1. Ensure GitHub Packages/GitLab Container Registry is enabled and properly configured.
 1. Ensure the following environment variables meet the project's dependencies and are accessible during CI/CD process:
     1. `PDM_PUBLISH_REPO`: The repository (package index) URL to upload the package to. If not set, it will upload to [the official PyPI](https://pypi.org).
     1. `PDM_PUBLISH_USERNAME`: The username to authenticate to the repository (package index) as, default to `__token__` which is used for [API token](https://pypi.org/help/#apitoken).
@@ -70,10 +99,6 @@ Below are key recommended configurations. You can adjust these based on your spe
     ```{note}
     Only `PDM_PUBLISH_PASSWORD` is necessary if the package is supposed to upload to [the official PyPI](https://pypi.org) with [API token](https://pypi.org/help/#apitoken).
     ```
-
-```{note}
-With proper configuration, everything is ready for a new release. Please refer to <project:release.md#trigger-a-new-release>.
-```
 
 ## Project Update
 
