@@ -11,11 +11,11 @@ The release process includes the following tasks:
 
 1. Publish a new GitHub Release.
 1. Build and publish the documentation to GitHub Pages.
-1. Build and publish the Python package to the configured package repository.
-1. Build and publish the Development and Production Containers with build cache to GitHub Packages.
-    1. Production container named in pattern `ghcr.io/serious-scaffold/ss-python:py<PYTHON_VERSION>`.
-    1. Development container named in pattern `ghcr.io/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>`.
-    1. Build cache for development container named in pattern `ghcr.io/serious-scaffold/ss-python/dev-cache:py<PYTHON_VERSION>`.
+1. Build and publish the Python package to the designated package repository.
+1. Build and publish the Development and Production Containers with the build cache to GitHub Packages.
+    1. The Production Container is tagged as `ghcr.io/serious-scaffold/ss-python:py<PYTHON_VERSION>` for the latest version and `ghcr.io/serious-scaffold/ss-python:py<PYTHON_VERSION>-<PROJECT_VERSION>` for archives.
+    1. The Development Container is tagged as `ghcr.io/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>` for the latest version and `ghcr.io/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>-<PROJECT_VERSION>` for archives.
+    1. Build cache for the Development Container is tagged as `ghcr.io/serious-scaffold/ss-python/dev-cache:py<PYTHON_VERSION>`.
 
 :::
 
@@ -26,9 +26,9 @@ The release process includes the following tasks:
 1. Build and publish the documentation to GitLab Pages.
 1. Build and publish the Python package to the configured package repository.
 1. Build and publish the Development and Production Containers with build cache to GitLab Container Registry.
-    1. Production container named in pattern `registry.gitlab.com/serious-scaffold/ss-python:py<PYTHON_VERSION>`.
-    1. Development container named in pattern `registry.gitlab.com/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>`.
-    1. Build cache for development container named in pattern `registry.gitlab.com/serious-scaffold/ss-python/dev-cache:py<PYTHON_VERSION>`.
+    1. The Production Container is tagged as `registry.gitlab.com/serious-scaffold/ss-python:py<PYTHON_VERSION>` for the latest version and `registry.gitlab.com/serious-scaffold/ss-python:py<PYTHON_VERSION>-<PROJECT_VERSION>` for archives.
+    1. The Development Container is tagged as `registry.gitlab.com/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>` for the latest version and `registry.gitlab.com/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>-<PROJECT_VERSION>` for archives.
+    1. Build cache for the Development Container is tagged as `registry.gitlab.com/serious-scaffold/ss-python/dev-cache:py<PYTHON_VERSION>`.
 
 :::
 
