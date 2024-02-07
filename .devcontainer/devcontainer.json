@@ -14,10 +14,10 @@
             ]
         }
     },
-    "image": "ghcr.io/serious-scaffold/ss-python:dev-py3.12",
+    "image": "ghcr.io/serious-scaffold/ss-python/dev:py3.12",
     // Force the image update to ensure the latest version which might be a bug.
     // Reference: https://github.com/microsoft/vscode-remote-release/issues/9391
-    "initializeCommand": "docker pull ghcr.io/serious-scaffold/ss-python:dev-py3.12",
+    "initializeCommand": "docker pull ghcr.io/serious-scaffold/ss-python/dev:py3.12",
     // Use a targeted named volume for .venv folder to improve disk performance.
     // Reference: https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume
     "mounts": [

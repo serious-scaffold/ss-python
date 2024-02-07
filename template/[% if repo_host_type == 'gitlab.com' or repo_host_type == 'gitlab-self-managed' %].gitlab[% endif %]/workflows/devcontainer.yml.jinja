@@ -31,12 +31,12 @@ dev-container-publish:
     - |
       docker buildx build . \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
-        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}:build-cache-dev-py${PYTHON_VERSION} \
-        --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}:build-cache-dev-py${PYTHON_VERSION},mode=max \
+        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION} \
+        --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
         --file .devcontainer/Dockerfile \
         --provenance false \
         --push \
-        --tag ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION} \
+        --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
   services:
     - docker:dind

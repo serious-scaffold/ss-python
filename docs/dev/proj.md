@@ -56,7 +56,7 @@ pipx install copier
 
     :::{tab-item} GitHub
     :sync: github
-    Open the [Dev Container Workflow](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml) page and run the workflow from the default branch.
+    Navigate to the [Dev Container Workflow](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml) page and run workflow from the default branch. The container will be named following pattern `ghcr.io/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>`, for example, `ghcr.io/serious-scaffold/ss-python/dev:py3.12`.
 
     ```{image} /_static/images/bootstrap-dev-container-github.png
     :alt: Bootstrap Dev Container on GitHub.
@@ -67,7 +67,7 @@ pipx install copier
 
     :::{tab-item} GitLab
     :sync: gitlab
-    Open the [Run pipeline](https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new) page and run pipeline for the default branch.
+    Navigate to the [Run pipeline](https://gitlab.com/serious-scaffold/ss-python/-/pipelines/new) page and run pipeline for the default branch. The container will be named following pattern `registry.gitlab.com/serious-scaffold/ss-python/dev:py<PYTHON_VERSION>`, for example, `registry.gitlab.com/serious-scaffold/ss-python/dev:py3.12`.
 
     ```{image} /_static/images/bootstrap-dev-container-gitlab.png
     :alt: Bootstrap Dev Container on GitLab.

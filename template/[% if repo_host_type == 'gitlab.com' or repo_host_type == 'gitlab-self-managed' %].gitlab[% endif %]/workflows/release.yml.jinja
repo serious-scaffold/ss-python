@@ -56,24 +56,24 @@ container-publish:
     - |
       docker buildx build . \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
-        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}:build-cache-dev-py${PYTHON_VERSION} \
-        --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}:build-cache-dev-py${PYTHON_VERSION},mode=max \
+        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION} \
+        --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
         --file .devcontainer/Dockerfile \
         --provenance false \
         --push \
-        --tag ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION} \
-        --tag ${CI_REGISTRY_IMAGE}:dev-py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
+        --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
+        --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
         --target dev
     - |
       docker buildx build . \
         --build-arg PDM_BUILD_SCM_VERSION=${CI_COMMIT_TAG} \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
-        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}:build-cache-dev-py${PYTHON_VERSION} \
+        --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION} \
         --file .devcontainer/Dockerfile \
         --provenance false \
         --push \
-        --tag ${CI_REGISTRY_IMAGE}:prod-py${PYTHON_VERSION} \
-        --tag ${CI_REGISTRY_IMAGE}:prod-py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
+        --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION} \
+        --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
         --target prod
   services:
     - docker:dind
