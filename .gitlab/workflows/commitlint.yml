@@ -1,0 +1,9 @@
+commitlint:
+  before_script:
+    - npm install --save-dev @commitlint/config-conventional @commitlint/cli
+  image: node:alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - echo "$CI_MERGE_REQUEST_TITLE" | npx commitlint
+  stage: ci
