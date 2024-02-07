@@ -154,7 +154,7 @@
   ],
   "vscode-yaml-sort.noCompatMode": true,
   "vscode-yaml-sort.sortOnSave": 2,
-  "vscode-yaml-sort.useArrayProcessor": false,
+  "vscode-yaml-sort.useArrayProcessor": true,
   "vscode-yaml-sort.useBlockProcessor": false,
   "vscode-yaml-sort.useCustomSortRecursively": true,
   "vscode-yaml-sort.useHelmProcessor": false,
