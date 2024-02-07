@@ -3,7 +3,7 @@ concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
-  lint-title:
+  commitlint:
     runs-on: ubuntu-latest
     steps:
       - name: Install commitlint
@@ -23,4 +23,7 @@ on:
       - synchronize
       - reopened
       - edited
-  push: null
+  push:
+    branches:
+      - main
+      - xuan.hu/commitlint
