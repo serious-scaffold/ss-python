@@ -1,0 +1,16 @@
+commitlint:
+  image:
+    name: commitlint/commitlint:latest
+    entrypoint: [""]
+  interruptible: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - |
+      if [ "$CI_PIPELINE_SOURCE" = "push" ]; then
+        echo "$CI_COMMIT_TITLE" | commitlint
+      elif [ "$CI_PIPELINE_SOURCE" = "merge_request_event" ]; then
+        echo "$CI_MERGE_REQUEST_TITLE" | commitlint
+      fi
+  stage: ci

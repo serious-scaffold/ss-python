@@ -1,0 +1,28 @@
+name: CommitLint
+concurrency:
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: env | sort
+      - name: Install commitlint with conventional config
+        run: npm install --save-dev @commitlint/config-conventional @commitlint/cli
+      - name: Validate the latest commit message with commitlint
+        if: github.event_name == 'push'
+        run: echo "${{ github.event.head_commit.message }}" | npx commitlint
+      - name: Validate pull request title with commitlint
+        if: github.event_name == 'pull_request'
+        run: echo "${{ github.event.pull_request.title }}" | npx commitlint
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+  push:
+    branches:
+      - main
