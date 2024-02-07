@@ -21,7 +21,6 @@
     "automodule",
     "cobertura",
     "commitlint",
-    "conventionalcommits",
     "deepclean",
     "deflist",
     "devcontainer",
