@@ -6,6 +6,7 @@ jobs:
   commitlint:
     runs-on: ubuntu-latest
     steps:
+      - run: env | sort
       - name: Install commitlint
         run: |
           npm install conventional-changelog-conventionalcommits
