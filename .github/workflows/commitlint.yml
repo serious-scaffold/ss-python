@@ -27,3 +27,4 @@ on:
   push:
     branches:
       - main
+      - xuan.hu/commitlint
