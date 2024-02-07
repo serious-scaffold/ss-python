@@ -13,7 +13,7 @@ jobs:
           npm install commitlint@latest
       - name: Validate the latest commit message with commitlint
         if: github.event_name == 'push'
-        run: echo "${{ github.event.push.head_commit.message }}" | npx commitlint
+        run: echo "${{ github.event.head_commit.message }}" | npx commitlint
       - name: Validate pull request title with commitlint
         if: github.event_name == 'pull_request'
         run: echo "${{ github.event.pull_request.title }}" | npx commitlint

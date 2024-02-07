@@ -1,16 +1,14 @@
 commitlint:
-  before_script:
-    - npm install --save-dev @commitlint/config-conventional @commitlint/cli
-  image: node:alpine
+  image: commitlint/commitlint:latest
   rules:
-    - if: $CI_COMMIT_BRANCH == xuan.hu/commitlint
+    - if: $CI_COMMIT_BRANCH == 'xuan.hu/commitlint'
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - |
       if [ "$CI_PIPELINE_SOURCE" = "push" ]; then
-        echo "$CI_COMMIT_TITLE" | npx commitlint
+        echo "$CI_COMMIT_TITLE" | commitlint
       elif [ "$CI_PIPELINE_SOURCE" = "merge_request_event" ]; then
-        echo "$CI_MERGE_REQUEST_TITLE" | npx commitlint
+        echo "$CI_MERGE_REQUEST_TITLE" | commitlint
       fi
   stage: ci
