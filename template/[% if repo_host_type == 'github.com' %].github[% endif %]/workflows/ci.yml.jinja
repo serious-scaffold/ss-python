@@ -15,9 +15,15 @@ jobs:
         with:
           cache: true
           python-version: {{ '${{ matrix.python-version }}' }}
+      - id: pages
+        name: Setup pages
+        uses: actions/configure-pages@v4
       - run: env | sort
       - run: make dev
-      - run: make lint test doc build
+      - run: make lint
+      - run: make test
+      - run: CI_PAGES_URL={{ '${{ steps.pages.outputs.base_url }}' }} make doc
+      - run: make build
     strategy:
       matrix:
         python-version:
