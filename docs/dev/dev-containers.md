@@ -35,7 +35,7 @@ Dev Containers: Clean Up Dev Containers...
 
 ### Open the repository in an isolated container volume
 
-You may already notice the badge [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/serious-scaffold/ss-python) in the [Overview](/index.md) page. You can click the badge or [this link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/serious-scaffold/ss-python) to set up everything needed for the Dev Container experience, including cloning the source code into a container volume.
+You may already notice the badge [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/serious-scaffold/ss-python) in the [Overview](/index.md) page. You can click the badge or [this link](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/serious-scaffold/ss-python) to get started. Clicking these links will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
 
 ## Reference
 
