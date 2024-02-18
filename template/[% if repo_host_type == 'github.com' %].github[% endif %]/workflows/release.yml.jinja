@@ -126,7 +126,7 @@ jobs:
       - run: env | sort
       - env:
           PDM_PUBLISH_PASSWORD: {{ '${{ secrets.PDM_PUBLISH_PASSWORD }}' }}
-          PDM_PUBLISH_USERNAME: {{ '${{ vars.PDM_PUBLISH_USERNAME != \'\' && vars.PDM_PUBLISH_USERNAME || \'__token__\' }}' }}
+          PDM_PUBLISH_USERNAME: {{ '${{ vars.PDM_PUBLISH_USERNAME || \'__token__\' }}' }}
         run: make publish
   pages:
     needs: release-publish
