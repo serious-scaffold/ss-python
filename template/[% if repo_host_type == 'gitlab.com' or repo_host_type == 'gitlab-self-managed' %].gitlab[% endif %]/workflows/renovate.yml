@@ -5,14 +5,8 @@ renovate:
       - renovate/cache/renovate/repository/
   image: renovate/renovate:37.202.2
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-  script:
-    - |
-      if [ -z "$RENOVATE_TOKEN" ]; then
-        echo "RENOVATE_TOKEN not set, skipping ..."
-      else
-        renovate $RENOVATE_EXTRA_FLAG
-      fi
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $RENOVATE_TOKEN != null
+  script: renovate $RENOVATE_EXTRA_FLAG
   stage: build
   variables:
     LOG_LEVEL: debug
