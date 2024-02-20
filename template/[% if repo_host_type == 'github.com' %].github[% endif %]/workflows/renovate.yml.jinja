@@ -1,0 +1,29 @@
+name: Renovate
+jobs:
+  renovate:
+    container:
+      env:
+        LOG_LEVEL: debug
+        RENOVATE_BRANCH_PREFIX: renovate-github/
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions"]'
+        RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
+        RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
+        RENOVATE_PLATFORM: github
+        RENOVATE_REPOSITORIES: '["{{ '${{ github.repository }}' }}"]'
+        RENOVATE_REPOSITORY_CACHE: enabled
+        RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN }}' }}
+      image: ghcr.io/renovatebot/renovate:37.202.2
+    runs-on: ubuntu-latest
+    steps:
+      - run: env | sort
+      - run: |
+          if [ -z "{{ '${{ secrets.RENOVATE_TOKEN }}' }}" ]; then
+            echo "RENOVATE_TOKEN not set, skipping ..."
+          else
+            renovate $RENOVATE_EXTRA_FLAG
+          fi
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: '0 * * * 0,6'
+  workflow_dispatch: null
