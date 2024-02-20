@@ -45,6 +45,7 @@
     "pyproject",
     "pytest",
     "Quickstart",
+    "renovatebot",
     "setuptools",
     "softprops",
     "sphinxcontrib",

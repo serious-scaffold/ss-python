@@ -1,0 +1,27 @@
+renovate:
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}-renovate
+    paths:
+      - renovate/cache/renovate/repository/
+  image: renovate/renovate:37.202.2
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - |
+      if [ -z "$RENOVATE_TOKEN" ]; then
+        echo "RENOVATE_TOKEN not set, skipping ..."
+      else
+        renovate $RENOVATE_EXTRA_FLAG
+      fi
+  stage: build
+  variables:
+    LOG_LEVEL: debug
+    RENOVATE_BASE_DIR: $CI_PROJECT_DIR/renovate
+    RENOVATE_BRANCH_PREFIX: renovate-gitlab/
+    RENOVATE_ENABLED_MANAGERS: '["pep621"]'
+    RENOVATE_ENDPOINT: $CI_API_V4_URL
+    RENOVATE_GIT_AUTHOR: Renovate GitLab Bot <gitlab@renovatebot.com>
+    RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
+    RENOVATE_PLATFORM: gitlab
+    RENOVATE_REPOSITORIES: '["$CI_PROJECT_PATH"]'
+    RENOVATE_REPOSITORY_CACHE: enabled
