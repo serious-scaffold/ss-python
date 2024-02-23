@@ -13,12 +13,22 @@ jobs:
         RENOVATE_REPOSITORY_CACHE: enabled
         RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN }}' }}
       image: ghcr.io/renovatebot/renovate:37.202.2
+      options: '--user root'
     runs-on: ubuntu-latest
     steps:
       - run: env | sort
-      - run: |
-          if [ -z "{{ '${{ secrets.RENOVATE_TOKEN }}' }}" ]; then
-            echo "RENOVATE_TOKEN not set, skipping ..."
+      - id: generate-token
+        name: Generate a token with GitHub App if App ID exists
+        if: vars.BOT_APP_ID
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: {{ '${{ vars.BOT_APP_ID }}' }}
+          private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
+      - env:
+          RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN || steps.generate-token.outputs.token }}' }}
+        run: |
+          if [ -z "$RENOVATE_TOKEN" ]; then
+            echo "RENOVATE_TOKEN is not properly configured, skipping ..."
           else
             renovate $RENOVATE_EXTRA_FLAG
           fi
