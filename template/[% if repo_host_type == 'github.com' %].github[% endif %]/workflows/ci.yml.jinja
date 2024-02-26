@@ -8,7 +8,7 @@ jobs:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 0
       - uses: pdm-project/setup-pdm@v4
@@ -17,7 +17,7 @@ jobs:
           python-version: {{ '${{ matrix.python-version }}' }}
       - id: pages
         name: Setup pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v4.0.0
       - run: env | sort
       - run: make dev
       - run: make lint
@@ -47,7 +47,7 @@ jobs:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.1
       - name: Set up Git
         run: |
           git config --global user.name github-actions
