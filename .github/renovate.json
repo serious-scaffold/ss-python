@@ -4,9 +4,4 @@
         "config:best-practices",
         ":maintainLockFilesWeekly"
     ]
-[%- if project_name == "Serious Scaffold Python" %],
-    "ignorePaths": [
-        "**/template/**"
-    ]
-[%- endif %]
 }
