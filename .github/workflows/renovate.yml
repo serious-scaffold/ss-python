@@ -6,7 +6,6 @@ jobs:
         LOG_LEVEL: debug
         RENOVATE_BASE_BRANCHES: '["xuan.hu/renovate-gitlab"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
-        RENOVATE_CONFIG_FILE: .github/renovate.json
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions"]'
         RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
         RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
