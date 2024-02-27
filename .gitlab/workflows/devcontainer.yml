@@ -1,5 +1,5 @@
 dev-container-publish:
-  image: docker:latest
+  image: docker:25.0.2
   parallel:
     matrix:
       - PYTHON_VERSION:

@@ -1,6 +1,6 @@
 commitlint:
   image:
-    name: commitlint/commitlint:latest
+    name: commitlint/commitlint:18.6.1
     entrypoint: [""]
   interruptible: true
   rules:
