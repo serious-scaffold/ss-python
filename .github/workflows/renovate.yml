@@ -5,6 +5,7 @@ jobs:
       env:
         LOG_LEVEL: debug
         RENOVATE_BRANCH_PREFIX: renovate-github/
+        RENOVATE_CONFIG_FILE: .github/renovate.json
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions"]'
         RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
         RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
@@ -20,7 +21,7 @@ jobs:
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
         if: vars.BOT_APP_ID
-        uses: actions/create-github-app-token@e8e39f73bb84fdf315a015fa3104f314c0a258b4 # v1.8.1
+        uses: actions/create-github-app-token@e8e39f73bb84fdf315a015fa3104f314c0a258b4
         with:
           app-id: ${{ vars.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}

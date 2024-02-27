@@ -3,8 +3,5 @@
     "extends": [
         "config:best-practices",
         ":maintainLockFilesWeekly"
-    ],
-    "ignorePaths": [
-        "**/template/**"
     ]
 }
