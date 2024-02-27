@@ -65,7 +65,7 @@ container-publish:
         --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
         --target prod
   services:
-    - docker:dind
+    - docker:25.0.3-dind
   stage: release
   variables:
     DOCKER_TLS_CERTDIR: /certs
