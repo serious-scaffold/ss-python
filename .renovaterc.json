@@ -4,9 +4,20 @@
         "config:best-practices",
         ":maintainLockFilesWeekly"
     ],
+    "github-actions": {
+        "fileMatch": [
+            "^template/.*\\.github.*/workflows/.*\\.yml(\\.jinja)?"
+        ]
+    },
     "gitlabci": {
         "fileMatch": [
+            "^template/.*\\.gitlab.*/workflows/.*\\.yml(\\.jinja)?",
             "^.gitlab/workflows/.*\\.yml$"
+        ]
+    },
+    "pep621": {
+        "fileMatch": [
+            "^template/pyproject\\.toml$"
         ]
     }
 }
