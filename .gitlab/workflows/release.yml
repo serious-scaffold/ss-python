@@ -24,7 +24,7 @@ release-publish:
     - echo "Running the release job."
   stage: release
 container-publish:
-  image: docker:25.0.3@sha256:f837abeefde97276de9505056743c602d6938d2b49b2066bee3ae3b359ec8b78
+  image: docker:25.0.3
   needs:
     - release-publish
   parallel:
