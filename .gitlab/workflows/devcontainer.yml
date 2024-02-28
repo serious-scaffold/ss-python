@@ -1,5 +1,5 @@
 dev-container-publish:
-  image: docker:latest
+  image: docker:25.0.3
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -29,7 +29,7 @@ dev-container-publish:
         --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
   services:
-    - docker:dind
+    - docker:25.0.3-dind
   stage: build
   variables:
     DOCKER_TLS_CERTDIR: /certs

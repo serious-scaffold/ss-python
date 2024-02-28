@@ -14,7 +14,7 @@ jobs:
         RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN }}' }}
       image: ghcr.io/renovatebot/renovate:37.214.0@sha256:f5351474828f2197862b18adfd15d9923e44f294c4429868ac0013df5385362f
       options: '--user root'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - run: env | sort
       - id: generate-token
