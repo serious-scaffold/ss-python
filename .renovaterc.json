@@ -5,8 +5,8 @@
             "customType": "regex",
             "datasourceTemplate": "pypi",
             "fileMatch": [
-                "^\\.devcontainer/Dockerfile",
-                "template/.devcontainer/Dockerfile.jinja"
+                "^\\.devcontainer/Dockerfile$",
+                "^template/\\.devcontainer/Dockerfile\\.jinja$"
             ],
             "matchStrings": [
                 "RUN pipx install (?<depName>.*?)==(?<currentValue>.*?)\n"
