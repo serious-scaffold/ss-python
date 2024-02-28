@@ -8,7 +8,7 @@ build:
       - git fetch --unshallow || true
     post_install:
       - python -m pip install --upgrade --no-cache-dir pdm
-      - make dev-doc
+      - PDM_NO_EDITABLE=true make dev-doc
     pre_build:
       - CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
   os: ubuntu-22.04
