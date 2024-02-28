@@ -17,5 +17,6 @@ renovate:
     RENOVATE_GIT_AUTHOR: Renovate GitLab Bot <gitlab@renovatebot.com>
     RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
     RENOVATE_PLATFORM: gitlab
+    RENOVATE_PR_HOURLY_LIMIT: 0
     RENOVATE_REPOSITORIES: '["$CI_PROJECT_PATH"]'
     RENOVATE_REPOSITORY_CACHE: enabled
