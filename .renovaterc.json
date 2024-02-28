@@ -21,8 +21,5 @@
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
         ]
-    },
-    "ignorePaths": [
-        "**/template/**"
-    ]
+    }
 }
