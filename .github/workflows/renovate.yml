@@ -5,7 +5,7 @@ jobs:
       env:
         LOG_LEVEL: debug
         RENOVATE_BRANCH_PREFIX: renovate-github/
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions"]'
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci"]'
         RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
         RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
         RENOVATE_PLATFORM: github

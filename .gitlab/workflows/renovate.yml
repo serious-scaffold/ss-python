@@ -12,7 +12,7 @@ renovate:
     LOG_LEVEL: debug
     RENOVATE_BASE_DIR: $CI_PROJECT_DIR/renovate
     RENOVATE_BRANCH_PREFIX: renovate-gitlab/
-    RENOVATE_ENABLED_MANAGERS: '["pep621"]'
+    RENOVATE_ENABLED_MANAGERS: '["pep621", "gitlabci"]'
     RENOVATE_ENDPOINT: $CI_API_V4_URL
     RENOVATE_GIT_AUTHOR: Renovate GitLab Bot <gitlab@renovatebot.com>
     RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
