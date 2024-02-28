@@ -9,7 +9,7 @@
                 "template/.devcontainer/Dockerfile.jinja"
             ],
             "matchStrings": [
-                "RUN pipx install (?<depname>.*?)==(?<currentValue>.*?)\n"
+                "RUN pipx install (?<depName>.*?)==(?<currentValue>.*?)\n"
             ]
         }
     ],
