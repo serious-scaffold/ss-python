@@ -4,6 +4,11 @@
         "config:best-practices",
         ":maintainLockFilesWeekly"
     ],
+    "gitlabci": {
+        "fileMatch": [
+            "^.gitlab/workflows/.*\\.yml$"
+        ]
+    },
     "ignorePaths": [
         "**/template/**"
     ]
