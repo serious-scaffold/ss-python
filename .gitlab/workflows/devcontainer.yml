@@ -11,6 +11,8 @@ dev-container-publish:
   rules:
     - changes:
         - .devcontainer/Dockerfile
+        - .devcontainer/Dockerfile.dockerignore
+        - .gitlab/workflows/devcontainer.yml
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web"
   script:
