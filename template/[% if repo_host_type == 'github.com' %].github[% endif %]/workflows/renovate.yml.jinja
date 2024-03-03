@@ -6,9 +6,9 @@ jobs:
         LOG_LEVEL: debug
         RENOVATE_BRANCH_PREFIX: renovate-github/
 [%- if project_name == "Serious Scaffold Python" %]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci"]'
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex"]'
 [%- else -%]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions"]'
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex"]'
 [%- endif %]
         RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
         RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'

@@ -1,5 +1,20 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "customManagers": [
+        {
+            "customType": "regex",
+            "datasourceTemplate": "pypi",
+            "fileMatch": [
+                "^\\.devcontainer\\/Dockerfile$"
+[%- if project_name == "Serious Scaffold Python" %],
+                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+[%- endif %]
+            ],
+            "matchStrings": [
+                "RUN pipx install (?<depName>.*?)==(?<currentValue>.*?)\n"
+            ]
+        }
+    ],
     "extends": [
         "config:best-practices",
         ":maintainLockFilesWeekly"
@@ -10,10 +25,5 @@
             "^.gitlab/workflows/.*\\.yml$"
         ]
     }
-[%- endif %]
-[%- if project_name == "Serious Scaffold Python" %],
-    "ignorePaths": [
-        "**/template/**"
-    ]
 [%- endif %]
 }
