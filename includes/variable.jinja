@@ -42,9 +42,10 @@
 [% macro pipeline_badge() -%]
   [% if repo_host_type == 'github.com' -%]
 [![CI](https://{{ repo_url() }}/actions/workflows/ci.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/ci.yml)
-[![Release](https://{{ repo_url() }}/actions/workflows/release.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/release.yml)
-[![DevContainer](https://{{ repo_url() }}/actions/workflows/devcontainer.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/devcontainer.yml)
 [![CommitLint](https://{{ repo_url() }}/actions/workflows/commitlint.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/commitlint.yml)
+[![DevContainer](https://{{ repo_url() }}/actions/workflows/devcontainer.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/devcontainer.yml)
+[![Release](https://{{ repo_url() }}/actions/workflows/release.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/release.yml)
+[![Renovate](https://{{ repo_url() }}/actions/workflows/renovate.yml/badge.svg)](https://{{ repo_url() }}/actions/workflows/renovate.yml)
   [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
 [![pipeline status](https://{{ repo_url() }}/badges/main/pipeline.svg)](https://{{ repo_url() }}/-/commits/main)
   [%- endif %]
