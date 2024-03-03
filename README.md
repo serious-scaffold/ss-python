@@ -3,9 +3,10 @@
 A Python project template covering the entire development lifecycle with various integrations, configurations and modules.
 
 [![CI](https://github.com/serious-scaffold/ss-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/ci.yml)
-[![Release](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml)
-[![DevContainer](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml)
 [![CommitLint](https://github.com/serious-scaffold/ss-python/actions/workflows/commitlint.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/commitlint.yml)
+[![DevContainer](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml)
+[![Release](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml)
+[![Renovate](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/coverage.json)](https://serious-scaffold.github.io/ss-python/reports/coverage)
 [![PyPI](https://img.shields.io/pypi/v/ss-python)](https://pypi.org/project/ss-python/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ss-python)](https://pypi.org/project/ss-python/)
