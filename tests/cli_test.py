@@ -1,4 +1,5 @@
 """Test for cli."""
+
 from typer.testing import CliRunner
 
 from ss_python.cli import app
