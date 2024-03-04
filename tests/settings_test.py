@@ -1,4 +1,5 @@
 """Test for settings."""
+
 import os
 
 from ss_python.settings import global_settings, settings

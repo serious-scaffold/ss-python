@@ -1,4 +1,5 @@
 """Command Line Interface."""
+
 import typer
 
 app = typer.Typer()

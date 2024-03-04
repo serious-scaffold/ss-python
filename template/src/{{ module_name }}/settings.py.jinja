@@ -1,5 +1,6 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_higher_than -%]
 """Settings Module."""
+
 import logging
 from logging import getLevelName
 [%- if not version_higher_than(min_py, "3.10") %]
