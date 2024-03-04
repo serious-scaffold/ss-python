@@ -41,6 +41,7 @@
 [%- endif %],
     "packageRules": [
         {
+            "commitMessageTopic": "serious-scaffold-python",
             "matchDepTypes": [
                 "copier-template"
             ],
@@ -50,7 +51,8 @@
                     "pip install copier",
                     "copier update --defaults --vcs-ref {{ '{{{newVersion}}}' }}"
                 ]
-            }
+            },
+            "semanticCommitScope": "copier-template"
         }
     ]
 }
