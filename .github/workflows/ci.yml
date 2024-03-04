@@ -53,7 +53,6 @@ jobs:
           copier copy --data-file .copier-data.yml --vcs-ref HEAD --force --data repo_host_type=gitlab.com . .
           rm .copier-answers.yml
           copier copy --data-file .copier-data.yml --vcs-ref HEAD --force . .
-          copier copy -r HEAD -f . .
           rm .copier-answers.yml
       - run: git diff
       - run: git status --porcelain
