@@ -59,13 +59,7 @@ jobs:
       - run: env | sort
       - name: Install copier for template rendering using pipx
         run: pipx install copier
-      - name: Generate the project with the default value
-        run: |
-          find . -maxdepth 1 | grep -vE '(\.|\.git|\.copier-data\.yml|template|includes|copier\.yaml|pdm\.lock)$' | xargs -I {} rm -r {}
-          copier copy --data-file .copier-data.yml --vcs-ref HEAD --force --data repo_host_type=gitlab.com . .
-          rm .copier-answers.yml
-          copier copy --data-file .copier-data.yml --vcs-ref HEAD --force . .
-          rm .copier-answers.yml
+      - run: make consistency
       - run: git diff
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"

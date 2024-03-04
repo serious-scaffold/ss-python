@@ -1,5 +1,6 @@
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 .PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild changelog doc-gen doc-mypy doc-coverage doc
+[%- if project_name == "Serious Scaffold Python" %] consistency[% endif %]
 
 ########################################################################################
 # Variables
@@ -23,9 +24,6 @@ CHANGELOG_PATH := docs/changelog.md
 clean:
 	-rm -rf \
 		$(PUBLIC_DIR) \
-[%- if project_name == "Serious Scaffold Python" %]
-		.copier-answers.yml \
-[%- endif %]
 		.coverage \
 		.mypy_cache \
 		.pdm-build \
@@ -155,6 +153,19 @@ doc-coverage: test-run doc-gen
 # Generate all documentation with reports.
 doc: changelog doc-gen doc-mypy doc-coverage
 
+[% if project_name == "Serious Scaffold Python" -%]
+########################################################################################
+# Template
+########################################################################################
+
+consistency:
+	find . -maxdepth 1 | grep -vE '(\.|\.git|\.copier-data\.yml|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
+	copier copy -r HEAD --data-file .copier-data.yml --data repo_host_type=gitlab.com -f . .
+	rm -rf .copier-answers.yml
+	copier copy -r HEAD --data-file .copier-data.yml -f . .
+	rm -rf .copier-answers.yml
+
+[% endif -%]
 ########################################################################################
 # End
 ########################################################################################
