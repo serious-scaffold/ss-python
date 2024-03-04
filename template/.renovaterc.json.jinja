@@ -13,6 +13,19 @@
             "matchStrings": [
                 "RUN pipx install (?<depName>.*?)==(?<currentValue>.*?)\n"
             ]
+        },
+        {
+            "customType": "regex",
+            "datasourceTemplate": "git-tags",
+            "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
+            "depTypeTemplate": "copier-template",
+            "fileMatch": [
+                "^\\.copier-answers\\.yml$"
+            ],
+            "matchStrings": [
+                "_commit: (?<currentValue>.*?)\n"
+            ],
+            "versioningTemplate": "semver"
         }
     ],
     "extends": [
@@ -25,5 +38,19 @@
             "^.gitlab/workflows/.*\\.yml$"
         ]
     }
-[%- endif %]
+[%- endif %],
+    "packageRules": [
+        {
+            "matchDepTypes": [
+                "copier-template"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "git stash",
+                    "pip install copier",
+                    "copier update --defaults --vcs-ref {{ '{{{newVersion}}}' }}"
+                ]
+            }
+        }
+    ]
 }

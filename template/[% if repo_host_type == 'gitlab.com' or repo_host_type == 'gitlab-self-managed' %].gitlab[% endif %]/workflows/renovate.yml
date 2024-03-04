@@ -3,13 +3,14 @@ renovate:
     key: ${CI_COMMIT_REF_SLUG}-renovate
     paths:
       - renovate/cache/renovate/repository/
-  image: renovate/renovate:37.225.0@sha256:85a7d68f209972956ffd042df42c367153f81ed8e13627db5c5eeb52d14ea4cf
+  image: renovate/renovate:37.225.0-full
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $RENOVATE_TOKEN != null
   script: renovate $RENOVATE_EXTRA_FLAG
   stage: build
   variables:
     LOG_LEVEL: debug
+    RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier"]'
     RENOVATE_BASE_DIR: $CI_PROJECT_DIR/renovate
     RENOVATE_BRANCH_PREFIX: renovate-gitlab/
     RENOVATE_ENABLED_MANAGERS: '["pep621", "gitlabci", "regex"]'

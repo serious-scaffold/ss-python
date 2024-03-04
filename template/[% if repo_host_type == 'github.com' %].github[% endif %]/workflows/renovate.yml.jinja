@@ -4,6 +4,7 @@ jobs:
     container:
       env:
         LOG_LEVEL: debug
+        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
 [%- if project_name == "Serious Scaffold Python" %]
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex"]'
@@ -16,7 +17,7 @@ jobs:
         RENOVATE_REPOSITORIES: '["{{ '${{ github.repository }}' }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
         RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN }}' }}
-      image: ghcr.io/renovatebot/renovate:37.225.0@sha256:85a7d68f209972956ffd042df42c367153f81ed8e13627db5c5eeb52d14ea4cf
+      image: ghcr.io/renovatebot/renovate:37.225.0-full
       options: '--user root'
     runs-on: ubuntu-22.04
     steps:
