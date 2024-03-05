@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild changelog doc-gen doc-mypy doc-coverage doc
+.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild changelog doc-gen doc-mypy doc-coverage doc consistency
 
 ########################################################################################
 # Variables
@@ -22,7 +22,6 @@ CHANGELOG_PATH := docs/changelog.md
 clean:
 	-rm -rf \
 		$(PUBLIC_DIR) \
-		.copier-answers.yml \
 		.coverage \
 		.mypy_cache \
 		.pdm-build \
@@ -151,6 +150,17 @@ doc-coverage: test-run doc-gen
 
 # Generate all documentation with reports.
 doc: changelog doc-gen doc-mypy doc-coverage
+
+########################################################################################
+# Template
+########################################################################################
+
+consistency:
+	find . -maxdepth 1 | grep -vE '(\.|\.git|\.copier-data\.yml|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
+	copier copy -r HEAD --data-file .copier-data.yml --data repo_host_type=gitlab.com -f . .
+	rm -rf .copier-answers.yml
+	copier copy -r HEAD --data-file .copier-data.yml -f . .
+	rm -rf .copier-answers.yml
 
 ########################################################################################
 # End

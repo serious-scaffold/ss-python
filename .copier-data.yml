@@ -1,0 +1,19 @@
+author_email: i@huxuan.org
+author_name: huxuan
+copyright_holder: Serious Scaffold
+copyright_license: MIT License
+copyright_year: 2022-2024
+coverage_threshold: 100
+default_py: '3.12'
+development_status: Alpha
+max_py: '3.12'
+min_py: '3.8'
+module_name: ss_python
+organization_name: Serious Scaffold
+package_name: ss-python
+project_description: A Python project template covering the entire development lifecycle
+    with various integrations, configurations and modules.
+project_name: Serious Scaffold Python
+repo_host_type: github.com
+repo_name: ss-python
+repo_namespace: serious-scaffold
