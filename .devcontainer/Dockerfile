@@ -6,6 +6,10 @@ ARG PYTHON_VERSION=3.12
 
 FROM python:${PYTHON_VERSION} as dev
 
+# NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
+# ARG is used here for temporary override without changing the original env.
+ARG PYTHON_VERSION
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
 #   pipx: To install Python applications.
     pipx \
@@ -22,7 +26,11 @@ ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 RUN pipx install pdm==2.12.4
 
 # Install pre-commit
-RUN pipx install pre-commit==3.5.0
+RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
+        pipx install pre-commit==3.5.0; \
+    else \
+        pipx install pre-commit==3.6.2; \
+    fi
 
 # Create a non-root user with sudo permission
 ARG USERNAME=ss-python
@@ -60,7 +68,7 @@ FROM python:${PYTHON_VERSION}-slim as prod
 
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
-ARG PYTHON_VERSION=3.12
+ARG PYTHON_VERSION
 
 # Retrieve packages from build stage.
 ENV PYTHONPATH=/workspace/pkgs
