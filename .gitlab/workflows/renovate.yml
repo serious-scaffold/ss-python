@@ -9,6 +9,7 @@ renovate:
   script: renovate $RENOVATE_EXTRA_FLAG
   stage: build
   variables:
+    GIT_STRATEGY: none
     LOG_LEVEL: debug
     RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier"]'
     RENOVATE_BASE_DIR: $CI_PROJECT_DIR/renovate
