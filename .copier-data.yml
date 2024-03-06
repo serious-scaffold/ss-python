@@ -7,7 +7,7 @@ coverage_threshold: 100
 default_py: '3.12'
 development_status: Alpha
 max_py: '3.12'
-min_py: '3.8'
+min_py: '3.9'
 module_name: ss_python
 organization_name: Serious Scaffold
 package_name: ss-python
