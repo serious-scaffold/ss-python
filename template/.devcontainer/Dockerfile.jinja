@@ -1,4 +1,3 @@
-[% from pathjoin("includes", "version_compare.jinja") import version_higher_than -%]
 ARG PYTHON_VERSION={{ default_py }}
 
 ########################################################################################
@@ -6,6 +5,10 @@ ARG PYTHON_VERSION={{ default_py }}
 ########################################################################################
 
 FROM python:${PYTHON_VERSION} as dev
+
+# NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
+# ARG is used here for temporary override without changing the original env.
+ARG PYTHON_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 #   pipx: To install Python applications.
@@ -23,11 +26,11 @@ ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 RUN pipx install pdm==2.12.4
 
 # Install pre-commit
-[%- if not version_higher_than(min_py, "3.9") %]
-RUN pipx install pre-commit==3.5.0
-[%- else %]
-RUN pipx install pre-commit==3.6.2
-[%- endif %]
+RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
+        pipx install pre-commit==3.5.0; \
+    else \
+        pipx install pre-commit==3.6.2; \
+    fi
 
 # Create a non-root user with sudo permission
 ARG USERNAME={{ repo_name }}
@@ -65,7 +68,7 @@ FROM python:${PYTHON_VERSION}-slim as prod
 
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
-ARG PYTHON_VERSION={{ default_py }}
+ARG PYTHON_VERSION
 
 # Retrieve packages from build stage.
 ENV PYTHONPATH=/workspace/pkgs
