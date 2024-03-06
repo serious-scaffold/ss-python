@@ -14,3 +14,5 @@ commitlint:
         echo "$CI_MERGE_REQUEST_TITLE" | commitlint
       fi
   stage: ci
+  variables:
+    GIT_STRATEGY: none

@@ -23,6 +23,8 @@ release-publish:
   script:
     - echo "Running the release job."
   stage: release
+  variables:
+    GIT_STRATEGY: none
 container-publish:
   image: docker:25.0.3@sha256:0d70c541ee98e66b8f7ece8c0e9f7910732466e337a9087c2ac2868ef0775092
   needs:
@@ -90,3 +92,5 @@ pages:
   script:
     - echo "Running the pages job."
   stage: release
+  variables:
+    GIT_STRATEGY: none
