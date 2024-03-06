@@ -66,15 +66,14 @@
                 ]
             },
             "semanticCommitScope": "copier-template"
-        }
-[%- if not version_higher_than(min_py, "3.9") %],
+        },
         {
+            "description": "Pre-commit 3.5.0 is pinned as the last version supporting Python 3.8.",
             "enabled": false,
             "matchCurrentVersion": "==3.5.0",
             "matchPackageNames": [
                 "pre-commit"
             ]
         }
-[%- endif %]
     ]
 }
