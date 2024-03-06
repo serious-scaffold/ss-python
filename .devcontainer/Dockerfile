@@ -22,7 +22,7 @@ ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 RUN pipx install pdm==2.12.4
 
 # Install pre-commit
-RUN pipx install pre-commit==3.6.2
+RUN pipx install pre-commit==3.5.0
 
 # Create a non-root user with sudo permission
 ARG USERNAME=ss-python

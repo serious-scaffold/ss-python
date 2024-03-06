@@ -1,3 +1,4 @@
+[% from pathjoin("includes", "version_compare.jinja") import version_higher_than -%]
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "customManagers": [
@@ -66,5 +67,14 @@
             },
             "semanticCommitScope": "copier-template"
         }
+[%- if not version_higher_than(min_py, "3.9") %],
+        {
+            "enabled": false,
+            "matchCurrentVersion": "==3.5.0",
+            "matchPackageNames": [
+                "pre-commit"
+            ]
+        }
+[%- endif %]
     ]
 }

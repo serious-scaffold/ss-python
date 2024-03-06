@@ -59,6 +59,13 @@
                 ]
             },
             "semanticCommitScope": "copier-template"
+        },
+        {
+            "enabled": false,
+            "matchCurrentVersion": "==3.5.0",
+            "matchPackageNames": [
+                "pre-commit"
+            ]
         }
     ]
 }

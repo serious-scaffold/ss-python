@@ -1,3 +1,4 @@
+[% from pathjoin("includes", "version_compare.jinja") import version_higher_than -%]
 ARG PYTHON_VERSION={{ default_py }}
 
 ########################################################################################
@@ -22,7 +23,11 @@ ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 RUN pipx install pdm==2.12.4
 
 # Install pre-commit
+[%- if not version_higher_than(min_py, "3.9") %]
+RUN pipx install pre-commit==3.5.0
+[%- else %]
 RUN pipx install pre-commit==3.6.2
+[%- endif %]
 
 # Create a non-root user with sudo permission
 ARG USERNAME={{ repo_name }}
