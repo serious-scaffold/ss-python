@@ -37,6 +37,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - Manage dependencies and virtual environments with [`pdm`](https://pdm-project.org/).
 - Version the package using [dynamic SCM tag](https://backend.pdm-project.org/metadata/#read-from-scm-tag-supporting-git-and-hg) with [`pdm-backend`](https://backend.pdm-project.org/).
 - Containerization for development and deployment with [dev container](https://containers.dev/) integration.
+- Automate dependency updates with [Renovate](https://github.com/renovatebot/renovate).
 - Automate Git hooks with [pre-commit hooks](https://github.com/pre-commit/pre-commit-hooks) and [local](https://pre-commit.com/#repository-local-hooks) linters.
 - Lint with [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), and [`toml-sort`](https://github.com/pappasam/toml-sort).
 - Test with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
