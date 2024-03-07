@@ -14,6 +14,6 @@ on:
     types:
       - opened
     paths:
-      - docs/**
+      - 'docs/**'
 permissions:
   pull-requests: write
