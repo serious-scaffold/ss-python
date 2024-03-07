@@ -5,7 +5,6 @@ concurrency:
 jobs:
   dev-container-publish:
     permissions:
-      contents: read
       packages: write
     runs-on: ubuntu-22.04
     steps:
