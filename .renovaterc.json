@@ -37,6 +37,16 @@
     },
     "packageRules": [
         {
+            "groupName": "renovate docker tag",
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchDepNames": [
+                "ghcr.io/renovatebot/renovate",
+                "renovate/renovate"
+            ]
+        },
+        {
             "commitMessageTopic": "serious-scaffold-python",
             "matchDepTypes": [
                 "copier-template"

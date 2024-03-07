@@ -31,15 +31,27 @@
     "extends": [
         "config:best-practices",
         ":maintainLockFilesWeekly"
-    ]
-[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %],
+    ],
+[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
     "gitlabci": {
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
         ]
-    }
-[%- endif %],
+    },
+[%- endif %]
     "packageRules": [
+[%- if project_name == "Serious Scaffold Python" %]
+        {
+            "groupName": "renovate docker tag",
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchDepNames": [
+                "ghcr.io/renovatebot/renovate",
+                "renovate/renovate"
+            ]
+        },
+[%- endif %]
         {
             "commitMessageTopic": "serious-scaffold-python",
             "matchDepTypes": [
