@@ -46,7 +46,7 @@ jobs:
             echo "is_prerelease=false" > $GITHUB_OUTPUT
           fi
       - name: Create GitHub release
-        uses: softprops/action-gh-release@d99959edae48b5ffffd7b00da66dcdb0a33a52ee # v2
+        uses: softprops/action-gh-release@d99959edae48b5ffffd7b00da66dcdb0a33a52ee # v2.0.2
         with:
           body_path: release-notes.md
           prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
