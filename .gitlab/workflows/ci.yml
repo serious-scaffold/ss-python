@@ -28,6 +28,8 @@ consistency:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
+    - git config --global user.name gitlab-ci
+    - git config --global user.email gitlab-ci@gitlab.com
     - pipx install copier
     - make consistency
     - git diff
