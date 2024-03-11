@@ -13,5 +13,10 @@ on:
   pull_request_target:
     types:
       - opened
+    paths:
+      - .github/workflows/readthedocs-preview.yml
+      - .readthedocs.yaml
+      - README.md
+      - docs/**
 permissions:
   pull-requests: write
