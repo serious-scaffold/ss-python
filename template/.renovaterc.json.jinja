@@ -52,6 +52,39 @@
                 "renovate/renovate"
             ]
         },
+        {
+            "matchDepTypes": [
+                "action"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentDigest}}} # {{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}"
+                ]
+            }
+        },
+        {
+            "matchDepTypes": [
+                "github-runner"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g\' {} +' }}"
+                ]
+            }
+        },
+        {
+            "matchDepTypes": [
+                "container",
+                "docker",
+                "image",
+                "service-image"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}:{{{currentValue}}}@{{{currentDigest}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g\' {} +' }}"
+                ]
+            }
+        },
 [%- endif %]
         {
             "commitMessageTopic": "serious-scaffold-python",
