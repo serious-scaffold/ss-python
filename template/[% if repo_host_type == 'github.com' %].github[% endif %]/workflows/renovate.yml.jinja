@@ -6,6 +6,7 @@ jobs:
         LOG_LEVEL: debug
         RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
+        RENOVATE_ENABLED: {{ '${{ vars.RENOVATE_ENABLED || true }}' }}
 [%- if project_name == "Serious Scaffold Python" %]
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex"]'
 [%- else -%]
