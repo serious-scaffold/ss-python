@@ -4,7 +4,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
   documentation-links:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: readthedocs/actions/preview@cc0920454cf03ca8a3fbd3cbaa2ce2e509e70636 # v1.2
         with:
