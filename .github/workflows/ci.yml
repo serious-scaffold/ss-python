@@ -35,18 +35,13 @@ jobs:
     if: ${{ !cancelled() && ! failure() }}
     runs-on: ubuntu-22.04
     steps:
+      - run: env | sort
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
       - name: Set up Git
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      - uses: pdm-project/setup-pdm@c050bdcb2405837648035b6678c75609d53a749f # v4
-        with:
-          cache: true
-          python-version: '3.12'
-      - run: env | sort
-      - name: Install copier for template rendering using pipx
-        run: pipx install copier
+      - run: pipx install copier
       - run: make consistency
       - run: git diff
       - run: git status --porcelain
