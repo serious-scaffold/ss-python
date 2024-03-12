@@ -107,6 +107,13 @@
             "semanticCommitScope": "copier-template"
         },
         {
+            "description": "Group apt packages to avoid failure when multiple packages are outdated.",
+            "groupName": "apt packages",
+            "matchDepTypes": [
+                "apt"
+            ]
+        },
+        {
             "description": "Pre-commit 3.5.0 is pinned as the last version supporting Python 3.8.",
             "enabled": false,
             "matchCurrentVersion": "==3.5.0",
