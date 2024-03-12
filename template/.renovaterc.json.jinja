@@ -17,6 +17,21 @@
         },
         {
             "customType": "regex",
+            "datasourceTemplate": "repology",
+            "depTypeTemplate": "apt",
+            "fileMatch": [
+                "^\\.devcontainer\\/Dockerfile$"
+[%- if project_name == "Serious Scaffold Python" %],
+                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+[%- endif %]
+            ],
+            "matchStrings": [
+                "# renovate: depName=(?<depName>.*?)\nARG .*?_VERSION=\"(?<currentValue>.*)\"\n"
+            ],
+            "versioningTemplate": "deb"
+        },
+        {
+            "customType": "regex",
             "datasourceTemplate": "git-tags",
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
