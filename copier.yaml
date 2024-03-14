@@ -3,7 +3,7 @@ _envops:
   block_start_string: '[%'
 _subdirectory: template
 _message_before_copy: |
-  Thanks for generating a project using our template.
+  Thanks for generating a project using our template.1
 
   You'll be asked a series of questions whose answers will be used to
   generate a tailored project for you.
