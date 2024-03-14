@@ -48,6 +48,7 @@
     "pytest",
     "Quickstart",
     "renovatebot",
+    "repology",
     "setuptools",
     "softprops",
     "sphinxcontrib",

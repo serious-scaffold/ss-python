@@ -10,11 +10,16 @@ FROM python:${PYTHON_VERSION} as dev
 # ARG is used here for temporary override without changing the original env.
 ARG PYTHON_VERSION
 
+# renovate: depName=debian_12/pipx
+ARG PIPX_VERSION="1.1.0-1"
+# renovate: depName=debian_12/sudo
+ARG SUDO_VERSION="1.9.13p3-1+deb12u1"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
 #   pipx: To install Python applications.
-    pipx \
+    pipx="${PIPX_VERSION}" \
 #   sudo: To add sudo support to non-root user.
-    sudo \
+    sudo="${SUDO_VERSION}" \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Config pipx
