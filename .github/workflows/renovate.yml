@@ -4,7 +4,7 @@ jobs:
     container:
       env:
         LOG_LEVEL: debug
-        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier"]'
+        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier", "^find"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: ${{ vars.RENOVATE_ENABLED || true }}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex"]'
