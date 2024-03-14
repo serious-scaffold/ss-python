@@ -5,7 +5,7 @@
 groups = ["default", "doc", "lint", "test"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.1"
-content_hash = "sha256:45ec5c321b8ce19fd9b454e51079a824f63141ad15f39bee67a7f000f91f72fd"
+content_hash = "sha256:aadec0d40fe6dcdfde5c405ebb982cc108e19d8e39a27f1a994bdace6623573d"
 
 [[package]]
 name = "alabaster"
@@ -44,8 +44,11 @@ files = [
 
 [[package]]
 name = "autodoc-pydantic"
-version = "2.0.1"
-requires_python = ">=3.7.1,<4.0.0"
+version = "2.1.0"
+requires_python = "<4.0.0,>=3.8"
+git = "https://github.com/mansenfranzen/autodoc_pydantic.git"
+ref = "v2.1.0-a.1"
+revision = "bbfc59ff180dc2ff20be89b2e58fbf77af81c4f8"
 summary = "Seamlessly integrate pydantic models in your Sphinx documentation."
 groups = ["doc"]
 dependencies = [
@@ -53,10 +56,6 @@ dependencies = [
     "importlib-metadata>1; python_version <= \"3.8\"",
     "pydantic-settings<3.0.0,>=2.0",
     "pydantic<3.0.0,>=2.0",
-]
-files = [
-    {file = "autodoc_pydantic-2.0.1-py3-none-any.whl", hash = "sha256:d3c302fdb6d37edb5b721f0f540252fa79cea7018bc1a9a85bf70f33a68b0ce4"},
-    {file = "autodoc_pydantic-2.0.1.tar.gz", hash = "sha256:7a125a4ff18e4903e27be71e4ddb3269380860eacab4a584d6cc2e212fa96991"},
 ]
 
 [[package]]

@@ -74,7 +74,7 @@ distribution = true
 [tool.pdm.dev-dependencies]
 doc = [
   "Sphinx",
-  "autodoc-pydantic",
+  "autodoc-pydantic @ git+https://github.com/mansenfranzen/autodoc_pydantic.git@v2.1.0-a.1",
   "coverage",
   "furo",
   "git-changelog",
