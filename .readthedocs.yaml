@@ -6,6 +6,15 @@ build:
     post_checkout:
       - env | sort
       - git fetch --unshallow || true
+      # Cancel building pull requests when there aren't changed in the related files and folders.
+      # If there are no changes (git diff exits with 0) we force the command to return with 183.
+      # This is a special exit code on Read the Docs that will cancel the build immediately.
+      # Ref: https://docs.readthedocs.io/en/stable/build-customization.html#cancel-build-based-on-a-condition
+      - |
+        if [ "$READTHEDOCS_VERSION_TYPE" = "external" ] && git diff --quiet origin/main -- .github/workflows/readthedocs-preview.yml .readthedocs.yaml README.md docs/ pdm.lock;
+        then
+          exit 183;
+        fi
     post_install:
       - python -m pip install --upgrade --no-cache-dir pdm
       - PDM_NO_EDITABLE=true make dev-doc
