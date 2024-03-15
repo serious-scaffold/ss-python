@@ -9,7 +9,7 @@ jobs:
       - uses: pdm-project/setup-pdm@c050bdcb2405837648035b6678c75609d53a749f # v4
         with:
           cache: true
-          python-version: '3.12'
+          python-version: "3.12"
       - id: pages
         name: Setup pages
         uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4.0.0
@@ -97,11 +97,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - '3.8'
-          - '3.9'
-          - '3.10'
-          - '3.11'
-          - '3.12'
+          - "3.8"
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
   package-publish:
     needs: release-publish
     runs-on: ubuntu-22.04
@@ -110,7 +110,7 @@ jobs:
       - uses: pdm-project/setup-pdm@c050bdcb2405837648035b6678c75609d53a749f # v4
         with:
           cache: true
-          python-version: '3.12'
+          python-version: "3.12"
       - run: env | sort
       - env:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}
