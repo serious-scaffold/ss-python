@@ -11,7 +11,7 @@ build:
       # This is a special exit code on Read the Docs that will cancel the build immediately.
       # Ref: https://docs.readthedocs.io/en/stable/build-customization.html#cancel-build-based-on-a-condition
       - |
-        if [ "$READTHEDOCS_VERSION_TYPE" = "external" ] && git diff --quiet origin/main -- README.md;
+        if [ "$READTHEDOCS_VERSION_TYPE" = "external" ] && git diff --quiet origin/main -- .github/workflows/readthedocs-preview.yml .readthedocs.yaml README.md docs/ pdm.lock;
         then
           exit 183;
         fi
