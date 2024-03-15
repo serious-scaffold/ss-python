@@ -31,7 +31,7 @@ jobs:
           private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
       - env:
           RENOVATE_GIT_AUTHOR: {{ '${{ steps.app-token.outputs.app-slug && format(\'{0}[bot] <{0}[bot]@users.noreply.github.com>\', steps.app-token.outputs.app-slug) || \'Renovate GitHub Bot <github@renovatebot.com>\' }}' }}
-          RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN || steps.app-token.outputs.token }}' }}
+          RENOVATE_TOKEN: {{ '${{ steps.app-token.outputs.token || secrets.RENOVATE_TOKEN }}' }}
         run: |
           if [ -z "$RENOVATE_TOKEN" ]; then
             echo "RENOVATE_TOKEN is not properly configured, skipping ..."
