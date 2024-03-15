@@ -1,4 +1,4 @@
-# Serious Scaffold Python
+# Serious Scaffold Python1
 
 A Python project template covering the entire development lifecycle with various integrations, configurations and modules.
 
