@@ -27,7 +27,7 @@ release-publish:
   variables:
     GIT_STRATEGY: none
 container-publish:
-  image: docker:25.0.4@sha256:0b0e8cab617d83dd041d950827dc67e18db5a0c3786d660bab002120b09a6d91
+  image: docker:25.0.4@sha256:19a2619f1285f127e20923578299cf42407c347872409fff6f8b90b386d5130f
   needs:
     - release-publish
   parallel:
