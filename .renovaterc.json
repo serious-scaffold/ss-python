@@ -28,7 +28,8 @@
     ],
     "extends": [
         "config:best-practices",
-        ":maintainLockFilesWeekly"
+        ":maintainLockFilesWeekly",
+        ":enablePreCommit"
     ],
     "gitlabci": {
         "fileMatch": [
