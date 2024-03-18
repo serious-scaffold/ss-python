@@ -12,7 +12,7 @@ jobs:
 [%- else -%]
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex"]'
 [%- endif %]
-        RENOVATE_GIT_AUTHOR: Renovate GitHub Bot <github@renovatebot.com>
+        RENOVATE_GIT_AUTHOR: {{ '${{ vars.RENOVATE_GIT_AUTHOR || \'Renovate GitHub Bot <github@renovatebot.com>\' }}' }}
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["{{ '${{ github.repository }}' }}"]'
