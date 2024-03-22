@@ -86,7 +86,7 @@
             ],
             "postUpgradeTasks": {
                 "commands": [
-                    "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i '/{{{replace \"/\" \"\\/\" depName}}}/{N;s/\\(rev: \"*{{{currentValue}}}\"*\\)/rev: {{{newValue}}}/}' {} +"
+                    "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i '/{{{replace \"/\" \"\\/\" depName}}}/{N;s/rev: {{{currentValue}}}/rev: {{{newValue}}}/}' {} +"
                 ]
             }
         },
