@@ -8,9 +8,9 @@ jobs:
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: {{ '${{ vars.RENOVATE_ENABLED || true }}' }}
 [%- if project_name == "Serious Scaffold Python" %]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex"]'
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
 [%- else -%]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex"]'
+        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex", "pre-commit"]'
 [%- endif %]
         RENOVATE_GIT_AUTHOR: {{ '${{ vars.RENOVATE_GIT_AUTHOR || \'Renovate GitHub Bot <github@renovatebot.com>\' }}' }}
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"

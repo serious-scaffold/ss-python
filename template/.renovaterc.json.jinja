@@ -46,6 +46,7 @@
     ],
     "extends": [
         "config:best-practices",
+        ":enablePreCommit",
         ":maintainLockFilesWeekly"
     ],
 [%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
@@ -84,6 +85,16 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g\' {} +' }}"
+                ]
+            }
+        },
+        {
+            "matchManagers": [
+                "pre-commit"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i {{ '\'/{{{replace \\"/\\" \\"\\\\/\\" depName}}}/{N;s/rev: {{{currentValue}}}/rev: {{{newValue}}}/}\'' }} {} +"
                 ]
             }
         },

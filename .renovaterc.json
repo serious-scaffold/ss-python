@@ -41,6 +41,7 @@
     ],
     "extends": [
         "config:best-practices",
+        ":enablePreCommit",
         ":maintainLockFilesWeekly"
     ],
     "gitlabci": {
@@ -76,6 +77,16 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i 's|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g' {} +"
+                ]
+            }
+        },
+        {
+            "matchManagers": [
+                "pre-commit"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i '/{{{replace \"/\" \"\\/\" depName}}}/{N;s/rev: {{{currentValue}}}/rev: {{{newValue}}}/}' {} +"
                 ]
             }
         },
