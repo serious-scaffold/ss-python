@@ -59,16 +59,6 @@
     "packageRules": [
 [%- if project_name == "Serious Scaffold Python" %]
         {
-            "groupName": "renovate docker tag",
-            "matchDatasources": [
-                "docker"
-            ],
-            "matchDepNames": [
-                "ghcr.io/renovatebot/renovate",
-                "renovate/renovate"
-            ]
-        },
-        {
             "matchDepTypes": [
                 "action"
             ],
@@ -125,6 +115,23 @@
                 ]
             },
             "semanticCommitScope": "copier-template"
+        },
+        {
+            "description": "Group renovate docker tag and pre-commit-hooks tag",
+            "groupName": "renovate tag",
+            "matchDatasources": [
+                "docker",
+                "github-tags"
+            ],
+            "matchDepNames": [
+[%- if repo_host_type == "github.com" %]
+                "ghcr.io/renovatebot/renovate",
+[%- endif %]
+[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
+                "renovate/renovate",
+[%- endif %]
+                "renovatebot/pre-commit-hooks"
+            ]
         },
         {
             "description": "Group apt packages to avoid failure when multiple packages are outdated.",
