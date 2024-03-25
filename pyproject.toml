@@ -22,7 +22,7 @@ dependencies = [
   "pydantic-settings",
   "typer[all]",
 ]
-description = "A Python project template covering the entire development lifecycle with various integrations, configurations and modules."
+description = "An evolving Python project template that covers the full development lifecycle."
 dynamic = [
   "version",
 ]
