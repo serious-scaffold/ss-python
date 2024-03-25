@@ -51,16 +51,6 @@
     },
     "packageRules": [
         {
-            "groupName": "renovate docker tag",
-            "matchDatasources": [
-                "docker"
-            ],
-            "matchDepNames": [
-                "ghcr.io/renovatebot/renovate",
-                "renovate/renovate"
-            ]
-        },
-        {
             "matchDepTypes": [
                 "action"
             ],
@@ -116,6 +106,19 @@
                 ]
             },
             "semanticCommitScope": "copier-template"
+        },
+        {
+            "description": "Group renovate docker tag and pre-commit-hooks tag",
+            "groupName": "renovate tag",
+            "matchDatasources": [
+                "docker",
+                "github-tags"
+            ],
+            "matchDepNames": [
+                "ghcr.io/renovatebot/renovate",
+                "renovate/renovate",
+                "renovatebot/pre-commit-hooks"
+            ]
         },
         {
             "description": "Group apt packages to avoid failure when multiple packages are outdated.",
