@@ -34,7 +34,7 @@ RUN pipx install pdm==2.12.4
 RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
         pipx install pre-commit==3.5.0; \
     else \
-        pipx install pre-commit==3.6.2; \
+        pipx install pre-commit==3.7.0; \
     fi
 
 # Create a non-root user with sudo permission
