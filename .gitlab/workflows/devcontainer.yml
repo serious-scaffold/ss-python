@@ -31,7 +31,7 @@ dev-container-publish:
         --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
   services:
-    - docker:25.0.4-dind@sha256:19a2619f1285f127e20923578299cf42407c347872409fff6f8b90b386d5130f
+    - docker:25.0.4-dind@sha256:96637a2755acf4eaea3f15da24c03d88b86468a691a640c51a527b27622c2b58
   stage: build
   variables:
     DOCKER_TLS_CERTDIR: /certs
