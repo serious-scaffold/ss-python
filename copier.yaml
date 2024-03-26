@@ -23,8 +23,8 @@ project_name:
   help: 'Enter the name of the project in CamelCase format:'
   type: str
 project_description:
-  default: A brief description of my project.
-  help: 'Provide a brief description for the project:'
+  default: Project brief description.
+  help: "Provide a concise description to be used in the Python package overview and the introductory paragraph in the README and documentation's index page:"
   type: str
 development_status:
   default: Alpha
@@ -169,4 +169,14 @@ default_py:
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.12", min_py, max_py) }}'
       value: '3.12'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
+  type: str
+readme_content:
+  default: |-
+    [% if project_name == 'Serious Scaffold Python' -%]
+      [% from pathjoin("includes", "sample.jinja") import readme_content with context %]{{ readme_content() }}
+    [%- else -%]
+    ## A multiline README content here
+    [%- endif %]
+  help: "Provide a multiline content to be used in the README and documentation's index page:"
+  multiline: true
   type: str

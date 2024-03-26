@@ -156,10 +156,10 @@ doc: changelog doc-gen doc-mypy doc-coverage
 ########################################################################################
 
 consistency:
-	find . -maxdepth 1 | grep -vE '(\.|\.git|\.copier-data\.yml|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
-	copier copy -r HEAD --data-file .copier-data.yml --data repo_host_type=gitlab.com -f . .
+	find . -maxdepth 1 | grep -vE '(\.|\.git|\.copier-answers-sample\.yml|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
+	copier copy -r HEAD --data-file .copier-answers-sample.yml --data repo_host_type=gitlab.com -f . .
 	rm -rf .copier-answers.yml
-	copier copy -r HEAD --data-file .copier-data.yml -f . .
+	copier copy -r HEAD --data-file .copier-answers-sample.yml -f . .
 	rm -rf .copier-answers.yml
 
 ########################################################################################
