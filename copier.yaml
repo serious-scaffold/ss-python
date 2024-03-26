@@ -172,17 +172,11 @@ default_py:
   type: str
 readme_content:
   default: |-
-    [% if project_name == "Serious Scaffold Python" -%]
+    [% if project_name == 'Serious Scaffold Python' -%]
       [% include 'includes/sample/readme_content.jinja' %]
     [%- else -%]
-    ## title 1
-
-      content 1
-
-    ## title 2
-
-      content 2
+    ## A multiline README content here
     [% endif %]
-  help: "Provide the primary content to be used in the README and documentation's index page:"
+  help: "Provide a multiline content to be used in the README and documentation's index page:"
   multiline: true
   type: str

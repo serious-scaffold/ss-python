@@ -110,6 +110,7 @@ Badge for restructuredtext:
 
 It will look like this: [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/logo.json)](https://serious-scaffold.github.io/ss-python)
 
+
 ## 📜 License
 
 MIT License, for more details, see the [LICENSE](https://github.com/serious-scaffold/ss-python/blob/main/LICENSE) file.
