@@ -11,8 +11,7 @@ min_py: '3.8'
 module_name: ss_python
 organization_name: Serious Scaffold
 package_name: ss-python
-project_description: A Python project template covering the entire development lifecycle
-    with various integrations, configurations and modules.
+project_description: An evolving Python project template that covers the full development lifecycle.
 project_name: Serious Scaffold Python
 repo_host_type: github.com
 repo_name: ss-python
