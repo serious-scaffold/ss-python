@@ -143,6 +143,7 @@
     "min_py",
     "max_py",
     "default_py",
+    "readme_content",
     "id-token",
     "pages-build",
     "release-publish",
