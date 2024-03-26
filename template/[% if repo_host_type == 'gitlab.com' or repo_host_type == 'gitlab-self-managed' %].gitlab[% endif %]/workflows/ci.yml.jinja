@@ -33,6 +33,7 @@ ci:
     - make dev
     - make lint test doc build
   stage: ci
+[%- if project_name == 'Serious Scaffold Python' %]
 consistency:
   interruptible: true
   rules:
@@ -47,3 +48,4 @@ consistency:
     - git status --porcelain
     - test -z "$(git status --porcelain)"
   stage: ci
+[%- endif %]
