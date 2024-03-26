@@ -173,10 +173,10 @@ default_py:
 readme_content:
   default: |-
     [% if project_name == 'Serious Scaffold Python' -%]
-      [% include 'includes/sample/readme_content.jinja' %]
+      [% from pathjoin("includes", "sample.jinja") import readme_content with context %]{{ readme_content() }}
     [%- else -%]
     ## A multiline README content here
-    [% endif %]
+    [%- endif %]
   help: "Provide a multiline content to be used in the README and documentation's index page:"
   multiline: true
   type: str

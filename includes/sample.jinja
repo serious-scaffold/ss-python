@@ -1,3 +1,4 @@
+[% macro readme_content() -%]
 [% from pathjoin("includes", "variable.jinja") import logo_badge with context -%]
 [% from pathjoin("includes", "variable.jinja") import logo_badge_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
@@ -89,3 +90,4 @@ Badge for restructuredtext:
 ```
 
 It will look like this: {{ logo_badge() }}
+[%- endmacro %]
