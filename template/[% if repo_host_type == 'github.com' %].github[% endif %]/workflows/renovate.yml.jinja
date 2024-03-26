@@ -9,7 +9,7 @@ jobs:
         RENOVATE_ENABLED: {{ '${{ vars.RENOVATE_ENABLED || true }}' }}
 [%- if project_name == "Serious Scaffold Python" %]
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
-[%- else -%]
+[%- else %]
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex", "pre-commit"]'
 [%- endif %]
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
