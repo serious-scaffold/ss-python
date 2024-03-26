@@ -160,7 +160,7 @@ consistency:
 	copier copy -r HEAD --data-file .copier-answers-sample.yml --data repo_host_type=gitlab.com -f . .
 	rm -rf .copier-answers.yml
 	copier copy -r HEAD --data-file .copier-answers-sample.yml -f . .
-	# rm -rf .copier-answers.yml
+	rm -rf .copier-answers.yml
 
 ########################################################################################
 # End
