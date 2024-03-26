@@ -8,12 +8,10 @@ jobs:
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: ${{ vars.RENOVATE_ENABLED || true }}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
-        RENOVATE_GIT_AUTHOR: ${{ vars.RENOVATE_GIT_AUTHOR || 'Renovate GitHub Bot <github@renovatebot.com>' }}
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
-        RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
       image: ghcr.io/renovatebot/renovate:37.315.1-full@sha256:cc919018eb152b373f015cbd7e81bfe4250e75b1560e0904ae47794b019a4ffb
       options: "--user root"
     runs-on: ubuntu-22.04
@@ -27,8 +25,14 @@ jobs:
           app-id: ${{ vars.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}
       - env:
-          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN || steps.generate-token.outputs.token }}
+          RENOVATE_TOKEN: ${{ steps.generate-token.outputs.token || secrets.RENOVATE_TOKEN }}
+          RENOVATE_GIT_AUTHOR: ${{ vars.RENOVATE_GIT_AUTHOR }}
         run: |
+          if [ -n "${{ steps.generate-token.outputs.token }}" ] && [ -n "$RENOVATE_GIT_AUTHOR" ]; then
+            echo "# :warning: RENOVATE_GIT_AUTHOR is set when using GitHub App token" >> $GITHUB_STEP_SUMMARY
+            echo "Normally, RENOVATE_GIT_AUTHOR will be resolved from the token by Renovate. However, if you set RENOVATE_GIT_AUTHOR, it will override the token's git author." >> $GITHUB_STEP_SUMMARY
+          fi
+
           if [ -z "$RENOVATE_TOKEN" ]; then
             echo "RENOVATE_TOKEN is not properly configured, skipping ..."
           else
