@@ -2,7 +2,6 @@
   "recommendations": [
     "DavidAnson.vscode-markdownlint",
     "ExecutableBookProject.myst-highlight",
-    "PascalReitermann93.vscode-yaml-sort",
     "charliermarsh.ruff",
     "ms-python.mypy-type-checker",
     "ms-python.python",
