@@ -121,6 +121,18 @@
             "semanticCommitScope": "copier-template"
         },
         {
+            "description": "Group pdm in Dockerfile and GitHub Action",
+            "groupName": "pdm",
+            "matchDatasources": [
+                "github-tags",
+                "pypi"
+            ],
+            "matchDepNames": [
+                "pdm",
+                "pdm-project/pdm"
+            ]
+        },
+        {
             "description": "Group renovate docker tag and pre-commit-hooks tag",
             "groupName": "renovate tag",
             "matchDatasources": [
