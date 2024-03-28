@@ -27,6 +27,19 @@
         },
         {
             "customType": "regex",
+            "datasourceTemplate": "github-tags",
+            "depNameTemplate": "pdm-project/pdm",
+            "fileMatch": [
+                "^\\.github/workflows/.+\\.yml$",
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+            ],
+            "matchStrings": [
+                "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\\n"
+            ],
+            "versioningTemplate": "semver"
+        },
+        {
+            "customType": "regex",
             "datasourceTemplate": "git-tags",
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
@@ -106,6 +119,18 @@
                 ]
             },
             "semanticCommitScope": "copier-template"
+        },
+        {
+            "description": "Group pdm in Dockerfile and GitHub Action",
+            "groupName": "pdm",
+            "matchDatasources": [
+                "github-tags",
+                "pypi"
+            ],
+            "matchDepNames": [
+                "pdm",
+                "pdm-project/pdm"
+            ]
         },
         {
             "description": "Group renovate docker tag and pre-commit-hooks tag",
