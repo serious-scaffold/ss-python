@@ -10,7 +10,7 @@ jobs:
         with:
           cache: true
           python-version: "3.12"
-          version: 2.12.4
+          version: 2.13.2
       - id: pages
         name: Setup pages
         uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4.0.0
@@ -112,7 +112,7 @@ jobs:
         with:
           cache: true
           python-version: "3.12"
-          version: 2.12.4
+          version: 2.13.2
       - run: env | sort
       - env:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}
