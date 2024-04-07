@@ -56,11 +56,11 @@ Certain system-level Python applications are needed and it is recommended to use
 
 ```bash
 # Copier: Template rendering for projects.
-pipx install copier
+pipx install copier==9.1.1
 # PDM: A modern Python package and dependency manager supporting the latest PEP standards.
-pipx install pdm
+pipx install pdm==2.13.2
 # Pre-commit: Automates Git hooks for code quality checks.
-pipx install pre-commit
+pipx install pre-commit==3.7.0
 ```
 
 ## 🚀 Quickstart

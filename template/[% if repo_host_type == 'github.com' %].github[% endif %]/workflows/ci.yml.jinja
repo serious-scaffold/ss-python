@@ -54,7 +54,7 @@ jobs:
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      - run: pipx install copier
+      - run: pipx install copier==9.1.1
       - run: make consistency
       - run: git diff
       - run: git status --porcelain

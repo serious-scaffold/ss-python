@@ -10,7 +10,7 @@ Using `pipx` for management is recommended and you can find pipx's installation 
 
 ```bash
 # Copier: Template rendering for projects.
-pipx install copier
+pipx install copier==9.1.1
 ```
 
 ## Project Initialization
