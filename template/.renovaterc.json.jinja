@@ -6,9 +6,17 @@
             "customType": "regex",
             "datasourceTemplate": "pypi",
             "fileMatch": [
-                "^\\.devcontainer\\/Dockerfile$"
+                "^README\\.md$",
+                "^\\.devcontainer/Dockerfile$",
+                "^\\.github/workflows/.+\\.yml$",
+                "^\\.gitlab/workflows/.+\\.yml$",
+                "^docs/.+\\.md$"
 [%- if project_name == "Serious Scaffold Python" %],
-                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+                "^includes/sample\\.jinja$",
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/\\.devcontainer/Dockerfile\\.jinja$",
+                "^template/docs/.+\\.md(\\.jinja)?$"
 [%- endif %]
             ],
             "matchStrings": [

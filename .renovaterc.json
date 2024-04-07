@@ -5,8 +5,16 @@
             "customType": "regex",
             "datasourceTemplate": "pypi",
             "fileMatch": [
-                "^\\.devcontainer\\/Dockerfile$",
-                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+                "^README\\.md$",
+                "^\\.devcontainer/Dockerfile$",
+                "^\\.github/workflows/.+\\.yml$",
+                "^\\.gitlab/workflows/.+\\.yml$",
+                "^docs/.+\\.md$",
+                "^includes/sample\\.jinja$",
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/\\.devcontainer/Dockerfile\\.jinja$",
+                "^template/docs/.+\\.md(\\.jinja)?$"
             ],
             "matchStrings": [
                 "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
