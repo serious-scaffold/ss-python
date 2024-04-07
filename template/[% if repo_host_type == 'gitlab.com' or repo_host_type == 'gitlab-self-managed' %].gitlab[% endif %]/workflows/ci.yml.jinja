@@ -42,7 +42,7 @@ consistency:
   script:
     - git config --global user.name gitlab-ci
     - git config --global user.email gitlab-ci@gitlab.com
-    - pipx install copier==9.1.1
+    - pipx install copier==9.2.0
     - make consistency
     - git diff
     - git status --porcelain
