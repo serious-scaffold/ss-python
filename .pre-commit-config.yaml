@@ -31,6 +31,12 @@ repos:
     rev: 37.278.0
     hooks:
       - id: renovate-config-validator
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        additional_dependencies:
+          - tomli
   - repo: local
     hooks:
       - id: pdm-sync
