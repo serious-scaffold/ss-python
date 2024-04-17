@@ -25,7 +25,7 @@ jobs:
           app-id: ${{ vars.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}
       - env:
-          RENOVATE_TOKEN: ${{ steps.generate-token.outputs.token || secrets.RENOVATE_TOKEN }}
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN || steps.generate-token.outputs.token }}
           RENOVATE_GIT_AUTHOR: ${{ vars.RENOVATE_GIT_AUTHOR }}
         run: |
           if [ -n "${{ steps.generate-token.outputs.token }}" ] && [ -n "$RENOVATE_GIT_AUTHOR" ]; then
