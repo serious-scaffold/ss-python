@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
           fetch-depth: 0
-      - uses: pdm-project/setup-pdm@c050bdcb2405837648035b6678c75609d53a749f # v4
+      - uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
         with:
           cache: true
           python-version: {{ '${{ matrix.python-version }}' }}
