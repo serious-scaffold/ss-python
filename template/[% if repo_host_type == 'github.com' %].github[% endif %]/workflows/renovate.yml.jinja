@@ -28,15 +28,16 @@ jobs:
         with:
           app-id: {{ '${{ vars.BOT_APP_ID }}' }}
           private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
-      - env:
+      - name: Warn if RENOVATE_GIT_AUTHOR is set while using GitHub App token
+        if: steps.generate-token.outputs.token && vars.RENOVATE_GIT_AUTHOR
+        run: |
+          echo "# :warning: `RENOVATE_GIT_AUTHOR` is set explicitly while using GitHub App token" >> $GITHUB_STEP_SUMMARY
+          echo "Generally, Renovate automatically detects the git author and email using the token. However, explicitly setting the `RENOVATE_GIT_AUTHOR` will override this behavior." >> $GITHUB_STEP_SUMMARY
+      - name: Run Renovate
+        env:
           RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN || steps.generate-token.outputs.token }}' }}
           RENOVATE_GIT_AUTHOR: {{ '${{ vars.RENOVATE_GIT_AUTHOR }}' }}
         run: |
-          if [ -n "{{ '${{ steps.generate-token.outputs.token }}' }}" ] && [ -n "$RENOVATE_GIT_AUTHOR" ]; then
-            echo "# :warning: RENOVATE_GIT_AUTHOR is set when using GitHub App token" >> $GITHUB_STEP_SUMMARY
-            echo "Normally, RENOVATE_GIT_AUTHOR will be resolved from the token by Renovate. However, if you set RENOVATE_GIT_AUTHOR, it will override the token's git author." >> $GITHUB_STEP_SUMMARY
-          fi
-
           if [ -z "$RENOVATE_TOKEN" ]; then
             echo "RENOVATE_TOKEN is not properly configured, skipping ..."
           else

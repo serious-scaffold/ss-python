@@ -171,10 +171,6 @@ You can set the scope of the variables and secrets to **Repository** or **Organi
 
 ::::
 
-```{note}
-Normally, the author of prs created by Renovate will be assigned automatically to the bot account or the account of the RENOVATE_TOKEN on GitHub/GitLab. But it may be customized to assign the author by `RENOVATE_GIT_AUTHOR` variable. And its format should be `username <useremail>`. It should be careful to use a valid author, otherwise the commits will be associated by a ghost account.
-```
-
 ## Project Update
 
 Thanks to the update mechanism provided natively by `copier`, when a new version of the template is released, you can easily update the project. Just run the following command under the root directory:
