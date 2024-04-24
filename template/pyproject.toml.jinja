@@ -1,3 +1,4 @@
+[% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
@@ -75,12 +76,13 @@ requires-python = ">={{ min_py }}"
 {{ package_name }}-cli = "{{ module_name }}.cli:app"
 
 [project.urls]
-homepage = "https://{{ repo_url() }}/"
+documentation = "https://{{ page_url() }}"
 [% if repo_host_type == 'github.com' -%]
 issue = "https://{{ repo_url() }}/issues"
 [%- elif repo_host_type == 'gitlab.com' or repo_host_type == 'gitlab-self-managed' -%]
 issue = "https://{{ repo_url() }}/-/issues"
 [%- endif %]
+repository = "https://{{ repo_url() }}"
 
 [tool.coverage.report]
 fail_under = {{ coverage_threshold }}
