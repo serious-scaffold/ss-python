@@ -40,7 +40,7 @@ jobs:
 on:
   push:
     branches:
-      - $default-branch
+      - main
     paths:
       - .devcontainer/Dockerfile
       - .devcontainer/Dockerfile.dockerignore
