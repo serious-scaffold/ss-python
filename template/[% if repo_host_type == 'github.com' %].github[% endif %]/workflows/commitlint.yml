@@ -25,4 +25,4 @@ on:
       - edited
   push:
     branches:
-      - main
+      - $default-branch

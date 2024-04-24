@@ -54,4 +54,4 @@ on:
       - synchronize
   push:
     branches:
-      - main
+      - $default-branch
