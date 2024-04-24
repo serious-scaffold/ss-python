@@ -41,8 +41,9 @@ requires-python = ">=3.8"
 ss-python-cli = "ss_python.cli:app"
 
 [project.urls]
-homepage = "https://github.com/serious-scaffold/ss-python/"
+documentation = "https://serious-scaffold.github.io"
 issue = "https://github.com/serious-scaffold/ss-python/issues"
+repository = "https://github.com/serious-scaffold/ss-python"
 
 [tool.coverage.report]
 fail_under = 100
