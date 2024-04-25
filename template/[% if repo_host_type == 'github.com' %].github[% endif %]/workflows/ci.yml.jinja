@@ -23,7 +23,9 @@ jobs:
       - run: make dev
       - run: make lint
       - run: make test
-      - run: CI_PAGES_URL={{ '${{ steps.pages.outputs.base_url }}' }} make doc
+      - run: make doc
+        env:
+          CI_PAGES_URL: {{ '${{ steps.pages.outputs.base_url }}' }}
       - run: make build
     strategy:
       matrix:
