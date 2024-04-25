@@ -120,7 +120,16 @@ coverage_threshold:
   default: 100
   help: 'Set the threshold for test coverage, ranging from 0 to 100:'
   type: int
-  validator: '[% if not 0 <= coverage_threshold <= 100 %]Test Coverage threshold should be between 0 and 100[% endif %]'
+  validator: "[% if not 0 <= coverage_threshold <= 100 %]Test Coverage threshold should be between 0 and 100[% endif %]"
+platforms:
+  default: ["macos", "ubuntu", "windows"]
+  choices:
+    - macos
+    - ubuntu
+    - windows
+  help: "Set the supported platforms for the project:"
+  multiselect: true
+  type: str
 min_py:
   default: '3.8'
   choices:
