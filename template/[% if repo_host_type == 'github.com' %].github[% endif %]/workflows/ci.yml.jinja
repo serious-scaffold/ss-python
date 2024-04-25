@@ -6,7 +6,7 @@ concurrency:
 jobs:
   ci:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
-    runs-on: ubuntu-22.04
+    runs-on: {{ '${{ matrix.os }}' }}
     steps:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
         with:
@@ -23,10 +23,25 @@ jobs:
       - run: make dev
       - run: make lint
       - run: make test
-      - run: CI_PAGES_URL={{ '${{ steps.pages.outputs.base_url }}' }} make doc
+      - run: make doc
+        env:
+          CI_PAGES_URL: {{ '${{ steps.pages.outputs.base_url }}' }}
       - run: make build
     strategy:
       matrix:
+        os:
+[%- if "macos" in platforms %]
+          # renovate: github-runner
+          - macos-14
+[%- endif %]
+[%- if "ubuntu" in platforms %]
+          # renovate: github-runner
+          - ubuntu-22.04
+[%- endif %]
+[%- if "windows" in platforms %]
+          # renovate: github-runner
+          - windows-2022
+[%- endif %]
         python-version:
 [%- if version_between("3.8", min_py, max_py) %]
           - "3.8"
@@ -44,6 +59,29 @@ jobs:
           - "3.12"
 [%- endif %]
 [%- if project_name == "Serious Scaffold Python" %]
+[%- if "macos" in platforms and (version_between("3.8", min_py, max_py) or version_between("3.9", min_py, max_py)) %]
+        # Python 3.8 and 3.9 do not run on macos-14 which is using arm64 hardware.
+        exclude:
+[%- if version_between("3.8", min_py, max_py) %]
+          # renovate: github-runner
+          - os: macos-14
+            python-version: "3.8"
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+          # renovate: github-runner
+          - os: macos-14
+            python-version: "3.9"
+        include:
+[%- endif %]
+[%- if version_between("3.8", min_py, max_py) %]
+          - os: macos-13
+            python-version: "3.8"
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+          - os: macos-13
+            python-version: "3.9"
+[%- endif %]
+[%- endif %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
     runs-on: ubuntu-22.04

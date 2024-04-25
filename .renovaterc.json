@@ -47,9 +47,22 @@
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
             ],
             "matchStrings": [
-                "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\\n"
+                "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\n"
             ],
             "versioningTemplate": "semver"
+        },
+        {
+            "customType": "regex",
+            "datasourceTemplate": "github-runners",
+            "depTypeTemplate": "github-runner",
+            "fileMatch": [
+                "^\\.github/workflows/.+\\.yml$",
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+            ],
+            "matchStrings": [
+                "# renovate: github-runner\n\\s+- (os: )?(?<depName>.*?)-(?<currentValue>.*)\n"
+            ],
+            "versioningTemplate": "docker"
         },
         {
             "customType": "regex",
