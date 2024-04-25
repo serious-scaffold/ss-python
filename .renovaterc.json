@@ -9,15 +9,20 @@
                 "^\\.devcontainer/Dockerfile$",
                 "^\\.github/workflows/.+\\.yml$",
                 "^\\.gitlab/workflows/.+\\.yml$",
+                "^\\.readthedocs\\.yaml$",
+                "^\\.renovaterc\\.json$",
                 "^docs/.+\\.md$",
                 "^includes/sample\\.jinja$",
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/\\.devcontainer/Dockerfile\\.jinja$",
+                "^template/\\.readthedocs\\.yaml$",
+                "^template/\\.renovaterc\\.json\\.jinja$",
                 "^template/docs/.+\\.md(\\.jinja)?$"
             ],
             "matchStrings": [
-                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
+                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]",
+                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]"
             ]
         },
         {
@@ -122,7 +127,7 @@
             "postUpgradeTasks": {
                 "commands": [
                     "git stash",
-                    "pip install copier",
+                    "pip install copier==9.2.0",
                     "copier update --defaults --vcs-ref {{{newVersion}}}"
                 ]
             },
