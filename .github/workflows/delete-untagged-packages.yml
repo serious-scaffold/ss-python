@@ -1,0 +1,32 @@
+name: Delete Untagged Packages
+
+on:
+  schedule:
+    - cron: "0 2 * * 0"
+  workflow_dispatch: null
+
+permissions:
+  packages: write
+
+jobs:
+  delete-untagged-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete untagged dev-cache packages
+        uses: actions/delete-package-versions@v5.0.0
+        with:
+          package-name: "ss-python/dev-cache"
+          package-type: "container"
+          delete-only-untagged-versions: "true"
+      - name: Delete untagged development packages
+        uses: actions/delete-package-versions@v5.0.0
+        with:
+          package-name: "ss-python/dev"
+          package-type: "container"
+          delete-only-untagged-versions: "true"
+      - name: Delete untagged production packages
+        uses: actions/delete-package-versions@v5.0.0
+        with:
+          package-name: "ss-python"
+          package-type: "container"
+          delete-only-untagged-versions: "true"
