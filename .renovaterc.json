@@ -122,17 +122,6 @@
             }
         },
         {
-            "matchDatasources": [
-                "pypi"
-            ],
-            "postUpgradeTasks": {
-                "commands": [
-                    "find template -type f -exec sed -i 's|{{{depName}}} {{{currentValue}}}|{{{depName}}} {{{newValue}}}|g' {} +",
-                    "find template -type f -exec sed -i 's|{{{depName}}}=={{{currentValue}}}|{{{depName}}}=={{{newValue}}}|g' {} +"
-                ]
-            }
-        },
-        {
             "matchDepTypes": [
                 "container",
                 "image",
@@ -142,6 +131,17 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i 's|{{{depName}}}:{{{currentValue}}}@{{{currentDigest}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g' {} +"
+                ]
+            }
+        },
+        {
+            "matchDatasources": [
+                "pypi"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i 's|{{{depName}}} {{{currentValue}}}|{{{depName}}} {{{newValue}}}|g' {} +",
+                    "find template -type f -exec sed -i 's|{{{depName}}}=={{{currentValue}}}|{{{depName}}}=={{{newValue}}}|g' {} +"
                 ]
             }
         },
