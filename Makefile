@@ -5,7 +5,7 @@
 ########################################################################################
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
-PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
+PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$${READTHEDOCS_OUTPUT}html" || echo "public")
 
 # URL and Path of changelog source code.
 CHANGELOG_URL := $(shell echo $${CI_PAGES_URL:-https://serious-scaffold.github.io/ss-python}/_sources/changelog.md.txt)
@@ -137,11 +137,11 @@ doc-gen:
 	pdm run python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
-doc-mypy: doc-gen
+doc-mypy:
 	pdm run python -m mypy src tests --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
-doc-coverage: test-run doc-gen
+doc-coverage: test-run
 	pdm run python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
 	pdm run bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
