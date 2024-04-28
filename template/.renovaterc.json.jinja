@@ -109,8 +109,7 @@
                 "commands": [
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentDigest}}} # {{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}",
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}"
-                ],
-                "executionMode": "branch"
+                ]
             }
         },
         {
@@ -120,8 +119,7 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g\' {} +' }}"
-                ],
-                "executionMode": "branch"
+                ]
             }
         },
         {
@@ -131,8 +129,7 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i {{ '\'/{{{replace \\"/\\" \\"\\\\/\\" depName}}}/{N;s/rev: {{{currentValue}}}/rev: {{{newValue}}}/}\'' }} {} +"
-                ],
-                "executionMode": "branch"
+                ]
             }
         },
         {
@@ -146,8 +143,7 @@
                 "commands": [
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}:{{{currentValue}}}@{{{currentDigest}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g\' {} +' }}",
                     "find template -type f -exec sed -i {{ '\'s|{{{depName}}}:{{{currentValue}}}$|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g\' {} +' }}"
-                ],
-                "executionMode": "branch"
+                ]
             }
         },
         {
