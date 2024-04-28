@@ -24,8 +24,10 @@
 [%- endif %]
             ],
             "matchStrings": [
-                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]",
-                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]"
+                "asdf global (?<depName>.*?) (?<currentValue>.*?)\n",
+                "asdf install (?<depName>.*?) (?<currentValue>.*?)\n",
+                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]",
+                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
             ]
         },
         {
