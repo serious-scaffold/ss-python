@@ -135,7 +135,7 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i 's|{{{depName}}}:{{{currentValue}}}@{{{currentDigest}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g' {} +",
-                    "find template -type f -exec sed -i 's|{{{depName}}}:{{{currentValue}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g' {} +"
+                    "find template -type f -exec sed -i 's|{{{depName}}}:{{{currentValue}}}$|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g' {} +"
                 ],
                 "executionMode": "branch"
             }
