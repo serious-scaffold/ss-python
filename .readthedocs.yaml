@@ -26,7 +26,7 @@ build:
       - asdf install pdm 2.15.0
       - asdf global pdm 2.15.0
     post_install:
-      - make dev-doc
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make dev-doc
     pre_build:
       - CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
   os: ubuntu-22.04
