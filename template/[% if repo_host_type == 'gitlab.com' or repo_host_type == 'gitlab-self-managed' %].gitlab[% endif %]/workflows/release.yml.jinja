@@ -13,7 +13,7 @@ pages-build:
     - make release-notes > release-notes.md
   stage: release
 release-publish:
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.17.0
+  image: registry.gitlab.com/gitlab-org/release-cli:v0.17.0@sha256:f3dceff8dfe5d5e1c7a37d0d28bebc47669be80caa6d98d37c949f846d2e63e8
   needs:
     - pages-build
   release:
