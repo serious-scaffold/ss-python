@@ -6,11 +6,8 @@
 # Variables
 ########################################################################################
 
-# Global option for pdm, when in CI or readthedocs environment, no need to use venv.
-PDM_GLOBAL := $(shell [ "$$CI" = "true" ] || [ "$$READTHEDOCS" = "True" ] && echo "--global --project .")
-
 # Documentation target directory, will be adapted to specific folder for readthedocs.
-PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$$READTHEDOCS_OUTPUT/html" || echo "public")
+PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$${READTHEDOCS_OUTPUT}html" || echo "public")
 
 # URL and Path of changelog source code.
 CHANGELOG_URL := $(shell echo $${CI_PAGES_URL:-https://{{ page_url() }}}/_sources/changelog.md.txt)
@@ -49,16 +46,16 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	pdm install $(PDM_GLOBAL) --prod
+	pdm install --prod
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%:
-	pdm install $(PDM_GLOBAL) --dev --group $*
+	pdm install --dev --group $*
 
 # Prepare the development environment.
 # Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
 dev:
-	pdm install $(PDM_GLOBAL)
+	pdm install
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 ########################################################################################
@@ -67,19 +64,19 @@ dev:
 
 # Check lint with mypy.
 mypy:
-	pdm run $(PDM_GLOBAL) python -m mypy .
+	pdm run python -m mypy .
 
 # Lint with ruff.
 ruff:
-	pdm run $(PDM_GLOBAL) python -m ruff check .
+	pdm run python -m ruff check .
 
 # Format with ruff.
 ruff-format:
-	pdm run $(PDM_GLOBAL) python -m ruff format --check .
+	pdm run python -m ruff format --check .
 
 # Check lint with toml-sort.
 toml-sort:
-	pdm run $(PDM_GLOBAL) toml-sort --check pyproject.toml
+	pdm run toml-sort --check pyproject.toml
 
 # Check lint with all linters.
 lint: mypy ruff ruff-format toml-sort
@@ -94,13 +91,13 @@ pre-commit:
 
 # Clean and run test with coverage.
 test-run:
-	pdm run $(PDM_GLOBAL) python -m coverage erase
-	pdm run $(PDM_GLOBAL) python -m coverage run -m pytest
+	pdm run python -m coverage erase
+	pdm run python -m coverage run -m pytest
 
 # Generate coverage report for terminal and xml.
 test: test-run
-	pdm run $(PDM_GLOBAL) python -m coverage report
-	pdm run $(PDM_GLOBAL) python -m coverage xml
+	pdm run python -m coverage report
+	pdm run python -m coverage xml
 
 ########################################################################################
 # Package
@@ -120,7 +117,7 @@ publish:
 
 # Generate documentation with auto build when changes happen.
 doc-autobuild:
-	pdm run $(PDM_GLOBAL) python -m sphinx_autobuild docs $(PUBLIC_DIR) \
+	pdm run python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
 		--watch src
 
@@ -131,24 +128,24 @@ changelog:
 		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
 		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
 	fi
-	pdm run $(PDM_GLOBAL) git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,doc,feat,fix,perf,refactor,revert,style,test
+	pdm run git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,doc,feat,fix,perf,refactor,revert,style,test
 
 # Generate release notes from changelog.
 release-notes:
-	@pdm run $(PDM_GLOBAL) git-changelog --input $(CHANGELOG_PATH) --release-notes
+	@pdm run git-changelog --input $(CHANGELOG_PATH) --release-notes
 
 # Build documentation only from src.
 doc-gen:
-	pdm run $(PDM_GLOBAL) python -m sphinx.cmd.build docs $(PUBLIC_DIR)
+	pdm run python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
 # Generate mypy reports.
-doc-mypy: doc-gen
-	pdm run $(PDM_GLOBAL) python -m mypy src tests --html-report $(PUBLIC_DIR)/reports/mypy
+doc-mypy:
+	pdm run python -m mypy src tests --html-report $(PUBLIC_DIR)/reports/mypy
 
 # Generate html coverage reports with badge.
-doc-coverage: test-run doc-gen
-	pdm run $(PDM_GLOBAL) python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
-	pdm run $(PDM_GLOBAL) bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
+doc-coverage: test-run
+	pdm run python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
+	pdm run bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
 doc: changelog doc-gen doc-mypy doc-coverage

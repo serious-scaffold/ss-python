@@ -21,8 +21,10 @@
                 "^template/docs/.+\\.md(\\.jinja)?$"
             ],
             "matchStrings": [
-                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]",
-                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]"
+                "asdf global (?<depName>.*?) (?<currentValue>.*?)\n",
+                "asdf install (?<depName>.*?) (?<currentValue>.*?)\n",
+                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]",
+                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
             ]
         },
         {
@@ -129,6 +131,17 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -exec sed -i 's|{{{depName}}}:{{{currentValue}}}@{{{currentDigest}}}|{{{depName}}}:{{{newValue}}}@{{{newDigest}}}|g' {} +"
+                ]
+            }
+        },
+        {
+            "matchDatasources": [
+                "pypi"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i 's|{{{depName}}} {{{currentValue}}}|{{{depName}}} {{{newValue}}}|g' {} +",
+                    "find template -type f -exec sed -i 's|{{{depName}}}=={{{currentValue}}}|{{{depName}}}=={{{newValue}}}|g' {} +"
                 ]
             }
         },
