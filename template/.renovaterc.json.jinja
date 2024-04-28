@@ -103,17 +103,6 @@
 [%- if project_name == "Serious Scaffold Python" %]
         {
             "matchDepTypes": [
-                "action"
-            ],
-            "postUpgradeTasks": {
-                "commands": [
-                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentDigest}}} # {{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}",
-                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}"
-                ]
-            }
-        },
-        {
-            "matchDepTypes": [
                 "github-runner"
             ],
             "postUpgradeTasks": {
@@ -129,6 +118,17 @@
             "postUpgradeTasks": {
                 "commands": [
                     "find template -type f -name '.pre-commit-config.yaml.jinja' -exec sed -i {{ '\'/{{{replace \\"/\\" \\"\\\\/\\" depName}}}/{N;s/rev: {{{currentValue}}}/rev: {{{newValue}}}/}\'' }} {} +"
+                ]
+            }
+        },
+        {
+            "matchDepTypes": [
+                "action"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentDigest}}} # {{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}",
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}@{{{currentValue}}}|{{{depName}}}@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}"
                 ]
             }
         },
