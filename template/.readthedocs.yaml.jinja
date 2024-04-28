@@ -31,7 +31,7 @@ build:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make doc-mypy doc-coverage
   os: ubuntu-22.04
   tools:
-    python: "3"
+    python: "{{ default_py }}"
 sphinx:
   fail_on_warning: true
 version: 2
