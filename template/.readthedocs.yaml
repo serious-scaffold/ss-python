@@ -21,8 +21,11 @@ build:
         then
           exit 183;
         fi
+    pre_create_environment:
+      - asdf plugin add pdm
+      - asdf install pdm 2.15.0
+      - asdf global pdm 2.15.0
     post_install:
-      - python -m pip install --upgrade --no-cache-dir pdm==2.15.0
       - make dev-doc
     pre_build:
       - CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
