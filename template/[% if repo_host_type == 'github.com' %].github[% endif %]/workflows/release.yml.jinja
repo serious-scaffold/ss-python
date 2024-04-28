@@ -17,8 +17,6 @@ jobs:
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
       - run: env | sort
       - run: make dev-doc
-        env:
-          PDM_NO_EDITABLE: true
       - run: make doc
         env:
           CI_PAGES_URL: {{ '${{ steps.pages.outputs.base_url }}' }}

@@ -23,7 +23,7 @@ build:
         fi
     post_install:
       - python -m pip install --upgrade --no-cache-dir pdm==2.15.0
-      - PDM_NO_EDITABLE=true make dev-doc
+      - make dev-doc
     pre_build:
       - CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
   os: ubuntu-22.04
