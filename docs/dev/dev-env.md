@@ -12,7 +12,7 @@ Using `pipx` for management is recommended and you can find pipx's installation 
 
 ```bash
 # PDM: A modern Python package and dependency manager supporting the latest PEP standards.
-pipx install pdm==2.15.0
+pipx install pdm==2.15.1
 # Pre-commit: Automates Git hooks for code quality checks.
 pipx install pre-commit==3.7.0
 ```
