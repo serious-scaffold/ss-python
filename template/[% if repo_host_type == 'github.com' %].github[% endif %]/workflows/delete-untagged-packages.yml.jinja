@@ -13,19 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Delete untagged dev-cache packages
-        uses: actions/delete-package-versions@v5.0.0
+        uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
         with:
           package-name: "{{ repo_name }}/dev-cache"
           package-type: "container"
           delete-only-untagged-versions: "true"
       - name: Delete untagged development packages
-        uses: actions/delete-package-versions@v5.0.0
+        uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
         with:
           package-name: "{{ repo_name }}/dev"
           package-type: "container"
           delete-only-untagged-versions: "true"
       - name: Delete untagged production packages
-        uses: actions/delete-package-versions@v5.0.0
+        uses: actions/delete-package-versions@e5bc658cc4c965c472efe991f8beea3981499c55 # v5.0.0
         with:
           package-name: "{{ repo_name }}"
           package-type: "container"
