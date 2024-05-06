@@ -3,7 +3,7 @@ renovate:
     key: ${CI_COMMIT_REF_SLUG}-renovate
     paths:
       - renovate/cache/renovate/repository/
-  image: renovate/renovate:37.326.3-full@sha256:a987a89e4a2b5d7813ea384168fa162afb980428bb8e8f6b6b0d731b20eaadfe
+  image: renovate/renovate:37.342.1-full@sha256:8ca8857c682ca79ec26ce142a07937030b365ad858fc8eec960b7574021921b2
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule" && $RENOVATE_TOKEN != null
   script: renovate $RENOVATE_EXTRA_FLAG
