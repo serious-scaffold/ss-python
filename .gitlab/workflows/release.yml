@@ -26,7 +26,7 @@ release-publish:
   variables:
     GIT_STRATEGY: none
 container-publish:
-  image: docker:26.1.0@sha256:66183ea9201de4ca3be95ea9f21235a6e427b50f632563e2761b13c0ad1bad48
+  image: docker:26.1.1@sha256:56e2c522194d81689c2787c76304777199cbdc741d7dd798d06e33967361d92f
   needs:
     - release-publish
   parallel:
@@ -67,7 +67,7 @@ container-publish:
         --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
         --target prod
   services:
-    - docker:26.1.0@sha256:66183ea9201de4ca3be95ea9f21235a6e427b50f632563e2761b13c0ad1bad48
+    - docker:26.1.1@sha256:56e2c522194d81689c2787c76304777199cbdc741d7dd798d06e33967361d92f
   stage: release
   variables:
     DOCKER_TLS_CERTDIR: /certs
