@@ -47,11 +47,11 @@ RUN groupadd --gid $USER_GID $USERNAME \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
     && chmod 0440 /etc/sudoers.d/$USERNAME
 
+# Set permission for related folders
+RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR
+
 # Set default working directory
 WORKDIR /workspace
-
-# Set permission for related folders
-RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR /workspace
 
 ########################################################################################
 # Build image is an intermediate image used for building the project.
