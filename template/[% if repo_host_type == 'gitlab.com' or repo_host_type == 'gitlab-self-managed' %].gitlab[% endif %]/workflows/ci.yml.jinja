@@ -5,6 +5,13 @@ ci:
       coverage_report:
         coverage_format: cobertura
         path: coverage.xml
+  cache:
+    paths:
+      - .venv
+    key:
+      files:
+        - pdm.lock
+      prefix: venv-${PYTHON_VERSION}
   coverage: /(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
   image: ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION}
   interruptible: true
