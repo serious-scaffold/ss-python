@@ -60,44 +60,33 @@ jobs:
       packages: write
     runs-on: ubuntu-22.04
     steps:
-      - uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
-      - uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
-        with:
-          password: {{ '${{ secrets.GITHUB_TOKEN }}' }}
-          registry: ghcr.io
-          username: {{ '${{ github.actor }}' }}
-      - name: Build and push dev container
-        env:
-          SOURCE_DATE_EPOCH: 0
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        with:
-          build-args: |
-            PYTHON_VERSION={{ '${{ matrix.python-version }}' }}
-          cache-from: type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }}
-          cache-to: type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }},mode=max
-          file: .devcontainer/Dockerfile
-          provenance: false
-          push: true
-          tags: |
-            ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }}
-            ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }}-{{ '${{ github.ref_name }}' }}
-          target: dev
-      - name: Build and push prod container
-        env:
-          SOURCE_DATE_EPOCH: 0
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        with:
-          build-args: |
-            PYTHON_VERSION={{ '${{ matrix.python-version }}' }}
-            PDM_BUILD_SCM_VERSION={{ '${{ github.ref_name }}' }}
-          cache-from: type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }}
-          file: .devcontainer/Dockerfile
-          provenance: false
-          push: true
-          tags: |
-            ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }}
-            ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }}-{{ '${{ github.ref_name }}' }}
-          target: prod
+      - run: docker login -u {{ '${{ github.actor }}' }} -p {{ '${{ secrets.GITHUB_TOKEN }}' }} ghcr.io
+      - run: |
+          docker context create builder
+          docker buildx create builder --name container --driver docker-container --use
+          docker buildx inspect --bootstrap --builder container
+      - run: |
+          docker buildx build . \
+            --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
+            --cache-from type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }} \
+            --cache-to type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }},mode=max \
+            --file .devcontainer/Dockerfile \
+            --provenance false \
+            --push \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }} \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }}-{{ '${{ github.ref_name }}' }} \
+            --target dev
+      - run: |
+          docker buildx build . \
+            --build-arg PDM_BUILD_SCM_VERSION={{ '${{ github.ref_name }}' }} \
+            --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
+            --cache-from type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }} \
+            --file .devcontainer/Dockerfile \
+            --provenance false \
+            --push \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }} \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }}-{{ '${{ github.ref_name }}' }} \
+            --target prod
     strategy:
       matrix:
         python-version:
