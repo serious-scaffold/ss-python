@@ -42,7 +42,8 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - Lint with [`mypy`](http://www.mypy-lang.org/), [`ruff`](https://github.com/charliermarsh/ruff), [`toml-sort`](https://github.com/pappasam/toml-sort) and [`commitlint`](https://commitlint.js.org/).
 - Test with [`pytest`](https://pytest.org/) and [`coverage`](https://coverage.readthedocs.io) for threshold and reports.
 - Documentation with [`sphinx`](https://www.sphinx-doc.org/), the [`furo`](https://pradyunsg.me/furo) theme, and [mypy](https://mypy.readthedocs.io/en/stable/command_line.html?report-generation)/[coverage](https://coverage.readthedocs.io/en/7.3.0/cmd.html#html-reporting-coverage-html) reports.
-- Continuous Integration with [GitHub Actions](https://docs.github.com/actions) and [GitLab CI/CD](https://docs.gitlab.com/ee/ci/).
+- Continuous Integration for multiple Python versions and platforms with [GitHub Actions](https://docs.github.com/actions).
+- Containerized Continuous Integration for multiple Python versions with [GitLab CI/CD](https://docs.gitlab.com/ee/ci/).
 - Latest stable documentation published to [GitHub](https://docs.github.com/en/pages)/[GitLab](https://docs.gitlab.com/ee/user/project/pages/) Pages.
 - [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) and [pull request previews](https://docs.readthedocs.io/en/stable/pull-requests.html) with [Read the Docs](https://readthedocs.org/).
 - Develop Command Line Interfaces with [`typer`](https://typer.tiangolo.com/).
