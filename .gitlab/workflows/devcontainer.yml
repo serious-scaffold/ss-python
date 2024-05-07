@@ -27,9 +27,15 @@ dev-container-publish:
         --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
         --file .devcontainer/Dockerfile \
         --provenance false \
-        --push \
+        --load \
         --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
+    - |
+      docker run --rm \
+        -v ${PWD}:/workspace \
+        -e PDM_BUILD_SCM_VERSION=0.0.0 \
+        ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
+        make dev lint test doc build
   services:
     - docker:26.1.1@sha256:56e2c522194d81689c2787c76304777199cbdc741d7dd798d06e33967361d92f
   stage: build

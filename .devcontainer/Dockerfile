@@ -50,6 +50,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Set permission for related folders
 RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR
 
+# Set default working directory
+WORKDIR /workspace
+
 ########################################################################################
 # Build image is an intermediate image used for building the project.
 ########################################################################################
