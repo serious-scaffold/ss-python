@@ -36,14 +36,14 @@ jobs:
       - run: |
           docker run --rm \
             -e CI_PAGES_URL=${{ steps.pages.outputs.base_url }} \
-            -u 1000:1000 \
+            -u $(id -u):$(id -g) \
             -v ${PWD}:/workspace \
             ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }} \
             ls -al
       - run: |
           docker run --rm \
             -e CI_PAGES_URL=${{ steps.pages.outputs.base_url }} \
-            -u 1000:1000 \
+            -u $(id -u):$(id -g) \
             -v ${PWD}:/workspace \
             ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }} \
             make dev lint test doc build
