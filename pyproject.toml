@@ -98,6 +98,7 @@ test = [
 ]
 
 [tool.pdm.version]
+fallback_version = "0.0.0"
 source = "scm"
 
 [tool.pytest.ini_options]

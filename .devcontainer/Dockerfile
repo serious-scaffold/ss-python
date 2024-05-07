@@ -65,7 +65,7 @@ COPY src/ /workspace/src
 
 # Install dependencies and project into the local packages directory.
 WORKDIR /workspace
-ARG PDM_BUILD_SCM_VERSION=0.0.0
+ARG PDM_BUILD_SCM_VERSION
 RUN mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
