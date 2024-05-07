@@ -38,7 +38,10 @@ ci:
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - make dev
-    - make lint test doc build
+    - make lint
+    - make test
+    - make doc
+    - make build
   stage: ci
 [%- if project_name == 'Serious Scaffold Python' %]
 consistency:

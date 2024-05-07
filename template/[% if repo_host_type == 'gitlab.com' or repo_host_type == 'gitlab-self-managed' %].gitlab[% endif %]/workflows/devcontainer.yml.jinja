@@ -27,6 +27,7 @@ dev-container-publish:
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web"
   script:
+    - env | sort
     - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
     - docker context create builder
     - docker buildx create builder --name container --driver docker-container --use
@@ -37,7 +38,19 @@ dev-container-publish:
         --cache-from type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION} \
         --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
         --file .devcontainer/Dockerfile \
-        --provenance false \
+        --load \
+        --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
+        --target dev
+    - |
+      docker run --rm \
+        -e CI_PAGES_URL \
+        -v ${PWD}:/workspace \
+        ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
+        make dev lint test doc build
+    - |
+      docker buildx build . \
+        --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
+        --file .devcontainer/Dockerfile \
         --push \
         --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
