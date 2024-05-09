@@ -1,7 +1,6 @@
 *
 .*
-!/pdm.lock
-!/pdm.toml
-!/pyproject.toml
 !/README.md
+!/pdm.lock
+!/pyproject.toml
 !/src/
