@@ -56,14 +56,14 @@ RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR
 
 FROM dev as build
 
-# Copy necessary files for build.
-COPY pyproject.toml pdm.lock README.md /workspace/
-COPY src/ /workspace/src
-
 # Install dependencies and project into the local packages directory.
 WORKDIR /workspace
 ARG PDM_BUILD_SCM_VERSION=0.0.0
-RUN mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
+RUN --mount=source=README.md,target=README.md \
+    --mount=source=pdm.lock,target=pdm.lock \
+    --mount=source=pyproject.toml,target=pyproject.toml \
+    --mount=source=src,target=src \
+    mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
 # Prod image is used for deployment and distribution.
