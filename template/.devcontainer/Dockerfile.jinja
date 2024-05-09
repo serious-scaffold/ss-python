@@ -10,6 +10,11 @@ FROM python:${PYTHON_VERSION} as dev
 # ARG is used here for temporary override without changing the original env.
 ARG PYTHON_VERSION
 
+# Config Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONHASHSEED=0
+ENV PYTHONUNBUFFERED=1
+
 # renovate: depName=debian_12/pipx
 ARG PIPX_VERSION="1.1.0-1"
 # renovate: depName=debian_12/sudo
@@ -74,6 +79,11 @@ FROM python:${PYTHON_VERSION}-slim as prod
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
 ARG PYTHON_VERSION
+
+# Config Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONHASHSEED=0
+ENV PYTHONUNBUFFERED=1
 
 # Retrieve packages from build stage.
 ENV PYTHONPATH=/workspace/pkgs
