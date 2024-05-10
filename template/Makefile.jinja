@@ -157,7 +157,7 @@ doc: changelog doc-gen doc-mypy doc-coverage
 
 consistency:
 	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
-	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_host_type=gitlab.com -f . .
+	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_platform=gitlab -f . .
 	rm -rf .copier-answers.yml
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml -f . .
 	rm -rf .copier-answers.yml

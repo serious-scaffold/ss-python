@@ -97,7 +97,7 @@
         ":enablePreCommit",
         ":maintainLockFilesWeekly"
     ],
-[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
+[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
     "gitlabci": {
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
@@ -203,10 +203,10 @@
                 "github-tags"
             ],
             "matchDepNames": [
-[%- if repo_host_type == "github.com" %]
+[%- if repo_platform == "github" %]
                 "ghcr.io/renovatebot/renovate",
 [%- endif %]
-[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
+[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
                 "renovate/renovate",
 [%- endif %]
                 "renovatebot/pre-commit-hooks"
