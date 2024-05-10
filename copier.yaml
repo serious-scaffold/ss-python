@@ -73,7 +73,7 @@ repo_platform:
     GitHub: github
     GitLab: gitlab
     GitLab (self-managed): gitlab-self-managed
-  help: 'Choose the host for the repository:'
+  help: 'Choose the platform for the repository:'
   type: str
 repo_host:
   default: |-
