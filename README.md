@@ -94,23 +94,6 @@ pipx install pre-commit==3.7.0
 
 5. That's it! Feel free to focus on the coding within `src` folder.
 
-## 🛡 Badge
-
-Badge for markdown:
-
-```markdown
-[![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/logo.json)](https://serious-scaffold.github.io/ss-python)
-```
-
-Badge for restructuredtext:
-
-```restructuredtext
-.. image:: https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/logo.json
-    :target: serious-scaffold.github.io/ss-python
-```
-
-It will look like this: [![Serious Scaffold Python](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/logo.json)](https://serious-scaffold.github.io/ss-python)
-
 ## 📜 License
 
 MIT License, for more details, see the [LICENSE](https://github.com/serious-scaffold/ss-python/blob/main/LICENSE) file.

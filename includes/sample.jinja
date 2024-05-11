@@ -1,6 +1,4 @@
 [% macro readme_content() -%]
-[% from pathjoin("includes", "variable.jinja") import logo_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import logo_badge_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [![{{ project_name }}](https://{{ page_url() }}/_static/images/logo.svg)](https://{{ repo_url() }})
@@ -75,20 +73,4 @@ pipx install pre-commit==3.7.0
 
 5. That's it! Feel free to focus on the coding within `src` folder.
 
-## 🛡 Badge
-
-Badge for markdown:
-
-```markdown
-{{ logo_badge() }}
-```
-
-Badge for restructuredtext:
-
-```restructuredtext
-.. image:: {{ logo_badge_url() }}
-    :target: {{ page_url() }}
-```
-
-It will look like this: {{ logo_badge() }}
 [%- endmacro %]
