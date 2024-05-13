@@ -14,7 +14,7 @@ jobs:
         with:
           cache: true
           python-version: ${{ matrix.python-version }}
-          version: 2.15.1
+          version: 2.15.2
       - id: pages
         name: Setup pages
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
