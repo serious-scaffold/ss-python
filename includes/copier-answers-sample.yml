@@ -19,6 +19,6 @@ project_description:
     An evolving Python project template that covers the full development
     lifecycle.
 project_name: Serious Scaffold Python
-repo_host_type: github.com
 repo_name: ss-python
 repo_namespace: serious-scaffold
+repo_platform: github

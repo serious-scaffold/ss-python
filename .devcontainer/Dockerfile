@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 ARG PYTHON_VERSION=3.12
 
 ########################################################################################
@@ -10,16 +12,25 @@ FROM python:${PYTHON_VERSION} as dev
 # ARG is used here for temporary override without changing the original env.
 ARG PYTHON_VERSION
 
+# Config Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONHASHSEED=0
+ENV PYTHONUNBUFFERED=1
+
+# renovate: depName=debian_12/bash-completion
+ARG BASH_COMPLETION_VERSION="1:2.11-6"
 # renovate: depName=debian_12/pipx
 ARG PIPX_VERSION="1.1.0-1"
 # renovate: depName=debian_12/sudo
 ARG SUDO_VERSION="1.9.13p3-1+deb12u1"
+# renovate: depName=debian_12/vim
+ARG VIM_VERSION="2:9.0.1378-2"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-#   pipx: To install Python applications.
+    bash-completion="${BASH_COMPLETION_VERSION}" \
     pipx="${PIPX_VERSION}" \
-#   sudo: To add sudo support to non-root user.
     sudo="${SUDO_VERSION}" \
+    vim="${VIM_VERSION}" \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
 # Config pipx
@@ -28,13 +39,13 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 
 # Install pdm
-RUN pipx install pdm==2.15.1
+RUN pipx install pdm==2.15.2
 
 # Install pre-commit
 RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
         pipx install pre-commit==3.5.0; \
     else \
-        pipx install pre-commit==3.7.0; \
+        pipx install pre-commit==3.7.1; \
     fi
 
 # Create a non-root user with sudo permission
@@ -59,13 +70,13 @@ WORKDIR /workspace
 
 FROM dev as build
 
-# Copy necessary files for build.
-COPY pyproject.toml pdm.lock README.md /workspace/
-COPY src/ /workspace/src
-
 # Install dependencies and project into the local packages directory.
 ARG PDM_BUILD_SCM_VERSION
-RUN mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
+RUN --mount=source=README.md,target=README.md \
+    --mount=source=pdm.lock,target=pdm.lock \
+    --mount=source=pyproject.toml,target=pyproject.toml \
+    --mount=source=src,target=src \
+    mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
 # Prod image is used for deployment and distribution.
@@ -76,6 +87,11 @@ FROM python:${PYTHON_VERSION}-slim as prod
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
 ARG PYTHON_VERSION
+
+# Config Python
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONHASHSEED=0
+ENV PYTHONUNBUFFERED=1
 
 # Retrieve packages from build stage.
 ENV PYTHONPATH=/workspace/pkgs

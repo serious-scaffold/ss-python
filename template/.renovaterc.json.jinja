@@ -5,6 +5,7 @@
         {
             "customType": "regex",
             "datasourceTemplate": "pypi",
+            "description": "Match Python packages installed with pip, pipx and asdf",
             "fileMatch": [
                 "^README\\.md$",
                 "^\\.devcontainer/Dockerfile$",
@@ -33,7 +34,8 @@
         {
             "customType": "regex",
             "datasourceTemplate": "repology",
-            "depTypeTemplate": "apt",
+            "depTypeTemplate": "debian",
+            "description": "Match debian packages installed in Dockerfiles",
             "fileMatch": [
                 "^\\.devcontainer\\/Dockerfile$"
 [%- if project_name == "Serious Scaffold Python" %],
@@ -49,6 +51,7 @@
             "customType": "regex",
             "datasourceTemplate": "github-tags",
             "depNameTemplate": "pdm-project/pdm",
+            "description": "Match pdm version specified in setup-pdm GitHub Action",
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$"
 [%- if project_name == "Serious Scaffold Python" %],
@@ -64,6 +67,7 @@
             "customType": "regex",
             "datasourceTemplate": "github-runners",
             "depTypeTemplate": "github-runner",
+            "description": "Match GitHub runner defined in GitHub Actions matrix strategy",
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$",
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
@@ -78,6 +82,7 @@
             "datasourceTemplate": "git-tags",
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
+            "description": "Match template version specified in .copier-answers.yml",
             "fileMatch": [
                 "^\\.copier-answers\\.yml$"
             ],
@@ -92,7 +97,7 @@
         ":enablePreCommit",
         ":maintainLockFilesWeekly"
     ],
-[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
+[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
     "gitlabci": {
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
@@ -102,6 +107,7 @@
     "packageRules": [
 [%- if project_name == "Serious Scaffold Python" %]
         {
+            "description": "Update GitHub Action in template",
             "matchDepTypes": [
                 "action"
             ],
@@ -113,6 +119,7 @@
             }
         },
         {
+            "description": "Update GitHub Runner in template",
             "matchDepTypes": [
                 "github-runner"
             ],
@@ -123,6 +130,7 @@
             }
         },
         {
+            "description": "Update pre-commit hooks in template",
             "matchManagers": [
                 "pre-commit"
             ],
@@ -133,6 +141,7 @@
             }
         },
         {
+            "description": "Update container images in template",
             "matchDepTypes": [
                 "container",
                 "image",
@@ -147,6 +156,7 @@
             }
         },
         {
+            "description": "Update python packages in template",
             "matchDatasources": [
                 "pypi"
             ],
@@ -160,6 +170,7 @@
 [%- endif %]
         {
             "commitMessageTopic": "serious-scaffold-python",
+            "description": "Update template with copier when a new version is released",
             "matchDepTypes": [
                 "copier-template"
             ],
@@ -173,7 +184,7 @@
             "semanticCommitScope": "copier-template"
         },
         {
-            "description": "Group pdm in Dockerfile and GitHub Action",
+            "description": "Group pdm Python package and version specified in setup-pdm GitHub Action",
             "groupName": "pdm",
             "matchDatasources": [
                 "github-tags",
@@ -186,30 +197,30 @@
         },
         {
             "description": "Group renovate docker tag and pre-commit-hooks tag",
-            "groupName": "renovate tag",
+            "groupName": "renovate",
             "matchDatasources": [
                 "docker",
                 "github-tags"
             ],
             "matchDepNames": [
-[%- if repo_host_type == "github.com" %]
+[%- if repo_platform == "github" %]
                 "ghcr.io/renovatebot/renovate",
 [%- endif %]
-[%- if repo_host_type == "gitlab.com" or reop_host_type == "gitlab-self-managed" or project_name == "Serious Scaffold Python" %]
+[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
                 "renovate/renovate",
 [%- endif %]
                 "renovatebot/pre-commit-hooks"
             ]
         },
         {
-            "description": "Group apt packages to avoid failure when multiple packages are outdated.",
-            "groupName": "apt packages",
+            "description": "Group debian packages to avoid failure when multiple packages are outdated",
+            "groupName": "debian packages",
             "matchDepTypes": [
-                "apt"
+                "debian"
             ]
         },
         {
-            "description": "Pre-commit 3.5.0 is pinned as the last version supporting Python 3.8.",
+            "description": "Pre-commit 3.5.0 is pinned as the last version supporting Python 3.8",
             "enabled": false,
             "matchCurrentVersion": "==3.5.0",
             "matchPackageNames": [
