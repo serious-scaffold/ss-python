@@ -94,6 +94,7 @@ jobs:
       id-token: write
       issues: write
       pull-requests: write
+    needs: ci
     steps:
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
