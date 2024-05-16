@@ -3,7 +3,9 @@
 ```{toctree}
 :hidden:
 Overview <self>
-dev/index
+management/index
+development/index
+advanced/index
 cli/index
 api/index
 reports/index

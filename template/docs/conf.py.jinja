@@ -26,7 +26,6 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx_click",
     "sphinx_design",
-    "sphinx_togglebutton",
     "sphinxcontrib.autodoc_pydantic",
 ]
 source_suffix = {
