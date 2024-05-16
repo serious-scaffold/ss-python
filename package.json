@@ -8,7 +8,6 @@
         "branches": [
             "xuan.hu/semantic-release"
         ],
-        "dryRun": true,
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",
