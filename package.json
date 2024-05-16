@@ -5,6 +5,10 @@
         ]
     },
     "release": {
+        // NOTE(huxuan): Need to change the branch name after test
+        "branches": [
+            "xuan.hu/semantic-release"
+        ],
         "dryRun": true,
         "plugins": [
             [
