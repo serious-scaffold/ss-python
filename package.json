@@ -80,11 +80,11 @@
                             },
                             {
                                 "type": "ci",
-                                "section": "CI"
+                                "section": "Continuous Integration"
                             },
                             {
                                 "type": "docs",
-                                "section": "Docs"
+                                "section": "Documentation"
                             },
                             {
                                 "type": "feat",
@@ -108,7 +108,7 @@
                             },
                             {
                                 "type": "style",
-                                "section": "Style"
+                                "section": "Styles"
                             },
                             {
                                 "type": "test",
