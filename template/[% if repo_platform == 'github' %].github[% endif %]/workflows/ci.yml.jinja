@@ -144,8 +144,8 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
-        run: |
-          npx \
-          -p conventional-changelog-conventionalcommits@7 \
-          -p semantic-release \
+        run: >
+          npx
+          -p conventional-changelog-conventionalcommits@7
+          -p semantic-release@23
           semantic-release
