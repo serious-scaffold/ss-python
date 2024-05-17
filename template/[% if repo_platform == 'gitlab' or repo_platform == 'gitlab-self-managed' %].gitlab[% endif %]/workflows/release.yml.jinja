@@ -3,8 +3,6 @@ pages-build:
   artifacts:
     paths:
       - public
-      - docs/changelog.md
-      - release-notes.md
   cache:
     paths:
       - .venv
@@ -18,26 +16,22 @@ pages-build:
   script:
     - make dev-doc
     - make doc
-    - make release-notes > release-notes.md
   stage: release
-release-publish:
-  image: registry.gitlab.com/gitlab-org/release-cli:v0.18.0@sha256:696013aea0f2a20482800ce3a77341f840d7c7ec17bd78bd555e0bd6c00e4f11
+pages:
+  artifacts:
+    paths:
+      - public
   needs:
     - pages-build
-  release:
-    description: release-notes.md
-    tag_name: $CI_COMMIT_TAG
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
-    - echo "Running the release job."
+    - echo "Running the pages job."
   stage: release
   variables:
     GIT_STRATEGY: none
 container-publish:
   image: docker:26.1.2@sha256:c890c327e515cdccd14e593fb5450e4375e791ab0520795948134cb87b45aaa7
-  needs:
-    - release-publish
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -93,24 +87,8 @@ container-publish:
     PYTHON_VERSION: ${PYTHON_VERSION}
     SOURCE_DATE_EPOCH: 0
 package-publish:
-  needs:
-    - release-publish
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
     - make publish
   stage: release
-pages:
-  artifacts:
-    paths:
-      - public
-  needs:
-    - pages-build
-    - release-publish
-  rules:
-    - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
-  script:
-    - echo "Running the pages job."
-  stage: release
-  variables:
-    GIT_STRATEGY: none
