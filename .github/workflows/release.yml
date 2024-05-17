@@ -34,7 +34,8 @@ jobs:
         with:
           path: public
   pages:
-    needs: pages-build
+    needs:
+      - pages-build
     permissions:
       id-token: write
       pages: write
