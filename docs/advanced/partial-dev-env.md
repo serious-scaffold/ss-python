@@ -48,7 +48,7 @@ make dev-test
 
 ## Combination
 
-To install dependencies for `doc `and `lint`, use the following command:
+To install dependencies for `doc` and `lint`, use the following command:
 
 ```bash
 make dev-doc,lint
