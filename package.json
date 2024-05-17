@@ -5,6 +5,9 @@
         ]
     },
     "release": {
+        "branches": [
+            "xuan.hu/checkout-persistent"
+        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",

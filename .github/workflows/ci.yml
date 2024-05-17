@@ -8,6 +8,7 @@ on:
   push:
     branches:
       - main
+      - xuan.hu/checkout-persistent
 
 concurrency:
   cancel-in-progress: true
@@ -84,15 +85,12 @@ jobs:
     name: Semantic Release
     runs-on: ubuntu-22.04
     # Avoid semantic release for forked repository
-    if: github.event_name != 'pull_request' && github.repository == 'serious-scaffold/ss-python'
+    if: github.event_name != 'pull_request' && github.repository == 'huxuan/ss-python'
     permissions:
       contents: write
       id-token: write
       issues: write
       pull-requests: write
-    needs:
-      - ci
-      - consistency
     steps:
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
