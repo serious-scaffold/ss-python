@@ -118,12 +118,7 @@
                     }
                 }
             ],
-            [
-                "@semantic-release/gitlab",
-                {
-                    "gitlabUrl": "https://gitlab.com"
-                }
-            ]
+            "@semantic-release/github"
         ],
         "preset": "conventionalcommits"
     }
