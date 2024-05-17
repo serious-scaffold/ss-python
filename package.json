@@ -5,6 +5,9 @@
         ]
     },
     "release": {
+        "branches": [
+            "xuan.hu/gitlab-semantic-release"
+        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",
@@ -118,7 +121,12 @@
                     }
                 }
             ],
-            "@semantic-release/github"
+            [
+                "@semantic-release/gitlab",
+                {
+                    "gitlabUrl": "https://gitlab.com"
+                }
+            ]
         ],
         "preset": "conventionalcommits"
     }
