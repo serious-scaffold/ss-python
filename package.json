@@ -5,9 +5,6 @@
         ]
     },
     "release": {
-        "branches": [
-            "xuan.hu/semantic-release"
-        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",
@@ -123,7 +120,6 @@
             ],
             "@semantic-release/github"
         ],
-        "preset": "conventionalcommits",
-        "debug": true
+        "preset": "conventionalcommits"
     }
 }
