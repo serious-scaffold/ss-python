@@ -54,5 +54,5 @@ Releasing a new version based on an old commit can be useful in scenarios where 
 ## Guidelines
 
 1. **Valid Release Tags:** Ensure that tags are not only compatible with semantic versioning but also unique and represent a version that is newer than any previously released.
-1. **Commit Convention:** While not mandatory, it is beneficial to ensure an informative changelog by following the [Commit Convention](commit.md#commit-message-pattern) so that corresponding commit messages can be included in the changelog.
-1. **Package Repository Configuration:** Make sure the package upload destination is properly configured as mentioned in the [project configuration](proj.md#project-configuration).
+1. **Commit Convention:** While not mandatory, it is beneficial to ensure an informative changelog by following the [Commit Convention](../development/commit.md#commit-message-pattern) so that corresponding commit messages can be included in the changelog.
+1. **Package Repository Configuration:** Make sure the package upload destination is properly configured as mentioned in the [project configuration](./config.md).

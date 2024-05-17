@@ -1,0 +1,49 @@
+[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
+# Project Initialization
+
+## Prerequisites
+
+Install [copier](https://copier.readthedocs.io/) for template operations. It is recommended to install via [pipx](https://pipx.pypa.io/) with the following command:
+
+```{note}
+Find pipx installation instruction [here](https://pipx.pypa.io/stable/installation/).
+```
+
+```bash
+pipx install copier==9.2.0
+```
+
+## Create the Repository
+
+Create a blank Git repository on the hosting platform. Clone it locally and navigate to the root directory:
+
+```bash
+git clone git@{{ repo_url() }}.git
+cd {{ repo_name }}
+```
+
+## Generate the Project
+
+Running the following command and answer the prompts to set up the project:
+
+```bash
+copier copy gh:serious-scaffold/ss-python .
+```
+
+## Set Up Development Environment
+
+Set up development environment to prepare for the initial commit:
+
+```bash
+make dev
+```
+
+## Commit and push
+
+```bash
+git add .
+git commit -m "chore: init from serious-scaffold-python"
+SKIP=no-commit-to-branch git push
+```
+
+Now, everything is done!

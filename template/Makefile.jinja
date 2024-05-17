@@ -119,7 +119,8 @@ publish:
 doc-autobuild:
 	pdm run python -m sphinx_autobuild docs $(PUBLIC_DIR) \
 		--watch README.md \
-		--watch src
+		--watch src \
+		-a
 
 # Generate changelog from git commits.
 # NOTE(xuan.hu): Need to be run before document generation to take effect.
