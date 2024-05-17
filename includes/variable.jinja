@@ -51,10 +51,21 @@
   [%- endif %]
 [%- endmacro %]
 
-[% macro release_badge() -%]
-  [%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' -%]
-[![Latest Release](https://{{ repo_url() }}/-/badges/release.svg)](https://{{ repo_url() }}/-/releases)
+[% macro releases_url() -%]
+  [% if repo_platform == 'github' -%]
+    https://{{ repo_url() }}/releases
+  [%- elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' -%]
+    https://{{ repo_url() }}/-/releases
   [%- endif -%]
+[%- endmacro %]
+
+[% macro release_badge() -%]
+  [% if repo_platform == 'github' -%]
+[![Release](https://img.shields.io/github/v/release/{{ repo_namespace }}/{{ repo_name }})]
+  [%- elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' -%]
+[![Latest Release](https://{{ repo_url() }}/-/badges/release.svg)]
+  [%- endif -%]
+({{ releases_url()}})
 [![PyPI](https://img.shields.io/pypi/v/{{ package_name }})](https://pypi.org/project/{{ package_name }}/)
 [%- endmacro %]
 
