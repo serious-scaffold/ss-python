@@ -1,6 +1,6 @@
 # Release Process
 
-The release process is primarily automated to ensure consistency and efficiency. The automation is mostly handled by GitHub Actions or GitLab CI/CD, with the help of tools like `git-changelog`. To ensure seamless execution, maintainers should follow specific guidelines and conventions throughout the development and release cycles.
+The release process is primarily automated to ensure consistency and efficiency. The automation is mostly handled by GitHub Actions or GitLab CI/CD, with the help of [semantic-release](https://github.com/semantic-release/semantic-release). To ensure seamless execution, maintainers should follow specific guidelines and conventions throughout the development and release cycles.
 
 The release process includes the following tasks:
 
