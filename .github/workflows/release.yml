@@ -6,8 +6,8 @@ on:
       - published
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   pages-build:
@@ -33,6 +33,16 @@ jobs:
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: public
+  pages:
+    needs: pages-build
+    permissions:
+      id-token: write
+      pages: write
+    runs-on: ubuntu-22.04
+    steps:
+      - id: deployment
+        name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
   container-publish:
     permissions:
       packages: write
@@ -88,13 +98,3 @@ jobs:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}
           PDM_PUBLISH_USERNAME: ${{ vars.PDM_PUBLISH_USERNAME || '__token__' }}
         run: make publish
-  pages:
-    needs: pages-build
-    permissions:
-      id-token: write
-      pages: write
-    runs-on: ubuntu-22.04
-    steps:
-      - id: deployment
-        name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
