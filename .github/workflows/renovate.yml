@@ -24,6 +24,12 @@ jobs:
         with:
           app-id: ${{ vars.BOT_APP_ID }}
           private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+      - name: Warn if use GITHUB_TOKEN
+        run: |
+          if [ -z "${{ steps.generate-token.outputs.token || secrets.PAT }}" ]; then
+            echo "# :warning: GITHUB_TOKEN is used for renovate" >> $GITHUB_STEP_SUMMARY
+            echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the checks for the pull requests." >> $GITHUB_STEP_SUMMARY
+          fi
       - name: Warn if RENOVATE_GIT_AUTHOR is set while using GitHub App token
         if: steps.generate-token.outputs.token && vars.RENOVATE_GIT_AUTHOR
         run: |
