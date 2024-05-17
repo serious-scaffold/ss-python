@@ -18,6 +18,7 @@
     "automodule",
     "cobertura",
     "commitlint",
+    "conventionalcommits",
     "datasource",
     "deepclean",
     "deflist",
