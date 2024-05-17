@@ -85,7 +85,6 @@ doc = [
   "sphinx-autobuild",
   "sphinx-click",
   "sphinx-design",
-  "sphinx-togglebutton",
 ]
 lint = [
   "mypy",
