@@ -1,6 +1,6 @@
 # Clean Up Development Environment
 
-When encountering environment-related problems. A straightforward solution is to cleanup the environment and setup a new one. Three different levels of cleanup approach are provided here.
+When encountering environment-related problems, a straightforward solution is to cleanup the environment and setup a new one. Three different levels of cleanup approach are provided here.
 
 ## Intermediate cleanup
 
