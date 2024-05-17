@@ -1,8 +1,19 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches:
+      - main
+
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
+
 jobs:
   ci:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
@@ -44,44 +55,44 @@ jobs:
 [%- endif %]
         python-version:
 [%- if version_between("3.8", min_py, max_py) %]
-          - "3.8"
+          - '3.8'
 [%- endif %]
 [%- if version_between("3.9", min_py, max_py) %]
-          - "3.9"
+          - '3.9'
 [%- endif %]
 [%- if version_between("3.10", min_py, max_py) %]
-          - "3.10"
+          - '3.10'
 [%- endif %]
 [%- if version_between("3.11", min_py, max_py) %]
-          - "3.11"
+          - '3.11'
 [%- endif %]
 [%- if version_between("3.12", min_py, max_py) %]
-          - "3.12"
+          - '3.12'
 [%- endif %]
-[%- if project_name == "Serious Scaffold Python" %]
 [%- if "macos" in platforms and (version_between("3.8", min_py, max_py) or version_between("3.9", min_py, max_py)) %]
         # Python 3.8 and 3.9 do not run on macos-14 which is using arm64 hardware.
         exclude:
 [%- if version_between("3.8", min_py, max_py) %]
           # renovate: github-runner
           - os: macos-14
-            python-version: "3.8"
+            python-version: '3.8'
 [%- endif %]
 [%- if version_between("3.9", min_py, max_py) %]
           # renovate: github-runner
           - os: macos-14
-            python-version: "3.9"
+            python-version: '3.9'
         include:
 [%- endif %]
 [%- if version_between("3.8", min_py, max_py) %]
           - os: macos-13
-            python-version: "3.8"
+            python-version: '3.8'
 [%- endif %]
 [%- if version_between("3.9", min_py, max_py) %]
           - os: macos-13
-            python-version: "3.9"
+            python-version: '3.9'
 [%- endif %]
 [%- endif %]
+[%- if project_name == "Serious Scaffold Python" %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
     runs-on: ubuntu-22.04
@@ -98,11 +109,47 @@ jobs:
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
 [%- endif %]
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-  push:
-    branches:
-      - main
+  semantic-release:
+    name: Semantic Release
+    runs-on: ubuntu-22.04
+    # Avoid semantic release for forked repository
+    if: github.event_name != 'pull_request' && github.repository == 'serious-scaffold/ss-python'
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    needs:
+      - ci
+[%- if project_name == "Serious Scaffold Python" %]
+      - consistency
+[%- endif %]
+    steps:
+      - id: generate-token
+        name: Generate a token with GitHub App if App ID exists
+        if: vars.BOT_APP_ID
+        uses: actions/create-github-app-token@a0de6af83968303c8c955486bf9739a57d23c7f1 # v1.10.0
+        with:
+          app-id: {{ '${{ vars.BOT_APP_ID }}' }}
+          private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
+      - name: Warn if use GITHUB_TOKEN
+        run: |
+          if [ -z "{{ '${{ steps.generate-token.outputs.token || secrets.PAT }}' }}" ]; then
+            echo "# :warning: GITHUB_TOKEN is used for semantic-release" >> $GITHUB_STEP_SUMMARY
+            echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the released publish event for the released workflow." >> $GITHUB_STEP_SUMMARY
+          fi
+      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 'lts/*'
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
+        run: >
+          npx
+          -p conventional-changelog-conventionalcommits@7
+          -p semantic-release@23
+          semantic-release

@@ -1,7 +1,18 @@
 name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+  push:
+    branches:
+      - main
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   ci:
     if: ${{ !cancelled() && ! failure() }}
@@ -36,24 +47,24 @@ jobs:
           # renovate: github-runner
           - windows-2022
         python-version:
-          - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
-          - "3.12"
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
         # Python 3.8 and 3.9 do not run on macos-14 which is using arm64 hardware.
         exclude:
           # renovate: github-runner
           - os: macos-14
-            python-version: "3.8"
+            python-version: '3.8'
           # renovate: github-runner
           - os: macos-14
-            python-version: "3.9"
+            python-version: '3.9'
         include:
           - os: macos-13
-            python-version: "3.8"
+            python-version: '3.8'
           - os: macos-13
-            python-version: "3.9"
+            python-version: '3.9'
   consistency:
     if: ${{ !cancelled() && ! failure() }}
     runs-on: ubuntu-22.04
@@ -69,11 +80,45 @@ jobs:
       - run: git diff
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-  push:
-    branches:
-      - main
+  semantic-release:
+    name: Semantic Release
+    runs-on: ubuntu-22.04
+    # Avoid semantic release for forked repository
+    if: github.event_name != 'pull_request' && github.repository == 'serious-scaffold/ss-python'
+    permissions:
+      contents: write
+      id-token: write
+      issues: write
+      pull-requests: write
+    needs:
+      - ci
+      - consistency
+    steps:
+      - id: generate-token
+        name: Generate a token with GitHub App if App ID exists
+        if: vars.BOT_APP_ID
+        uses: actions/create-github-app-token@a0de6af83968303c8c955486bf9739a57d23c7f1 # v1.10.0
+        with:
+          app-id: ${{ vars.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+      - name: Warn if use GITHUB_TOKEN
+        run: |
+          if [ -z "${{ steps.generate-token.outputs.token || secrets.PAT }}" ]; then
+            echo "# :warning: GITHUB_TOKEN is used for semantic-release" >> $GITHUB_STEP_SUMMARY
+            echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the released publish event for the released workflow." >> $GITHUB_STEP_SUMMARY
+          fi
+      - uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 'lts/*'
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}
+        run: >
+          npx
+          -p conventional-changelog-conventionalcommits@7
+          -p semantic-release@23
+          semantic-release
