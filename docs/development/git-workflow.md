@@ -83,7 +83,7 @@ git add <filename1> <filename2> # to add new files
 Commit the staged files:
 
 ```shell
-git commit
+git commit -m "the commit message"
 ```
 
 Push the committed changes:
