@@ -61,7 +61,7 @@ semantic-release:
     name: node:20.13.1
   interruptible: true
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}" && $GITLAB_TOKEN != null
   script:
     - >
       npx
@@ -70,3 +70,5 @@ semantic-release:
       -p semantic-release@23
       semantic-release
   stage: release
+  variables:
+    GITLAB_TOKEN: $PAT
