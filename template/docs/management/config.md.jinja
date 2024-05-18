@@ -27,7 +27,7 @@ There are several configurations to utilize the features provided by the project
     1. Set the **variable** `PDM_PUBLISH_REPO`, the repository (package index) URL to upload the package which defaults to `https://pypi.org`, the official PyPI.
     1. Set the **variable** `PDM_PUBLISH_USERNAME`, the username to authenticate to the repository (package index) which defaults to `__token__`, used for [API token](https://pypi.org/help/#apitoken).
     1. Set the **secret** `PDM_PUBLISH_PASSWORD`, the password to authenticate to the repository (package index).
-1. Renovate authentication:
+1. Renovate & semantic-release authentication:
 
     There are two approaches, either with GitHub App or with personal access token (classic). GitHub App is the more recommended way to avoid the issues and pull requests tied to a particular user.
 
@@ -43,7 +43,7 @@ There are several configurations to utilize the features provided by the project
 
     :::{tab-item} personal access token (classic)
     1. [Create a personal access token (classic)](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic) with **workflow** scope.
-    1. Navigate to the [Actions secrets and variables](https://github.com/{{ repo_namespace }}/{{ repo_name }}/settings/secrets/actions) settings and set the token as a **secret** `RENOVATE_TOKEN`.
+    1. Navigate to the [Actions secrets and variables](https://github.com/{{ repo_namespace }}/{{ repo_name }}/settings/secrets/actions) settings and set the token as a **secret** `PAT`.
     :::
 
     ::::
