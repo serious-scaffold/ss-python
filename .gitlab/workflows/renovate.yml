@@ -5,7 +5,7 @@ renovate:
       - renovate/cache/renovate/repository/
   image: renovate/renovate:37.356.1-full@sha256:e54b1093f2a751b4ac94988279d2621f068e79c77227d9654165a06ae3d50ad3
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $RENOVATE_TOKEN != null
   script: renovate $RENOVATE_EXTRA_FLAG
   stage: build
   variables:
@@ -22,4 +22,4 @@ renovate:
     RENOVATE_REPOSITORIES: '["$CI_PROJECT_PATH"]'
     RENOVATE_REPOSITORY_CACHE: enabled
     RENOVATE_SEMANTIC_COMMIT_TYPE: build
-    RENOVATE_TOKEN: $PAT || $CI_JOB_TOKEN
+    RENOVATE_TOKEN: $PAT
