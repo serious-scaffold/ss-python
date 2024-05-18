@@ -5,6 +5,9 @@
         ]
     },
     "release": {
+        "branches": [
+            "xuan.hu/gitlab-token"
+        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",
@@ -118,7 +121,7 @@
                     }
                 }
             ],
-            "@semantic-release/github"
+            "@semantic-release/gitlab"
         ],
         "preset": "conventionalcommits"
     }
