@@ -1,5 +1,7 @@
 # Git Workflow
 
+This pages shows the recommended Git workflow to keep the local repository clean and organized while ensuring smooth collaboration among team members.
+
 ## Prerequisites
 
 Make sure you have [Git](https://git-scm.com/) (version 2.23 and above) installed and properly configured especially for authentication.
