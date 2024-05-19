@@ -95,7 +95,8 @@
     "extends": [
         "config:best-practices",
         ":enablePreCommit",
-        ":maintainLockFilesWeekly"
+        ":maintainLockFilesWeekly",
+        ":semanticCommitTypeAll(build)"
     ],
 [%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
     "gitlabci": {
