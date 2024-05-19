@@ -77,7 +77,7 @@ You can set the scope of the variables and secrets to **Repository** or **Organi
 
     Either [Group access tokens](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html), [Project access tokens](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) or [Personal access tokens](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) can be used. The group or project access tokens are more recommended to avoid the issues and merge requests tied to particular user.
 
-    1. Create a [group access token](https://gitlab.com/groups/serious-scaffold/-/settings/access_tokens), [project access token](https://gitlab.com/serious-scaffold/ss-python/-/settings/access_tokens) or [personal access token](https://gitlab.com/-/user_settings/personal_access_tokens) with `api, write_repository` scope.
+    1. Create a [group access token](https://gitlab.com/groups/serious-scaffold/-/settings/access_tokens), [project access token](https://gitlab.com/serious-scaffold/ss-python/-/settings/access_tokens) or [personal access token](https://gitlab.com/-/user_settings/personal_access_tokens) with `Maintainer` role and `api, write_repository` scope.
     1. Navigate to the [CI/CD](https://gitlab.com/serious-scaffold/ss-python/-/settings/ci_cd) settings and the **Variables** section. Set the token as variable `PAT` with the **Mask variable** option for security.
     1. Navigate to the [Pipeline schedules](https://gitlab.com/serious-scaffold/ss-python/-/pipeline_schedules). Create a new schedule with `*/15 0-3 * * 1` as **Interval Pattern** and mark it as **Activated**.
 
