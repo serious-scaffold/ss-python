@@ -2,10 +2,6 @@
 *.swp
 .DS_Store
 .copier-answers.yml
-# TODO: Move `.pdm-build/` and `.pdm-python` out of custom section when upstream pull request merged.
-# Reference: https://github.com/github/gitignore/pull/4279
-.pdm-build/
-.pdm-python
 Pipfile
 public
 release-notes.md
@@ -118,8 +114,10 @@ ipython_config.py
 #pdm.lock
 #   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
 #   in version control.
-#   https://pdm.fming.dev/#use-with-ide
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
 .pdm.toml
+.pdm-python
+.pdm-build/
 
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
 __pypackages__/
