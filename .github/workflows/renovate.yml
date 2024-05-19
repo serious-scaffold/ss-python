@@ -12,7 +12,6 @@ jobs:
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
-        RENOVATE_SEMANTIC_COMMIT_TYPE: build
       image: ghcr.io/renovatebot/renovate:37.356.1-full@sha256:e54b1093f2a751b4ac94988279d2621f068e79c77227d9654165a06ae3d50ad3
       options: "--user root"
     runs-on: ubuntu-22.04
