@@ -73,12 +73,12 @@ You can set the scope of the variables and secrets to **Repository** or **Organi
     1. Set the variable `PDM_PUBLISH_REPO`, the repository (package index) URL to upload the package, default to `https://pypi.org`, the official PyPI.
     1. Set the variable `PDM_PUBLISH_USERNAME`, the username to authenticate to the repository (package index), default to `__token__`, used for [API token](https://pypi.org/help/#apitoken).
     1. Set the variable `PDM_PUBLISH_PASSWORD` with the **Mask variable** option for security, the password to authenticate to the repository (package index).
-1. Renovate authentication:
+1. Renovate & semantic-release authentication:
 
     Either [Group access tokens](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html), [Project access tokens](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html) or [Personal access tokens](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html) can be used. The group or project access tokens are more recommended to avoid the issues and merge requests tied to particular user.
 
-    1. Create a [group access token](https://gitlab.com/groups/{{ repo_namespace }}/-/settings/access_tokens), [project access token](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/settings/access_tokens) or [personal access token](https://gitlab.com/-/user_settings/personal_access_tokens) with `api, write_repository` scope.
-    1. Navigate to the [CI/CD](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/settings/ci_cd) settings and the **Variables** section. Set the token as variable `RENOVATE_TOKEN` with the **Mask variable** option for security.
+    1. Create a [group access token](https://gitlab.com/groups/{{ repo_namespace }}/-/settings/access_tokens), [project access token](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/settings/access_tokens) or [personal access token](https://gitlab.com/-/user_settings/personal_access_tokens) with `Maintainer` role and `api, write_repository` scope.
+    1. Navigate to the [CI/CD](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/settings/ci_cd) settings and the **Variables** section. Set the token as variable `PAT` with the **Mask variable** option for security.
     1. Navigate to the [Pipeline schedules](https://gitlab.com/{{ repo_namespace }}/{{ repo_name }}/-/pipeline_schedules). Create a new schedule with `*/15 0-3 * * 1` as **Interval Pattern** and mark it as **Activated**.
 
     ```{note}
