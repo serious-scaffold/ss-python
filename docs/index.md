@@ -9,7 +9,7 @@ advanced/index
 cli/index
 api/index
 reports/index
-changelog
+Changelog <https://github.com/serious-scaffold/ss-python/releases>
 ```
 
 ```{include} ../README.md

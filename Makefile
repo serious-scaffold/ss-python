@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild changelog doc-gen doc-mypy doc-coverage doc consistency
+.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
 
 ########################################################################################
 # Variables
@@ -6,10 +6,6 @@
 
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$${READTHEDOCS_OUTPUT}html" || echo "public")
-
-# URL and Path of changelog source code.
-CHANGELOG_URL := $(shell echo $${CI_PAGES_URL:-https://serious-scaffold.github.io/ss-python}/_sources/changelog.md.txt)
-CHANGELOG_PATH := docs/changelog.md
 
 ########################################################################################
 # Development Environment Management
@@ -29,8 +25,7 @@ clean:
 		__pypackages__ \
 		build \
 		coverage.xml \
-		dist \
-		release-notes.md
+		dist
 	find . -name '*.egg-info' -print0 | xargs -0 rm -rf
 	find . -name '*.pyc' -print0 | xargs -0 rm -f
 	find . -name '*.swp' -print0 | xargs -0 rm -f
@@ -120,19 +115,6 @@ doc-autobuild:
 		--watch src \
 		-a
 
-# Generate changelog from git commits.
-# NOTE(xuan.hu): Need to be run before document generation to take effect.
-changelog:
-	@if wget -q --spider $(CHANGELOG_URL); then \
-		echo "Existing Changelog found at '$(CHANGELOG_URL)', download for incremental generation."; \
-		wget -q -O $(CHANGELOG_PATH) $(CHANGELOG_URL); \
-	fi
-	pdm run git-changelog -ETrio $(CHANGELOG_PATH) -c conventional -s build,chore,ci,doc,feat,fix,perf,refactor,revert,style,test
-
-# Generate release notes from changelog.
-release-notes:
-	@pdm run git-changelog --input $(CHANGELOG_PATH) --release-notes
-
 # Build documentation only from src.
 doc-gen:
 	pdm run python -m sphinx.cmd.build docs $(PUBLIC_DIR)
@@ -147,7 +129,7 @@ doc-coverage: test-run
 	pdm run bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
-doc: changelog doc-gen doc-mypy doc-coverage
+doc: doc-gen doc-mypy doc-coverage
 
 ########################################################################################
 # Template

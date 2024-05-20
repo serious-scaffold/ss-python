@@ -25,13 +25,11 @@ build:
       - asdf global pdm 2.15.2
     post_install:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make dev-doc
-    pre_build:
-      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH CI_PAGES_URL=https://${READTHEDOCS_PROJECT}.readthedocs.io/${READTHEDOCS_LANGUAGE}/stable make changelog
     post_build:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make doc-mypy doc-coverage
   os: ubuntu-22.04
   tools:
-    python: "3.12"
+    python: '3.12'
 sphinx:
   fail_on_warning: true
 version: 2
