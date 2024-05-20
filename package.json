@@ -5,9 +5,6 @@
         ]
     },
     "release": {
-        "branches": [
-            "xuan.hu/gitlab-ci-fix"
-        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",
