@@ -67,6 +67,7 @@
     "**/*.egg-info": true,
     "**/.coverage": true,
     "**/.mypy_cache": true,
+    "**/.pdm-build": true,
     "**/.pytest_cache": true,
     "**/.ruff_cache": true,
     "**/.venv": true,
