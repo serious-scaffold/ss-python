@@ -81,7 +81,7 @@
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
             ],
             "matchStrings": [
-                "--package (?<depName>.*?)@(?<currentValue>.*?)\\s"
+                "--package (?<depName>.+?)@(?<currentValue>.+?)\\s"
             ],
             "versioningTemplate": "docker"
         },
