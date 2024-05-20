@@ -5,6 +5,9 @@
         ]
     },
     "release": {
+        "branches": [
+            "xuan.hu/renovate-semantic-release"
+        ],
         "plugins": [
             [
                 "@semantic-release/commit-analyzer",

@@ -72,6 +72,21 @@
         },
         {
             "customType": "regex",
+            "datasourceTemplate": "npm",
+            "description": "Match npm packages used by npx",
+            "fileMatch": [
+                "^\\.github/workflows/.+\\.yml$",
+                "^\\.gitlab/workflows/.+\\.yml$",
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
+            ],
+            "matchStrings": [
+                "--package (?<depName>.*?)@(?<currentValue>.*?)\\s"
+            ],
+            "versioningTemplate": "docker"
+        },
+        {
+            "customType": "regex",
             "datasourceTemplate": "git-tags",
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
@@ -203,6 +218,14 @@
             "groupName": "debian packages",
             "matchDepTypes": [
                 "debian"
+            ]
+        },
+        {
+            "description": "conventional-changelog-conventionalcommits 7.0.2 is pinned due to https://github.com/semantic-release/release-notes-generator/issues/633",
+            "enabled": false,
+            "matchCurrentVersion": "7.0.2",
+            "matchPackageNames": [
+                "conventional-changelog-conventionalcommits"
             ]
         },
         {
