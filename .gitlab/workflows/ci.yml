@@ -52,9 +52,9 @@ semantic-release:
   script:
     - >
       npx
-      -p @semantic-release/gitlab@13
-      -p conventional-changelog-conventionalcommits@7
-      -p semantic-release@23
+      --package @semantic-release/gitlab@13.1.0
+      --package conventional-changelog-conventionalcommits@7.0.2
+      --package semantic-release@23.1.1
       semantic-release
   stage: release
   variables:
