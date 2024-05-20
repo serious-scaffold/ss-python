@@ -121,7 +121,7 @@
                     }
                 }
             ],
-            "@semantic-release/github"
+            "@semantic-release/gitlab"
         ],
         "preset": "conventionalcommits"
     }
