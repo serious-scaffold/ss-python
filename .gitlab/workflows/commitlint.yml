@@ -1,7 +1,7 @@
 commitlint:
   image:
     name: commitlint/commitlint:19.3.1@sha256:02c8c31b2c61c51eadb410960648c8b370f7583609f4ca1520155eeeefd63d66
-    entrypoint: [""]
+    entrypoint: ['']
   interruptible: true
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
@@ -9,8 +9,10 @@ commitlint:
   script:
     - |
       if [ "$CI_PIPELINE_SOURCE" = "push" ]; then
-        echo "$CI_COMMIT_TITLE" | commitlint
+        echo "$CI_COMMIT_TITLE" | commitlint -x @commitlint/config-conventional
       elif [ "$CI_PIPELINE_SOURCE" = "merge_request_event" ]; then
-        echo "$CI_MERGE_REQUEST_TITLE" | commitlint
+        echo "$CI_MERGE_REQUEST_TITLE" | commitlint -x @commitlint/config-conventional
       fi
   stage: ci
+  variables:
+    GIT_STRATEGY: none
