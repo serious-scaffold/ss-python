@@ -165,5 +165,5 @@ jobs:
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
           --package semantic-release@23.1.1
-          semantic-release --dry-run --debug
+          semantic-release --dry-run --debug --branches {{ '${{ github.head_ref }}' }}
 [%- endif %]
