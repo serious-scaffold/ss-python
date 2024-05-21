@@ -160,7 +160,7 @@ jobs:
       - name: Semantic Release on pull request for test purpose
         if: github.event_name == 'pull_request'
         env:
-          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
         run: >
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
