@@ -132,6 +132,9 @@ jobs:
           app-id: {{ '${{ vars.BOT_APP_ID }}' }}
           private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
       - name: Warn if use GITHUB_TOKEN
+[%- if project_name == "Serious Scaffold Python" %]
+        if: github.event_name != 'pull_request'
+[%- endif %]
         run: |
           if [ -z "{{ '${{ steps.generate-token.outputs.token || secrets.PAT }}' }}" ]; then
             echo "# :warning: GITHUB_TOKEN is used for semantic-release" >> $GITHUB_STEP_SUMMARY
@@ -157,13 +160,11 @@ jobs:
           --package semantic-release@23.1.1
           semantic-release
 [%- if project_name == "Serious Scaffold Python" %]
-      - name: Semantic Release on pull request for test purpose
+      - name: Semantic Release on pull request for test
         if: github.event_name == 'pull_request'
-        env:
-          GITHUB_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
         run: >
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
           --package semantic-release@23.1.1
-          semantic-release --dry-run --debug --branches {{ '${{ github.head_ref }}' }}
+          semantic-release --dry-run --no-ci --debug --branches {{ '${{ github.head_ref }}' }}
 [%- endif %]
