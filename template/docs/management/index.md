@@ -4,7 +4,7 @@ This section is designed for project maintainers and covers essential tasks for 
 
 ```{toctree}
 init
-config
+settings
 update
 release
 ```
