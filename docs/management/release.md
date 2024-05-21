@@ -1,6 +1,6 @@
 # Release Process
 
-The release process is primarily automated to ensure consistency and efficiency. The automation is mostly handled by GitHub Actions or GitLab CI/CD, with the help of [semantic-release](https://github.com/semantic-release/semantic-release). To ensure seamless execution, maintainers should follow specific guidelines and conventions throughout the development and release cycles.
+With the integration of [semantic-release](https://github.com/semantic-release/semantic-release), the whole release process is fully automated. We just need to ensure everything is properly configured and adhere to the required commit convention.
 
 The release process includes the following tasks:
 
@@ -55,4 +55,4 @@ Releasing a new version based on an old commit can be useful in scenarios where 
 
 1. **Valid Release Tags:** Ensure that tags are not only compatible with semantic versioning but also unique and represent a version that is newer than any previously released.
 1. **Commit Convention:** While not mandatory, it is beneficial to ensure an informative changelog by following the [Commit Convention](../development/commit.md#commit-message-pattern) so that corresponding commit messages can be included in the changelog.
-1. **Package Repository Configuration:** Make sure the package upload destination is properly configured as mentioned in the [project configuration](./config.md).
+1. **Package Repository Configuration:** Make sure the package upload destination is properly configured as mentioned in the <project:settings.md>.
