@@ -79,7 +79,7 @@ jobs:
     name: Semantic Release
     runs-on: ubuntu-22.04
     # Avoid semantic release for forked repository
-    if: github.event_name != 'pull_request' && github.repository == 'serious-scaffold/ss-python'
+    if: github.repository == 'serious-scaffold/ss-python'
     permissions:
       contents: write
       id-token: write
@@ -111,6 +111,7 @@ jobs:
         with:
           node-version: 'lts/*'
       - name: Semantic Release
+        if: github.event_name != 'pull_request'
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}
         run: >
@@ -118,3 +119,12 @@ jobs:
           --package conventional-changelog-conventionalcommits@7.0.2
           --package semantic-release@23.1.1
           semantic-release
+      - name: Semantic Release on pull request for test purpose
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}
+        run: >
+          npx
+          --package conventional-changelog-conventionalcommits@7.0.2
+          --package semantic-release@23.1.1
+          semantic-release --dry-run --debug
