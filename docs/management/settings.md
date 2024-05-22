@@ -115,7 +115,7 @@ Nothing need to do for GitLab Pages.
 :::
 ::::
 
-## Renovate & semantic-release
+## Renovate and semantic-release
 
 ::::::{tab-set}
 
