@@ -124,6 +124,7 @@ jobs:
       - consistency
 [%- endif %]
     steps:
+      - run: env | sort
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
 [%- if project_name == "Serious Scaffold Python" %]
@@ -170,5 +171,5 @@ jobs:
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
           --package semantic-release@23.1.1
-          semantic-release --dry-run --no-ci --debug --branches main {{ '${{ github.head_ref }}' }}
+          semantic-release --dry-run --no-ci --debug --branches main {{ '${{ github.ref }}' }}
 [%- endif %]

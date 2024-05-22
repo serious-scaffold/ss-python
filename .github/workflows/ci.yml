@@ -89,6 +89,7 @@ jobs:
       - ci
       - consistency
     steps:
+      - run: env | sort
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
         if: vars.BOT_APP_ID && github.event_name != 'pull_request'
@@ -126,4 +127,4 @@ jobs:
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
           --package semantic-release@23.1.1
-          semantic-release --dry-run --no-ci --debug --branches main ${{ github.head_ref }}
+          semantic-release --dry-run --no-ci --debug --branches main ${{ github.ref }}
