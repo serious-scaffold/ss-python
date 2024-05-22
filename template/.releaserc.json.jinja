@@ -1,131 +1,129 @@
 {
-    "release": {
-        "plugins": [
-            [
-                "@semantic-release/commit-analyzer",
-                {
-                    "releaseRules": [
-                        {
-                            "breaking": true,
-                            "release": "major"
-                        },
+    "plugins": [
+        [
+            "@semantic-release/commit-analyzer",
+            {
+                "releaseRules": [
+                    {
+                        "breaking": true,
+                        "release": "major"
+                    },
+                    {
+                        "type": "build",
+                        "release": false
+                    },
+                    {
+                        "type": "chore",
+                        "release": false
+                    },
+                    {
+                        "type": "ci",
+                        "release": false
+                    },
+                    {
+                        "type": "docs",
+                        "release": false
+                    },
+                    {
+                        "type": "feat",
+                        "release": "minor"
+                    },
+                    {
+                        "type": "fix",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "perf",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "refactor",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "revert",
+                        "release": "patch"
+                    },
+                    {
+                        "type": "style",
+                        "release": false
+                    },
+                    {
+                        "type": "test",
+                        "release": false
+                    },
+                    {
+                        "scope": "*no-release*",
+                        "release": false
+                    }
+                ]
+            }
+        ],
+        [
+            "@semantic-release/release-notes-generator",
+            {
+                "presetConfig": {
+                    "types": [
                         {
                             "type": "build",
-                            "release": false
+                            "section": "Build"
                         },
                         {
                             "type": "chore",
-                            "release": false
+                            "section": "Chores"
                         },
                         {
                             "type": "ci",
-                            "release": false
+                            "section": "Continuous Integration"
                         },
                         {
                             "type": "docs",
-                            "release": false
+                            "section": "Documentation"
                         },
                         {
                             "type": "feat",
-                            "release": "minor"
+                            "section": "Features"
                         },
                         {
                             "type": "fix",
-                            "release": "patch"
+                            "section": "Bug Fixes"
                         },
                         {
                             "type": "perf",
-                            "release": "patch"
+                            "section": "Performance"
                         },
                         {
                             "type": "refactor",
-                            "release": "patch"
+                            "section": "Refactor"
                         },
                         {
                             "type": "revert",
-                            "release": "patch"
+                            "section": "Reverts"
                         },
                         {
                             "type": "style",
-                            "release": false
+                            "section": "Styles"
                         },
                         {
                             "type": "test",
-                            "release": false
-                        },
-                        {
-                            "scope": "*no-release*",
-                            "release": false
+                            "section": "Tests"
                         }
                     ]
                 }
-            ],
-            [
-                "@semantic-release/release-notes-generator",
-                {
-                    "presetConfig": {
-                        "types": [
-                            {
-                                "type": "build",
-                                "section": "Build"
-                            },
-                            {
-                                "type": "chore",
-                                "section": "Chores"
-                            },
-                            {
-                                "type": "ci",
-                                "section": "Continuous Integration"
-                            },
-                            {
-                                "type": "docs",
-                                "section": "Documentation"
-                            },
-                            {
-                                "type": "feat",
-                                "section": "Features"
-                            },
-                            {
-                                "type": "fix",
-                                "section": "Bug Fixes"
-                            },
-                            {
-                                "type": "perf",
-                                "section": "Performance"
-                            },
-                            {
-                                "type": "refactor",
-                                "section": "Refactor"
-                            },
-                            {
-                                "type": "revert",
-                                "section": "Reverts"
-                            },
-                            {
-                                "type": "style",
-                                "section": "Styles"
-                            },
-                            {
-                                "type": "test",
-                                "section": "Tests"
-                            }
-                        ]
-                    }
-                }
-            ],
-[%- if repo_platform == 'github' %]
-            "@semantic-release/github"
-[%- elif repo_platform == 'gitlab' %]
-            "@semantic-release/gitlab"
-[%- elif repo_platform == 'gitlab-self-managed' %]
-            [
-                "@semantic-release/gitlab",
-                {
-                    "gitlabUrl": "https://{{ repo_host }}"
-                }
-            ]
-[%- endif %]
+            }
         ],
-        "preset": "conventionalcommits"
-    }
+[%- if repo_platform == 'github' %]
+        "@semantic-release/github"
+[%- elif repo_platform == 'gitlab' %]
+        "@semantic-release/gitlab"
+[%- elif repo_platform == 'gitlab-self-managed' %]
+        [
+            "@semantic-release/gitlab",
+            {
+                "gitlabUrl": "https://{{ repo_host }}"
+            }
+        ]
+[%- endif %]
+    ],
+    "preset": "conventionalcommits"
 }
