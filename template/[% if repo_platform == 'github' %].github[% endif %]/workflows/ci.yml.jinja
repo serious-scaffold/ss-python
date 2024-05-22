@@ -126,7 +126,11 @@ jobs:
     steps:
       - id: generate-token
         name: Generate a token with GitHub App if App ID exists
+[%- if project_name == "Serious Scaffold Python" %]
+        if: vars.BOT_APP_ID && github.event_name != 'pull_request'
+[%- else %]
         if: vars.BOT_APP_ID
+[%- endif %]
         uses: actions/create-github-app-token@a0de6af83968303c8c955486bf9739a57d23c7f1 # v1.10.0
         with:
           app-id: {{ '${{ vars.BOT_APP_ID }}' }}
