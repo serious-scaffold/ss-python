@@ -73,7 +73,7 @@ ARG SCM_VERSION=0.0.0
 RUN --mount=source=README.md,target=README.md \
     --mount=source=pdm.lock,target=pdm.lock \
     --mount=source=pyproject.toml,target=pyproject.toml \
-    --mount=source=src,target=src \
+    --mount=source=src,target=src,rw \
     mkdir __pypackages__ && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_SS_PYTHON=${SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
