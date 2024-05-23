@@ -2,9 +2,10 @@
 [% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 [build-system]
-build-backend = "pdm.backend"
+build-backend = "setuptools.build_meta"
 requires = [
-  "pdm-backend==2.3.0",
+  "setuptools-scm==8.1.0",
+  "setuptools==70.0.0",
 ]
 
 [project]
@@ -175,6 +176,9 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
 
 [tool.tomlsort]
 all = true
