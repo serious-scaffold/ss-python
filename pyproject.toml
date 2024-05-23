@@ -96,9 +96,6 @@ test = [
   "pytest",
 ]
 
-[tool.pdm.version]
-source = "scm"
-
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
 log_cli = true
