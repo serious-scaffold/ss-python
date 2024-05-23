@@ -8,12 +8,12 @@ jobs:
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: ${{ vars.RENOVATE_ENABLED || true }}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
-        RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
+        RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
-      image: ghcr.io/renovatebot/renovate:37.368.8-full@sha256:ec42750b18504058611851753fb5822522c1999a39476eefc083be70f179a74e
-      options: "--user root"
+      image: ghcr.io/renovatebot/renovate:37.368.8
+      options: '--user root'
     runs-on: ubuntu-22.04
     steps:
       - run: env | sort
@@ -48,5 +48,5 @@ jobs:
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: "*/15 0-3 * * 1"
+    - cron: '*/15 0-3 * * 1'
   workflow_dispatch: null
