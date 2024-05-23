@@ -64,7 +64,7 @@ jobs:
             --target dev
       - run: |
           docker buildx build . \
-            --build-arg PDM_BUILD_SCM_VERSION={{ '${{ github.ref_name }}' }} \
+            --build-arg SCM_VERSION={{ '${{ github.ref_name }}' }} \
             --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
             --cache-from type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }} \
             --file .devcontainer/Dockerfile \

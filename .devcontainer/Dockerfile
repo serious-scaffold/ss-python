@@ -61,6 +61,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Set permission for related folders
 RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR
 
+# Set default working directory
+WORKDIR /workspace
+
 ########################################################################################
 # Build image is an intermediate image used for building the project.
 ########################################################################################
@@ -68,13 +71,12 @@ RUN chown -R $USER_UID:$USER_GID $PIPX_HOME $PIPX_BIN_DIR
 FROM dev as build
 
 # Install dependencies and project into the local packages directory.
-WORKDIR /workspace
-ARG PDM_BUILD_SCM_VERSION=0.0.0
+ARG SCM_VERSION
 RUN --mount=source=README.md,target=README.md \
     --mount=source=pdm.lock,target=pdm.lock \
     --mount=source=pyproject.toml,target=pyproject.toml \
-    --mount=source=src,target=src \
-    mkdir __pypackages__ && PDM_BUILD_SCM_VERSION=${PDM_BUILD_SCM_VERSION} pdm sync --prod --no-editable
+    --mount=source=src,target=src,rw \
+    mkdir __pypackages__ && SETUPTOOLS_SCM_PRETEND_VERSION_FOR_SS_PYTHON=${SCM_VERSION} pdm sync --prod --no-editable
 
 ########################################################################################
 # Prod image is used for deployment and distribution.
