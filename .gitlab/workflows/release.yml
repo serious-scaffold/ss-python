@@ -82,7 +82,7 @@ container-publish:
     - docker run --rm ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}
     - |
       docker buildx build . \
-        --build-arg PDM_BUILD_SCM_VERSION=${CI_COMMIT_TAG} \
+        --build-arg SCM_VERSION=${CI_COMMIT_TAG} \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
         --file .devcontainer/Dockerfile \
         --push \
