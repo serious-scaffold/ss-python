@@ -63,7 +63,6 @@ jobs:
             --target dev
       - run: |
           docker run --rm \
-            -e CI_PAGES_URL=${{ steps.pages.outputs.base_url }} \
             -v ${PWD}:/workspace \
             ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }} \
             make dev lint test doc build
