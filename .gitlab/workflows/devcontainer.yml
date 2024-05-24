@@ -31,6 +31,7 @@ dev-container-publish:
         --target dev
     - |
       docker run --rm \
+        -e CI=true \
         -v ${PWD}:/workspace \
         ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         make dev lint test doc build

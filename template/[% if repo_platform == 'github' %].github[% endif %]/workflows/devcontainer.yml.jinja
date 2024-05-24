@@ -27,6 +27,7 @@ jobs:
             --target dev
       - run: |
           docker run --rm \
+            -e CI=true \
             -v ${PWD}:/workspace \
             ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }} \
             make dev lint test doc build
