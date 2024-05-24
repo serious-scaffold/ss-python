@@ -40,14 +40,10 @@ Scope [Optional]
 
 A "breaking change" refers to any modification that disrupts the existing functionality in a way that may affect users. It can be denoted using an exclamation mark (`!`) before the colon, like `refactor!: Stuff`.
 
-```{note}
-For more details, please refer to [the Angular convention](https://pawamoy.github.io/git-changelog/usage/#angularkarma-convention) and [the Conventional Commit convention](https://pawamoy.github.io/git-changelog/usage/#conventional-commit-convention) described in the documentation of `git-changelog`.
-```
-
 ## Commit in Development Branches
 
 While the commit convention seems strict, we aim for flexibility during the development phase.
-By adhering to the [project configuration](proj.md#project-configuration), all changes should be introduced via pull/merge requests.
+By adhering to the <project:../management/settings.md>, all changes should be introduced via pull/merge requests.
 Using the squash merge strategy, the emphasis is primarily on the title of pull/merge requests.
 In this way, individual commit within development branches does not need to strictly adhere to the commit convention.
 

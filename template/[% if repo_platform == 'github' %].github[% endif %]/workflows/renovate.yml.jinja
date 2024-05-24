@@ -16,7 +16,7 @@ jobs:
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["{{ '${{ github.repository }}' }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
-      image: ghcr.io/renovatebot/renovate:37.356.1-full@sha256:e54b1093f2a751b4ac94988279d2621f068e79c77227d9654165a06ae3d50ad3
+      image: ghcr.io/renovatebot/renovate:37.368.8-full@sha256:ec42750b18504058611851753fb5822522c1999a39476eefc083be70f179a74e
       options: "--user root"
     runs-on: ubuntu-22.04
     steps:
@@ -28,6 +28,12 @@ jobs:
         with:
           app-id: {{ '${{ vars.BOT_APP_ID }}' }}
           private-key: {{ '${{ secrets.BOT_PRIVATE_KEY }}' }}
+      - name: Warn if use GITHUB_TOKEN
+        run: |
+          if [ -z "{{ '${{ steps.generate-token.outputs.token || secrets.PAT }}' }}" ]; then
+            echo "# :warning: GITHUB_TOKEN is used for renovate" >> $GITHUB_STEP_SUMMARY
+            echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the checks for the pull requests." >> $GITHUB_STEP_SUMMARY
+          fi
       - name: Warn if RENOVATE_GIT_AUTHOR is set while using GitHub App token
         if: steps.generate-token.outputs.token && vars.RENOVATE_GIT_AUTHOR
         run: |
@@ -35,8 +41,8 @@ jobs:
           echo "Generally, Renovate automatically detects the git author and email using the token. However, explicitly setting the `RENOVATE_GIT_AUTHOR` will override this behavior." >> $GITHUB_STEP_SUMMARY
       - name: Run Renovate
         env:
-          RENOVATE_TOKEN: {{ '${{ secrets.RENOVATE_TOKEN || steps.generate-token.outputs.token }}' }}
           RENOVATE_GIT_AUTHOR: {{ '${{ vars.RENOVATE_GIT_AUTHOR }}' }}
+          RENOVATE_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
         run: |
           if [ -z "$RENOVATE_TOKEN" ]; then
             echo "RENOVATE_TOKEN is not properly configured, skipping ..."

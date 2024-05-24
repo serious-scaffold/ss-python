@@ -1,13 +1,16 @@
+[% from pathjoin("includes", "variable.jinja") import releases_url with context -%]
 # Welcome to {{ project_name }}'s documentation
 
 ```{toctree}
 :hidden:
 Overview <self>
-dev/index
+management/index
+development/index
+advanced/index
 cli/index
 api/index
 reports/index
-changelog
+Changelog <{{ releases_url() }}>
 ```
 
 ```{include} ../README.md

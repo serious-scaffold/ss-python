@@ -8,6 +8,7 @@ An evolving Python project template that covers the full development lifecycle.
 [![Release](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml)
 [![Renovate](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/coverage.json)](https://serious-scaffold.github.io/ss-python/reports/coverage)
+[![Release](https://img.shields.io/github/v/release/serious-scaffold/ss-python)](https://github.com/serious-scaffold/ss-python/releases)
 [![PyPI](https://img.shields.io/pypi/v/ss-python)](https://pypi.org/project/ss-python/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ss-python)](https://pypi.org/project/ss-python/)
 [![GitHub](https://img.shields.io/github/license/serious-scaffold/ss-python)](https://github.com/serious-scaffold/ss-python/blob/main/LICENSE)
@@ -43,6 +44,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - Manage configurations with [pydantic-settings](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
 - [Dev container](https://containers.dev/) for development and GitLab CI/CD.
 - Automate dependency updates with [Renovate](https://github.com/renovatebot/renovate).
+- Automate version management and release with [semantic-release](https://github.com/semantic-release/semantic-release).
 - [Versioned documentation](https://docs.readthedocs.io/en/stable/versions.html) and [pull request previews](https://docs.readthedocs.io/en/stable/pull-requests.html) with [Read the Docs](https://readthedocs.org/).
 - Adapted configuration for GitHub, GitLab and self-managed GitLab.
 - Continuous Integration for Linux, MacOS and Windows [GitHub Only].

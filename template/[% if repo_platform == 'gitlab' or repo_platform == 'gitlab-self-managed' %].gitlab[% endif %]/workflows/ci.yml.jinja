@@ -59,3 +59,19 @@ consistency:
     - test -z "$(git status --porcelain)"
   stage: ci
 [%- endif %]
+semantic-release:
+  image:
+    name: node:20.13.1@sha256:d6925dc84f8c0d1c1f8df4ea6a9a54e57d430241cb734b1b0c45ed6d26e8e9c0
+  interruptible: true
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}" && $PAT != null
+  script:
+    - >
+      npx
+      --package @semantic-release/gitlab@13.1.0
+      --package conventional-changelog-conventionalcommits@7.0.2
+      --package semantic-release@23.1.1
+      semantic-release
+  stage: release
+  variables:
+    GITLAB_TOKEN: $PAT

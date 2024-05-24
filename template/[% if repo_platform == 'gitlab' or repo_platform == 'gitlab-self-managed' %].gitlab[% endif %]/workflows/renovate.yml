@@ -3,9 +3,9 @@ renovate:
     key: ${CI_COMMIT_REF_SLUG}-renovate
     paths:
       - renovate/cache/renovate/repository/
-  image: renovate/renovate:37.356.1-full@sha256:e54b1093f2a751b4ac94988279d2621f068e79c77227d9654165a06ae3d50ad3
+  image: renovate/renovate:37.368.8-full@sha256:ec42750b18504058611851753fb5822522c1999a39476eefc083be70f179a74e
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule" && $RENOVATE_TOKEN != null
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $PAT != null
   script: renovate $RENOVATE_EXTRA_FLAG
   stage: build
   variables:
@@ -16,8 +16,8 @@ renovate:
     RENOVATE_BRANCH_PREFIX: renovate-gitlab/
     RENOVATE_ENABLED_MANAGERS: '["pep621", "gitlabci", "regex", "pre-commit"]'
     RENOVATE_ENDPOINT: $CI_API_V4_URL
-    RENOVATE_GIT_AUTHOR: Renovate GitLab Bot <gitlab@renovatebot.com>
     RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
     RENOVATE_PLATFORM: gitlab
     RENOVATE_REPOSITORIES: '["$CI_PROJECT_PATH"]'
     RENOVATE_REPOSITORY_CACHE: enabled
+    RENOVATE_TOKEN: $PAT

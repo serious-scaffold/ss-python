@@ -79,6 +79,23 @@
         },
         {
             "customType": "regex",
+            "datasourceTemplate": "npm",
+            "description": "Match npm packages used with npx",
+            "fileMatch": [
+                "^\\.github/workflows/.+\\.yml$",
+                "^\\.gitlab/workflows/.+\\.yml$",
+[%- if project_name == "Serious Scaffold Python" %]
+                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
+                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
+[%- endif %]
+            ],
+            "matchStrings": [
+                "--package (?<depName>.+?)@(?<currentValue>.+?)\\s"
+            ],
+            "versioningTemplate": "docker"
+        },
+        {
+            "customType": "regex",
             "datasourceTemplate": "git-tags",
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
@@ -95,7 +112,8 @@
     "extends": [
         "config:best-practices",
         ":enablePreCommit",
-        ":maintainLockFilesWeekly"
+        ":maintainLockFilesWeekly",
+        ":semanticCommitTypeAll(build)"
     ],
 [%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
     "gitlabci": {
@@ -217,6 +235,14 @@
             "groupName": "debian packages",
             "matchDepTypes": [
                 "debian"
+            ]
+        },
+        {
+            "description": "conventional-changelog-conventionalcommits 7.0.2 is pinned due to https://github.com/semantic-release/release-notes-generator/issues/633",
+            "enabled": false,
+            "matchCurrentVersion": "7.0.2",
+            "matchPackageNames": [
+                "conventional-changelog-conventionalcommits"
             ]
         },
         {

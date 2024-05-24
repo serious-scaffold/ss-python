@@ -3,11 +3,13 @@
 ```{toctree}
 :hidden:
 Overview <self>
-dev/index
+management/index
+development/index
+advanced/index
 cli/index
 api/index
 reports/index
-changelog
+Changelog <https://github.com/serious-scaffold/ss-python/releases>
 ```
 
 ```{include} ../README.md
