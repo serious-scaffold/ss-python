@@ -1,7 +1,20 @@
 name: DevContainer
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - .devcontainer/Dockerfile
+      - .devcontainer/Dockerfile.dockerignore
+      - .github/workflows/devcontainer.yml
+  workflow_dispatch: null
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   dev-container-publish:
     permissions:
@@ -49,17 +62,8 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.8"
-          - "3.9"
-          - "3.10"
-          - "3.11"
-          - "3.12"
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - .devcontainer/Dockerfile
-      - .devcontainer/Dockerfile.dockerignore
-      - .github/workflows/devcontainer.yml
-  workflow_dispatch: null
+          - '3.8'
+          - '3.9'
+          - '3.10'
+          - '3.11'
+          - '3.12'
