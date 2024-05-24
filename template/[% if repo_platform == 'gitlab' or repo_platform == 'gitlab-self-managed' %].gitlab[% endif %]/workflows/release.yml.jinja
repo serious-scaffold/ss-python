@@ -83,7 +83,7 @@ container-publish:
         --target dev
     - |
       docker buildx build . \
-        --build-arg PDM_BUILD_SCM_VERSION=${CI_COMMIT_TAG} \
+        --build-arg SCM_VERSION=${CI_COMMIT_TAG} \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
         --file .devcontainer/Dockerfile \
         --load \

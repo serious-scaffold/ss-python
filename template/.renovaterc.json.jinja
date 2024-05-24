@@ -1,6 +1,10 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_higher_than -%]
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "constraints": {
+        "pdm": "2.15.2",
+        "python": "=={{ default_py }}"
+    },
     "customManagers": [
         {
             "customType": "regex",
@@ -49,8 +53,8 @@
         },
         {
             "customType": "regex",
-            "datasourceTemplate": "github-tags",
-            "depNameTemplate": "pdm-project/pdm",
+            "datasourceTemplate": "pypi",
+            "depNameTemplate": "pdm",
             "description": "Match pdm version specified in setup-pdm GitHub Action",
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$"
@@ -60,8 +64,22 @@
             ],
             "matchStrings": [
                 "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\n"
+            ]
+        },
+        {
+            "customType": "regex",
+            "datasourceTemplate": "pypi",
+            "depNameTemplate": "pdm",
+            "description": "Match pdm version specified in the renovate constraints",
+            "fileMatch": [
+                "^\\.renovaterc\\.json$"
+[%- if project_name == "Serious Scaffold Python" %],
+                "^template/\\.renovaterc\\.json\\.jinja$"
+[%- endif %]
             ],
-            "versioningTemplate": "semver"
+            "matchStrings": [
+                "\"pdm\": \"(?<currentValue>.*)\""
+            ]
         },
         {
             "customType": "regex",
@@ -209,8 +227,7 @@
                 "pypi"
             ],
             "matchDepNames": [
-                "pdm",
-                "pdm-project/pdm"
+                "pdm"
             ]
         },
         {

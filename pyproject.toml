@@ -1,7 +1,8 @@
 [build-system]
-build-backend = "pdm.backend"
+build-backend = "setuptools.build_meta"
 requires = [
-  "pdm-backend==2.3.0",
+  "setuptools-scm==8.1.0",
+  "setuptools==70.0.0",
 ]
 
 [project]
@@ -95,10 +96,6 @@ test = [
   "pytest",
 ]
 
-[tool.pdm.version]
-fallback_version = "0.0.0"
-source = "scm"
-
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
 log_cli = true
@@ -133,6 +130,9 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
 
 [tool.tomlsort]
 all = true

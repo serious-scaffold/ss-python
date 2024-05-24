@@ -29,6 +29,7 @@ The project template tracks the following dependencies:
    1. Python packages installed with pip, pipx and asdf, listed in the README, DevContainer Dockerfile, GitHub Actions, GitLab CI/CD, ReadTheDocs configuration, Renovate configuration and documentation.
    1. Debian packages installed in the DevContainer Dockerfile.
    1. PDM version specified in the `pdm-project/setup-pdm` GitHub action.
+   1. PDM version specified in the renovate constraints.
    1. NPM packages used with npx.
    1. The project template itself.
 
