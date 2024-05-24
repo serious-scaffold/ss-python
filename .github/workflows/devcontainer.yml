@@ -2,6 +2,10 @@ name: DevContainer
 
 on:
   pull_request:
+    paths:
+      - .devcontainer/Dockerfile
+      - .devcontainer/Dockerfile.dockerignore
+      - .github/workflows/devcontainer.yml
   push:
     branches:
       - main

@@ -26,6 +26,11 @@ dev-container-publish:
         - .gitlab/workflows/devcontainer.yml
       if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "web"
+    - changes:
+        - .devcontainer/Dockerfile
+        - .devcontainer/Dockerfile.dockerignore
+        - .gitlab/workflows/devcontainer.yml
+      if: $CI_PIPELINE_SOURCE == 'merge_request_event'
   script:
     - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
     - docker context create builder
