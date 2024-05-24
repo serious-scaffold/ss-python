@@ -55,7 +55,6 @@ jobs:
           docker buildx build . \
             --build-arg PYTHON_VERSION=${{ matrix.python-version }} \
             --cache-from type=registry,ref=ghcr.io/${{ github.repository }}/dev-cache:py${{ matrix.python-version }} \
-            --cache-to type=registry,ref=ghcr.io/${{ github.repository }}/dev-cache:py${{ matrix.python-version }},mode=max \
             --file .devcontainer/Dockerfile \
             --load \
             --tag ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }} \
@@ -70,6 +69,7 @@ jobs:
       - run: |
           docker buildx build . \
             --build-arg PYTHON_VERSION=${{ matrix.python-version }} \
+            --cache-to type=registry,ref=ghcr.io/${{ github.repository }}/dev-cache:py${{ matrix.python-version }},mode=max \
             --file .devcontainer/Dockerfile \
             --push \
             --tag ghcr.io/${{ github.repository }}/dev:py${{ matrix.python-version }} \
