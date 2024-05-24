@@ -1,14 +1,32 @@
 [% from pathjoin("includes", "version_compare.jinja") import version_between -%]
 name: DevContainer
+
+on:
+  pull_request:
+    paths:
+      - .devcontainer/Dockerfile
+      - .devcontainer/Dockerfile.dockerignore
+      - .github/workflows/devcontainer.yml
+  push:
+    branches:
+      - main
+    paths:
+      - .devcontainer/Dockerfile
+      - .devcontainer/Dockerfile.dockerignore
+      - .github/workflows/devcontainer.yml
+  workflow_dispatch: null
+
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
+
 jobs:
   dev-container-publish:
     permissions:
       packages: write
     runs-on: ubuntu-22.04
     steps:
+      - run: env | sort
       - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - run: docker login -u {{ '${{ github.actor }}' }} -p {{ '${{ secrets.GITHUB_TOKEN }}' }} ghcr.io
       - run: |
@@ -19,9 +37,30 @@ jobs:
           docker buildx build . \
             --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
             --cache-from type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }} \
+            --file .devcontainer/Dockerfile \
+            --load \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }} \
+            --target dev
+      - run: |
+          docker run --rm \
+            -e CI=true \
+            -v ${PWD}:/workspace \
+            ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }} \
+            make dev lint test doc build
+      - run: |
+          docker buildx build . \
+            --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
+            --file .devcontainer/Dockerfile \
+            --load \
+            --tag ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }} \
+            --target prod
+      - run: docker run --rm ghcr.io/{{ '${{ github.repository }}' }}:py{{ '${{ matrix.python-version }}' }}
+      - if: github.event_name != 'pull_request'
+        run: |
+          docker buildx build . \
+            --build-arg PYTHON_VERSION={{ '${{ matrix.python-version }}' }} \
             --cache-to type=registry,ref=ghcr.io/{{ '${{ github.repository }}' }}/dev-cache:py{{ '${{ matrix.python-version }}' }},mode=max \
             --file .devcontainer/Dockerfile \
-            --provenance false \
             --push \
             --tag ghcr.io/{{ '${{ github.repository }}' }}/dev:py{{ '${{ matrix.python-version }}' }} \
             --target dev
@@ -29,26 +68,17 @@ jobs:
       matrix:
         python-version:
 [%- if version_between("3.8", min_py, max_py) %]
-          - "3.8"
+          - '3.8'
 [%- endif %]
 [%- if version_between("3.9", min_py, max_py) %]
-          - "3.9"
+          - '3.9'
 [%- endif %]
 [%- if version_between("3.10", min_py, max_py) %]
-          - "3.10"
+          - '3.10'
 [%- endif %]
 [%- if version_between("3.11", min_py, max_py) %]
-          - "3.11"
+          - '3.11'
 [%- endif %]
 [%- if version_between("3.12", min_py, max_py) %]
-          - "3.12"
+          - '3.12'
 [%- endif %]
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - .devcontainer/Dockerfile
-      - .devcontainer/Dockerfile.dockerignore
-      - .github/workflows/devcontainer.yml
-  workflow_dispatch: null

@@ -2,9 +2,6 @@ name: CI
 
 on:
   pull_request:
-    types:
-      - opened
-      - synchronize
   push:
     branches:
       - main
@@ -28,10 +25,7 @@ jobs:
           version: 2.15.2
       - run: env | sort
       - run: make dev
-      - run: make lint
-      - run: make test
-      - run: make doc
-      - run: make build
+      - run: make lint test doc build
     strategy:
       matrix:
         os:
