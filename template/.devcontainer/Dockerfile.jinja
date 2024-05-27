@@ -39,7 +39,7 @@ ENV PIPX_BIN_DIR=/usr/local/bin
 ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 
 # Install pdm
-RUN pipx install pdm==2.15.2
+RUN pipx install pdm==2.15.3
 
 # Install pre-commit
 RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \

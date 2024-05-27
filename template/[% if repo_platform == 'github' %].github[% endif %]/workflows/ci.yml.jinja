@@ -23,7 +23,7 @@ jobs:
         with:
           cache: true
           python-version: {{ '${{ matrix.python-version }}' }}
-          version: 2.15.2
+          version: 2.15.3
       - run: env | sort
       - run: make dev
       - run: make lint test doc build

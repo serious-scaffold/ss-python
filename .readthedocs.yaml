@@ -21,8 +21,8 @@ build:
       - env | sort
     pre_create_environment:
       - asdf plugin add pdm
-      - asdf install pdm 2.15.2
-      - asdf global pdm 2.15.2
+      - asdf install pdm 2.15.3
+      - asdf global pdm 2.15.3
     post_install:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make dev-doc
     post_build:
