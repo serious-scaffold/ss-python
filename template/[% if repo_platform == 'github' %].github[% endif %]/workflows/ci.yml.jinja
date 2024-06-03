@@ -140,6 +140,6 @@ jobs:
           GITHUB_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
         run: >
           npx
-          --package conventional-changelog-conventionalcommits@7.0.2
+          --package conventional-changelog-conventionalcommits@8.0.0
           --package semantic-release@24.0.0
           semantic-release
