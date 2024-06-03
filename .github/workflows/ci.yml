@@ -110,5 +110,5 @@ jobs:
         run: >
           npx
           --package conventional-changelog-conventionalcommits@7.0.2
-          --package semantic-release@23.1.1
+          --package semantic-release@24.0.0
           semantic-release
