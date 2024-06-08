@@ -15,10 +15,12 @@ jobs:
     if: ${{ !cancelled() && ! failure() }}
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - name: Checkout repository
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
         with:
           fetch-depth: 0
-      - uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
+      - name: Set up PDM
+        uses: pdm-project/setup-pdm@568ddd69406b30de1774ec0044b73ae06e716aa4 # v4
         with:
           cache: true
           python-version: ${{ matrix.python-version }}
@@ -59,7 +61,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: env | sort
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - name: Checkout repository
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
       - name: Set up Git
         run: |
           git config --global user.name github-actions
@@ -96,7 +99,8 @@ jobs:
             echo "# :warning: GITHUB_TOKEN is used for semantic-release" >> $GITHUB_STEP_SUMMARY
             echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the released publish event for the released workflow." >> $GITHUB_STEP_SUMMARY
           fi
-      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - name: Checkout repository
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
         with:
           fetch-depth: 0
           persist-credentials: false
