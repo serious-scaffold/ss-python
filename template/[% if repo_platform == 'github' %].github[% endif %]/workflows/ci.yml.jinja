@@ -17,7 +17,7 @@ jobs:
     runs-on: {{ '${{ matrix.os }}' }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
       - name: Set up PDM
@@ -90,7 +90,7 @@ jobs:
     steps:
       - run: env | sort
       - name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
       - name: Set up Git
         run: |
           git config --global user.name github-actions
@@ -131,7 +131,7 @@ jobs:
             echo "The GITHUB_TOKEN is used instead of a bot token or PAT and will not emit the released publish event for the released workflow." >> $GITHUB_STEP_SUMMARY
           fi
       - name: Checkout repository
-        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
           persist-credentials: false
