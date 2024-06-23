@@ -54,7 +54,8 @@
     "toctree",
     "typer",
     "unshallow",
-    "viewcode"
+    "viewcode",
+    "VIRTUALENV"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
