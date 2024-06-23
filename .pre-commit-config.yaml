@@ -50,7 +50,7 @@ repos:
         pass_filenames: false
       - id: mypy
         name: mypy
-        entry: pdm run python -m mypy
+        entry: mypy --python-executable $(pdm info --python)
         language: system
         exclude: ^template/.*
         types_or:

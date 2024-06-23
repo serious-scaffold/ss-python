@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-coverage doc consistency
 
 ########################################################################################
 # Variables
@@ -51,13 +51,16 @@ dev:
 	pdm install
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
+prerequisites:
+	pipx install --force mypy[reports]==1.10.0
+
 ########################################################################################
 # Lint and pre-commit
 ########################################################################################
 
 # Check lint with mypy.
 mypy:
-	pdm run python -m mypy .
+	mypy --python-executable $(shell pdm info --python) --html-report $(PUBLIC_DIR)/reports/mypy .
 
 # Lint with ruff.
 ruff:
@@ -119,17 +122,13 @@ doc-autobuild:
 doc-gen:
 	pdm run python -m sphinx.cmd.build docs $(PUBLIC_DIR)
 
-# Generate mypy reports.
-doc-mypy:
-	pdm run python -m mypy src tests --html-report $(PUBLIC_DIR)/reports/mypy
-
 # Generate html coverage reports with badge.
 doc-coverage: test-run
 	pdm run python -m coverage html -d $(PUBLIC_DIR)/reports/coverage
 	pdm run bash scripts/generate-coverage-badge.sh $(PUBLIC_DIR)/_static/badges
 
 # Generate all documentation with reports.
-doc: doc-gen doc-mypy doc-coverage
+doc: doc-gen mypy doc-coverage
 
 ########################################################################################
 # Template
