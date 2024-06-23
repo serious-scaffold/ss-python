@@ -1,5 +1,6 @@
 *
 .*
+!/Makefile
 !/README.md
 !/pdm.lock
 !/pyproject.toml
