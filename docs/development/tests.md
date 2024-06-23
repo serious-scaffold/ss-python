@@ -1,27 +1,27 @@
 # Tests
 
-With all those automation of the CI/CD, the dependency update and the release process, tests play an even more important role in daily development. We leverage [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io) with proper configuration to ensure everything works as expected. This page shows the general information and convention wish you to follow.
+In the context of CI/CD automation, dependency updates, and the release process, tests play a crucial role in daily development. We utilize [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io) with proper configuration to ensure everything works as expected. This page provides general information and conventions we wish you to follow.
 
-## Run tests
+## Running Tests
 
-After [setting up development environment](./setup-dev-env.md), tests can be run with the command:
+After [setting up the development environment](/development/setup-dev-env.md), tests can be run with the command:
 
 ```bash
 make test
 ```
 
-With the default configuration, it shows the result for each test cases, the execution time for the slow test cases and the report about the test coverage.
+With the default configuration, this command displays the result for each test case, the execution time for slow test cases, and a report on test coverage.
 
-## Write tests
+## Writing Tests
 
-For the guideline on how to write tests, you may refer to [the official documentation](https://docs.pytest.org/how-to/assert.html). Here are some convention expected to be followed:
+For guidelines on how to write tests, refer to [the official documentation](https://docs.pytest.org/how-to/assert.html). Here are some conventions we expect you to follow:
 
-1. Organize all the tests cases under the `tests` directory.
-1. Keep the test modules align with the modules to be tested.
+1. Organize all test cases under the `tests` directory.
+2. Align test modules with the modules to be tested.
 
-   For example, tests for `ss_python.cli` module should be located in the file `tests/cli_test.py`. If there are too many test cases, we can split them in the files `tests/cli/<prefix>_test.py`.
-1. Unless necessary, it is not recommended to lower the threshold of the test coverage.
+   For example, tests for the `ss_python.cli` module should be located in the file `tests/cli_test.py`. If there are too many test cases, they can be split into files within the `tests/cli/` directory, using a prefix for each test file.
+3. Unless necessary, do not lower the threshold of the test coverage.
 
 ## Coverage Report
 
-After running the tests, coverage report will not only be printed on the screen but also be generated as part of the documentation, you can view it [here](../reports/coverage/index.md).
+After running the tests, the coverage report will be printed on the screen and generated as part of the documentation. You can view it [here](/reports/coverage/index.md).
