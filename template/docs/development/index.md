@@ -7,4 +7,5 @@ git-workflow
 setup-dev-env
 cleanup-dev-env
 commit
+tests
 ```
