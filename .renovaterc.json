@@ -8,7 +8,7 @@
         {
             "customType": "regex",
             "datasourceTemplate": "pypi",
-            "description": "Match Python packages installed with pip, pipx and asdf",
+            "description": "Match Python packages installed with pip/pipx",
             "fileMatch": [
                 "^Makefile$",
                 "^README\\.md$",
@@ -28,8 +28,6 @@
                 "^template/docs/.+\\.md(\\.jinja)?$"
             ],
             "matchStrings": [
-                "asdf global (?<depName>.*?) (?<currentValue>.*?)\n",
-                "asdf install (?<depName>.*?) (?<currentValue>.*?)\n",
                 "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]",
                 "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
             ]
