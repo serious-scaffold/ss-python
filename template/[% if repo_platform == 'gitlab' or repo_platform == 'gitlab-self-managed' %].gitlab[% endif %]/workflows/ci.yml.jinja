@@ -58,7 +58,7 @@ consistency:
 [%- endif %]
 semantic-release:
   image:
-    name: node:20.14.0@sha256:02cd2205818f121c13612721876f28c18bd50148bb8af532ea121c96ffcb59bf
+    name: node:20.15.0@sha256:b849bc4078c3e16a38d72749ab8faeacbcc6c3bdb742399b4a5974a89fc93261
   interruptible: true
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}" && $PAT != null
