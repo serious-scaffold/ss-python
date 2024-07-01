@@ -26,7 +26,7 @@ The project template tracks the following dependencies:
    1. [gitlabci](https://docs.renovatebot.com/modules/manager/gitlabci/): Containers in GitLab CI/CD.
    1. [pre-commit](https://docs.renovatebot.com/modules/manager/pre-commit/): Pre-commit hooks.
 1. Regex manager:
-   1. Python packages installed with pip, pipx and asdf, listed in the README, DevContainer Dockerfile, GitHub Actions, GitLab CI/CD, ReadTheDocs configuration, Renovate configuration and documentation.
+   1. Python packages installed with pip/pipx, listed in the README, DevContainer Dockerfile, GitHub Actions, GitLab CI/CD, ReadTheDocs configuration, Renovate configuration and documentation.
    1. Debian packages installed in the DevContainer Dockerfile.
    1. PDM version specified in the `pdm-project/setup-pdm` GitHub action.
    1. PDM version specified in the renovate constraints.
