@@ -1,4 +1,6 @@
 build:
+  apt_packages:
+    - pipx
   jobs:
     post_checkout:
       - git fetch --unshallow || true
@@ -20,9 +22,7 @@ build:
     post_system_dependencies:
       - env | sort
     pre_create_environment:
-      - asdf plugin add pdm
-      - asdf install pdm 2.16.1
-      - asdf global pdm 2.16.1
+      - PIPX_BIN_DIR=$READTHEDOCS_VIRTUALENV_PATH/bin pipx install pdm==2.16.1
     post_install:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make dev-doc
     post_build:
