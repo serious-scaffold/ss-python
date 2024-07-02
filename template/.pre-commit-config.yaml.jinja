@@ -62,7 +62,7 @@ repos:
         require_serial: true
       - id: ruff
         name: ruff
-        entry: pdm run python -m ruff check --force-exclude
+        entry: ruff check --force-exclude
         language: system
         types_or:
           - python
@@ -70,7 +70,7 @@ repos:
         require_serial: true
       - id: ruff-format
         name: ruff-format
-        entry: pdm run python -m ruff format --force-exclude
+        entry: ruff format --force-exclude
         language: system
         types_or:
           - python

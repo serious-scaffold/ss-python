@@ -1,5 +1,5 @@
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-.PHONY: clean deepclean install dev mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc
 [%- if project_name == "Serious Scaffold Python" %] consistency[% endif %]
 
 ########################################################################################
@@ -53,6 +53,10 @@ dev:
 	pdm install
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
+# Install standalone tools
+prerequisites:
+	pipx install --force ruff==0.5.0
+
 ########################################################################################
 # Lint and pre-commit
 ########################################################################################
@@ -63,11 +67,11 @@ mypy:
 
 # Lint with ruff.
 ruff:
-	pdm run python -m ruff check .
+	ruff check .
 
 # Format with ruff.
 ruff-format:
-	pdm run python -m ruff format --check .
+	ruff format --check .
 
 # Check lint with toml-sort.
 toml-sort:

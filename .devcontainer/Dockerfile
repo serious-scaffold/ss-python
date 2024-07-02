@@ -48,6 +48,10 @@ RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
         pipx install pre-commit==3.7.1; \
     fi
 
+# Install prerequisites
+RUN --mount=source=Makefile,target=Makefile \
+    make prerequisites
+
 # Create a non-root user with sudo permission
 ARG USERNAME=ss-python
 ARG USER_UID=1000
