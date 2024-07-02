@@ -18,7 +18,7 @@ pipx install copier==9.2.0
 Create a blank Git repository on the hosting platform. Clone it locally and navigate to the root directory:
 
 ```bash
-git clone git@{{ repo_url() }}.git
+git clone git@{{ repo_host }}:{{ repo_namespace }}/{{ repo_name }}.git
 cd {{ repo_name }}
 ```
 
