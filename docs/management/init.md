@@ -17,7 +17,7 @@ pipx install copier==9.2.0
 Create a blank Git repository on the hosting platform. Clone it locally and navigate to the root directory:
 
 ```bash
-git clone git@github.com/serious-scaffold/ss-python.git
+git clone git@github.com:serious-scaffold/ss-python.git
 cd ss-python
 ```
 
