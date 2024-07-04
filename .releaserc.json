@@ -38,7 +38,7 @@
                     },
                     {
                         "type": "refactor",
-                        "release": "patch"
+                        "release": false
                     },
                     {
                         "type": "revert",
