@@ -36,7 +36,7 @@ repos:
     hooks:
       - id: pdm-sync
         name: pdm-sync
-        entry: pdm sync
+        entry: pdm sync --clean
         language: python
         stages:
           - post-checkout
