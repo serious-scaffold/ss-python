@@ -5,7 +5,7 @@
 groups = ["default", "doc", "lint", "test"]
 strategy = ["cross_platform", "inherit_metadata"]
 lock_version = "4.4.2"
-content_hash = "sha256:1f6e6ebed5b67bffe4d942e03647dcff880de3de58626977c9bd4770a948409d"
+content_hash = "sha256:eb5f49b942ac05bcd535904ede8adfa94191ddf9459593bf2c34d729bd725e9f"
 
 [[package]]
 name = "alabaster"
@@ -1122,20 +1122,6 @@ files = [
 ]
 
 [[package]]
-name = "toml-sort"
-version = "0.23.1"
-requires_python = ">=3.7,<4.0"
-summary = "Toml sorting library"
-groups = ["lint"]
-dependencies = [
-    "tomlkit>=0.11.2",
-]
-files = [
-    {file = "toml_sort-0.23.1-py3-none-any.whl", hash = "sha256:69ae60de9c4d67478533697eb4119092e2b30ddffe5ca09bbad3912905c935a0"},
-    {file = "toml_sort-0.23.1.tar.gz", hash = "sha256:833728c48b0f8d509aecd9ae8347768ca3a9332977b32c9fd2002932f0eb9c90"},
-]
-
-[[package]]
 name = "tomli"
 version = "2.0.1"
 requires_python = ">=3.7"
@@ -1145,17 +1131,6 @@ marker = "python_version < \"3.11\""
 files = [
     {file = "tomli-2.0.1-py3-none-any.whl", hash = "sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc"},
     {file = "tomli-2.0.1.tar.gz", hash = "sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f"},
-]
-
-[[package]]
-name = "tomlkit"
-version = "0.12.5"
-requires_python = ">=3.7"
-summary = "Style preserving TOML library"
-groups = ["lint"]
-files = [
-    {file = "tomlkit-0.12.5-py3-none-any.whl", hash = "sha256:af914f5a9c59ed9d0762c7b64d3b5d5df007448eb9cd2edc8a46b1eafead172f"},
-    {file = "tomlkit-0.12.5.tar.gz", hash = "sha256:eef34fba39834d4d6b73c9ba7f3e4d1c417a4e56f89a7e96e090dd0d24b8fb3c"},
 ]
 
 [[package]]

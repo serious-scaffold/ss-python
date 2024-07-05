@@ -4,137 +4,142 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-  "setuptools-scm==8.1.0",
-  "setuptools==70.1.1",
+    "setuptools==70.1.1",
+    "setuptools-scm==8.1.0",
 ]
 
 [project]
-authors = [
-  {email = "{{ author_email }}", name = "{{ author_name }}"},
-]
-classifiers = [
-[%- if development_status == "Alpha" %]
-  "Development Status :: 3 - Alpha",
-[%- elif development_status == "Beta" %]
-  "Development Status :: 4 - Beta",
-[%- elif development_status == "Stable" %]
-  "Development Status :: 5 - Production/Stable",
-[%- endif %]
-  "License :: OSI Approved :: {{ copyright_license }}",
-  "Operating System :: OS Independent",
-[%- if version_between("3.10", min_py, max_py) %]
-  "Programming Language :: Python :: 3.10",
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
-  "Programming Language :: Python :: 3.11",
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
-  "Programming Language :: Python :: 3.12",
-[%- endif %]
-[%- if version_between("3.8", min_py, max_py) %]
-  "Programming Language :: Python :: 3.8",
-[%- endif %]
-[%- if version_between("3.9", min_py, max_py) %]
-  "Programming Language :: Python :: 3.9",
-[%- endif %]
-]
-dependencies = [
-  "pydantic-settings",
-  "typer[all]",
-]
+name = "{{ package_name }}"
 description = "{{ project_description }}"
-dynamic = [
-  "version",
-]
+readme = "README.md"
 keywords = [
-  "copier-template",
-  "full-development-lifecycle",
-  "project-template",
-  "serious-scaffold",
+    "copier-template",
+    "full-development-lifecycle",
+    "project-template",
+    "serious-scaffold",
 ]
 [%- if copyright_license == "Apache Software License" %]
-license = {text = "Apache-2.0"}
+license = { text = "Apache-2.0" }
 [%- elif copyright_license == "Boost Software License 1.0 (BSL-1.0)" %]
-license = {text = "BSL-1.0"}
+license = { text = "BSL-1.0" }
 [%- elif copyright_license == "GNU Affero General Public License v3" %]
-license = {text = "AGPLv3"}
+license = { text = "AGPLv3" }
 [%- elif copyright_license == "GNU General Public License v3 (GPLv3)" %]
-license = {text = "GPLv3"}
+license = { text = "GPLv3" }
 [%- elif copyright_license == "GNU Lesser General Public License v3 (LGPLv3)" %]
-license = {text = "LGPLv3"}
+license = { text = "LGPLv3" }
 [%- elif copyright_license == "MIT License" %]
-license = {text = "MIT"}
+license = { text = "MIT" }
 [%- elif copyright_license == "Mozilla Public License 2.0 (MPL 2.0)" %]
-license = {text = "MPL-2.0"}
+license = { text = "MPL-2.0" }
 [%- elif copyright_license == "The Unlicense (Unlicense)" %]
-license = {text = "Unlicense"}
+license = { text = "Unlicense" }
 [%- endif %]
-name = "{{ package_name }}"
-readme = "README.md"
+authors = [
+    { email = "{{ author_email }}", name = "{{ author_name }}" },
+]
 requires-python = ">={{ min_py }}"
-
-[project.scripts]
-{{ package_name }}-cli = "{{ module_name }}.cli:app"
-
-[project.urls]
-documentation = "https://{{ page_url() }}"
+classifiers = [
+[%- if development_status == "Alpha" %]
+    "Development Status :: 3 - Alpha",
+[%- elif development_status == "Beta" %]
+    "Development Status :: 4 - Beta",
+[%- elif development_status == "Stable" %]
+    "Development Status :: 5 - Production/Stable",
+[%- endif %]
+    "License :: OSI Approved :: {{ copyright_license }}",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+[%- if version_between("3.8", min_py, max_py) %]
+    "Programming Language :: Python :: 3.8",
+[%- endif %]
+[%- if version_between("3.9", min_py, max_py) %]
+    "Programming Language :: Python :: 3.9",
+[%- endif %]
+[%- if version_between("3.10", min_py, max_py) %]
+    "Programming Language :: Python :: 3.10",
+[%- endif %]
+[%- if version_between("3.11", min_py, max_py) %]
+    "Programming Language :: Python :: 3.11",
+[%- endif %]
+[%- if version_between("3.12", min_py, max_py) %]
+    "Programming Language :: Python :: 3.12",
+[%- endif %]
+]
+dynamic = [
+    "version",
+]
+dependencies = [
+    "pydantic-settings",
+    "typer[all]",
+]
+urls.documentation = "https://{{ page_url() }}"
 [% if repo_platform == 'github' -%]
-issue = "https://{{ repo_url() }}/issues"
+urls.issue = "https://{{ repo_url() }}/issues"
 [%- elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' -%]
-issue = "https://{{ repo_url() }}/-/issues"
+urls.issue = "https://{{ repo_url() }}/-/issues"
 [%- endif %]
-repository = "https://{{ repo_url() }}"
-
-[tool.coverage.report]
-fail_under = {{ coverage_threshold }}
-
-[tool.coverage.run]
-source = [
-  "{{ module_name }}",
-]
-
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_unimported = true
-disallow_untyped_defs = true
-enable_error_code = [
-  "ignore-without-code",
-]
-exclude = [
-  "build",
-[%- if project_name == "Serious Scaffold Python" %]
-  "template",
-[%- endif %]
-]
-no_implicit_optional = true
-show_error_codes = true
-warn_return_any = true
-warn_unused_ignores = true
+urls.repository = "https://{{ repo_url() }}"
+scripts.{{ package_name }}-cli = "{{ module_name }}.cli:app"
 
 [tool.pdm]
 distribution = true
 
 [tool.pdm.dev-dependencies]
 doc = [
-  "Sphinx",
-  "autodoc-pydantic",
-  "coverage",
-  "furo",
-  "mypy[reports]",
-  "myst-parser",
-  "pytest",
-  "sphinx-autobuild",
-  "sphinx-click",
-  "sphinx-design",
+    "Sphinx",
+    "autodoc-pydantic",
+    "coverage",
+    "furo",
+    "mypy[reports]",
+    "myst-parser",
+    "pytest",
+    "sphinx-autobuild",
+    "sphinx-click",
+    "sphinx-design",
 ]
 lint = [
-  "mypy",
-  "toml-sort",
+    "mypy",
 ]
 test = [
-  "coverage",
-  "pytest",
+    "coverage",
+    "pytest",
 ]
+
+[tool.setuptools_scm]
+fallback_version = "0.0.0"
+
+[tool.ruff]
+src = [
+    "src",
+]
+[% if project_name == "Serious Scaffold Python" -%]
+extend-exclude = [
+    "template",
+]
+[%- endif %]
+fix = true
+lint.select = [
+    "B",      # flake8-bugbear
+    "D",      # pydocstyle
+    "E",      # pycodestyle error
+    "F",      # Pyflakes
+    "I",      # isort
+    "RUF100", # Unused noqa directive
+    "S",      # flake8-bandit
+    "SIM",    # flake8-simplify
+    "UP",     # pyupgrade
+    "W",      # pycodestyle warning
+]
+lint.per-file-ignores."tests/*" = [
+    "S101",
+]
+lint.pydocstyle.convention = "google"
+
+[tool.pyproject-fmt]
+indent = 4
+keep_full_version = true
+max_supported_python = "{{ max_py }}"
 
 [tool.pytest.ini_options]
 addopts = "-l -s --durations=0"
@@ -144,39 +149,28 @@ log_date_format = "%Y-%m-%d %H:%M:%S"
 log_format = "%(asctime)s %(levelname)s %(message)s"
 minversion = "6.0"
 
-[tool.ruff]
+[tool.coverage.report]
+fail_under = {{ coverage_threshold }}
+
+[tool.coverage.run]
+source = [
+    "{{ module_name }}",
+]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_unimported = true
+disallow_untyped_defs = true
+enable_error_code = [
+    "ignore-without-code",
+]
+exclude = [
+    "build",
 [%- if project_name == "Serious Scaffold Python" %]
-extend-exclude = [
-  "template",
-]
+    "template",
 [%- endif %]
-fix = true
-src = ["src"]
-
-[tool.ruff.lint]
-select = [
-  "B", # flake8-bugbear
-  "D", # pydocstyle
-  "E", # pycodestyle error
-  "F", # Pyflakes
-  "I", # isort
-  "RUF100", # Unused noqa directive
-  "S", # flake8-bandit
-  "SIM", # flake8-simplify
-  "UP", # pyupgrade
-  "W", # pycodestyle warning
 ]
-
-[tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S101"]
-
-[tool.ruff.lint.pydocstyle]
-convention = "google"
-
-[tool.setuptools_scm]
-fallback_version = "0.0.0"
-
-[tool.tomlsort]
-all = true
-in_place = true
-trailing_comma_inline_array = true
+no_implicit_optional = true
+show_error_codes = true
+warn_return_any = true
+warn_unused_ignores = true

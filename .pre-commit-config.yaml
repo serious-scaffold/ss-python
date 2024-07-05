@@ -73,10 +73,11 @@ repos:
           - python
           - pyi
         require_serial: true
-      - id: toml-sort
-        name: toml-sort
-        entry: pdm run toml-sort
-        language: system
+      - id: pyproject-fmt
+        name: pyproject-fmt
+        entry: pyproject-fmt
+        language: python
+        files: '(^|/)pyproject\.toml$'
         types:
           - toml
       - id: forbidden-files

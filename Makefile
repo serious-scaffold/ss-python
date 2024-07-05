@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format toml-sort lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
 
 ########################################################################################
 # Variables
@@ -53,6 +53,7 @@ dev:
 
 # Install standalone tools
 prerequisites:
+	pipx install --force pyproject-fmt==2.1.4
 	pipx install --force ruff==0.5.0
 
 ########################################################################################
@@ -71,12 +72,12 @@ ruff:
 ruff-format:
 	ruff format --check .
 
-# Check lint with toml-sort.
-toml-sort:
-	pdm run toml-sort --check pyproject.toml
+# Check lint with pyproject-fmt.
+pyproject-fmt:
+	pyproject-fmt pyproject.toml
 
 # Check lint with all linters.
-lint: mypy ruff ruff-format toml-sort
+lint: mypy ruff ruff-format pyproject-fmt
 
 # Run pre-commit with autofix against all files.
 pre-commit:
