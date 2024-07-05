@@ -17,6 +17,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONHASHSEED=0
 ENV PYTHONUNBUFFERED=1
 
+# Config pipx
+ENV PIPX_HOME=/usr/local/pipx
+ENV PIPX_BIN_DIR=/usr/local/bin
+ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
+
 # renovate: depName=debian_12/bash-completion
 ARG BASH_COMPLETION_VERSION="1:2.11-6"
 # renovate: depName=debian_12/pipx
@@ -26,17 +31,17 @@ ARG SUDO_VERSION="1.9.13p3-1+deb12u1"
 # renovate: depName=debian_12/vim
 ARG VIM_VERSION="2:9.0.1378-2"
 
+# Install system dependencies and override pipx with a newer version
 RUN apt-get update && apt-get install -y --no-install-recommends \
     bash-completion="${BASH_COMPLETION_VERSION}" \
     pipx="${PIPX_VERSION}" \
     sudo="${SUDO_VERSION}" \
     vim="${VIM_VERSION}" \
-    && apt-get clean -y && rm -rf /var/lib/apt/lists/*
-
-# Config pipx
-ENV PIPX_HOME=/usr/local/pipx
-ENV PIPX_BIN_DIR=/usr/local/bin
-ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
+    && pipx install pipx==1.6.0 \
+    && apt-get purge -y --autoremove pipx \
+    && apt-get clean -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && hash -r
 
 # Install prerequisites
 RUN --mount=source=Makefile,target=Makefile \
