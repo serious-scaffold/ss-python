@@ -2,6 +2,7 @@
 default_install_hook_types:
   - post-checkout
   - post-merge
+  - post-rewrite
   - pre-push
 default_stages:
   - manual
@@ -41,6 +42,7 @@ repos:
         stages:
           - post-checkout
           - post-merge
+          - post-rewrite
         always_run: true
         pass_filenames: false
       - id: pdm-lock-check
