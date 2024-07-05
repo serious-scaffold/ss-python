@@ -33,15 +33,12 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 
 ## 🔧 Prerequisites
 
-Certain system-level Python applications are needed and it is recommended to use [pipx](https://pypa.github.io/pipx/) to install and run them in isolated environments. Refer to pipx's installation instructions [here](https://pypa.github.io/pipx/installation/). Once `pipx` is set up, install the necessary tools using the following commands.
+[pipx](https://pipx.pypa.io/) is required to manage the standalone tools used across the development lifecycle.
+Please refer to pipx's installation instructions [here](https://pipx.pypa.io/stable/installation/).
+Once pipx is set up, install the copier for project generation using the following command:
 
 ```bash
-# Copier: Template rendering for projects.
 pipx install copier==9.2.0
-# PDM: A modern Python package and dependency manager supporting the latest PEP standards.
-pipx install pdm==2.16.1
-# Pre-commit: Automates Git hooks for code quality checks.
-pipx install pre-commit==3.7.1
 ```
 
 ## 🚀 Quickstart
@@ -52,26 +49,32 @@ pipx install pre-commit==3.7.1
    copier copy gh:serious-scaffold/ss-python /path/to/project
    ```
 
-2. Navigate to the project directory and initialize a git repository.
+1. Navigate to the project directory and initialize a git repository.
 
    ```bash
    cd /path/to/project
    git init
    ```
 
-3. Set up the development environment.
+1. Install standalone tools.
+
+   ```bash
+   make prerequisites
+   ```
+
+1. Set up the development environment.
 
    ```bash
    make dev
    ```
 
-4. Commit the initialized project.
+1. Commit the initialized project.
 
    ```bash
    git add .
    git commit -m "Initialize from serious-scaffold."
    ```
 
-5. That's it! Feel free to focus on the coding within `src` folder.
+1. That's it! Feel free to focus on the coding within `src` folder.
 
 [%- endmacro %]

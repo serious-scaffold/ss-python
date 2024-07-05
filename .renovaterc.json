@@ -29,7 +29,7 @@
             ],
             "matchStrings": [
                 "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]",
-                "pipx install (?<depName>.*?)==(?<currentValue>.*?)[;\n]"
+                "pipx install( --force)? (?<depName>.*?)==(?<currentValue>.*?)\n"
             ]
         },
         {

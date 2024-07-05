@@ -4,17 +4,12 @@ This page shows the approach to set up development environment. To simplify the 
 
 ## Prerequisites
 
-Several necessary tools need to be installed with the following commands:
-
-```{note}
-Using `pipx` for management is recommended and you can find pipx's installation instructions [here](https://pypa.github.io/pipx/installation/).
-```
+[pipx](https://pipx.pypa.io/) is required to manage the standalone tools used across the development lifecycle.
+Please refer to pipx's installation instructions [here](https://pipx.pypa.io/stable/installation/).
+Once pipx is set up, install the needed standalone tools with the following command:
 
 ```bash
-# PDM: A modern Python package and dependency manager supporting the latest PEP standards.
-pipx install pdm==2.16.1
-# Pre-commit: Automates Git hooks for code quality checks.
-pipx install pre-commit==3.7.1
+make prerequisites
 ```
 
 ## Setup

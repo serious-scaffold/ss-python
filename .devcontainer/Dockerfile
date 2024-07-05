@@ -38,16 +38,6 @@ ENV PIPX_HOME=/usr/local/pipx
 ENV PIPX_BIN_DIR=/usr/local/bin
 ENV PIPX_DEFAULT_PYTHON=/usr/local/bin/python
 
-# Install pdm
-RUN pipx install pdm==2.16.1
-
-# Install pre-commit
-RUN if [ "${PYTHON_VERSION}" = "3.8" ]; then \
-        pipx install pre-commit==3.5.0; \
-    else \
-        pipx install pre-commit==3.7.1; \
-    fi
-
 # Install prerequisites
 RUN --mount=source=Makefile,target=Makefile \
     make prerequisites

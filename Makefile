@@ -7,6 +7,9 @@
 # Documentation target directory, will be adapted to specific folder for readthedocs.
 PUBLIC_DIR := $(shell [ "$$READTHEDOCS" = "True" ] && echo "$${READTHEDOCS_OUTPUT}html" || echo "public")
 
+# Determine the Python version used by pipx.
+PIPX_PYTHON_VERSION := $(shell `pipx environment --value PIPX_DEFAULT_PYTHON` -c "from sys import version_info; print(f'{version_info.major}.{version_info.minor}')")
+
 ########################################################################################
 # Development Environment Management
 ########################################################################################
@@ -53,6 +56,12 @@ dev:
 
 # Install standalone tools
 prerequisites:
+	pipx install --force pdm==2.16.1
+ifeq ($(PIPX_PYTHON_VERSION), 3.8)
+	pipx install --force pre-commit==3.5.0
+else
+	pipx install --force pre-commit==3.7.1
+endif
 	pipx install --force pyproject-fmt==2.1.4
 	pipx install --force ruff==0.5.0
 
