@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc consistency
 
 ########################################################################################
 # Variables
@@ -86,8 +86,12 @@ ruff-format:
 pyproject-fmt:
 	pyproject-fmt pyproject.toml
 
+# Check lint with codespell.
+codespell:
+	codespell
+
 # Check lint with all linters.
-lint: mypy ruff ruff-format pyproject-fmt
+lint: mypy ruff ruff-format pyproject-fmt codespell
 
 # Run pre-commit with autofix against all files.
 pre-commit:
