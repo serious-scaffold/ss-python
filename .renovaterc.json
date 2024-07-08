@@ -198,7 +198,7 @@
             "postUpgradeTasks": {
                 "commands": [
                     "git stash",
-                    "pip install copier==9.2.0",
+                    "pip install copier==9.3.1",
                     "copier update --defaults --vcs-ref {{{newVersion}}}"
                 ]
             },
