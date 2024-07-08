@@ -27,4 +27,4 @@ This command will accomplish the following tasks:
 - Install the project in editable mode.
 - Install git hook scripts for `pre-commit`.
 
-To speed up the setup process in certain scenarios, you may find <project:../advanced/partial-dev-env.md> helpful.
+To speed up the setup process in certain scenarios, you may find <project:/advanced/partial-dev-env.md> helpful.
