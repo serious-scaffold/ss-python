@@ -17,6 +17,7 @@
     "autofix",
     "automodule",
     "cobertura",
+    "codespell",
     "commitlint",
     "conventionalcommits",
     "datasource",

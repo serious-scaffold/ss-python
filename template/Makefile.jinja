@@ -1,5 +1,5 @@
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-autobuild doc-gen doc-mypy doc-coverage doc
 [%- if project_name == "Serious Scaffold Python" %] consistency[% endif %]
 
 ########################################################################################
@@ -51,13 +51,14 @@ dev-%:
 	pdm install --dev --group $*
 
 # Prepare the development environment.
-# Install the pacakge in editable mode with all optional dependencies and pre-commit hoook.
+# Install the package in editable mode with all optional dependencies and pre-commit hook.
 dev:
 	pdm install
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 # Install standalone tools
 prerequisites:
+	pipx install --force codespell[toml]==2.3.0
 	pipx install --force pdm==2.16.1
 ifeq ($(PIPX_PYTHON_VERSION), 3.8)
 	pipx install --force pre-commit==3.5.0
@@ -87,8 +88,12 @@ ruff-format:
 pyproject-fmt:
 	pyproject-fmt pyproject.toml
 
+# Check lint with codespell.
+codespell:
+	codespell
+
 # Check lint with all linters.
-lint: mypy ruff ruff-format pyproject-fmt
+lint: mypy ruff ruff-format pyproject-fmt codespell
 
 # Run pre-commit with autofix against all files.
 pre-commit:
