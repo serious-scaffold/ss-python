@@ -1,4 +1,4 @@
-.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-autobuild doc-build doc-coverage doc consistency
+.PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-watch doc-build doc-coverage doc template-watch template-build
 
 ########################################################################################
 # Variables
@@ -65,6 +65,7 @@ else
 endif
 	pipx install --force pyproject-fmt==2.1.4
 	pipx install --force ruff==0.5.1
+	pipx install --force watchfiles==0.22.0
 
 ########################################################################################
 # Lint and pre-commit
@@ -128,15 +129,13 @@ publish:
 ########################################################################################
 
 # Generate documentation with auto build when changes happen.
-doc-autobuild:
-	pdm run python -m sphinx_autobuild docs $(PUBLIC_DIR) \
-		--watch README.md \
-		--watch src \
-		-a
+doc-watch:
+	pdm run python -m http.server --directory public &
+	watchfiles "make doc-build" docs src README.md
 
 # Build documentation only from src.
 doc-build:
-	pdm run python -m sphinx.cmd.build docs $(PUBLIC_DIR)
+	pdm run sphinx-build -a docs $(PUBLIC_DIR)
 
 # Generate html coverage reports with badge.
 doc-coverage: test-run
@@ -150,7 +149,10 @@ doc: doc-build mypy doc-coverage
 # Template
 ########################################################################################
 
-consistency:
+template-watch:
+	watchfiles "make template-build" template includes copier.yaml
+
+template-build:
 	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_platform=gitlab -f . .
 	rm -rf .copier-answers.yml

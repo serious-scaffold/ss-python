@@ -39,7 +39,7 @@ consistency:
     - git config --global user.name gitlab-ci
     - git config --global user.email gitlab-ci@gitlab.com
     - pipx install copier==9.3.1
-    - make consistency
+    - make template-build
     - git diff
     - git status --porcelain
     - test -z "$(git status --porcelain)"
