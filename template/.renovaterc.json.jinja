@@ -31,8 +31,8 @@
 [%- endif %]
             ],
             "matchStrings": [
-                "pip install.* (?<depName>.*?)==(?<currentValue>.*?)[\"\n]",
-                "pipx install( --force)? (?<depName>.*?)==(?<currentValue>.*?)\n"
+                "pip install.* (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)[\"\n]",
+                "pipx install( --force)? (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)\\s"
             ]
         },
         {
