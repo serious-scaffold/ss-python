@@ -55,7 +55,6 @@ doc = [
     "mypy[reports]",
     "myst-parser",
     "pytest",
-    "sphinx-autobuild",
     "sphinx-click",
     "sphinx-design",
 ]
