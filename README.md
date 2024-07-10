@@ -7,6 +7,7 @@ An evolving Python project template that covers the full development lifecycle.
 [![DevContainer](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/devcontainer.yml)
 [![Release](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/release.yml)
 [![Renovate](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/renovate.yml)
+[![Semantic Release](https://github.com/serious-scaffold/ss-python/actions/workflows/semantic-release.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/semantic-release.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://serious-scaffold.github.io/ss-python/_static/badges/coverage.json)](https://serious-scaffold.github.io/ss-python/reports/coverage)
 [![Release](https://img.shields.io/github/v/release/serious-scaffold/ss-python)](https://github.com/serious-scaffold/ss-python/releases)
 [![PyPI](https://img.shields.io/pypi/v/ss-python)](https://pypi.org/project/ss-python/)
