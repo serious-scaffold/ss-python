@@ -64,7 +64,7 @@ else
 	pipx install --force pre-commit==3.7.1
 endif
 	pipx install --force pyproject-fmt==2.1.4
-	pipx install --force ruff==0.5.2
+	pipx install --force ruff==0.5.4
 	pipx install --force watchfiles==0.22.0
 
 ########################################################################################
