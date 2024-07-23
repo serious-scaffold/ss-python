@@ -23,7 +23,7 @@ jobs:
         with:
           cache: true
           python-version: '{{ default_py }}'
-          version: 2.16.1
+          version: 2.17.1
       - run: env | sort
       - run: make dev-doc
       - run: make doc
@@ -134,7 +134,7 @@ jobs:
         with:
           cache: true
           python-version: '{{ default_py }}'
-          version: 2.16.1
+          version: 2.17.1
       - run: env | sort
       - env:
           PDM_PUBLISH_PASSWORD: {{ '${{ secrets.PDM_PUBLISH_PASSWORD }}' }}
