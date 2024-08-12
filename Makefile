@@ -65,7 +65,7 @@ else
 endif
 	pipx install --force pyproject-fmt==2.2.1
 	pipx install --force ruff==0.5.7
-	pipx install --force watchfiles==0.22.0
+	pipx install --force watchfiles==0.23.0
 
 ########################################################################################
 # Lint and pre-commit
