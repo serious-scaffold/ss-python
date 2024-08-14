@@ -66,6 +66,11 @@ Once pipx is set up, install the copier for project generation using the followi
 pipx install copier==9.3.1
 ```
 
+[pdm](https://pdm-project.org/) is required to manage dependencies and virtual environments.
+```bash
+curl -sSL https://pdm-project.org/install-pdm.py | python3 -
+```
+
 ## 🚀 Quickstart
 
 1. Generate the project.
