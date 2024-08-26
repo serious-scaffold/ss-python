@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pipx="${PIPX_VERSION}" \
     sudo="${SUDO_VERSION}" \
     vim="${VIM_VERSION}" \
-    && pipx install pipx==1.6.0 \
+    && pipx install pipx==1.7.1 \
     && apt-get purge -y --autoremove pipx \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* \
