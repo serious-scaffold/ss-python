@@ -63,7 +63,7 @@ ifeq ($(PIPX_PYTHON_VERSION), 3.8)
 else
 	pipx install --force pre-commit==3.8.0
 endif
-	pipx install --force pyproject-fmt==2.2.1
+	pipx install --force pyproject-fmt==2.2.3
 	pipx install --force ruff==0.6.4
 	pipx install --force watchfiles==0.24.0
 
