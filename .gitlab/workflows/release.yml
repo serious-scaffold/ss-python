@@ -30,7 +30,7 @@ pages:
   variables:
     GIT_STRATEGY: none
 container-publish:
-  image: docker:27.2.1@sha256:eb6308292ccf83461f26dd755a53802d9952eece22111602662cd86d3fa4590d
+  image: docker:27.3.1@sha256:8d5039800a368057d99fc0a75167d80f345ac8650850509adc7fe25c64cba9dd
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -90,7 +90,7 @@ container-publish:
         --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}-${CI_COMMIT_TAG} \
         --target prod
   services:
-    - docker:27.2.1@sha256:eb6308292ccf83461f26dd755a53802d9952eece22111602662cd86d3fa4590d
+    - docker:27.3.1@sha256:8d5039800a368057d99fc0a75167d80f345ac8650850509adc7fe25c64cba9dd
   stage: release
   variables:
     DOCKER_TLS_CERTDIR: /certs
