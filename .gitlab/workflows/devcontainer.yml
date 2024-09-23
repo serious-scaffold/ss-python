@@ -1,5 +1,5 @@
 dev-container-publish:
-  image: docker:27.2.1@sha256:eb6308292ccf83461f26dd755a53802d9952eece22111602662cd86d3fa4590d
+  image: docker:27.2.1@sha256:db7c4d6d0321c8f674c78a8d1186c8bdfc2f42909d28542a54358a426d34b25c
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -48,7 +48,7 @@ dev-container-publish:
         --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
         --target dev
   services:
-    - docker:27.2.1@sha256:eb6308292ccf83461f26dd755a53802d9952eece22111602662cd86d3fa4590d
+    - docker:27.2.1@sha256:db7c4d6d0321c8f674c78a8d1186c8bdfc2f42909d28542a54358a426d34b25c
   stage: build
   variables:
     DOCKER_TLS_CERTDIR: /certs
