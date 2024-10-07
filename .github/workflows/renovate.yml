@@ -14,7 +14,7 @@ jobs:
         RENOVATE_REPOSITORY_CACHE: enabled
       image: ghcr.io/renovatebot/renovate:38.101.1@sha256:6e7d10dfbd4bf0ea5dbc4b5da10f7cd3fe226c3232152578a2860e4bc50f5d44
       options: '--user root'
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - run: env | sort
       - id: generate-token

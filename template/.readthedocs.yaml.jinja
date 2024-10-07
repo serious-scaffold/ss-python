@@ -27,7 +27,7 @@ build:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make dev-doc
     post_build:
       - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH make mypy doc-coverage
-  os: ubuntu-22.04
+  os: ubuntu-24.04
   tools:
     python: '{{ default_py }}'
 sphinx:
