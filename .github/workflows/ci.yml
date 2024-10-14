@@ -39,24 +39,11 @@ jobs:
           # renovate: github-runner
           - windows-2022
         python-version:
-          - '3.8'
           - '3.9'
           - '3.10'
           - '3.11'
           - '3.12'
-        # Python 3.8 and 3.9 do not run on macos-14 which is using arm64 hardware.
-        exclude:
-          # renovate: github-runner
-          - os: macos-14
-            python-version: '3.8'
-          # renovate: github-runner
-          - os: macos-14
-            python-version: '3.9'
-        include:
-          - os: macos-13
-            python-version: '3.8'
-          - os: macos-13
-            python-version: '3.9'
+          - '3.13'
   consistency:
     if: ${{ !cancelled() && ! failure() }}
     runs-on: ubuntu-22.04

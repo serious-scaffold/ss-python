@@ -50,6 +50,9 @@ container-publish:
 [%- if version_between("3.12", min_py, max_py) %]
           - '3.12'
 [%- endif %]
+[%- if version_between("3.13", min_py, max_py) %]
+          - '3.13'
+[%- endif %]
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:
