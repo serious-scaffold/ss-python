@@ -136,21 +136,18 @@ platforms:
   multiselect: true
   type: str
 min_py:
-  default: '3.8'
+  default: '3.12'
   choices:
-    - '3.8'
     - '3.9'
     - '3.10'
     - '3.11'
     - '3.12'
+    - '3.13'
   help: 'Choose the minimal Python version the project should support:'
   type: str
 max_py:
   default: '3.12'
   choices:
-    '3.8':
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.8", min_py) }}'
-      value: '3.8'
     '3.9':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.9", min_py) }}'
       value: '3.9'
@@ -161,15 +158,15 @@ max_py:
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.11", min_py) }}'
       value: '3.11'
     '3.12':
+      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.12", min_py) }}'
       value: '3.12'
+    '3.13':
+      value: '3.13'
   help: 'Choose the maximal Python version the project should support:'
   type: str
 default_py:
   default: '{{ max_py }}'
   choices:
-    '3.8':
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.8", min_py, max_py) }}'
-      value: '3.8'
     '3.9':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.9", min_py, max_py) }}'
       value: '3.9'
@@ -182,6 +179,9 @@ default_py:
     '3.12':
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.12", min_py, max_py) }}'
       value: '3.12'
+    '3.13':
+      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.13", min_py, max_py) }}'
+      value: '3.13'
   help: 'Choose the default Python version for development, documentation generation, and package build:'
   type: str
 readme_content:
