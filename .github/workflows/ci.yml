@@ -35,7 +35,7 @@ jobs:
           # renovate: github-runner
           - macos-14
           # renovate: github-runner
-          - ubuntu-22.04
+          - ubuntu-24.04
           # renovate: github-runner
           - windows-2022
         python-version:
@@ -46,7 +46,7 @@ jobs:
           - '3.13'
   consistency:
     if: ${{ !cancelled() && ! failure() }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - run: env | sort
       - name: Checkout repository
