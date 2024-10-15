@@ -147,7 +147,7 @@
             ],
             "postUpgradeTasks": {
                 "commands": [
-                    "find template -type f -exec sed -i 's|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g' {} +"
+                    "find template -type f -regex 'template/.*\.github.*/workflows/.*' -exec sed -i 's|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g' {} +"
                 ]
             }
         },
