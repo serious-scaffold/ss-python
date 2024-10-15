@@ -39,7 +39,7 @@ jobs:
 [%- endif %]
 [%- if "ubuntu" in platforms %]
           # renovate: github-runner
-          - ubuntu-22.04
+          - ubuntu-24.04
 [%- endif %]
 [%- if "windows" in platforms %]
           # renovate: github-runner
@@ -64,7 +64,7 @@ jobs:
 [%- if project_name == "Serious Scaffold Python" %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - run: env | sort
       - name: Checkout repository
