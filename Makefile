@@ -59,7 +59,7 @@ prerequisites:
 	pipx install --force codespell[toml]==2.3.0
 	pipx install --force pdm==2.19.3
 	pipx install --force pre-commit==4.0.1
-	pipx install --force pyproject-fmt==2.4.3
+	pipx install --force pyproject-fmt==2.5.0
 	pipx install --force ruff==0.7.2
 	pipx install --force watchfiles==0.24.0
 
