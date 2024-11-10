@@ -15,6 +15,7 @@ build:
           Makefile \
           README.md \
           docs/ \
+          pdm.dev.lock \
           pdm.lock;
         then
           exit 183;

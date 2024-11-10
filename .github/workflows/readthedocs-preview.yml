@@ -20,6 +20,7 @@ on:
       - Makefile
       - README.md
       - docs/**
+      - pdm.dev.lock
       - pdm.lock
 permissions:
   pull-requests: write
