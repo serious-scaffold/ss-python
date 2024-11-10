@@ -36,7 +36,17 @@ repos:
     hooks:
       - id: pdm-sync
         name: pdm-sync
-        entry: make dev
+        entry: pdm sync
+        language: python
+        stages:
+          - post-checkout
+          - post-merge
+          - post-rewrite
+        always_run: true
+        pass_filenames: false
+      - id: pdm-dev-sync
+        name: pdm-dev-sync
+        entry: pdm sync --lockfile pdm.dev.lock
         language: python
         stages:
           - post-checkout
