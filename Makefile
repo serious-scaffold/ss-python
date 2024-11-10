@@ -45,7 +45,7 @@ install:
 	pdm sync
 
 # Install the package in editable mode with specific optional dependencies.
-dev-%:
+dev-%: install
 	pdm sync --lockfile pdm.dev.lock --no-default --dev --group $*
 
 # Prepare the development environment.
