@@ -37,7 +37,7 @@ repos:
     hooks:
       - id: pdm-sync
         name: pdm-sync
-        entry: pdm sync --clean
+        entry: make dev
         language: python
         stages:
           - post-checkout
@@ -48,6 +48,12 @@ repos:
       - id: pdm-lock-check
         name: pdm-lock-check
         entry: pdm lock --check
+        language: python
+        files: ^pyproject.toml$
+        pass_filenames: false
+      - id: pdm-dev-lock-check
+        name: pdm-lock-check
+        entry: pdm lock --check --lockfile pdm.dev.lock
         language: python
         files: ^pyproject.toml$
         pass_filenames: false
