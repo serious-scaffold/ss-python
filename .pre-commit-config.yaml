@@ -88,6 +88,18 @@ repos:
         language: python
         types:
           - text
+      - id: check-jsonschema
+        name: check-jsonschema
+        entry: make check-jsonschema
+        language: python
+        files: (?x)^(
+          \.github/workflows/[^/]+|
+          \.gitlab-ci\.yml|
+          \.gitlab/workflows/[^/]+|
+          \.readthedocs\.yaml|
+          \.renovaterc\.json
+          )$
+        pass_filenames: false
       - id: forbidden-files
         name: forbidden files
         entry: found Copier update rejection files; review them and remove them

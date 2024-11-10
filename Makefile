@@ -91,7 +91,7 @@ codespell:
 # Check jsonschema with check-jsonschema.
 check-jsonschema:
 	check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
-	check-jsonschema --builtin-schema vendor.gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
+	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
 	check-jsonschema --builtin-schema vendor.readthedocs .readthedocs.yaml
 	check-jsonschema --builtin-schema vendor.renovate .renovaterc.json
 

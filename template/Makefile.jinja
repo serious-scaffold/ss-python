@@ -96,7 +96,7 @@ check-jsonschema:
 	check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
 [%- endif %]
 [%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == "Serious Scaffold Python" %]
-	check-jsonschema --builtin-schema vendor.gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
+	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
 [%- endif %]
 	check-jsonschema --builtin-schema vendor.readthedocs .readthedocs.yaml
 	check-jsonschema --builtin-schema vendor.renovate .renovaterc.json
