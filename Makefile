@@ -42,7 +42,7 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	pdm sync
+	pdm sync --prod
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%: install
