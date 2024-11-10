@@ -1,6 +1,6 @@
 # Serious Scaffold Python
 
-An evolving Python project template that covers the full development lifecycle.
+A Python Project Template for Long-Term Maintainability.
 
 [![CI](https://github.com/serious-scaffold/ss-python/actions/workflows/ci.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/ci.yml)
 [![CommitLint](https://github.com/serious-scaffold/ss-python/actions/workflows/commitlint.yml/badge.svg)](https://github.com/serious-scaffold/ss-python/actions/workflows/commitlint.yml)
