@@ -31,7 +31,7 @@ A Python Project Template for Long-Term Maintainability.
 
 [![Serious Scaffold Python](https://serious-scaffold.github.io/ss-python/_static/images/logo.svg)](https://github.com/serious-scaffold/ss-python)
 
-Setting up a project often involves more than just establishing a basic project structure. It involves tasks like integrating GitHub Actions or GitLab CI/CD, configuring lint, test and documentation, as well as implementing settings, logging and other frequently used modules. [Serious Scaffold Python](https://github.com/serious-scaffold/ss-python) streamlines this process. Powered by [copier](https://copier.readthedocs.io/), bootstrapping a new Python project can be done with a single command. By answering a few questions, the project will be fully configured and ready for development. Furthermore, the project can be updated alongside the advancement of the template.
+Serious Scaffold Python is crafted for long-term, maintainable Python projects. It includes GitHub Actions and GitLab CI/CD, automated dependency updates via Renovate, and comprehensive linting, testing, and documentation. Key integrations like pdm for environment and dependency management, typer for CLI development, and pydantic for configuration enhance project robustness. With copier’s easy project setup and continuous updating, your project stays aligned with best practices for sustainable development. Pre-configured dev containers and cross-platform CI support ensure maintainability from the start.
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
