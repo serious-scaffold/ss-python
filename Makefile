@@ -60,7 +60,7 @@ prerequisites:
 	pipx install --force pdm==2.20.1
 	pipx install --force pre-commit==4.0.1
 	pipx install --force pyproject-fmt==2.5.0
-	pipx install --force ruff==0.7.2
+	pipx install --force ruff==0.7.3
 	pipx install --force watchfiles==0.24.0
 
 ########################################################################################
