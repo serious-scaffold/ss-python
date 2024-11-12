@@ -16,8 +16,7 @@ platforms:
     - ubuntu
     - windows
 project_description:
-    An evolving Python project template that covers the full development
-    lifecycle.
+    A Python Project Template for Long-Term Maintainability.
 project_name: Serious Scaffold Python
 repo_name: ss-python
 repo_namespace: serious-scaffold
