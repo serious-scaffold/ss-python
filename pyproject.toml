@@ -7,7 +7,7 @@ requires = [
 
 [project]
 name = "ss-python"
-description = "An evolving Python project template that covers the full development lifecycle."
+description = "A Python Project Template for Long-Term Maintainability."
 readme = "README.md"
 keywords = [
     "copier-template",

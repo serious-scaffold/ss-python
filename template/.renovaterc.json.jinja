@@ -2,7 +2,7 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "constraints": {
-        "pdm": "2.19.3",
+        "pdm": "2.20.1",
         "python": "=={{ default_py }}"
     },
     "customManagers": [
@@ -161,7 +161,7 @@
             ],
             "postUpgradeTasks": {
                 "commands": [
-                    "find template -type f -regex 'template/.*\.github.*/workflows/.*' -exec sed -i {{ '\'s|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g\' {} +' }}"
+                    "find template -type f -regex 'template/.*\\.github.*/workflows/.*' -exec sed -i {{ '\'s|{{{depName}}}-{{{currentValue}}}|{{{depName}}}-{{{newValue}}}|g\' {} +' }}"
                 ]
             }
         },

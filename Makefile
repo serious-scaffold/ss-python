@@ -56,11 +56,12 @@ dev: install
 
 # Install standalone tools
 prerequisites:
+	pipx install --force check-jsonschema==0.29.4
 	pipx install --force codespell[toml]==2.3.0
-	pipx install --force pdm==2.19.3
+	pipx install --force pdm==2.20.1
 	pipx install --force pre-commit==4.0.1
 	pipx install --force pyproject-fmt==2.5.0
-	pipx install --force ruff==0.7.2
+	pipx install --force ruff==0.7.3
 	pipx install --force watchfiles==0.24.0
 
 ########################################################################################
@@ -87,8 +88,15 @@ pyproject-fmt:
 codespell:
 	codespell
 
+# Check jsonschema with check-jsonschema.
+check-jsonschema:
+	check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
+	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
+	check-jsonschema --builtin-schema vendor.readthedocs .readthedocs.yaml
+	check-jsonschema --builtin-schema vendor.renovate .renovaterc.json
+
 # Check lint with all linters.
-lint: mypy ruff ruff-format pyproject-fmt codespell
+lint: mypy ruff ruff-format pyproject-fmt codespell check-jsonschema
 
 # Run pre-commit with autofix against all files.
 pre-commit:
