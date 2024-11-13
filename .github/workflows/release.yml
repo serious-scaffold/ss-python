@@ -23,6 +23,9 @@ jobs:
           cache: true
           python-version: '3.12'
           version: 2.20.1
+          cache-dependency-path: |
+            ./pdm.dev.lock
+            ./pdm.lock
       - run: env | sort
       - run: make dev-doc
       - run: make doc
@@ -124,6 +127,9 @@ jobs:
           cache: true
           python-version: '3.12'
           version: 2.20.1
+          cache-dependency-path: |
+            ./pdm.dev.lock
+            ./pdm.lock
       - run: env | sort
       - env:
           PDM_PUBLISH_PASSWORD: ${{ secrets.PDM_PUBLISH_PASSWORD }}

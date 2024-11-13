@@ -10,6 +10,7 @@ ci:
       - .venv
     key:
       files:
+        - pdm.dev.lock
         - pdm.lock
       prefix: venv-${PYTHON_VERSION}
   coverage: /TOTAL.*? (100(?:\.0+)?\%\|[1-9]?\d(?:\.\d+)?\%)$/

@@ -47,13 +47,13 @@ install:
 	pdm sync --prod
 
 # Install the package in editable mode with specific optional dependencies.
-dev-%:
-	pdm sync --dev --group $*
+dev-%: install
+	pdm sync --lockfile pdm.dev.lock --no-default --dev --group $*
 
 # Prepare the development environment.
 # Install the package in editable mode with all optional dependencies and pre-commit hook.
-dev:
-	pdm sync
+dev: install
+	pdm sync --lockfile pdm.dev.lock
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 # Install standalone tools
@@ -164,7 +164,7 @@ template-watch:
 	watchfiles "make template-build" template includes copier.yaml
 
 template-build:
-	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock)$$' | xargs -I {} rm -r {}
+	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock|pdm\.dev\.lock)$$' | xargs -I {} rm -r {}
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_platform=gitlab -f . .
 	rm -rf .copier-answers.yml
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml -f . .
