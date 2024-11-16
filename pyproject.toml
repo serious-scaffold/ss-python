@@ -41,7 +41,7 @@ dependencies = [
 urls.documentation = "https://serious-scaffold.github.io/ss-python"
 urls.issue = "https://github.com/serious-scaffold/ss-python/issues"
 urls.repository = "https://github.com/serious-scaffold/ss-python"
-scripts.ss-python-cli = "ss_python.cli:app"
+scripts.ss-python-cli = "ss_python.cli:cli"
 
 [tool.pdm]
 distribution = true

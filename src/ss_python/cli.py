@@ -5,7 +5,7 @@ import click
 
 @click.group()
 def cli() -> None:
-    """Command Line Interface."""
+    """CLI for Serious Scaffold Python."""
 
 
 @cli.command()

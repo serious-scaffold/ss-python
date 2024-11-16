@@ -162,7 +162,7 @@ template-watch:
 	watchfiles "make template-build" template includes copier.yaml
 
 template-build:
-	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock|pdm\.dev\.lock)$$' | xargs -I {} rm -r {}
+	find . -maxdepth 1 | grep -vE '(\.|\.git|\.venv|template|includes|copier\.yaml|pdm\.lock|pdm\.dev\.lock)$$' | xargs -I {} rm -r {}
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_platform=gitlab -f . .
 	rm -rf .copier-answers.yml
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml -f . .
