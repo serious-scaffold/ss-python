@@ -56,8 +56,8 @@ dev: install
 
 # Lock both prod and dev dependencies.
 lock:
-	pdm lock --prod
-	pdm lock --lockfile pdm.dev.lock --no-default --dev
+	pdm lock --prod --update-reuse-installed
+	pdm lock --lockfile pdm.dev.lock --no-default --dev --update-reuse-installed
 
 # Install standalone tools
 prerequisites:

@@ -2,13 +2,12 @@
 
 import click
 
+
 @click.group()
-def cli():
+def cli() -> None:
     """Command Line Interface."""
+
 
 @cli.command()
 def run() -> None:
     """Run command."""
-
-if __name__ == '__main__':
-    cli()
