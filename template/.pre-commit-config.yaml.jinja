@@ -55,6 +55,12 @@ repos:
           - post-rewrite
         always_run: true
         pass_filenames: false
+      - id: pdm-lock
+        name: pdm lock
+        entry: make lock
+        language: python
+        files: ^pyproject.toml$
+        pass_filenames: false
       - id: pdm-lock-check
         name: pdm-lock-check
         entry: pdm lock --check

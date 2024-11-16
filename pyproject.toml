@@ -35,8 +35,8 @@ dynamic = [
     "version",
 ]
 dependencies = [
+    "click",
     "pydantic-settings",
-    "typer[all]",
 ]
 urls.documentation = "https://serious-scaffold.github.io/ss-python"
 urls.issue = "https://github.com/serious-scaffold/ss-python/issues"
