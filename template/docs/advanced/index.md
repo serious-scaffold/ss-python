@@ -5,4 +5,5 @@ This section provides recommended best practices for enhancing your development 
 ```{toctree}
 dev-containers
 partial-dev-env
+cicd
 ```
