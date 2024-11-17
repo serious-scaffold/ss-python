@@ -6,6 +6,7 @@ on:
       - .devcontainer/Dockerfile
       - .devcontainer/Dockerfile.dockerignore
       - .github/workflows/devcontainer.yml
+      - Makefile
   push:
     branches:
       - main
@@ -13,6 +14,7 @@ on:
       - .devcontainer/Dockerfile
       - .devcontainer/Dockerfile.dockerignore
       - .github/workflows/devcontainer.yml
+      - Makefile
   workflow_dispatch: null
 
 concurrency:
