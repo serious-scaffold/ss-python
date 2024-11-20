@@ -21,8 +21,11 @@ class Settings(BaseSettings):
     """Project specific settings."""
 
     [%- if not version_higher_than(min_py, "3.10") %]
+
     logging_level: Optional[str] = getLevelName(logging.INFO)
+
     [%- else %]
+
     logging_level: str | None = getLevelName(logging.INFO)
     [%- endif %]
     """Default logging level for the project."""
