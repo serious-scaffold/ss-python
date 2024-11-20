@@ -42,16 +42,16 @@ deepclean: clean
 
 # Install the package in editable mode.
 install:
-	pdm sync --prod
+	pdm install --prod
 
 # Install the package in editable mode with specific optional dependencies.
 dev-%: install
-	pdm sync --lockfile pdm.dev.lock --no-default --dev --group $*
+	pdm install --lockfile pdm.dev.lock --no-default --dev --group $*
 
 # Prepare the development environment.
 # Install the package in editable mode with all optional dependencies and pre-commit hook.
 dev: install
-	pdm sync --lockfile pdm.dev.lock
+	pdm install --lockfile pdm.dev.lock
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 # Install standalone tools
