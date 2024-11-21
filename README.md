@@ -31,7 +31,7 @@ A Python Project Template for Long-Term Maintainability.
 
 [![Serious Scaffold Python](https://serious-scaffold.github.io/ss-python/_static/images/logo.svg)](https://github.com/serious-scaffold/ss-python)
 
-Serious Scaffold Python is crafted for long-term, maintainable Python projects. It includes GitHub Actions and GitLab CI/CD, automated dependency updates via Renovate, and comprehensive linting, testing, and documentation. Key integrations like pdm for environment and dependency management, typer for CLI development, and pydantic for configuration enhance project robustness. With copier’s easy project setup and continuous updating, your project stays aligned with best practices for sustainable development. Pre-configured dev containers and cross-platform CI support ensure maintainability from the start.
+Serious Scaffold Python is crafted for long-term, maintainable Python projects. It includes GitHub Actions and GitLab CI/CD, automated dependency updates via Renovate, and comprehensive linting, testing, and documentation. Key integrations like pdm for environment and dependency management, click for CLI development, and pydantic for configuration enhance project robustness. With copier’s easy project setup and continuous updating, your project stays aligned with best practices for sustainable development. Pre-configured dev containers and cross-platform CI support ensure maintainability from the start.
 
 If you find this helpful, please consider [sponsorship](https://github.com/sponsors/huxuan).
 
@@ -43,7 +43,7 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - Lint with [pre-commit](https://pre-commit.com), [mypy](http://www.mypy-lang.org/), [ruff](https://github.com/charliermarsh/ruff), [pyproject-fmt](https://github.com/tox-dev/pyproject-fmt) and [commitlint](https://commitlint.js.org/).
 - Test with [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io) for threshold and reports.
 - Documentation with [sphinx](https://www.sphinx-doc.org/), the [furo](https://pradyunsg.me/furo) theme and [MyST parser](https://myst-parser.readthedocs.io/) for markdown.
-- Develop Command Line Interfaces with [typer](https://typer.tiangolo.com/).
+- Develop Command Line Interfaces with [click](https://click.palletsprojects.com/).
 - Manage configurations with [pydantic-settings](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
 - [Dev container](https://containers.dev/) for development and GitLab CI/CD.
 - Automate dependency updates with [Renovate](https://github.com/renovatebot/renovate).

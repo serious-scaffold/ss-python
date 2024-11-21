@@ -70,8 +70,8 @@ dynamic = [
     "version",
 ]
 dependencies = [
+    "click",
     "pydantic-settings",
-    "typer[all]",
 ]
 urls.documentation = "https://{{ page_url() }}"
 [% if repo_platform == 'github' -%]
@@ -80,7 +80,7 @@ urls.issue = "https://{{ repo_url() }}/issues"
 urls.issue = "https://{{ repo_url() }}/-/issues"
 [%- endif %]
 urls.repository = "https://{{ repo_url() }}"
-scripts.{{ package_name }}-cli = "{{ module_name }}.cli:app"
+scripts.{{ package_name }}-cli = "{{ module_name }}.cli:cli"
 
 [tool.pdm]
 distribution = true

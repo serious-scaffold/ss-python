@@ -53,7 +53,6 @@
     "sphinxcontrib",
     "titlesonly",
     "toctree",
-    "typer",
     "unshallow",
     "viewcode"
   ],

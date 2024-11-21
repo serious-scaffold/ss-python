@@ -35,7 +35,7 @@ clean:
 	find . -name '.DS_Store' -print0 | xargs -0 rm -f
 	find . -name '__pycache__' -print0 | xargs -0 rm -rf
 
-# Remove pre-commit hook, virtual environment alongside itermediate files.
+# Remove pre-commit hook, virtual environment alongside intermediate files.
 deepclean: clean
 	if command -v pre-commit > /dev/null 2>&1; then pre-commit uninstall; fi
 	if command -v pdm >/dev/null 2>&1 && pdm venv list | grep -q in-project ; then pdm venv remove --yes in-project >/dev/null 2>&1; fi
@@ -53,6 +53,11 @@ dev-%: install
 dev: install
 	pdm install --lockfile pdm.dev.lock
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
+
+# Lock both prod and dev dependencies.
+lock:
+	pdm lock --prod --update-reuse-installed
+	pdm lock --lockfile pdm.dev.lock --no-default --dev --update-reuse-installed
 
 # Install standalone tools
 prerequisites:
@@ -157,7 +162,7 @@ template-watch:
 	watchfiles "make template-build" template includes copier.yaml
 
 template-build:
-	find . -maxdepth 1 | grep -vE '(\.|\.git|template|includes|copier\.yaml|pdm\.lock|pdm\.dev\.lock)$$' | xargs -I {} rm -r {}
+	find . -maxdepth 1 | grep -vE '(\.|\.git|\.venv|template|includes|copier\.yaml|pdm\.lock|pdm\.dev\.lock)$$' | xargs -I {} rm -r {}
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml --data repo_platform=gitlab -f . .
 	rm -rf .copier-answers.yml
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml -f . .
