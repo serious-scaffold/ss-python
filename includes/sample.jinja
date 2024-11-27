@@ -1,6 +1,6 @@
-[% macro readme_content() -%]
-[% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
+[% macro readme_content() %]
+[% from pathjoin("includes", "variable.jinja") import page_url with context %]
+[% from pathjoin("includes", "variable.jinja") import repo_url with context %]
 [![{{ project_name }}](https://{{ page_url() }}/_static/images/logo.svg)](https://{{ repo_url() }})
 
 Serious Scaffold Python is crafted for long-term, maintainable Python projects. It includes GitHub Actions and GitLab CI/CD, automated dependency updates via Renovate, and comprehensive linting, testing, and documentation. Key integrations like pdm for environment and dependency management, click for CLI development, and pydantic for configuration enhance project robustness. With copier’s easy project setup and continuous updating, your project stays aligned with best practices for sustainable development. Pre-configured dev containers and cross-platform CI support ensure maintainability from the start.
@@ -75,5 +75,4 @@ pipx install copier==9.4.1
    ```
 
 1. That's it! Feel free to focus on the coding within `src` folder.
-
-[%- endmacro %]
+[% endmacro %]
