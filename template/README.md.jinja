@@ -1,12 +1,12 @@
-[% from pathjoin("includes", "variable.jinja") import coverage_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import license_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import license_url with context -%]
-[% from pathjoin("includes", "variable.jinja") import logo_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import logo_badge_url with context -%]
-[% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-[% from pathjoin("includes", "variable.jinja") import pipeline_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import release_badge with context -%]
-[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
+[% from pathjoin("includes", "variable.jinja") import coverage_badge with context %]
+[% from pathjoin("includes", "variable.jinja") import license_badge with context %]
+[% from pathjoin("includes", "variable.jinja") import license_url with context %]
+[% from pathjoin("includes", "variable.jinja") import logo_badge with context %]
+[% from pathjoin("includes", "variable.jinja") import logo_badge_url with context %]
+[% from pathjoin("includes", "variable.jinja") import page_url with context %]
+[% from pathjoin("includes", "variable.jinja") import pipeline_badge with context %]
+[% from pathjoin("includes", "variable.jinja") import release_badge with context %]
+[% from pathjoin("includes", "variable.jinja") import repo_url with context %]
 # {{ project_name }}
 
 {{ project_description }}
@@ -27,13 +27,13 @@
 {{ logo_badge() }}
 [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://{{ repo_url() }})
 
-[% if development_status == "Alpha" -%]
+[% if development_status == "Alpha" %]
 > [!WARNING]
-[% elif development_status == "Beta" -%]
+[% elif development_status == "Beta" %]
 > [!IMPORTANT]
-[% elif development_status == "Stable" -%]
+[% elif development_status == "Stable" %]
 > [!NOTE]
-[% endif -%]
+[% endif %]
 > _{{ project_name }}_ is in the **{{ development_status }}** phase.
 [% if development_status == "Alpha" %]
 > Frequent changes and instability should be anticipated.

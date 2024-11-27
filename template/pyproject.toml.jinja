@@ -1,6 +1,6 @@
-[% from pathjoin("includes", "variable.jinja") import page_url with context -%]
-[% from pathjoin("includes", "variable.jinja") import repo_url with context -%]
-[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+[% from pathjoin("includes", "variable.jinja") import page_url with context %]
+[% from pathjoin("includes", "variable.jinja") import repo_url with context %]
+[% from pathjoin("includes", "version_compare.jinja") import version_between %]
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
@@ -74,9 +74,9 @@ dependencies = [
     "pydantic-settings",
 ]
 urls.documentation = "https://{{ page_url() }}"
-[% if repo_platform == 'github' -%]
+[% if repo_platform == 'github' %]
 urls.issue = "https://{{ repo_url() }}/issues"
-[% elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' -%]
+[% elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' %]
 urls.issue = "https://{{ repo_url() }}/-/issues"
 [% endif %]
 urls.repository = "https://{{ repo_url() }}"
@@ -112,7 +112,7 @@ fallback_version = "0.0.0"
 src = [
     "src",
 ]
-[% if project_name == "Serious Scaffold Python" -%]
+[% if project_name == "Serious Scaffold Python" %]
 extend-exclude = [
     "template",
 ]

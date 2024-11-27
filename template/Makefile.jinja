@@ -1,4 +1,4 @@
-[% from pathjoin("includes", "variable.jinja") import page_url with context -%]
+[% from pathjoin("includes", "variable.jinja") import page_url with context %]
 .PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-watch doc-build doc-coverage doc
 [%- if project_name == "Serious Scaffold Python" %]
  template-watch template-build
@@ -162,7 +162,7 @@ doc-coverage: test-run
 # Generate all documentation with reports.
 doc: doc-build mypy doc-coverage
 
-[% if project_name == "Serious Scaffold Python" -%]
+[% if project_name == "Serious Scaffold Python" %]
 ########################################################################################
 # Template
 ########################################################################################
@@ -177,7 +177,7 @@ template-build:
 	copier copy -r HEAD --data-file includes/copier-answers-sample.yml -f . .
 	rm -rf .copier-answers.yml
 
-[% endif -%]
+[% endif %]
 ########################################################################################
 # End
 ########################################################################################
