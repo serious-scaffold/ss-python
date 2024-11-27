@@ -1,6 +1,7 @@
 _envops:
   block_end_string: '%]'
   block_start_string: '[%'
+  trim_blocks: true
 _subdirectory: template
 _message_before_copy: |
   Thanks for generating a project using our template.

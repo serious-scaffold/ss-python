@@ -71,9 +71,9 @@ repos:
         name: mypy
         entry: pdm run python -m mypy
         language: system
-[%- if project_name == 'Serious Scaffold Python' %]
+[% if project_name == 'Serious Scaffold Python' %]
         exclude: ^template/.*
-[%- endif %]
+[% endif %]
         types_or:
           - python
           - pyi

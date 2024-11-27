@@ -38,11 +38,11 @@ html_theme_options = {
     "announcement": (
         "<em>{{ project_name }}</em> "
         "is in the <strong>{{ development_status }}</strong> phase. "
-[%- if development_status == "Alpha" %]
+[% if development_status == "Alpha" %]
         "Frequent changes and instability should be anticipated. "
-[%- elif development_status == "Beta" %]
+[% elif development_status == "Beta" %]
         "Changes and potential instability should be anticipated. "
-[%- endif %]
+[% endif %]
         "Any feedback, comments, suggestions and contributions are welcome!"
     ),
 }

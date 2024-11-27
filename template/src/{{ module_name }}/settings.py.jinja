@@ -3,9 +3,9 @@
 
 import logging
 from logging import getLevelName
-[%- if not version_higher_than(min_py, "3.10") %]
+[% if not version_higher_than(min_py, "3.10") %]
 from typing import Optional
-[%- endif %]
+[% endif %]
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,14 +20,11 @@ class GlobalSettings(BaseSettings):
 class Settings(BaseSettings):
     """Project specific settings."""
 
-    [%- if not version_higher_than(min_py, "3.10") %]
-
+[% if not version_higher_than(min_py, "3.10") %]
     logging_level: Optional[str] = getLevelName(logging.INFO)
-
-    [%- else %]
-
+[% else %]
     logging_level: str | None = getLevelName(logging.INFO)
-    [%- endif %]
+[% endif %]
     """Default logging level for the project."""
 
     model_config = SettingsConfigDict(

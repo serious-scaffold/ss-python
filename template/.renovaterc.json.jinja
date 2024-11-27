@@ -28,7 +28,7 @@
                 "^template/\\.readthedocs\\.yaml\\.jinja$",
                 "^template/\\.renovaterc\\.json\\.jinja$",
                 "^template/docs/.+\\.md(\\.jinja)?$"
-[%- endif %]
+[% endif %]
             ],
             "matchStrings": [
                 "pip install.* (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)[\"\n]",
@@ -44,7 +44,7 @@
                 "^\\.devcontainer\\/Dockerfile$"
 [%- if project_name == "Serious Scaffold Python" %],
                 "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
-[%- endif %]
+[% endif %]
             ],
             "matchStrings": [
                 "# renovate: depName=(?<depName>.*?)\nARG .*?_VERSION=\"(?<currentValue>.*)\"\n"
@@ -60,7 +60,7 @@
                 "^\\.github/workflows/.+\\.yml$"
 [%- if project_name == "Serious Scaffold Python" %],
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
-[%- endif %]
+[% endif %]
             ],
             "matchStrings": [
                 "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\n"
@@ -75,7 +75,7 @@
                 "^\\.renovaterc\\.json$"
 [%- if project_name == "Serious Scaffold Python" %],
                 "^template/\\.renovaterc\\.json\\.jinja$"
-[%- endif %]
+[% endif %]
             ],
             "matchStrings": [
                 "\"pdm\": \"(?<currentValue>.*)\""
@@ -100,12 +100,11 @@
             "datasourceTemplate": "npm",
             "description": "Match npm packages used with npx",
             "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
                 "^\\.gitlab/workflows/.+\\.yml$"
-[%- if project_name == "Serious Scaffold Python" %],
+[% if project_name == "Serious Scaffold Python" %],
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
-[%- endif %]
+[% endif %]
             ],
             "matchStrings": [
                 "--package (?<depName>.+?)@(?<currentValue>.+?)\\s"
@@ -133,15 +132,15 @@
         ":maintainLockFilesWeekly",
         ":semanticCommitTypeAll(build)"
     ],
-[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
+[% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
     "gitlabci": {
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
         ]
     },
-[%- endif %]
+[% endif %]
     "packageRules": [
-[%- if project_name == "Serious Scaffold Python" %]
+[% if project_name == "Serious Scaffold Python" %]
         {
             "description": "Update GitHub Action in template",
             "matchDepTypes": [
@@ -203,7 +202,7 @@
                 ]
             }
         },
-[%- endif %]
+[% endif %]
         {
             "commitMessageTopic": "serious-scaffold-python",
             "description": "Update template with copier when a new version is released",
@@ -238,12 +237,12 @@
                 "github-tags"
             ],
             "matchDepNames": [
-[%- if repo_platform == "github" %]
+[% if repo_platform == "github" %]
                 "ghcr.io/renovatebot/renovate",
-[%- endif %]
-[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
+[% endif %]
+[% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
                 "renovate/renovate",
-[%- endif %]
+[% endif %]
                 "renovatebot/pre-commit-hooks"
             ]
         },

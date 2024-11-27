@@ -36,21 +36,21 @@ container-publish:
   parallel:
     matrix:
       - PYTHON_VERSION:
-[%- if version_between("3.9", min_py, max_py) %]
+[% if version_between("3.9", min_py, max_py) %]
           - '3.9'
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.10", min_py, max_py) %]
           - '3.10'
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.11", min_py, max_py) %]
           - '3.11'
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.12", min_py, max_py) %]
           - '3.12'
-[%- endif %]
-[%- if version_between("3.13", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.13", min_py, max_py) %]
           - '3.13'
-[%- endif %]
+[% endif %]
   rules:
     - if: $CI_COMMIT_TAG =~ /^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-?(a|b|rc)(0|[1-9][0-9]*)?)?$/
   script:

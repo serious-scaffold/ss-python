@@ -1,6 +1,8 @@
 [% from pathjoin("includes", "variable.jinja") import page_url with context -%]
 .PHONY: clean deepclean install dev prerequisites mypy ruff ruff-format pyproject-fmt codespell lint pre-commit test-run test build publish doc-watch doc-build doc-coverage doc
-[%- if project_name == "Serious Scaffold Python" %] template-watch template-build[% endif %]
+[%- if project_name == "Serious Scaffold Python" %]
+ template-watch template-build
+[% endif %]
 
 ########################################################################################
 # Variables
@@ -97,12 +99,12 @@ codespell:
 
 # Check jsonschema with check-jsonschema.
 check-jsonschema:
-[%- if repo_platform == "github" %]
+[% if repo_platform == "github" %]
 	check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
-[%- endif %]
-[%- if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == "Serious Scaffold Python" %]
+[% endif %]
+[% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == "Serious Scaffold Python" %]
 	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
-[%- endif %]
+[% endif %]
 	check-jsonschema --builtin-schema vendor.readthedocs .readthedocs.yaml
 	check-jsonschema --builtin-schema vendor.renovate .renovaterc.json
 

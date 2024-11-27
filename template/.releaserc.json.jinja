@@ -112,18 +112,18 @@
                 }
             }
         ],
-[%- if repo_platform == 'github' %]
+[% if repo_platform == 'github' %]
         "@semantic-release/github"
-[%- elif repo_platform == 'gitlab' %]
+[% elif repo_platform == 'gitlab' %]
         "@semantic-release/gitlab"
-[%- elif repo_platform == 'gitlab-self-managed' %]
+[% elif repo_platform == 'gitlab-self-managed' %]
         [
             "@semantic-release/gitlab",
             {
                 "gitlabUrl": "https://{{ repo_host }}"
             }
         ]
-[%- endif %]
+[% endif %]
     ],
     "preset": "conventionalcommits"
 }

@@ -19,21 +19,21 @@ ci:
   parallel:
     matrix:
       - PYTHON_VERSION:
-[%- if version_between("3.9", min_py, max_py) %]
+[% if version_between("3.9", min_py, max_py) %]
           - '3.9'
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.10", min_py, max_py) %]
           - '3.10'
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.11", min_py, max_py) %]
           - '3.11'
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.12", min_py, max_py) %]
           - '3.12'
-[%- endif %]
-[%- if version_between("3.13", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.13", min_py, max_py) %]
           - '3.13'
-[%- endif %]
+[% endif %]
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push"
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
@@ -42,7 +42,7 @@ ci:
     - make dev
     - make lint test doc build
   stage: ci
-[%- if project_name == 'Serious Scaffold Python' %]
+[% if project_name == 'Serious Scaffold Python' %]
 consistency:
   interruptible: true
   rules:
@@ -57,4 +57,4 @@ consistency:
     - git status --porcelain
     - test -z "$(git status --porcelain)"
   stage: ci
-[%- endif %]
+[% endif %]

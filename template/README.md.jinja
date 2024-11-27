@@ -35,11 +35,11 @@
 > [!NOTE]
 [% endif -%]
 > _{{ project_name }}_ is in the **{{ development_status }}** phase.
-[%- if development_status == "Alpha" %]
+[% if development_status == "Alpha" %]
 > Frequent changes and instability should be anticipated.
-[%- elif development_status == "Beta" %]
+[% elif development_status == "Beta" %]
 > Changes and potential instability should be anticipated.
-[%- endif %]
+[% endif %]
 > Any feedback, comments, suggestions and contributions are welcome!
 
 {{ readme_content }}
