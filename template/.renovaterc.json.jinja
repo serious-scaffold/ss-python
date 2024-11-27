@@ -101,8 +101,8 @@
             "description": "Match npm packages used with npx",
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$",
-                "^\\.gitlab/workflows/.+\\.yml$",
-[%- if project_name == "Serious Scaffold Python" %]
+                "^\\.gitlab/workflows/.+\\.yml$"
+[%- if project_name == "Serious Scaffold Python" %],
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
 [%- endif %]
