@@ -1,4 +1,4 @@
-[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+[% from pathjoin("includes", "version_compare.jinja") import version_between %]
 name: CI
 
 on:
@@ -36,35 +36,35 @@ jobs:
     strategy:
       matrix:
         os:
-[%- if "macos" in platforms %]
+[% if "macos" in platforms %]
           # renovate: github-runner
           - macos-14
-[%- endif %]
-[%- if "ubuntu" in platforms %]
+[% endif %]
+[% if "ubuntu" in platforms %]
           # renovate: github-runner
           - ubuntu-24.04
-[%- endif %]
-[%- if "windows" in platforms %]
+[% endif %]
+[% if "windows" in platforms %]
           # renovate: github-runner
           - windows-2022
-[%- endif %]
+[% endif %]
         python-version:
-[%- if version_between("3.9", min_py, max_py) %]
+[% if version_between("3.9", min_py, max_py) %]
           - '3.9'
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.10", min_py, max_py) %]
           - '3.10'
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.11", min_py, max_py) %]
           - '3.11'
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.12", min_py, max_py) %]
           - '3.12'
-[%- endif %]
-[%- if version_between("3.13", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.13", min_py, max_py) %]
           - '3.13'
-[%- endif %]
-[%- if project_name == "Serious Scaffold Python" %]
+[% endif %]
+[% if project_name == "Serious Scaffold Python" %]
   consistency:
     if: {{ '${{ !cancelled() && ! failure() }}' }}
     runs-on: ubuntu-24.04
@@ -81,4 +81,4 @@ jobs:
       - run: git diff
       - run: git status --porcelain
       - run: test -z "$(git status --porcelain)"
-[%- endif %]
+[% endif %]

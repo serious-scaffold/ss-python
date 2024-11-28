@@ -1,23 +1,23 @@
-[% macro version_higher_than(version1, version2) -%]
-  {{ "1" if version1.split(".") | map("int") | list >= version2.split(".") | map("int") | list }}
+[% macro version_higher_than(version1, version2) %]
+{{ "1" if version1.split(".") | map("int") | list >= version2.split(".") | map("int") | list }}
 [%- endmacro %]
 
-[% macro version_higher_than_validator(version1, version2) -%]
-  {{
-    "Invalid version. The version '%s' is not higher than '%s'." % (version1, version2)
-    if not version_higher_than(version1, version2)
-  }}
+[% macro version_higher_than_validator(version1, version2) %]
+{{
+  "Invalid version. The version '%s' is not higher than '%s'." % (version1, version2)
+  if not version_higher_than(version1, version2)
+}}
 [%- endmacro %]
 
-[% macro version_between(version, version_min, version_max) -%]
-  {{
-    "1" if version_min.split(".") | map("int") | list <= version.split(".") | map("int") | list <= version_max.split(".") | map("int") | list
-  }}
+[% macro version_between(version, version_min, version_max) %]
+{{
+  "1" if version_min.split(".") | map("int") | list <= version.split(".") | map("int") | list <= version_max.split(".") | map("int") | list
+}}
 [%- endmacro %]
 
-[% macro version_between_validator(version, version_min, version_max) -%]
-  {{
-    "Invalid version. The version '%s' is not between '%s' and '%s'." % (version, version_min, version_max)
-    if not version_between(version, version_min, version_max)
-  }}
+[% macro version_between_validator(version, version_min, version_max) %]
+{{
+  "Invalid version. The version '%s' is not between '%s' and '%s'." % (version, version_min, version_max)
+  if not version_between(version, version_min, version_max)
+}}
 [%- endmacro %]

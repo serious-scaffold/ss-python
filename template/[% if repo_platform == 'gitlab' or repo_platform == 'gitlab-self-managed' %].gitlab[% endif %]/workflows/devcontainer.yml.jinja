@@ -1,24 +1,24 @@
-[% from pathjoin("includes", "version_compare.jinja") import version_between -%]
+[% from pathjoin("includes", "version_compare.jinja") import version_between %]
 dev-container-publish:
   image: docker:27.3.1@sha256:bec82cb05983f12a14d8f169b00748f4ded8573f4da5f1d15d375b6a2470289f
   parallel:
     matrix:
       - PYTHON_VERSION:
-[%- if version_between("3.9", min_py, max_py) %]
+[% if version_between("3.9", min_py, max_py) %]
           - '3.9'
-[%- endif %]
-[%- if version_between("3.10", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.10", min_py, max_py) %]
           - '3.10'
-[%- endif %]
-[%- if version_between("3.11", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.11", min_py, max_py) %]
           - '3.11'
-[%- endif %]
-[%- if version_between("3.12", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.12", min_py, max_py) %]
           - '3.12'
-[%- endif %]
-[%- if version_between("3.13", min_py, max_py) %]
+[% endif %]
+[% if version_between("3.13", min_py, max_py) %]
           - '3.13'
-[%- endif %]
+[% endif %]
   rules:
     - changes:
         - .devcontainer/Dockerfile
