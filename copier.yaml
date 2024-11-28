@@ -22,7 +22,7 @@ _message_after_update: |
   you're done.
 project_name:
   default: My Project
-  help: 'Enter the name of the project in CamelCase format:'
+  help: "Enter the name of the project in CamelCase format:"
   type: str
 project_description:
   default: Project brief description.
@@ -34,7 +34,7 @@ development_status:
     - Alpha
     - Beta
     - Production/Stable
-  help: 'Choose the development status:'
+  help: "Choose the development status:"
   type: str
 copyright_license:
   default: MIT License
@@ -55,19 +55,19 @@ copyright_year:
   type: str
 author_name:
   default: Your Name
-  help: 'Specify the name of the author:'
+  help: "Specify the name of the author:"
   type: str
 organization_name:
   default: Your Organization Name
-  help: 'Provide the name of the organization associated with the project:'
+  help: "Provide the name of the organization associated with the project:"
   type: str
 copyright_holder:
-  default: '{{ organization_name }}'
+  default: "{{ organization_name }}"
   help: Name(s) or organization(s) holding the copyright.
   type: str
 author_email:
   default: '{{ author_name|lower|replace(" ", ".") }}@{{ organization_name|lower|replace(" ", "-") }}.com'
-  help: 'Specify the email address of the author:'
+  help: "Specify the email address of the author:"
   type: str
 repo_platform:
   default: github
@@ -75,45 +75,45 @@ repo_platform:
     GitHub: github
     GitLab: gitlab
     GitLab (self-managed): gitlab-self-managed
-  help: 'Choose the platform for the repository:'
+  help: "Choose the platform for the repository:"
   type: str
 repo_host:
   default: |-
-    [% if repo_platform == 'github' -%]
-      github.com
-    [%- elif repo_platform == 'gitlab' -%]
-      gitlab.com
+    [% if repo_platform == 'github' %]
+    github.com
+    [%- elif repo_platform == 'gitlab' %]
+    gitlab.com
     [%- endif %]
-  help: 'Specify the host of the self-managed GitLab:'
+  help: "Specify the host of the self-managed GitLab:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
 page_host:
   default: |-
-    [% if repo_platform == 'github' -%]
-      github.io
-    [%- elif repo_platform == 'gitlab' -%]
-      gitlab.io
+    [% if repo_platform == 'github' %]
+    github.io
+    [%- elif repo_platform == 'gitlab' %]
+    gitlab.io
     [%- endif %]
-  help: 'Specify the host of the self-managed GitLab Pages:'
+  help: "Specify the host of the self-managed GitLab Pages:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
 container_registry_host:
   default: |-
-    [% if repo_platform == 'github' -%]
-      ghcr.io
-    [%- elif repo_platform == 'gitlab' -%]
-      registry.gitlab.com
+    [% if repo_platform == 'github' %]
+    ghcr.io
+    [%- elif repo_platform == 'gitlab' %]
+    registry.gitlab.com
     [%- endif %]
-  help: 'Specify the host of the self-managed GitLab Container Registry:'
+  help: "Specify the host of the self-managed GitLab Container Registry:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
 repo_namespace:
   default: '{{ organization_name|lower|replace(" ", "-") }}'
-  help: 'Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:'
+  help: "Indicate the GitHub Repository Owner or GitLab Namespace. This is typically the account name of the author or the organization:"
   type: str
 repo_name:
   default: '{{ project_name|lower|replace(" ", "-") }}'
-  help: 'Provide a name for the repository:'
+  help: "Provide a name for the repository:"
   type: str
 package_name:
   default: '{{ repo_name|regex_replace("-python$", "") }}'
@@ -125,7 +125,7 @@ module_name:
   type: str
 coverage_threshold:
   default: 100
-  help: 'Set the threshold for test coverage, ranging from 0 to 100:'
+  help: "Set the threshold for test coverage, ranging from 0 to 100:"
   type: int
   validator: "[% if not 0 <= coverage_threshold <= 100 %]Test Coverage threshold should be between 0 and 100[% endif %]"
 platforms:
@@ -138,59 +138,59 @@ platforms:
   multiselect: true
   type: str
 min_py:
-  default: '3.12'
+  default: "3.12"
   choices:
-    - '3.9'
-    - '3.10'
-    - '3.11'
-    - '3.12'
-    - '3.13'
-  help: 'Choose the minimal Python version the project should support:'
+    - "3.9"
+    - "3.10"
+    - "3.11"
+    - "3.12"
+    - "3.13"
+  help: "Choose the minimal Python version the project should support:"
   type: str
 max_py:
-  default: '3.12'
+  default: "3.12"
   choices:
-    '3.9':
+    "3.9":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.9", min_py) }}'
-      value: '3.9'
-    '3.10':
+      value: "3.9"
+    "3.10":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.10", min_py) }}'
-      value: '3.10'
-    '3.11':
+      value: "3.10"
+    "3.11":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.11", min_py) }}'
-      value: '3.11'
-    '3.12':
+      value: "3.11"
+    "3.12":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.12", min_py) }}'
-      value: '3.12'
-    '3.13':
-      value: '3.13'
-  help: 'Choose the maximal Python version the project should support:'
+      value: "3.12"
+    "3.13":
+      value: "3.13"
+  help: "Choose the maximal Python version the project should support:"
   type: str
 default_py:
-  default: '{{ max_py }}'
+  default: "{{ max_py }}"
   choices:
-    '3.9':
+    "3.9":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.9", min_py, max_py) }}'
-      value: '3.9'
-    '3.10':
+      value: "3.9"
+    "3.10":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.10", min_py, max_py) }}'
-      value: '3.10'
-    '3.11':
+      value: "3.10"
+    "3.11":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.11", min_py, max_py) }}'
-      value: '3.11'
-    '3.12':
+      value: "3.11"
+    "3.12":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.12", min_py, max_py) }}'
-      value: '3.12'
-    '3.13':
+      value: "3.12"
+    "3.13":
       validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.13", min_py, max_py) }}'
-      value: '3.13'
-  help: 'Choose the default Python version for development, documentation generation, and package build:'
+      value: "3.13"
+  help: "Choose the default Python version for development, documentation generation, and package build:"
   type: str
 readme_content:
   default: |-
-    [% if project_name == 'Serious Scaffold Python' -%]
-      [% from pathjoin("includes", "sample.jinja") import readme_content with context %]{{ readme_content() }}
-    [%- else -%]
+    [% if project_name == 'Serious Scaffold Python' %]
+    [% from pathjoin("includes", "sample.jinja") import readme_content with context %]{{ readme_content() }}
+    [%- else %]
     ## A multiline README content here
     [%- endif %]
   help: "Provide a multiline content to be used in the README and documentation's index page:"
