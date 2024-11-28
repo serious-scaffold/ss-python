@@ -1,6 +1,7 @@
 _envops:
-  block_end_string: '%]'
-  block_start_string: '[%'
+  block_end_string: "%]"
+  block_start_string: "[%"
+  lstrip_blocks: true
   trim_blocks: true
 _subdirectory: template
 _message_before_copy: |
