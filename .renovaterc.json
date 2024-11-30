@@ -190,6 +190,17 @@
             }
         },
         {
+            "description": "Update lock files for development dependencies",
+            "matchUpdateTypes": [
+                "lockFileMaintenance"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "pdm update --lockfile pdm.dev.lock --no-default --dev --no-sync --update-eager"
+                ]
+            }
+        },
+        {
             "commitMessageTopic": "serious-scaffold-python",
             "description": "Update template with copier when a new version is released",
             "matchDepTypes": [
