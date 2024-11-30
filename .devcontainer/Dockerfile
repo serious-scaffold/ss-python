@@ -6,7 +6,7 @@ ARG PYTHON_VERSION=3.12
 # Dev image is used for development and cicd.
 ########################################################################################
 
-FROM python:${PYTHON_VERSION} as dev
+FROM python:${PYTHON_VERSION} AS dev
 
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
@@ -67,7 +67,7 @@ WORKDIR /workspace
 # Build image is an intermediate image used for building the project.
 ########################################################################################
 
-FROM dev as build
+FROM dev AS build
 
 # Install dependencies and project into the local packages directory.
 ARG SCM_VERSION
@@ -81,7 +81,7 @@ RUN --mount=source=README.md,target=README.md \
 # Prod image is used for deployment and distribution.
 ########################################################################################
 
-FROM python:${PYTHON_VERSION}-slim as prod
+FROM python:${PYTHON_VERSION}-slim AS prod
 
 # NOTE: python docker image has env `PYTHON_VERSION` but with patch version.
 # ARG is used here for temporary override without changing the original env.
