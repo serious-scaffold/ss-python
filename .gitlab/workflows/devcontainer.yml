@@ -44,11 +44,21 @@ dev-container-publish:
     - |
       docker buildx build . \
         --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
-        --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
         --file .devcontainer/Dockerfile \
-        --push \
-        --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
-        --target dev
+        --load \
+        --tag ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION} \
+        --target prod
+    - docker run --rm ${CI_REGISTRY_IMAGE}:py${PYTHON_VERSION}
+    - |
+      if [ "$CI_PIPELINE_SOURCE" != "merge_request_event" ]; then
+        docker buildx build . \
+          --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
+          --cache-to type=registry,ref=${CI_REGISTRY_IMAGE}/dev-cache:py${PYTHON_VERSION},mode=max \
+          --file .devcontainer/Dockerfile \
+          --push \
+          --tag ${CI_REGISTRY_IMAGE}/dev:py${PYTHON_VERSION} \
+          --target dev
+      fi
   services:
     - docker:27.3.1@sha256:bec82cb05983f12a14d8f169b00748f4ded8573f4da5f1d15d375b6a2470289f
   stage: build
