@@ -42,6 +42,7 @@ jobs:
       - name: Run Renovate
         env:
           RENOVATE_GIT_AUTHOR: {{ '${{ vars.RENOVATE_GIT_AUTHOR }}' }}
+          RENOVATE_PLATFORM_COMMIT: {{ '${{ steps.generate-token.outputs.token && true || false }}' }}
           RENOVATE_TOKEN: {{ '${{ steps.generate-token.outputs.token || secrets.PAT || secrets.GITHUB_TOKEN }}' }}
         run: |
           if [ -z "$RENOVATE_TOKEN" ]; then
