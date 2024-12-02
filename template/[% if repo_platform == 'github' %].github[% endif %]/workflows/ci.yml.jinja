@@ -21,7 +21,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Set up PDM
-        uses: pdm-project/setup-pdm@b2472ca4258a9ea3aee813980a0100a2261a42fc # v4
+        uses: pdm-project/setup-pdm@b2472ca4258a9ea3aee813980a0100a2261a42fc # v4.2
         with:
           cache: true
           python-version: {{ '${{ matrix.python-version }}' }}
