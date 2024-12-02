@@ -61,7 +61,7 @@ lock:
 
 # Install standalone tools
 prerequisites:
-	pipx install --force check-jsonschema==0.29.4
+	pipx install --force check-jsonschema==0.30.0
 	pipx install --force codespell[toml]==2.3.0
 	pipx install --force pdm==2.21.0
 	pipx install --force pre-commit==4.0.1
