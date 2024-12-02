@@ -9,4 +9,5 @@ default:
   retry:
     max: 2
     when: runner_system_failure
-include: .gitlab/workflows/**.yml
+include:
+  - local: .gitlab/workflows/**.yml
