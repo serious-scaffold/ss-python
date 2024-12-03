@@ -4,16 +4,16 @@ jobs:
     container:
       env:
         LOG_LEVEL: debug
-        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pip", "^copier", "^find"]'
+        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pdm", "^pip", "^copier", "^find"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: ${{ vars.RENOVATE_ENABLED || true }}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
-        RENOVATE_OPTIMIZE_FOR_DISABLED: 'true'
+        RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
       image: ghcr.io/renovatebot/renovate:39.42.4@sha256:c5d718e312cdacc0746e37f13c215ff498be28c51e50efd24c070ae29f5b636a
-      options: '--user root'
+      options: "--user root"
     runs-on: ubuntu-24.04
     steps:
       - run: env | sort
@@ -49,5 +49,5 @@ jobs:
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '*/15 0-3 * * 1'
+    - cron: "*/15 0-3 * * 1"
   workflow_dispatch: null
