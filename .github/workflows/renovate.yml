@@ -12,7 +12,7 @@ jobs:
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["${{ github.repository }}"]'
         RENOVATE_REPOSITORY_CACHE: enabled
-      image: ghcr.io/renovatebot/renovate:39.42.4@sha256:c5d718e312cdacc0746e37f13c215ff498be28c51e50efd24c070ae29f5b636a
+      image: ghcr.io/renovatebot/renovate:39.46.0@sha256:4f4e44ba0a8e41ba766a000cb2dccecef92e6a4fb0fab077b8553b4ace0cf772
       options: "--user root"
     runs-on: ubuntu-24.04
     steps:
