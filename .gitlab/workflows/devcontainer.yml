@@ -1,5 +1,5 @@
 dev-container-publish:
-  image: docker:27.3.1@sha256:6ca9a6811085e2cf769cbac04bc47daf66629102990391caab7cf37426e939da
+  image: docker:27.4.0@sha256:b0c1179ea32ad77bdb7b852b037e54b11022304c2f2662af1954ef53869314b2
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -60,7 +60,7 @@ dev-container-publish:
           --target dev
       fi
   services:
-    - docker:27.3.1@sha256:6ca9a6811085e2cf769cbac04bc47daf66629102990391caab7cf37426e939da
+    - docker:27.4.0@sha256:b0c1179ea32ad77bdb7b852b037e54b11022304c2f2662af1954ef53869314b2
   stage: build
   variables:
     DOCKER_TLS_CERTDIR: /certs
