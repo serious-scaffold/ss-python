@@ -1,6 +1,6 @@
 semantic-release:
   image:
-    name: node:22.13.0@sha256:fa54405993eaa6bab6b6e460f5f3e945a2e2f07942ba31c0e297a7d9c2041f62
+    name: node:22.13.1@sha256:ae2f3d4cc65d251352eca01ba668824f651a2ee4d2a37e2efb22649521a483fd
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}" && $PAT != null
   script:
