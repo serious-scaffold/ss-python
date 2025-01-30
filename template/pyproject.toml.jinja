@@ -1,6 +1,6 @@
-[% from pathjoin("includes", "variable.jinja") import page_url with context %]
-[% from pathjoin("includes", "variable.jinja") import repo_url with context %]
-[% from pathjoin("includes", "version_compare.jinja") import version_between %]
+{% from pathjoin("includes", "variable.jinja") import page_url with context %}
+{% from pathjoin("includes", "variable.jinja") import repo_url with context %}
+{% from pathjoin("includes", "version_compare.jinja") import version_between %}
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
@@ -18,53 +18,53 @@ keywords = [
     "project-template",
     "serious-scaffold",
 ]
-[% if copyright_license == "Apache Software License" %]
+{% if copyright_license == "Apache Software License" %}
 license = { text = "Apache-2.0" }
-[% elif copyright_license == "Boost Software License 1.0 (BSL-1.0)" %]
+{% elif copyright_license == "Boost Software License 1.0 (BSL-1.0)" %}
 license = { text = "BSL-1.0" }
-[% elif copyright_license == "GNU Affero General Public License v3" %]
+{% elif copyright_license == "GNU Affero General Public License v3" %}
 license = { text = "AGPLv3" }
-[% elif copyright_license == "GNU General Public License v3 (GPLv3)" %]
+{% elif copyright_license == "GNU General Public License v3 (GPLv3)" %}
 license = { text = "GPLv3" }
-[% elif copyright_license == "GNU Lesser General Public License v3 (LGPLv3)" %]
+{% elif copyright_license == "GNU Lesser General Public License v3 (LGPLv3)" %}
 license = { text = "LGPLv3" }
-[% elif copyright_license == "MIT License" %]
+{% elif copyright_license == "MIT License" %}
 license = { text = "MIT" }
-[% elif copyright_license == "Mozilla Public License 2.0 (MPL 2.0)" %]
+{% elif copyright_license == "Mozilla Public License 2.0 (MPL 2.0)" %}
 license = { text = "MPL-2.0" }
-[% elif copyright_license == "The Unlicense (Unlicense)" %]
+{% elif copyright_license == "The Unlicense (Unlicense)" %}
 license = { text = "Unlicense" }
-[% endif %]
+{% endif %}
 authors = [
     { email = "{{ author_email }}", name = "{{ author_name }}" },
 ]
 requires-python = ">={{ min_py }}"
 classifiers = [
-[% if development_status == "Alpha" %]
+{% if development_status == "Alpha" %}
     "Development Status :: 3 - Alpha",
-[% elif development_status == "Beta" %]
+{% elif development_status == "Beta" %}
     "Development Status :: 4 - Beta",
-[% elif development_status == "Stable" %]
+{% elif development_status == "Stable" %}
     "Development Status :: 5 - Production/Stable",
-[% endif %]
+{% endif %}
     "License :: OSI Approved :: {{ copyright_license }}",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3 :: Only",
-[% if version_between("3.9", min_py, max_py) %]
+{% if version_between("3.9", min_py, max_py) %}
     "Programming Language :: Python :: 3.9",
-[% endif %]
-[% if version_between("3.10", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.10", min_py, max_py) %}
     "Programming Language :: Python :: 3.10",
-[% endif %]
-[% if version_between("3.11", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.11", min_py, max_py) %}
     "Programming Language :: Python :: 3.11",
-[% endif %]
-[% if version_between("3.12", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.12", min_py, max_py) %}
     "Programming Language :: Python :: 3.12",
-[% endif %]
-[% if version_between("3.13", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.13", min_py, max_py) %}
     "Programming Language :: Python :: 3.13",
-[% endif %]
+{% endif %}
 ]
 dynamic = [
     "version",
@@ -74,11 +74,11 @@ dependencies = [
     "pydantic-settings",
 ]
 urls.documentation = "https://{{ page_url() }}"
-[% if repo_platform == 'github' %]
+{% if repo_platform == 'github' %}
 urls.issue = "https://{{ repo_url() }}/issues"
-[% elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' %]
+{% elif repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' %}
 urls.issue = "https://{{ repo_url() }}/-/issues"
-[% endif %]
+{% endif %}
 urls.repository = "https://{{ repo_url() }}"
 scripts.{{ package_name }}-cli = "{{ module_name }}.cli:cli"
 
@@ -112,11 +112,11 @@ fallback_version = "0.0.0"
 src = [
     "src",
 ]
-[% if project_name == "Serious Scaffold Python" %]
+{% if project_name == "Serious Scaffold Python" %}
 extend-exclude = [
     "template",
 ]
-[% endif %]
+{% endif %}
 fix = true
 lint.select = [
     "B",      # flake8-bugbear
@@ -170,9 +170,9 @@ enable_error_code = [
 exclude = [
     "build",
     "doc",
-[% if project_name == "Serious Scaffold Python" %]
+{% if project_name == "Serious Scaffold Python" %}
     "template",
-[% endif %]
+{% endif %}
 ]
 no_implicit_optional = true
 show_error_codes = true

@@ -1,6 +1,4 @@
 _envops:
-  block_end_string: "%]"
-  block_start_string: "[%"
   lstrip_blocks: true
   trim_blocks: true
 _subdirectory: template
@@ -79,31 +77,31 @@ repo_platform:
   type: str
 repo_host:
   default: |-
-    [% if repo_platform == 'github' %]
+    {% if repo_platform == 'github' %}
     github.com
-    [%- elif repo_platform == 'gitlab' %]
+    {%- elif repo_platform == 'gitlab' %}
     gitlab.com
-    [%- endif %]
+    {%- endif %}
   help: "Specify the host of the self-managed GitLab:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
 page_host:
   default: |-
-    [% if repo_platform == 'github' %]
+    {% if repo_platform == 'github' %}
     github.io
-    [%- elif repo_platform == 'gitlab' %]
+    {%- elif repo_platform == 'gitlab' %}
     gitlab.io
-    [%- endif %]
+    {%- endif %}
   help: "Specify the host of the self-managed GitLab Pages:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
 container_registry_host:
   default: |-
-    [% if repo_platform == 'github' %]
+    {% if repo_platform == 'github' %}
     ghcr.io
-    [%- elif repo_platform == 'gitlab' %]
+    {%- elif repo_platform == 'gitlab' %}
     registry.gitlab.com
-    [%- endif %]
+    {%- endif %}
   help: "Specify the host of the self-managed GitLab Container Registry:"
   type: str
   when: '{{ repo_platform == "gitlab-self-managed" }}'
@@ -127,7 +125,7 @@ coverage_threshold:
   default: 100
   help: "Set the threshold for test coverage, ranging from 0 to 100:"
   type: int
-  validator: "[% if not 0 <= coverage_threshold <= 100 %]Test Coverage threshold should be between 0 and 100[% endif %]"
+  validator: "{% if not 0 <= coverage_threshold <= 100 %}Test Coverage threshold should be between 0 and 100{% endif %}"
 platforms:
   default: ["macos", "ubuntu", "windows"]
   choices:
@@ -151,16 +149,16 @@ max_py:
   default: "3.12"
   choices:
     "3.9":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.9", min_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.9", min_py) }}'
       value: "3.9"
     "3.10":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.10", min_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.10", min_py) }}'
       value: "3.10"
     "3.11":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.11", min_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.11", min_py) }}'
       value: "3.11"
     "3.12":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %]{{ version_higher_than_validator("3.12", min_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_higher_than_validator %}{{ version_higher_than_validator("3.12", min_py) }}'
       value: "3.12"
     "3.13":
       value: "3.13"
@@ -170,29 +168,29 @@ default_py:
   default: "{{ max_py }}"
   choices:
     "3.9":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.9", min_py, max_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.9", min_py, max_py) }}'
       value: "3.9"
     "3.10":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.10", min_py, max_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.10", min_py, max_py) }}'
       value: "3.10"
     "3.11":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.11", min_py, max_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.11", min_py, max_py) }}'
       value: "3.11"
     "3.12":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.12", min_py, max_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.12", min_py, max_py) }}'
       value: "3.12"
     "3.13":
-      validator: '[% from pathjoin("includes", "version_compare.jinja") import version_between_validator %]{{ version_between_validator("3.13", min_py, max_py) }}'
+      validator: '{% from pathjoin("includes", "version_compare.jinja") import version_between_validator %}{{ version_between_validator("3.13", min_py, max_py) }}'
       value: "3.13"
   help: "Choose the default Python version for development, documentation generation, and package build:"
   type: str
 readme_content:
   default: |-
-    [% if project_name == 'Serious Scaffold Python' %]
-    [% from pathjoin("includes", "sample.jinja") import readme_content with context %]{{ readme_content() }}
-    [%- else %]
+    {% if project_name == 'Serious Scaffold Python' %}
+    {% from pathjoin("includes", "sample.jinja") import readme_content with context %}{{ readme_content() }}
+    {%- else %}
     ## A multiline README content here
-    [%- endif %]
+    {%- endif %}
   help: "Provide a multiline content to be used in the README and documentation's index page:"
   multiline: true
   type: str

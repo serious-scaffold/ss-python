@@ -7,11 +7,11 @@ jobs:
         RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pdm", "^pip", "^copier", "^find"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: {{ '${{ vars.RENOVATE_ENABLED || true }}' }}
-[% if project_name == "Serious Scaffold Python" %]
+{% if project_name == "Serious Scaffold Python" %}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
-[% else %]
+{% else %}
         RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex", "pre-commit"]'
-[% endif %]
+{% endif %}
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
         RENOVATE_PLATFORM: github
         RENOVATE_REPOSITORIES: '["{{ '${{ github.repository }}' }}"]'

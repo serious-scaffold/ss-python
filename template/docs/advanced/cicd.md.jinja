@@ -10,21 +10,21 @@ The `ci` workflow is the most frequently used workflow, running on all pull/merg
 
 The `commitlint` workflow checks whether the pull/merge request title comply with the <project:/development/commit.md>. This ensures consistent commit history and enable the possibility of automated release pipeline.
 
-[% if repo_platform == 'github' %]
+{% if repo_platform == 'github' %}
 ## `delete-untagged-packages.yml`
 
 The `delete-untagged-packages` workflow removes untagged packages since GitHub will still keep the package when overridden with the same tag. It helps keep the GitHub Packages clean and tidy.
-[% endif %]
+{% endif %}
 
 ## `devcontainer.yml`
 
 The `devcontainer` workflow will be triggered by container related changes. It builds and tests the development and production containers and push the development container except during pull/merge requests, ensuring seamless containerized environments.
 
-[% if repo_platform == 'github' %]
+{% if repo_platform == 'github' %}
 ## `readthedocs-preview.yml`
 
 The `readthedocs-preview` workflow leverage the [readthedocs/actions/preview](https://github.com/readthedocs/actions/tree/v1/preview) to add Read the Docs preview links to the related pull requests. These links make it easy to review documentation changes.
-[% endif %]
+{% endif %}
 
 ## `release.yml`
 

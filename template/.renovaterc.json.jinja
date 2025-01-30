@@ -1,4 +1,4 @@
-[% from pathjoin("includes", "version_compare.jinja") import version_higher_than %]
+{% from pathjoin("includes", "version_compare.jinja") import version_higher_than %}
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "constraints": {
@@ -19,7 +19,7 @@
                 "^\\.readthedocs\\.yaml$",
                 "^\\.renovaterc\\.json$",
                 "^docs/.+\\.md$"
-[%- if project_name == "Serious Scaffold Python" %],
+{%- if project_name == "Serious Scaffold Python" %},
                 "^includes/sample\\.jinja$",
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
@@ -28,7 +28,7 @@
                 "^template/\\.readthedocs\\.yaml\\.jinja$",
                 "^template/\\.renovaterc\\.json\\.jinja$",
                 "^template/docs/.+\\.md(\\.jinja)?$"
-[% endif %]
+{% endif %}
             ],
             "matchStrings": [
                 "pip install.* (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)[\"\n]",
@@ -42,9 +42,9 @@
             "description": "Match debian packages installed in Dockerfiles",
             "fileMatch": [
                 "^\\.devcontainer\\/Dockerfile$"
-[%- if project_name == "Serious Scaffold Python" %],
+{%- if project_name == "Serious Scaffold Python" %},
                 "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
-[% endif %]
+{% endif %}
             ],
             "matchStrings": [
                 "# renovate: depName=(?<depName>.*?)\nARG .*?_VERSION=\"(?<currentValue>.*)\"\n"
@@ -58,9 +58,9 @@
             "description": "Match pdm version specified in setup-pdm GitHub Action",
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$"
-[%- if project_name == "Serious Scaffold Python" %],
+{%- if project_name == "Serious Scaffold Python" %},
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
-[% endif %]
+{% endif %}
             ],
             "matchStrings": [
                 "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\n"
@@ -73,9 +73,9 @@
             "description": "Match pdm version specified in the renovate constraints",
             "fileMatch": [
                 "^\\.renovaterc\\.json$"
-[%- if project_name == "Serious Scaffold Python" %],
+{%- if project_name == "Serious Scaffold Python" %},
                 "^template/\\.renovaterc\\.json\\.jinja$"
-[% endif %]
+{% endif %}
             ],
             "matchStrings": [
                 "\"pdm\": \"(?<currentValue>.*)\""
@@ -102,10 +102,10 @@
             "fileMatch": [
                 "^\\.github/workflows/.+\\.yml$",
                 "^\\.gitlab/workflows/.+\\.yml$"
-[%- if project_name == "Serious Scaffold Python" %],
+{%- if project_name == "Serious Scaffold Python" %},
                 "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
                 "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
-[% endif %]
+{% endif %}
             ],
             "matchStrings": [
                 "--package (?<depName>.+?)@(?<currentValue>.+?)\\s"
@@ -133,15 +133,15 @@
         ":maintainLockFilesWeekly",
         ":semanticCommitTypeAll(build)"
     ],
-[% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
+{% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %}
     "gitlabci": {
         "fileMatch": [
             "^.gitlab/workflows/.*\\.yml$"
         ]
     },
-[% endif %]
+{% endif %}
     "packageRules": [
-[% if project_name == "Serious Scaffold Python" %]
+{% if project_name == "Serious Scaffold Python" %}
         {
             "description": "Update GitHub Action in template",
             "matchDepTypes": [
@@ -203,7 +203,7 @@
                 ]
             }
         },
-[% endif %]
+{% endif %}
         {
             "description": "Update lock files for development dependencies",
             "matchUpdateTypes": [
@@ -249,12 +249,12 @@
                 "github-tags"
             ],
             "matchDepNames": [
-[% if repo_platform == "github" %]
+{% if repo_platform == "github" %}
                 "ghcr.io/renovatebot/renovate",
-[% endif %]
-[% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %]
+{% endif %}
+{% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %}
                 "renovate/renovate",
-[% endif %]
+{% endif %}
                 "renovatebot/pre-commit-hooks"
             ]
         },
