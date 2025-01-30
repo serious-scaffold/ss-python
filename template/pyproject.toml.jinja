@@ -82,28 +82,28 @@ urls.issue = "https://{{ repo_url() }}/-/issues"
 urls.repository = "https://{{ repo_url() }}"
 scripts.{{ package_name }}-cli = "{{ module_name }}.cli:cli"
 
-[tool.pdm]
-distribution = true
-
-[tool.pdm.dev-dependencies]
+[dependency-groups]
+test = [
+    "coverage",
+    "pytest",
+]
 doc = [
-    "Sphinx",
     "autodoc-pydantic",
     "coverage",
     "furo",
     "mypy[reports]",
     "myst-parser",
     "pytest",
+    "sphinx",
     "sphinx-click",
     "sphinx-design",
 ]
 lint = [
     "mypy",
 ]
-test = [
-    "coverage",
-    "pytest",
-]
+
+[tool.pdm]
+distribution = true
 
 [tool.setuptools_scm]
 fallback_version = "0.0.0"
