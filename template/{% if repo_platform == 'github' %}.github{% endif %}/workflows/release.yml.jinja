@@ -1,4 +1,4 @@
-[% from pathjoin("includes", "version_compare.jinja") import version_between %]
+{% from pathjoin("includes", "version_compare.jinja") import version_between %}
 name: Release
 
 on:
@@ -112,21 +112,21 @@ jobs:
     strategy:
       matrix:
         python-version:
-[% if version_between("3.9", min_py, max_py) %]
+{% if version_between("3.9", min_py, max_py) %}
           - '3.9'
-[% endif %]
-[% if version_between("3.10", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.10", min_py, max_py) %}
           - '3.10'
-[% endif %]
-[% if version_between("3.11", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.11", min_py, max_py) %}
           - '3.11'
-[% endif %]
-[% if version_between("3.12", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.12", min_py, max_py) %}
           - '3.12'
-[% endif %]
-[% if version_between("3.13", min_py, max_py) %]
+{% endif %}
+{% if version_between("3.13", min_py, max_py) %}
           - '3.13'
-[% endif %]
+{% endif %}
   package-publish:
     runs-on: ubuntu-24.04
     steps:
