@@ -61,7 +61,7 @@ lock:
 
 # Install standalone tools
 prerequisites:
-	pipx install --force check-jsonschema==0.30.0
+	pipx install --force check-jsonschema==0.31.0
 	pipx install --force codespell[toml]==2.4.1
 	pipx install --force pdm==2.22.3
 	pipx install --force pre-commit==4.0.1
@@ -96,7 +96,7 @@ codespell:
 # Check jsonschema with check-jsonschema.
 check-jsonschema:
 	check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml
-	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci .gitlab-ci.yml .gitlab/workflows/*.yml
+	check-jsonschema --builtin-schema vendor.gitlab-ci --data-transform gitlab-ci --regex-variant nonunicode .gitlab-ci.yml .gitlab/workflows/*.yml
 	check-jsonschema --builtin-schema vendor.readthedocs .readthedocs.yaml
 	check-jsonschema --builtin-schema vendor.renovate .renovaterc.json
 
