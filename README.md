@@ -40,9 +40,10 @@ If you find this helpful, please consider [sponsorship](https://github.com/spons
 - Project setup and template update with [copier](https://copier.readthedocs.io/).
 - Manage dependencies and virtual environments with [pdm](https://pdm-project.org/).
 - Build with [setuptools](https://github.com/pypa/setuptools) and versioned with [setuptools-scm](https://github.com/pypa/setuptools_scm/).
-- Lint with [pre-commit](https://pre-commit.com), [mypy](http://www.mypy-lang.org/), [ruff](https://github.com/charliermarsh/ruff), [pyproject-fmt](https://github.com/tox-dev/pyproject-fmt) and [commitlint](https://commitlint.js.org/).
+- Lint with [pre-commit](https://pre-commit.com), [mypy](http://www.mypy-lang.org/), [ruff](https://github.com/charliermarsh/ruff), [pyproject-fmt](https://github.com/tox-dev/pyproject-fmt), [codespell](https://github.com/codespell-project/codespell), [check-jsonschema](https://github.com/python-jsonschema/check-jsonschema) and [commitlint](https://commitlint.js.org/).
 - Test with [pytest](https://docs.pytest.org/) and [coverage](https://coverage.readthedocs.io) for threshold and reports.
 - Documentation with [sphinx](https://www.sphinx-doc.org/), the [furo](https://pradyunsg.me/furo) theme and [MyST parser](https://myst-parser.readthedocs.io/) for markdown.
+- Build documentation dynamically when related files change with [watchfiles](https://github.com/samuelcolvin/watchfiles).
 - Develop Command Line Interfaces with [click](https://click.palletsprojects.com/).
 - Manage configurations with [pydantic-settings](https://docs.pydantic.dev/latest/usage/pydantic_settings/).
 - [Dev container](https://containers.dev/) for development and GitLab CI/CD.
