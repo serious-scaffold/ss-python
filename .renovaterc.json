@@ -29,7 +29,8 @@
             ],
             "matchStrings": [
                 "pip install.* (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)[\"\n]",
-                "pipx install( --force)? (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)\\s"
+                "pipx install( --force)? (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)\\s",
+                "pipx list --short \\| grep -q \"(?<depName>.*?)(\\[.*?\\])? (?<currentValue>.*?)\""
             ]
         },
         {
