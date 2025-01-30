@@ -55,7 +55,7 @@ dev-%: install
 # Prepare the development environment.
 # Install the package in editable mode with all optional dependencies and pre-commit hook.
 dev: install
-	pdm install --lockfile pdm.dev.lock
+	pdm install --lockfile pdm.dev.lock --no-default --dev
 	if [ "$(CI)" != "true" ] && command -v pre-commit > /dev/null 2>&1; then pre-commit install; fi
 
 # Lock both prod and dev dependencies.
