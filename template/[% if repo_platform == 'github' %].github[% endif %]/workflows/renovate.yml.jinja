@@ -4,13 +4,13 @@ jobs:
     container:
       env:
         LOG_LEVEL: debug
-        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pdm", "^pip", "^copier", "^find"]'
+        RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^find", "^pdm"]'
         RENOVATE_BRANCH_PREFIX: renovate-github/
         RENOVATE_ENABLED: {{ '${{ vars.RENOVATE_ENABLED || true }}' }}
 [% if project_name == "Serious Scaffold Python" %]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "gitlabci", "regex", "pre-commit"]'
+        RENOVATE_ENABLED_MANAGERS: '["copier", "github-actions", "gitlabci", "pep621", "pre-commit", "regex"]'
 [% else %]
-        RENOVATE_ENABLED_MANAGERS: '["pep621", "github-actions", "regex", "pre-commit"]'
+        RENOVATE_ENABLED_MANAGERS: '["copier", "github-actions", "pep621", "pre-commit", "regex"]'
 [% endif %]
         RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
         RENOVATE_PLATFORM: github
