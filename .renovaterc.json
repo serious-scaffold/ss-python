@@ -210,7 +210,7 @@
                 "commands": [
                     "git stash",
                     "pip install copier==9.4.1",
-                    "copier update --defaults --vcs-ref {{{newVersion}}}"
+                    "copier update --skip-answered --defaults --vcs-ref {{{newVersion}}}"
                 ]
             },
             "semanticCommitScope": "copier-template"
