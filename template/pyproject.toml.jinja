@@ -13,9 +13,9 @@ name = "{{ package_name }}"
 description = "{{ project_description }}"
 readme = "README.md"
 keywords = [
-    "copier-template",
-    "full-development-lifecycle",
-    "project-template",
+{% for keyword in project_keywords.split(",") %}
+    "{{ keyword.strip() }}",
+{% endfor %}
     "serious-scaffold",
 ]
 {% if copyright_license == "Apache Software License" %}

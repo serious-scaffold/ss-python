@@ -4,10 +4,10 @@ copyright_holder: Serious Scaffold
 copyright_license: MIT License
 copyright_year: 2022-2024
 coverage_threshold: 100
-default_py: '3.12'
+default_py: "3.12"
 development_status: Alpha
-max_py: '3.13'
-min_py: '3.9'
+max_py: "3.13"
+min_py: "3.9"
 module_name: ss_python
 organization_name: Serious Scaffold
 package_name: ss-python
@@ -15,8 +15,8 @@ platforms:
     - macos
     - linux
     - windows
-project_description:
-    A Python Project Template for Long-Term Maintainability.
+project_description: A Python Project Template for Long-Term Maintainability.
+project_keywords: copier-template, project-template, long-term-maintainability
 project_name: Serious Scaffold Python
 repo_name: ss-python
 repo_namespace: serious-scaffold
