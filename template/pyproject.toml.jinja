@@ -13,10 +13,10 @@ name = "{{ package_name }}"
 description = "{{ project_description }}"
 readme = "README.md"
 keywords = [
-{% for keyword in project_keywords.split(",") %}
-    "{{ keyword.strip() }}",
+{% set keywords = (project_keywords.split(",") | map("trim") | list) + ["serious-scaffold"] %}
+{% for keyword in keywords | sort %}
+    "{{ keyword }}",
 {% endfor %}
-    "serious-scaffold",
 ]
 {% if copyright_license == "Apache Software License" %}
 license = { text = "Apache-2.0" }
