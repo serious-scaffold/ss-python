@@ -11,7 +11,7 @@ description = "A Python Project Template for Long-Term Maintainability."
 readme = "README.md"
 keywords = [
     "copier-template",
-    "full-development-lifecycle",
+    "long-term-maintainability",
     "project-template",
     "serious-scaffold",
 ]

@@ -26,6 +26,10 @@ project_description:
   default: Project brief description.
   help: "Provide a concise description to be used in the Python package overview and the introductory paragraph in the README and documentation's index page:"
   type: str
+project_keywords:
+  default: "{{ project_name|lower }}"
+  type: str
+  help: "Provide a list of comma-separated keywords to be using in the Python package overview:"
 development_status:
   default: Alpha
   choices:
