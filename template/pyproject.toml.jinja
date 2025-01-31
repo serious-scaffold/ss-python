@@ -51,11 +51,11 @@ classifiers = [
 {% if "macos" in platforms %}
     "Operating System :: MacOS :: MacOS X",
 {% endif %}
-{% if "linux" in platforms %}
-    "Operating System :: POSIX :: Linux",
-{% endif %}
 {% if "windows" in platforms %}
     "Operating System :: Microsoft :: Windows",
+{% endif %}
+{% if "linux" in platforms %}
+    "Operating System :: POSIX :: Linux",
 {% endif %}
     "Programming Language :: Python :: 3 :: Only",
 {% if version_between("3.9", min_py, max_py) %}
