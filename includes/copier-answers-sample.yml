@@ -13,7 +13,7 @@ organization_name: Serious Scaffold
 package_name: ss-python
 platforms:
     - macos
-    - ubuntu
+    - linux
     - windows
 project_description:
     A Python Project Template for Long-Term Maintainability.

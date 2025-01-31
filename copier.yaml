@@ -127,10 +127,10 @@ coverage_threshold:
   type: int
   validator: "{% if not 0 <= coverage_threshold <= 100 %}Test Coverage threshold should be between 0 and 100{% endif %}"
 platforms:
-  default: ["macos", "ubuntu", "windows"]
+  default: ["macos", "linux", "windows"]
   choices:
     - macos
-    - ubuntu
+    - linux
     - windows
   help: "Set the supported platforms for the project:"
   multiselect: true
