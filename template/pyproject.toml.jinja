@@ -48,7 +48,15 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
 {% endif %}
     "License :: OSI Approved :: {{ copyright_license }}",
-    "Operating System :: OS Independent",
+{% if "macos" in platforms %}
+    "Operating System :: MacOS :: MacOS X",
+{% endif %}
+{% if "windows" in platforms %}
+    "Operating System :: Microsoft :: Windows",
+{% endif %}
+{% if "linux" in platforms %}
+    "Operating System :: POSIX :: Linux",
+{% endif %}
     "Programming Language :: Python :: 3 :: Only",
 {% if version_between("3.9", min_py, max_py) %}
     "Programming Language :: Python :: 3.9",
