@@ -47,14 +47,14 @@ scripts.ss-python-cli = "ss_python.cli:cli"
 
 [dependency-groups]
 test = [
-    "pytest>=8.3.4",
     "coverage>=7.6.10",
+    "pytest>=8.3.4",
 ]
 doc = [
     "autodoc-pydantic>=2.2.0",
     "coverage>=7.6.10",
     "furo>=2024.8.6",
-    "mypy[reoprts]>=1.14.1",
+    "mypy[reports]>=1.14.1",
     "myst-parser>=3.0.1",
     "pytest>=8.3.4",
     "sphinx>=7.4.7",
