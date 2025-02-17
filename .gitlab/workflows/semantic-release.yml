@@ -1,6 +1,6 @@
 semantic-release:
   image:
-    name: node:22.13.1@sha256:ae2f3d4cc65d251352eca01ba668824f651a2ee4d2a37e2efb22649521a483fd
+    name: node:22.14.0@sha256:cfef4432ab2901fd6ab2cb05b177d3c6f8a7f48cb22ad9d7ae28bb6aa5f8b471
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "serious-scaffold" && $CI_PROJECT_NAME == "ss-python" && $PAT != null
   script:
