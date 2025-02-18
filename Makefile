@@ -69,6 +69,7 @@ prerequisites:
 	pipx list --short | grep -q "pyproject-fmt 2.5.0" || pipx install --force pyproject-fmt==2.5.0
 	pipx list --short | grep -q "ruff 0.9.5" || pipx install --force ruff==0.9.5
 	pipx list --short | grep -q "watchfiles 1.0.4" || pipx install --force watchfiles==1.0.4
+	pipx list --short | grep -q "mypy 1.14.1" || pipx install --force mypy==1.14.1
 
 ########################################################################################
 # Lint and pre-commit
