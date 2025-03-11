@@ -61,7 +61,7 @@ lock:
 
 # Install standalone tools
 prerequisites:
-	pipx list --short | grep -q "check-jsonschema 0.31.2" || pipx install --force check-jsonschema==0.31.2
+	pipx list --short | grep -q "check-jsonschema 0.31.3" || pipx install --force check-jsonschema==0.31.3
 	pipx list --short | grep -q "codespell 2.4.1" || pipx install --force codespell[toml]==2.4.1
 	pipx list --short | grep -q "copier 9.5.0" || pipx install --force copier==9.5.0
 	pipx list --short | grep -q "pdm 2.22.3" || pipx install --force pdm==2.22.3
