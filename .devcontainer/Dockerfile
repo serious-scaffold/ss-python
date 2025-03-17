@@ -29,7 +29,7 @@ ARG PIPX_VERSION="1.1.0-1"
 # renovate: depName=debian_12/sudo
 ARG SUDO_VERSION="1.9.13p3-1+deb12u1"
 # renovate: depName=debian_12/vim
-ARG VIM_VERSION="2:9.0.1378-2"
+ARG VIM_VERSION="2:9.0.1378-2+deb12u2"
 
 # Install system dependencies and override pipx with a newer version
 RUN apt-get update && apt-get install -y --no-install-recommends \
