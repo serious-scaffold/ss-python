@@ -1,6 +1,6 @@
 {% from pathjoin("includes", "version_compare.jinja") import version_between %}
 dev-container-publish:
-  image: docker:28.0.1@sha256:0336b60f3134d98d26a069856780f9e58dbc3219cde49ca85be14c8e3c3446e2
+  image: docker:28.0.2@sha256:2bb691ba28efd798c67bfcea6f7b1dda19c969ceabc2f32480e8b153e79c647f
   parallel:
     matrix:
       - PYTHON_VERSION:
@@ -71,7 +71,7 @@ dev-container-publish:
           --target dev
       fi
   services:
-    - docker:28.0.1@sha256:0336b60f3134d98d26a069856780f9e58dbc3219cde49ca85be14c8e3c3446e2
+    - docker:28.0.2@sha256:2bb691ba28efd798c67bfcea6f7b1dda19c969ceabc2f32480e8b153e79c647f
   stage: build
   variables:
     DOCKER_TLS_CERTDIR: /certs
