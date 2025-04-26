@@ -5,6 +5,9 @@ on:
     types:
       - published
 
+permissions:
+  contents: read
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,7 +24,7 @@ jobs:
         uses: pdm-project/setup-pdm@deb8d8a4e2a03aabcef6f2cc981923fc6b29ef99 # v4.3
         with:
           cache: true
-          python-version: '3.12'
+          python-version: "3.12"
           version: 2.24.1
           cache-dependency-path: |
             ./pdm.dev.lock
@@ -111,11 +114,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - '3.9'
-          - '3.10'
-          - '3.11'
-          - '3.12'
-          - '3.13'
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
   package-publish:
     runs-on: ubuntu-24.04
     permissions:
@@ -128,7 +131,7 @@ jobs:
         uses: pdm-project/setup-pdm@deb8d8a4e2a03aabcef6f2cc981923fc6b29ef99 # v4.3
         with:
           cache: true
-          python-version: '3.12'
+          python-version: "3.12"
           version: 2.24.1
           cache-dependency-path: |
             ./pdm.dev.lock

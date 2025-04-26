@@ -1,4 +1,16 @@
 name: Renovate
+
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "*/15 0-3 * * 1"
+  workflow_dispatch: null
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
 jobs:
   renovate:
     container:
@@ -46,8 +58,3 @@ jobs:
           else
             renovate $RENOVATE_EXTRA_FLAG
           fi
-on:
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron: "*/15 0-3 * * 1"
-  workflow_dispatch: null
