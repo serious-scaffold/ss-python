@@ -40,7 +40,7 @@ jobs:
           # renovate: github-runner
           - ubuntu-24.04
           # renovate: github-runner
-          - windows-2022
+          - windows-2025
         python-version:
           - '3.9'
           - '3.10'
