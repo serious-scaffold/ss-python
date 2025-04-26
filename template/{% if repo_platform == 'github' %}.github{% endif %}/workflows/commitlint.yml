@@ -1,7 +1,23 @@
 name: CommitLint
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
 concurrency:
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   commitlint:
     container:
@@ -15,13 +31,3 @@ jobs:
       - name: Validate pull request title with commitlint
         if: github.event_name == 'pull_request'
         run: echo "${{ github.event.pull_request.title }}" | npx commitlint -x @commitlint/config-conventional
-on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - edited
-  push:
-    branches:
-      - main
