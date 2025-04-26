@@ -156,6 +156,18 @@
             }
         },
         {
+            "description": "Update readthedocs/actions/preview GitHub Action in template",
+            "matchDepNames": [
+                "readthedocs/actions"
+            ],
+            "postUpgradeTasks": {
+                "commands": [
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}/preview@{{{currentDigest}}} # {{{currentValue}}}|{{{depName}}}/preview@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}",
+                    "find template -type f -exec sed -i {{ '\'s|{{{depName}}}/preview@{{{currentValue}}}|{{{depName}}}/preview@{{{newDigest}}} # {{{newValue}}}|g\' {} +' }}"
+                ]
+            }
+        },
+        {
             "description": "Update GitHub Runner in template",
             "matchDepTypes": [
                 "github-runner"
