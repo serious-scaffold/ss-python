@@ -7,6 +7,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
@@ -50,19 +53,19 @@ jobs:
 {% endif %}
         python-version:
 {% if version_between("3.9", min_py, max_py) %}
-          - '3.9'
+          - "3.9"
 {% endif %}
 {% if version_between("3.10", min_py, max_py) %}
-          - '3.10'
+          - "3.10"
 {% endif %}
 {% if version_between("3.11", min_py, max_py) %}
-          - '3.11'
+          - "3.11"
 {% endif %}
 {% if version_between("3.12", min_py, max_py) %}
-          - '3.12'
+          - "3.12"
 {% endif %}
 {% if version_between("3.13", min_py, max_py) %}
-          - '3.13'
+          - "3.13"
 {% endif %}
 {% if project_name == "Serious Scaffold Python" %}
   consistency:

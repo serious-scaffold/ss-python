@@ -6,6 +6,9 @@ on:
     types:
       - published
 
+permissions:
+  contents: read
+
 concurrency:
   cancel-in-progress: true
   group: {{ '${{ github.workflow }}-${{ github.ref }}' }}
@@ -22,7 +25,7 @@ jobs:
         uses: pdm-project/setup-pdm@deb8d8a4e2a03aabcef6f2cc981923fc6b29ef99 # v4.3
         with:
           cache: true
-          python-version: '{{ default_py }}'
+          python-version: "{{ default_py }}"
           version: 2.24.1
           cache-dependency-path: |
             ./pdm.dev.lock
@@ -113,19 +116,19 @@ jobs:
       matrix:
         python-version:
 {% if version_between("3.9", min_py, max_py) %}
-          - '3.9'
+          - "3.9"
 {% endif %}
 {% if version_between("3.10", min_py, max_py) %}
-          - '3.10'
+          - "3.10"
 {% endif %}
 {% if version_between("3.11", min_py, max_py) %}
-          - '3.11'
+          - "3.11"
 {% endif %}
 {% if version_between("3.12", min_py, max_py) %}
-          - '3.12'
+          - "3.12"
 {% endif %}
 {% if version_between("3.13", min_py, max_py) %}
-          - '3.13'
+          - "3.13"
 {% endif %}
   package-publish:
     runs-on: ubuntu-24.04
@@ -139,7 +142,7 @@ jobs:
         uses: pdm-project/setup-pdm@deb8d8a4e2a03aabcef6f2cc981923fc6b29ef99 # v4.3
         with:
           cache: true
-          python-version: '{{ default_py }}'
+          python-version: "{{ default_py }}"
           version: 2.24.1
           cache-dependency-path: |
             ./pdm.dev.lock
