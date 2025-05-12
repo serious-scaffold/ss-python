@@ -9,23 +9,23 @@
             "customType": "regex",
             "datasourceTemplate": "pypi",
             "description": "Match Python packages installed with pip/pipx",
-            "fileMatch": [
-                "^Makefile$",
-                "^README\\.md$",
-                "^\\.devcontainer/Dockerfile$",
-                "^\\.github/workflows/.+\\.yml$",
-                "^\\.gitlab/workflows/.+\\.yml$",
-                "^\\.readthedocs\\.yaml$",
-                "^\\.renovaterc\\.json$",
-                "^docs/.+\\.md$",
-                "^includes/sample\\.jinja$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/Makefile\\.jinja$",
-                "^template/\\.devcontainer/Dockerfile\\.jinja$",
-                "^template/\\.readthedocs\\.yaml\\.jinja$",
-                "^template/\\.renovaterc\\.json\\.jinja$",
-                "^template/docs/.+\\.md(\\.jinja)?$"
+            "managerFilePatterns": [
+                "/^Makefile$/",
+                "/^README\\.md$/",
+                "/^\\.devcontainer/Dockerfile$/",
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^\\.gitlab/workflows/.+\\.yml$/",
+                "/^\\.readthedocs\\.yaml$/",
+                "/^\\.renovaterc\\.json$/",
+                "/^docs/.+\\.md$/",
+                "/^includes/sample\\.jinja$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/Makefile\\.jinja$/",
+                "/^template/\\.devcontainer/Dockerfile\\.jinja$/",
+                "/^template/\\.readthedocs\\.yaml\\.jinja$/",
+                "/^template/\\.renovaterc\\.json\\.jinja$/",
+                "/^template/docs/.+\\.md(\\.jinja)?$/"
             ],
             "matchStrings": [
                 "pip install.* (?<depName>.*?)(\\[.*?\\])?==(?<currentValue>.*?)[\"\n]",
@@ -38,9 +38,9 @@
             "datasourceTemplate": "repology",
             "depTypeTemplate": "debian",
             "description": "Match debian packages installed in Dockerfiles",
-            "fileMatch": [
-                "^\\.devcontainer\\/Dockerfile$",
-                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+            "managerFilePatterns": [
+                "/^\\.devcontainer\\/Dockerfile$/",
+                "/^template\\/\\.devcontainer/Dockerfile\\.jinja$/"
             ],
             "matchStrings": [
                 "# renovate: depName=(?<depName>.*?)\nARG .*?_VERSION=\"(?<currentValue>.*)\"\n"
@@ -52,9 +52,9 @@
             "datasourceTemplate": "pypi",
             "depNameTemplate": "pdm",
             "description": "Match pdm version specified in setup-pdm GitHub Action",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/"
             ],
             "matchStrings": [
                 "uses: pdm-project/setup-pdm[\\s\\S]+?\\sversion: (?<currentValue>.*)\n"
@@ -65,9 +65,9 @@
             "datasourceTemplate": "pypi",
             "depNameTemplate": "pdm",
             "description": "Match pdm version specified in the renovate constraints",
-            "fileMatch": [
-                "^\\.renovaterc\\.json$",
-                "^template/\\.renovaterc\\.json\\.jinja$"
+            "managerFilePatterns": [
+                "/^\\.renovaterc\\.json$/",
+                "/^template/\\.renovaterc\\.json\\.jinja$/"
             ],
             "matchStrings": [
                 "\"pdm\": \"(?<currentValue>.*)\""
@@ -78,9 +78,9 @@
             "datasourceTemplate": "github-runners",
             "depTypeTemplate": "github-runner",
             "description": "Match GitHub runner defined in GitHub Actions matrix strategy",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/"
             ],
             "matchStrings": [
                 "# renovate: github-runner\n\\s+- (os: )?(?<depName>.*?)-(?<currentValue>.*)\n"
@@ -91,11 +91,11 @@
             "customType": "regex",
             "datasourceTemplate": "npm",
             "description": "Match npm packages used with npx",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
-                "^\\.gitlab/workflows/.+\\.yml$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^\\.gitlab/workflows/.+\\.yml$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$/"
             ],
             "matchStrings": [
                 "--package (?<depName>.+?)@(?<currentValue>.+?)\\s"
@@ -108,8 +108,8 @@
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
             "description": "Match template version specified in .copier-answers.yml",
-            "fileMatch": [
-                "^\\.copier-answers\\.yml$"
+            "managerFilePatterns": [
+                "/^\\.copier-answers\\.yml$/"
             ],
             "matchStrings": [
                 "_commit: (?<currentValue>.*?)\n"
@@ -124,8 +124,8 @@
         ":semanticCommitTypeAll(build)"
     ],
     "gitlabci": {
-        "fileMatch": [
-            "^.gitlab/workflows/.*\\.yml$"
+        "managerFilePatterns": [
+            "/^.gitlab/workflows/.*\\.yml$/"
         ]
     },
     "packageRules": [
