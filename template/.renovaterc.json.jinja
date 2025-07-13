@@ -10,24 +10,24 @@
             "customType": "regex",
             "datasourceTemplate": "pypi",
             "description": "Match Python packages installed with pip/pipx",
-            "fileMatch": [
-                "^Makefile$",
-                "^README\\.md$",
-                "^\\.devcontainer/Dockerfile$",
-                "^\\.github/workflows/.+\\.yml$",
-                "^\\.gitlab/workflows/.+\\.yml$",
-                "^\\.readthedocs\\.yaml$",
-                "^\\.renovaterc\\.json$",
-                "^docs/.+\\.md$"
+            "managerFilePatterns": [
+                "/^Makefile$/",
+                "/^README\\.md$/",
+                "/^\\.devcontainer/Dockerfile$/",
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^\\.gitlab/workflows/.+\\.yml$/",
+                "/^\\.readthedocs\\.yaml$/",
+                "/^\\.renovaterc\\.json$/",
+                "/^docs/.+\\.md$/"
 {%- if project_name == "Serious Scaffold Python" %},
-                "^includes/sample\\.jinja$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/Makefile\\.jinja$",
-                "^template/\\.devcontainer/Dockerfile\\.jinja$",
-                "^template/\\.readthedocs\\.yaml\\.jinja$",
-                "^template/\\.renovaterc\\.json\\.jinja$",
-                "^template/docs/.+\\.md(\\.jinja)?$"
+                "/^includes/sample\\.jinja$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/Makefile\\.jinja$/",
+                "/^template/\\.devcontainer/Dockerfile\\.jinja$/",
+                "/^template/\\.readthedocs\\.yaml\\.jinja$/",
+                "/^template/\\.renovaterc\\.json\\.jinja$/",
+                "/^template/docs/.+\\.md(\\.jinja)?$/"
 {% endif %}
             ],
             "matchStrings": [
@@ -41,10 +41,10 @@
             "datasourceTemplate": "repology",
             "depTypeTemplate": "debian",
             "description": "Match debian packages installed in Dockerfiles",
-            "fileMatch": [
-                "^\\.devcontainer\\/Dockerfile$"
+            "managerFilePatterns": [
+                "/^\\.devcontainer\\/Dockerfile$/"
 {%- if project_name == "Serious Scaffold Python" %},
-                "^template\\/\\.devcontainer/Dockerfile\\.jinja$"
+                "/^template\\/\\.devcontainer/Dockerfile\\.jinja$/"
 {% endif %}
             ],
             "matchStrings": [
@@ -57,10 +57,10 @@
             "datasourceTemplate": "pypi",
             "depNameTemplate": "pdm",
             "description": "Match pdm version specified in setup-pdm GitHub Action",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/"
 {%- if project_name == "Serious Scaffold Python" %},
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/"
 {% endif %}
             ],
             "matchStrings": [
@@ -72,10 +72,10 @@
             "datasourceTemplate": "pypi",
             "depNameTemplate": "pdm",
             "description": "Match pdm version specified in the renovate constraints",
-            "fileMatch": [
-                "^\\.renovaterc\\.json$"
+            "managerFilePatterns": [
+                "/^\\.renovaterc\\.json$/"
 {%- if project_name == "Serious Scaffold Python" %},
-                "^template/\\.renovaterc\\.json\\.jinja$"
+                "/^template/\\.renovaterc\\.json\\.jinja$/"
 {% endif %}
             ],
             "matchStrings": [
@@ -87,9 +87,9 @@
             "datasourceTemplate": "github-runners",
             "depTypeTemplate": "github-runner",
             "description": "Match GitHub runner defined in GitHub Actions matrix strategy",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/"
             ],
             "matchStrings": [
                 "# renovate: github-runner\n\\s+- (os: )?(?<depName>.*?)-(?<currentValue>.*)\n"
@@ -100,12 +100,12 @@
             "customType": "regex",
             "datasourceTemplate": "npm",
             "description": "Match npm packages used with npx",
-            "fileMatch": [
-                "^\\.github/workflows/.+\\.yml$",
-                "^\\.gitlab/workflows/.+\\.yml$"
+            "managerFilePatterns": [
+                "/^\\.github/workflows/.+\\.yml$/",
+                "/^\\.gitlab/workflows/.+\\.yml$/"
 {%- if project_name == "Serious Scaffold Python" %},
-                "^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$",
-                "^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$"
+                "/^template/.*\\.github.*/workflows/.+\\.yml(\\.jinja)?$/",
+                "/^template/.*\\.gitlab.*/workflows/.+\\.yml(\\.jinja)?$/"
 {% endif %}
             ],
             "matchStrings": [
@@ -119,8 +119,8 @@
             "depNameTemplate": "https://github.com/serious-scaffold/ss-python.git",
             "depTypeTemplate": "copier-template",
             "description": "Match template version specified in .copier-answers.yml",
-            "fileMatch": [
-                "^\\.copier-answers\\.yml$"
+            "managerFilePatterns": [
+                "/^\\.copier-answers\\.yml$/"
             ],
             "matchStrings": [
                 "_commit: (?<currentValue>.*?)\n"
@@ -136,8 +136,8 @@
     ],
 {% if repo_platform == 'gitlab' or repo_platform == 'gitlab-self-managed' or project_name == 'Serious Scaffold Python' %}
     "gitlabci": {
-        "fileMatch": [
-            "^.gitlab/workflows/.*\\.yml$"
+        "managerFilePatterns": [
+            "/^.gitlab/workflows/.*\\.yml$/"
         ]
     },
 {% endif %}
