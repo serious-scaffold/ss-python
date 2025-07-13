@@ -68,7 +68,7 @@ prerequisites:
 	pipx list --short | grep -q "pre-commit 4.2.0" || pipx install --force pre-commit==4.2.0
 	pipx list --short | grep -q "pyproject-fmt 2.6.0" || pipx install --force pyproject-fmt==2.6.0
 	pipx list --short | grep -q "ruff 0.11.7" || pipx install --force ruff==0.11.7
-	pipx list --short | grep -q "watchfiles 1.0.5" || pipx install --force watchfiles==1.0.5
+	pipx list --short | grep -q "watchfiles 1.1.0" || pipx install --force watchfiles==1.1.0
 
 ########################################################################################
 # Lint and pre-commit
