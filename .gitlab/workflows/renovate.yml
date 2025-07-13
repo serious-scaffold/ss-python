@@ -11,10 +11,10 @@ renovate:
   variables:
     GIT_STRATEGY: none
     LOG_LEVEL: debug
-    RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^git", "^pdm", "^pip", "^copier", "^find"]'
+    RENOVATE_ALLOWED_POST_UPGRADE_COMMANDS: '["^find", "^pdm"]'
     RENOVATE_BASE_DIR: $CI_PROJECT_DIR/renovate
     RENOVATE_BRANCH_PREFIX: renovate-gitlab/
-    RENOVATE_ENABLED_MANAGERS: '["pep621", "gitlabci", "regex", "pre-commit"]'
+    RENOVATE_ENABLED_MANAGERS: '["copier", "gitlabci", "pep621", "pre-commit", "regex"]'
     RENOVATE_ENDPOINT: $CI_API_V4_URL
     RENOVATE_OPTIMIZE_FOR_DISABLED: "true"
     RENOVATE_PLATFORM: gitlab
