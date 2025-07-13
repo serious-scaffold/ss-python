@@ -2,7 +2,7 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "constraints": {
-        "copier": "9.4.1",
+        "copier": "9.8.0",
         "pdm": "2.24.1",
         "python": "=={{ default_py }}"
     },
@@ -73,11 +73,11 @@
             "datasourceTemplate": "pypi",
             "depNameTemplate": "copier",
             "description": "Match copier version specified in the renovate constraints",
-            "fileMatch": [
-                "^\\.renovaterc\\.json$"
-[%- if project_name == "Serious Scaffold Python" %],
-                "^template/\\.renovaterc\\.json\\.jinja$"
-[% endif %]
+            "managerFilePatterns": [
+                "/^\\.renovaterc\\.json$/"
+{%- if project_name == "Serious Scaffold Python" %},
+                "/^template/\\.renovaterc\\.json\\.jinja$/"
+{% endif %}
             ],
             "matchStrings": [
                 "\"copier\": \"(?<currentValue>.*)\""
