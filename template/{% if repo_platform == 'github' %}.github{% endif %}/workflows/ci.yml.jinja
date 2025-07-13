@@ -79,7 +79,7 @@ jobs:
         run: |
           git config --global user.name github-actions
           git config --global user.email github-actions@github.com
-      - run: pipx install copier==9.6.0
+      - run: pipx install copier==9.8.0
       - run: make template-build
       - run: git diff
       - run: git status --porcelain
