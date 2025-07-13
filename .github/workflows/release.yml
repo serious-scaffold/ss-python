@@ -25,7 +25,7 @@ jobs:
         with:
           cache: true
           python-version: "3.12"
-          version: 2.24.1
+          version: 2.25.4
           cache-dependency-path: |
             ./pdm.dev.lock
             ./pdm.lock
@@ -132,7 +132,7 @@ jobs:
         with:
           cache: true
           python-version: "3.12"
-          version: 2.24.1
+          version: 2.25.4
           cache-dependency-path: |
             ./pdm.dev.lock
             ./pdm.lock
