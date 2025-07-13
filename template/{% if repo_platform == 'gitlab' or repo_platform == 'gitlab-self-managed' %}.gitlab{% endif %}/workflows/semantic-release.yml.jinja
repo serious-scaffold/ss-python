@@ -1,14 +1,14 @@
 semantic-release:
   image:
-    name: node:22.15.0@sha256:473b4362b26d05e157f8470a1f0686cab6a62d1bd2e59774079ddf6fecd8e37e
+    name: node:22.17.0@sha256:2fa6c977460b56d4d8278947ab56faeb312bc4cc6c4cf78920c6de27812f51c5
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE == "push" && $CI_PROJECT_NAMESPACE == "{{ repo_namespace }}" && $CI_PROJECT_NAME == "{{ repo_name }}" && $PAT != null
   script:
     - >
       npx
-      --package @semantic-release/gitlab@13.2.4
-      --package conventional-changelog-conventionalcommits@8.0.0
-      --package semantic-release@24.2.3
+      --package @semantic-release/gitlab@13.2.6
+      --package conventional-changelog-conventionalcommits@9.1.0
+      --package semantic-release@24.2.7
       semantic-release
   stage: release
   variables:
