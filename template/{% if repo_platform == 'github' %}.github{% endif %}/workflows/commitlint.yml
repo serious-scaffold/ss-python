@@ -21,7 +21,7 @@ concurrency:
 jobs:
   commitlint:
     container:
-      image: commitlint/commitlint:19.8.1@sha256:bbfb5e986b5da3962a114270f28e854413e5b89317dbbecb36ecaabbb46082bc
+      image: commitlint/commitlint:19.9.1@sha256:a25d43c36f988a4336039993f5c65d4c7c89280d77ae349d51790e9f4de7a00d
     runs-on: ubuntu-24.04
     steps:
       - run: env | sort
