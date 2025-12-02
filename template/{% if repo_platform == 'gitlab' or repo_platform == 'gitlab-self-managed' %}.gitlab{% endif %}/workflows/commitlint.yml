@@ -1,6 +1,6 @@
 commitlint:
   image:
-    name: commitlint/commitlint:19.8.1@sha256:bbfb5e986b5da3962a114270f28e854413e5b89317dbbecb36ecaabbb46082bc
+    name: commitlint/commitlint:20.1.0@sha256:caf971bc6ab2744d20f9967df648f210d6e79dda4055748d183d31700986f115
     entrypoint: ['']
   interruptible: true
   rules:
